@@ -24,14 +24,6 @@ module.exports = function(sequelize, DataTypes) {
         key: 'mtoid'
       }
     },
-    suoid: {
-      type: 'NUMERIC',
-      allowNull: false,
-      references: {
-        model: 'subdimension',
-        key: 'suoid'
-      }
-    },
     feoid: {
       type: 'NUMERIC',
       allowNull: false,

@@ -1,1 +1,1 @@
-sequelize-auto -o "models" -d SGE_APS -h localhost -u postgres -p 5432 -x 9004 -e postgres
+sequelize-auto -o "models" -d SGE_APS -h 190.5.195.91 -u tics -p 5432 -x 9004 -e postgres

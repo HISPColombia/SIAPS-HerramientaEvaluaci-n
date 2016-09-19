@@ -11,6 +11,14 @@ module.exports = function(sequelize, DataTypes) {
     fename: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    suoid: {
+      type: 'NUMERIC',
+      allowNull: false,
+      references: {
+        model: 'subdimension',
+        key: 'suoid'
+      }
     }
   }, {
     tableName: 'feature'

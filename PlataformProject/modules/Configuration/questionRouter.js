@@ -31,12 +31,6 @@ router.get('/sys/question/fkmtoid/:mtoid', function (req, res) {
     });
 });
 
-router.get('/sys/question/fksuoid/:suoid', function (req, res) {
-    models.question.findAll({ 
-        where: { suoid: req.params.suoid}}).then(function (result) {
-        publicResource.ReturnResult(res, result);
-    });
-});
 
 router.get('/sys/question/fkfeoid/:feoid', function (req, res) {
     models.question.findAll({ 
@@ -46,14 +40,14 @@ router.get('/sys/question/fkfeoid/:feoid', function (req, res) {
 });
 
 router.post('/sys/question', function (req, res) {
-    models.question.create({ quoid: req.body.quoid, qucode: req.body.qucode, ququestion: req.body.ququestion, mtoid: req.body.mtoid, suoid: req.body.suoid, feoid: req.body.feoid })
+    models.question.create({ quoid: req.body.quoid, qucode: req.body.qucode, ququestion: req.body.ququestion, mtoid: req.body.mtoid,feoid: req.body.feoid })
    .then(function (question) {
        publicResource.ReturnResult(res, question);
    })
 });
 
 router.put('/sys/question/:quoid', function (req, res) {
-  models.question.update({ qucode: req.body.qucode, ququestion: req.body.ququestion, mtoid: req.body.mtoid, suoid: req.body.suoid, feoid: req.body.feoid  },
+  models.question.update({ qucode: req.body.qucode, ququestion: req.body.ququestion, mtoid: req.body.mtoid, feoid: req.body.feoid  },
     { 
         where: {
              quoid: req.params.quoid 

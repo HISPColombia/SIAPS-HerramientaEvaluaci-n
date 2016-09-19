@@ -18,6 +18,15 @@ router.get('/sys/feature/id/:feoid', function (req, res) {
     });
 });
 
+router.get('/sys/feature/fk/:suoid', function (req, res) {
+    models.feature.findAll({ 
+        where: {
+            suoid: req.params.suoid }}).then(function (result) {
+        publicResource.ReturnResult(res, result);
+    });
+});
+
+
 router.get('/sys/feature/nam/:name', function (req, res) {
     models.feature.findAll({ 
         where: { fename: {$like: '%'+req.params.name+'%'} }}).then(function (result) {
@@ -27,14 +36,14 @@ router.get('/sys/feature/nam/:name', function (req, res) {
 
 
 router.post('/sys/feature', function (req, res) {
-    models.feature.create({ feoid: req.body.feoid, fename: req.body.fename })
+    models.feature.create({ feoid: req.body.feoid, fename: req.body.fename, suoid: req.body.suoid })
    .then(function (feature) {
        publicResource.ReturnResult(res, feature);
    })
 });
 
 router.put('/sys/feature/:feoid', function (req, res) {
-    models.feature.update({ fename: req.body.fename  },
+    models.feature.update({ fename: req.body.fename, suoid: req.body.suoid  },
     { 
         where: {
              feoid: req.params.feoid 
