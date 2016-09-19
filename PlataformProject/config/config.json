@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "postgres",
+    "username": "tics",
     "password": "9004",
     "database": "SGE_APS",
-    "host": "192.168.100.254",
+    "host": "190.5.195.91",
     "dialect": "postgres",
     "define": {
       "timestamps": false,
@@ -11,7 +11,7 @@
     }
   },
   "sqlServer": {
-    "username": "postgres",
+    "username": "tics",
     "password": "9004",
     "database": "SGE_APS",
     "host": "127.0.0.1",
@@ -22,10 +22,10 @@
     }
   },
   "production": {
-    "username": "postgres",
+    "username": "tics",
     "password": "9004",
     "database": "SGE_APS",
-    "host": "192.168.100.254",
+    "host": "190.5.195.91",
     "dialect": "postgres",
     "define": {
       "timestamps": false,
