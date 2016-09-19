@@ -26,7 +26,7 @@ app.use(methodOverride());
 //cross domain
 var listdomain = {
     "http://localhost": true,
-    "http://192.168.100.190": true,
+    "http://190.5.195.91": true,
 };
 app.use(function (request, response, next) {
     if (request.headers.origin == undefined) {
