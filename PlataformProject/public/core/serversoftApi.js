@@ -10,58 +10,58 @@ var ServersoftApi = angular.module("ServersoftApi", ['ngResource']);
 //Create all common variables of the apps 
 ServersoftApi.factory("commonvariable", function () {
 	var Vari={
-	    url: "http://190.5.195.91/api/",
-	    urlCredential: "http://190.5.195.91:7777/api/sys/",
+	    url: "http://localhost:6911/api/",
+	    urlCredential: "http://localhost:6911/api/sys/",
 			OptionSetSelected:[]
 			};
 
    return Vari; 
 });
 
-ServersoftApi.factory("beds", ['$resource', 'commonvariable', function ($resource, commonvariable) {
-    return $resource(commonvariable.url + "beds/:beid",
-	{beid:'@beid'},
-  	{
-  	    get: { method: "GET", isArray: true },
-  	    post: { method: "POST" },
-  	    put: { method: "PUT", isArray: true },
-  	    remove: { method: 'DELETE' }
-  	});
-}]);
+// ServersoftApi.factory("beds", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+//     return $resource(commonvariable.url + "beds/:beid",
+// 	{beid:'@beid'},
+//   	{
+//   	    get: { method: "GET", isArray: true },
+//   	    post: { method: "POST" },
+//   	    put: { method: "PUT", isArray: true },
+//   	    remove: { method: 'DELETE' }
+//   	});
+// }]);
 
-ServersoftApi.factory("room", ['$resource', 'commonvariable', function ($resource, commonvariable) {
-    return $resource(commonvariable.url + "room/:roid",
-	{roid:'@roid'},
-  	{
-  	    get: { method: "GET", isArray: true },
-  	    post: { method: "POST" },
-  	    put: { method: "PUT", isArray: true },
-  	    remove: { method: 'DELETE' }
-  	});
-}]);
-
-
-ServersoftApi.factory("hospitalization", ['$resource', 'commonvariable', function ($resource, commonvariable) {
-    return $resource(commonvariable.url + "hospitalization/:hoid",
-	{ hoid: '@hoid' },
-  	{
-  	    get: { method: "GET", isArray: true },
-  	    post: { method: "POST" },
-  	    put: { method: "PUT", isArray: true },
-  	    remove: { method: 'DELETE' }
-  	});
-}]);
+// ServersoftApi.factory("room", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+//     return $resource(commonvariable.url + "room/:roid",
+// 	{roid:'@roid'},
+//   	{
+//   	    get: { method: "GET", isArray: true },
+//   	    post: { method: "POST" },
+//   	    put: { method: "PUT", isArray: true },
+//   	    remove: { method: 'DELETE' }
+//   	});
+// }]);
 
 
-ServersoftApi.factory("bedView",['$resource','commonvariable', function ($resource,commonvariable) {
-	return $resource( commonvariable.url+"bedview", 
-	{},
-  	{get: { method: "GET",isArray: true},
-	post: { method: "POST"},
-	put: { method: "PUT"},
-	remove: {method:'DELETE'}
-  });
-}]);
+// ServersoftApi.factory("hospitalization", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+//     return $resource(commonvariable.url + "hospitalization/:hoid",
+// 	{ hoid: '@hoid' },
+//   	{
+//   	    get: { method: "GET", isArray: true },
+//   	    post: { method: "POST" },
+//   	    put: { method: "PUT", isArray: true },
+//   	    remove: { method: 'DELETE' }
+//   	});
+// }]);
+
+
+// ServersoftApi.factory("bedView",['$resource','commonvariable', function ($resource,commonvariable) {
+// 	return $resource( commonvariable.url+"bedview", 
+// 	{},
+//   	{get: { method: "GET",isArray: true},
+// 	post: { method: "POST"},
+// 	put: { method: "PUT"},
+// 	remove: {method:'DELETE'}
+//   });
+// }]);
 
 
 
@@ -86,6 +86,7 @@ ServersoftApi.factory("loginservice", ['$resource', 'commonvariable', function (
 ServersoftApi.factory("authentication", function ($cookies, $cookieStore, $location, $q, loginservice) {
     return {
         login: function (username, password) {
+            alert("Login...");
             //creamos la cookie con el nombre que nos han pasado
             var defered = $q.defer();
             var promise = defered.promise;

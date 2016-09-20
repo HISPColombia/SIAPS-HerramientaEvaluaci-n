@@ -26,7 +26,7 @@ app.use(methodOverride());
 //cross domain
 var listdomain = {
     "http://localhost": true,
-    "http://190.5.195.91": true,
+    "http://192.168.100.190": true,
 };
 app.use(function (request, response, next) {
     if (request.headers.origin == undefined) {
@@ -57,15 +57,19 @@ app.get('/', function (request, response) {
     response.send('Rest API create by < J Tecnolgía >');
 });
 //view 
-//app.get('/view', function (request, response) {
-  //  response.sendFile(path.join(__dirname + '/public/index.html'));
-//});
+app.get('/view', function (request, response) {
+    response.sendFile(path.join(__dirname + '/public/index.html'));
+});
 
 ////////////////////////////////
 
 //////Modules/////
 
 ////Routers
+
+var user = require("./Modules/Segurity/authRouter.js")
+app.use("/api",user);
+
 var user = require("./Modules/Segurity/userRouter.js")
 app.use("/api",user);
 

@@ -3,6 +3,7 @@ appServersoft.controller('loginController', ['$scope', '$filter', 'authenticatio
     authentication.logout();
         $scope.alerts = [];
         $scope.login = function (user, password) {
+           $scope.alert('Autenticando......');
             authentication.login(user, password).then(function (data){
                 $scope.addAlert($translate('MESSAGE_ERROR'));
             });
