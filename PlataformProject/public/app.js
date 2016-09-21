@@ -6,18 +6,27 @@ appServersoft.config(function($routeProvider,$translateProvider) {
         templateUrl: "/modules/login/loginView.html",
         controller: "loginController"
     });
-    $routeProvider.when('/index', {
-		  	templateUrl: "/modules/alert/alertView.html",
-		  	controller: "alertController"
-    });
-    $routeProvider.when('/setting', {
-        templateUrl: "/modules/setting/settingView.html",
-        controller: "settingController"
-    });
+    $routeProvider.when('/configuration', {
+		  	templateUrl: "/modules/configuration/configView.html",
+		  	controller: "configController"
+	   });
 
-	  $routeProvider.otherwise({
-	    redirectTo: '/index'
-	  });
+	//   $routeProvider.when('/roles', {
+	//       templateUrl: "/modules/Role/roleView.html",
+	//       controller: "roleController"
+	//   });
+
+	//   $routeProvider.when('/tenant', {
+	//       templateUrl: "/modules/Tenant/tenantView.html",
+	//       controller: "tenantController"
+	//   });
+	//   $routeProvider.when('/users', {
+	//       templateUrl: "/modules/User/userView.html",
+	//       controller: "userController"
+	//   });
+	   $routeProvider.otherwise({
+	     redirectTo: '/login'
+	   });
 
 
 

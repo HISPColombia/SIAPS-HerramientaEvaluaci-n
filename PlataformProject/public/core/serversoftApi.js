@@ -10,57 +10,96 @@ var ServersoftApi = angular.module("ServersoftApi", ['ngResource']);
 //Create all common variables of the apps 
 ServersoftApi.factory("commonvariable", function () {
 	var Vari={
-	    url: "http://localhost:6911/api/",
-	    urlCredential: "http://localhost:6911/api/sys/",
+			url:"http://localhost:6911/api/sys/",
 			OptionSetSelected:[]
 			};
 
    return Vari; 
 });
 
-// ServersoftApi.factory("beds", ['$resource', 'commonvariable', function ($resource, commonvariable) {
-//     return $resource(commonvariable.url + "beds/:beid",
-// 	{beid:'@beid'},
-//   	{
-//   	    get: { method: "GET", isArray: true },
-//   	    post: { method: "POST" },
-//   	    put: { method: "PUT", isArray: true },
-//   	    remove: { method: 'DELETE' }
-//   	});
-// }]);
+// // ServersoftApi.factory("role", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+// //     return $resource(commonvariable.url + "role/:rid",
+// // 	{ rid: '@rid' },
+// //   	{
+// //   	    get: { method: "GET", isArray: true },
+// //   	    post: { method: "POST" },
+// //   	    put: { method: "PUT" },
+// //   	    remove: { method: 'DELETE' }
+// //   	});
+// // }]);
 
-// ServersoftApi.factory("room", ['$resource', 'commonvariable', function ($resource, commonvariable) {
-//     return $resource(commonvariable.url + "room/:roid",
-// 	{roid:'@roid'},
-//   	{
-//   	    get: { method: "GET", isArray: true },
-//   	    post: { method: "POST" },
-//   	    put: { method: "PUT", isArray: true },
-//   	    remove: { method: 'DELETE' }
-//   	});
-// }]);
+// // ServersoftApi.factory("user", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+// //     return $resource(commonvariable.url + "user/:uid",
+// // 	{ uid: '@uid' },
+// //   	{
+// //   	    get: { method: "GET", isArray: true },
+// //   	    post: { method: "POST" },
+// //   	    put: { method: "PUT" },
+// //   	    remove: { method: 'DELETE' }
+// //   	});
+// // }]);
 
+// // ServersoftApi.factory("roleuser", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+// //     return $resource(commonvariable.url + "roleuser/:uid",
+// // 	{ uid: '@uid' },
+// //   	{
+// //   	    get: { method: "GET", isArray: true },
+// //   	    post: { method: "POST" },
+// //   	    put: { method: "PUT" },
+// //   	    remove: { method: 'DELETE' }
+// //   	});
+// // }]);
 
-// ServersoftApi.factory("hospitalization", ['$resource', 'commonvariable', function ($resource, commonvariable) {
-//     return $resource(commonvariable.url + "hospitalization/:hoid",
-// 	{ hoid: '@hoid' },
-//   	{
-//   	    get: { method: "GET", isArray: true },
-//   	    post: { method: "POST" },
-//   	    put: { method: "PUT", isArray: true },
-//   	    remove: { method: 'DELETE' }
-//   	});
-// }]);
-
-
-// ServersoftApi.factory("bedView",['$resource','commonvariable', function ($resource,commonvariable) {
-// 	return $resource( commonvariable.url+"bedview", 
-// 	{},
+// ServersoftApi.factory("programs",['$resource','commonvariable', function ($resource,commonvariable) {
+// 	return $resource( commonvariable.url+"program/:pid", 
+// 	{pid:'@pid'},
 //   	{get: { method: "GET",isArray: true},
 // 	post: { method: "POST"},
 // 	put: { method: "PUT"},
 // 	remove: {method:'DELETE'}
 //   });
+// }]);
+
+
+
+
+// ServersoftApi.factory("programoption", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+//     return $resource(commonvariable.url + "programoption/:pid",
+// 	{ pid: '@pid' },
+//   	{
+//   	    get: { method: "GET", isArray: true },
+//   	    post: { method: "POST" },
+//   	    put: { method: "PUT" },
+//   	    remove: { method: 'DELETE' }
+//   	});
+// }]);
+
+
+
+
+// ServersoftApi.factory("roleDetail", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+//     return $resource(commonvariable.url + "roledetail/:rid/:rdid",
+// 	{
+// 	    rid: '@rid',
+// 	    rdid: '@rdid'
+// 	},
+//   	{
+//   	    get: { method: "GET", isArray: true },
+//   	    post: { method: "POST" },
+//   	    put: { method: "PUT" },
+//   	    remove: { method: 'DELETE' }
+//   	});
+// }]);
+
+// ServersoftApi.factory("tenant", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+//     return $resource(commonvariable.url + "tenant/:tid",
+// 	{ tid: '@tid' },
+//   	{
+//   	    get: { method: "GET", isArray: true },
+//   	    post: { method: "POST" },
+//   	    put: { method: "PUT" },
+//   	    remove: { method: 'DELETE' }
+//   	});
 // }]);
 
 
@@ -72,7 +111,7 @@ ServersoftApi.factory("commonvariable", function () {
 //$cookieStore para actualizar o eliminar
 //$location para cargar otras rutas
 ServersoftApi.factory("loginservice", ['$resource', 'commonvariable', function ($resource, commonvariable) {
-    return $resource(commonvariable.urlCredential + "auth/:username/:password",
+    return $resource(commonvariable.url + "auth/:username/:password",
 {
     username: '@username',
     password: '@password'
@@ -84,19 +123,17 @@ ServersoftApi.factory("loginservice", ['$resource', 'commonvariable', function (
 
 
 ServersoftApi.factory("authentication", function ($cookies, $cookieStore, $location, $q, loginservice) {
-    return {
-        login: function (username, password) {
-            alert("Login...");
+       return {
+              login: function (username, password) {
             //creamos la cookie con el nombre que nos han pasado
             var defered = $q.defer();
             var promise = defered.promise;
-
             loginservice.get({ username: username, password: password })
             .$promise.then(function (credential) {
                 if (credential.length >= 1) {
                     $cookies.dataUser = credential[0];
                     //mandamos a la adminaccess
-                    $location.path("/index");
+                    $location.path("/configuration");
                 }
                 else {
                     defered.resolve({ error: "error" });
@@ -114,13 +151,13 @@ ServersoftApi.factory("authentication", function ($cookies, $cookieStore, $locat
         },
         checkStatus: function () {
             //creamos un array con las rutas que queremos controlar
-            var rutasPrivadas = ["/setting", "/login"];
+            var rutasPrivadas = ["/configuration", "/login"];
             if (this.in_array($location.path(), rutasPrivadas) && typeof ($cookies.dataUser) == "undefined") {
                 $location.path("/login");
             }
             //en el caso de que intente acceder al login y ya haya iniciado sesión lo mandamos a la home
             if (this.in_array("/login", rutasPrivadas) && typeof ($cookies.dataUser) != "undefined") {
-                $location.path("/setting");
+                $location.path("/configuration");
             }
         },
         in_array: function (needle, haystack) {
@@ -134,9 +171,3 @@ ServersoftApi.factory("authentication", function ($cookies, $cookieStore, $locat
         }
     }
 });
-
-
-
-
-
-

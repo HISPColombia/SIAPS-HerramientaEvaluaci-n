@@ -10,6 +10,7 @@ var fs = require('fs');
 
 var express = require('express');
 var app = express();
+var bcrypt = require('bcrypt-nodejs');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 //var restful = require('sequelize-restful'); // it is not using y now
@@ -65,23 +66,18 @@ app.get('/view', function (request, response) {
 
 //////Modules/////
 
-////Routers
-
+////Routers Segurity
 var user = require("./Modules/Segurity/authRouter.js")
 app.use("/api",user);
-
 var user = require("./Modules/Segurity/userRouter.js")
 app.use("/api",user);
-
 var person = require("./Modules/Segurity/personRouter.js")
 app.use("/api",person);
-
 var role = require("./Modules/Segurity/roleRouter.js")
 app.use("/api",role);
-
 var userrole = require("./Modules/Segurity/userroleRouter.js")
 app.use("/api",userrole);
-
+//Routers Configuration
 var version = require("./Modules/Configuration/versionRouter.js")
 app.use("/api",version);
 
@@ -126,6 +122,8 @@ app.use("/api",responsevalue);
 
 var rolesubdimension = require("./Modules/Configuration/rolesubdimensionRouter.js")
 app.use("/api",rolesubdimension);
+
+//Routers Project
 
 var PHCPhase = require("./Modules/Project/PHCPhaseRouter.js")
 app.use("/api",PHCPhase);

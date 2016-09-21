@@ -2,7 +2,7 @@ var models = require("../../ControllerModels.js");
 var publicResource = require("../../ControllerRouters.js");
 var express = require('express');
 var router = express.Router();
-
+var bcrypt = require('bcrypt-nodejs');
 
 router.get('/sys/user', function (req, res) {
     models.user.findAll({ limit: 1000 }).then(function (result) {
@@ -27,7 +27,9 @@ router.get('/sys/user/st/:usstatus', function (req, res) {
 });
 
 router.post('/sys/user', function (req, res) {
-    models.user.create({ usoid: req.body.usoid, usname: req.body.usname, uspassword: req.body.uspassword, peoid: req.body.peoid, usstatus: 1 })
+    var salt = bcrypt.genSaltSync(10);
+    var passwordToSave = bcrypt.hashSync(req.body.uspassword, salt)
+    models.user.create({ usoid: req.body.usoid, usname: req.body.usname, uspassword: passwordToSave, peoid: req.body.peoid, usstatus: 1 })
    .then(function (user) {
        publicResource.ReturnResult(res, user);
    })
