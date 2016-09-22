@@ -24,9 +24,10 @@ app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
 app.use(methodOverride());
 
+
 //cross domain
 var listdomain = {
-    "http://localhost": true,
+    "http://localhost:6911": true,
     "http://192.168.100.190": true,
 };
 app.use(function (request, response, next) {

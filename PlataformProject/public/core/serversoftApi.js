@@ -111,16 +111,15 @@ ServersoftApi.factory("commonvariable", function () {
 //$cookieStore para actualizar o eliminar
 //$location para cargar otras rutas
 ServersoftApi.factory("loginservice", ['$resource', 'commonvariable', function ($resource, commonvariable) {
-    return $resource(commonvariable.url + "auth/:username/:password",
+    return $resource(commonvariable.url + "auth",
 {
-    username: '@username',
-    password: '@password'
+    usname: '@username',
+    uspassword: '@password'
 },
 {
-    get: { method: "GET", isArray: true }
+    post: { method: "POST", isArray: true }
 });
 }]);
-
 
 ServersoftApi.factory("authentication", function ($cookies, $cookieStore, $location, $q, loginservice) {
        return {
@@ -128,7 +127,7 @@ ServersoftApi.factory("authentication", function ($cookies, $cookieStore, $locat
             //creamos la cookie con el nombre que nos han pasado
             var defered = $q.defer();
             var promise = defered.promise;
-            loginservice.get({ username: username, password: password })
+            loginservice.post({ usname: username, uspassword: password })
             .$promise.then(function (credential) {
                 if (credential.length >= 1) {
                     $cookies.dataUser = credential[0];
