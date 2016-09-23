@@ -68,6 +68,8 @@ app.get('/view', function (request, response) {
 //////Modules/////
 
 ////Routers Segurity
+var checkdb = require("./Modules/Segurity/checkdbRouter.js")
+app.use("/api",checkdb);
 var user = require("./Modules/Segurity/authRouter.js")
 app.use("/api",user);
 var user = require("./Modules/Segurity/userRouter.js")
