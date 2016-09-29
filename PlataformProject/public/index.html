@@ -41,10 +41,11 @@
 <script src="/modules/Tenant/tenantController.js" type="text/javascript"></script>-->
 <script src="/modules/security/singupController.js" type="text/javascript"> </script>
 <script src="/modules/security/accountController.js" type="text/javascript"> </script>
+<script src="/modules/security/personController.js" type="text/javascript"> </script>
 <script src="/modules/configuration/configurationController.js" type="text/javascript"> </script>
 <!--Directives-->
 </head>
-<body ng-controller="indexController">
+<body>
                     <div class="row">
                     <div class="panel-heading">
                        <div class="col-md-12 text-center">
@@ -53,23 +54,28 @@
                         </div>
                      </div>
                 </div>
-<div class="panel-body">                
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-9 bhoechie-tab-container">
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
-              <div class="list-group">
+<div class="panel-body" ng-controller="indexController">                
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-9 bhoechie-tab-container" ng-controller="indexController">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu" ng-controller="indexController">
+              <div class="list-group" ng-controller="indexController">
+
                 <a href="#/account" class="list-group-item active text-center">
                   <h4 class="glyphicon glyphicon-user"></h4><br/>Account
                 </a>
+                
                 <a href="#/singup" class="list-group-item text-center">
                   <h4 class="glyphicon glyphicon-globe"></h4><br/>Security
                 </a>
                 <a href="#/configuration" class="list-group-item text-center">
                   <h4 class="glyphicon glyphicon-cog"></h4><br/>Configuration
                 </a>
+
+                <!--<li><a href="#/configuration" data-toggle="tab" title="Sing Up"> <i class="glyphicon glyphicon-cog"></i>Configuration</a></li>-->
+
                 <a href="#/project" class="list-group-item text-center">
                   <h4 class="glyphicon glyphicon-tasks"></h4><br/>Project
                 </a>
-                <a href="#/adminaccess" class="list-group-item text-center">
+                <a href="#/adminaccess" ng-click="shutdown()" class="list-group-item text-center">
                   <h4 class="glyphicon glyphicon-off"></h4><br/>Sing out
                 </a>
               </div>

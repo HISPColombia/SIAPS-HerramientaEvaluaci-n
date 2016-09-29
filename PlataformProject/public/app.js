@@ -6,6 +6,12 @@ appServersoft.config(function($routeProvider,$translateProvider) {
         templateUrl: "/modules/security/singupView.html",
         controller: "singupController"
     });
+
+	$routeProvider.when('/person', {
+        templateUrl: "/modules/security/personView.html",
+        controller: "personController"
+    });
+
     $routeProvider.when('/account', {
 		  	templateUrl: "/modules/security/accountView.html",
 		  	controller: "accountController"
@@ -64,3 +70,4 @@ appServersoft.controller('indexController', ['$scope', '$filter', 'authenticatio
         authentication.logout();
     }
 }]);
+
