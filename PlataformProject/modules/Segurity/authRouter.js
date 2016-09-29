@@ -5,7 +5,7 @@ var router = express.Router();
 var bcrypt = require('bcrypt-nodejs');
 
 router.post('/sys/auth', function (req, res) {
-      models.user.findAll({
+        models.user.findAll({
         where: {
              usname: req.body.usname
          }}).then(function (result) {

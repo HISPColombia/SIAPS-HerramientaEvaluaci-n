@@ -28,7 +28,7 @@ app.use(methodOverride());
 //cross domain
 var listdomain = {
     "http://localhost:6911": true,
-    "http://192.168.100.190": true,
+    "http://192.168.100.190:6911": true,
 };
 app.use(function (request, response, next) {
     if (request.headers.origin == undefined) {
@@ -68,8 +68,6 @@ app.get('/view', function (request, response) {
 //////Modules/////
 
 ////Routers Segurity
-var checkdb = require("./Modules/Segurity/checkdbRouter.js")
-app.use("/api",checkdb);
 var user = require("./Modules/Segurity/authRouter.js")
 app.use("/api",user);
 var user = require("./Modules/Segurity/userRouter.js")

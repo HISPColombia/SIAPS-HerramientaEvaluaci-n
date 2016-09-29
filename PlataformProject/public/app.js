@@ -2,13 +2,18 @@ var appServersoft = angular.module("appServersoft", ['ngRoute', 'ServersoftApi',
 
 appServersoft.config(function($routeProvider,$translateProvider) {
  
-    $routeProvider.when('/login', {
-        templateUrl: "/modules/login/loginView.html",
-        controller: "loginController"
+    $routeProvider.when('/singup', {
+        templateUrl: "/modules/security/singupView.html",
+        controller: "singupController"
     });
+    $routeProvider.when('/account', {
+		  	templateUrl: "/modules/security/accountView.html",
+		  	controller: "accountController"
+	   });
+
     $routeProvider.when('/configuration', {
-		  	templateUrl: "/modules/configuration/configView.html",
-		  	controller: "configController"
+		  	templateUrl: "/modules/configuration/configurationView.html",
+		  	controller: "configurationController"
 	   });
 
 	//   $routeProvider.when('/roles', {
@@ -25,7 +30,7 @@ appServersoft.config(function($routeProvider,$translateProvider) {
 	//       controller: "userController"
 	//   });
 	   $routeProvider.otherwise({
-	     redirectTo: '/login'
+	     redirectTo: '/'
 	   });
 
 
