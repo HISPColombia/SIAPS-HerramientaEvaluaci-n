@@ -61,7 +61,7 @@
             </div>
         </div>
         <div>
-            <button type="button" class="btn btn-success" ng-click="savePerson();" ng-show="mode=='create'">Guardar</button>
+            <button type="button" class="btn btn-success" ng-click="savePerson(peidentify,pename,pesurname,pestudies,peprofdescription,pemail,petelephon);" ng-show="mode=='create'">Guardar</button>
             <button type="button" class="btn btn-success" ng-click="updateClick();" ng-show="mode=='edit'">Actualizar</button>
             <button type="button" class="btn btn-success" ng-click="deleteClick();" ng-show="mode=='edit'">Eliminar</button>
             <button class="btn btn-default" ng-click="initform()">{{'ROOM_CANCEL'|translate}}</button>

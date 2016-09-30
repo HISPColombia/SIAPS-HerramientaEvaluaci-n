@@ -18,16 +18,9 @@ ServersoftApi.factory("commonvariable", function () {
 });
 
 ServersoftApi.factory("person", ['$resource', 'commonvariable', function ($resource, commonvariable) {
-     return $resource(commonvariable.url + "person",
+     return $resource(commonvariable.url + "person/:peoid",
      {
-        peoid: '@peoid',
-        peidentify: '@peidentify',
-        pename: '@pename',
-        pesurname: '@pesurname',
-        pestudies: '@pestudies',
-        peprofdescription: '@peprofdescription',
-        pemail: '@pemail',
-        petelephon:'petelephon'
+        peoid:'@peoid'
       },
   	{
   	    get: { method: "GET", isArray: true },
