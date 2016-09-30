@@ -1,12 +1,12 @@
-<h4>Person</h4> <hr/>
+<h4>{{'PERSON'| translate}}</h4> <hr/>
 <form name="form">
     <div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                <input type="text" class="form-control" name="peidentify" ng-model="peidentify" ng-minlength="3" ng-maxlength="50" required  placeholder="Enter your identify"/>
+                <input type="text" class="form-control" name="peidentify" ng-model="peidentify" ng-minlength="3" ng-maxlength="50" required  placeholder="{{'IDENTIFY'| translate}}" />
                 <div class="error-container" ng-show="form.peidentify.$dirty && form.peidentify.$invalid">
-                    <small class="error" ng-show="form.peidentify.$error.required">The Identify is Requiered</small>
-                    <small class="error" ng-show="form.peidentify.$error.maxlength">Telefono no mayor a 15 caracteres</small>
+                    <small class="error" ng-show="form.peidentify.$error.required">{{'IDENTIFY_REQUIRED'| translate}}</small>
+                    <small class="error" ng-show="form.peidentify.$error.maxlength">{{'IDENTIFY_LONG'| translate}}</small>
                 </div>
             </div>
 
@@ -14,7 +14,7 @@
 
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                <input type="text" class="form-control" name="pename" ng-model="pename" ng-minlength="3" ng-maxlength="50" required  placeholder="Enter your name"/>
+                <input type="text" class="form-control" name="pename" ng-model="pename" ng-minlength="3" ng-maxlength="50" required  placeholder="{{'NAME'| translate}}"/>
                 <div class="error" ng-show="form.txtNombre.$dirty && form.txtNombre.$invalid">
                     <small class="error" ng-show="form.txtNombre.$error.required">El nombre es obligatorio. </small>
                     <small class="error" ng-show="form.txtNombre.$error.minlength">Nombre al menos de 3 caracteres </small>
@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6">
-                <input type="text" class="form-control" name="pesurname" ng-model="pesurname" ng-minlength="3" ng-maxlength="50" required placeholder="Enter surname" />
+                <input type="text" class="form-control" name="pesurname" ng-model="pesurname" ng-minlength="3" ng-maxlength="50" required placeholder="{{'SURNAME'| translate}}"/>
                 <div class="error" ng-show="form.txtApellido.$dirty && form.txtApellido.$invalid">
                     <small class="error" ng-show="form.txtApellido.$error.required">El apellido es obligatorio. </small>
                     <small class="error" ng-show="form.txtApellido.$error.minlength">Apellido al menos de 3 caracteres </small>
@@ -32,7 +32,7 @@
         </div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                <input type="email" class="form-control" name="pemail" ng-model="selEmail" ng-minlength="3" ng-maxlength="50" required placeholder="Enter Email">
+                <input type="email" class="form-control" name="pemail" ng-model="pemail" ng-minlength="3" ng-maxlength="50" required placeholder="{{'EMAIL'| translate}}">
                 <div class="error-container" ng-show="form.pemail.$dirty && form.pemail.$invalid">
                     <small class="error" ng-show="form.pemail.$error.required">El email es obligatorio.</small>
                     <small class="error" ng-show="form.pemail.$error.minlength">Email al menos de 3 caracteres</small>
@@ -41,18 +41,30 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6">
-                <input type="text" class="form-control" name="petelephon" ng-model="selTelefono" ng-maxlength="15" required placeholder="Enter Telephone"/>
-                <div class="error-container" ng-show="form.petelephon.$dirty && form.petelephon.$invalid">
+                <input type="text" class="form-control" name="petelephon" ng-model="petelephon"  ng-minlength="8" ng-maxlength="15" required placeholder="{{'TELEPHONE'| translate}}"/>
+                <div class="error" ng-show="form.petelephon.$dirty && form.petelephon.$invalid">
                     <small class="error" ng-show="form.petelephon.$error.required">El telefono es obligatorio.</small>
                     <small class="error" ng-show="form.petelephon.$error.maxlength">Telefono no mayor a 15 caracteres</small>
                 </div>
             </div>
         </div>
+            <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 form-group">
+                <textarea rows="3" class="form-control" name="pestudies" id="pestudies" ng-model="pestudies" ng-minlength="0" ng-maxlength="50" required placeholder="{{'ESTUDIES'| translate}}"></textarea>
+             </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 form-group">
+                <textarea rows="3" class="form-control" name="peprofdescription" id="peprofdescription" ng-model="peprofdescription" ng-minlength="3" ng-maxlength="50" required placeholder="{{'PROFDESCRIP'| translate}}"></textarea>
+            </div>
+            </div>
+        </div>
         <div>
-            <button type="button" class="btn btn-success" ng-click="insertClick();" ng-hide="!hideEdit">Guardar</button>
-            <button type="button" class="btn btn-success" ng-click="updateClick();" ng-hide="hideEdit">Actualizar</button>
-            <button type="button" class="btn btn-success" ng-click="deleteClick();" ng-hide="hideEdit">Eliminar</button>
-            <button type="button" class="btn btn-success" ng-click="cancelClick();" ng-hide="hideEdit">Cancelar</button>
+            <button type="button" class="btn btn-success" ng-click="savePerson();" ng-show="mode=='create'">Guardar</button>
+            <button type="button" class="btn btn-success" ng-click="updateClick();" ng-show="mode=='edit'">Actualizar</button>
+            <button type="button" class="btn btn-success" ng-click="deleteClick();" ng-show="mode=='edit'">Eliminar</button>
+            <button class="btn btn-default" ng-click="initform()">{{'ROOM_CANCEL'|translate}}</button>
         </div>
     </div>
 </form>

@@ -36,7 +36,7 @@ appServersoft.config(function($routeProvider,$translateProvider) {
 	//       controller: "userController"
 	//   });
 	   $routeProvider.otherwise({
-	     redirectTo: '/'
+	     redirectTo: '/singup'
 	   });
 
 

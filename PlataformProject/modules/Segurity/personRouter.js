@@ -10,7 +10,7 @@ router.get('/sys/person', function (req, res) {
     });
 });
 
-router.get('/sys/person/id/:id', function (req, res) {
+router.get('/sys/person/:id', function (req, res) {
     models.person.findAll({ 
         where: { $or: [{peoid: req.params.id}, {peidentify: req.params.id}] }}).then(function (result) {
         publicResource.ReturnResult(res, result);

@@ -6,7 +6,6 @@
  * 
  * */
 var ServersoftApi = angular.module("ServersoftApi", ['ngResource']);
-
 //Create all common variables of the apps 
 ServersoftApi.factory("commonvariable", function () {
 	var Vari={
@@ -18,9 +17,18 @@ ServersoftApi.factory("commonvariable", function () {
    return Vari; 
 });
 
-ServersoftApi.factory("beds", ['$resource', 'commonvariable', function ($resource, commonvariable) {
-    return $resource(commonvariable.url + "beds/:beid",
-	{beid:'@beid'},
+ServersoftApi.factory("person", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+     return $resource(commonvariable.url + "person",
+     {
+        peoid: '@peoid',
+        peidentify: '@peidentify',
+        pename: '@pename',
+        pesurname: '@pesurname',
+        pestudies: '@pestudies',
+        peprofdescription: '@peprofdescription',
+        pemail: '@pemail',
+        petelephon:'petelephon'
+      },
   	{
   	    get: { method: "GET", isArray: true },
   	    post: { method: "POST" },
@@ -113,7 +121,7 @@ ServersoftApi.factory("authentication", function ($cookies, $cookieStore, $locat
         },
         checkStatus: function () {
             //creamos un array con las rutas que queremos controlar
-            var rutasPrivadas = ["/configuration","/singup","/account","/configuration"];
+            var rutasPrivadas = ["/configuration","/singup","/account","/configuration","/person"];
             if (this.in_array($location.path(), rutasPrivadas) && typeof ($cookies.dataUser) == "undefined") {
                 $location.path("/singup");
             }
