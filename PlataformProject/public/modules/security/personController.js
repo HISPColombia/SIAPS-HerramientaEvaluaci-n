@@ -39,8 +39,7 @@ var $translate = $filter('translate');
    // $scope.getPerson();
 
     $scope.savePerson = function (peidentify,pename,pesurname,pestudies,peprofdescription,pemail,petelephon) {
-        alert( $scope.mode+'//'+$scope.peoid+'//'+$scope.peidentify+'//'+$scope.pename+'//'+$scope.pesurname+'//'+$scope.pestudies+'//'+$scope.peprofdescription+'//'+$scope.pemail+'//'+$scope.petelephon);
-        person.post({ peidentify: peidentify, pename: pename, pesurname: pesurname, pestudies: pestudies, peprofdescription: peprofdescription, pemail: pemail, petelephon: petelephon })
+       person.post({ peoid:0, peidentify: peidentify, pename: pename, pesurname: pesurname, pestudies: pestudies, peprofdescription: peprofdescription, pemail: pemail, petelephon: petelephon })
       .$promise.then(function (resp) {
           if (resp.peidentify == peidentify) {
               $scope.getPerson();
@@ -60,6 +59,4 @@ var $translate = $filter('translate');
         $scope.closeAlert = function (index) {
             $scope.alerts.splice(index, 1);
         };   
-
-
 }]);
