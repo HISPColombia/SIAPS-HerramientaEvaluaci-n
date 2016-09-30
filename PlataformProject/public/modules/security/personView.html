@@ -1,46 +1,20 @@
-<h1>Pacientes</h1>
+<h4>Person</h4> <hr/>
 <form name="form">
     <div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                <label>Identificaci&#243;n</label>
-                <p class="input-group">
-                    <input type="text" class="form-control" name="txtIdentificacion" ng-enter="buscarClick()" ng-model="selIdentificacion" ng-minlength="3" ng-maxlength="15" required />
-                    <span class="input-group-btn">
-                        <button class="btn btn-warning" ng-click="buscarClick()"><i class="glyphicon glyphicon-search"></i></button>
-                    </span>
-                </p>
-                <div class="error" ng-show="form.txtIdentificacion.$dirty && form.txtIdentificacion.$invalid">
-                    <small class="error" ng-show="form.txtIdentificacion.$error.required">La identificación es obligatoria. </small>
-                    <small class="error" ng-show="form.txtIdentificacion.$error.minlength">Identificación al menos de 3 caracteres </small>
-                    <small class="error" ng-show="form.txtIdentificacion.$error.maxlength">Identificación no mayor a 15 caracteres </small>
+                <input type="text" class="form-control" name="peidentify" ng-model="peidentify" ng-minlength="3" ng-maxlength="50" required  placeholder="Enter your identify"/>
+                <div class="error-container" ng-show="form.peidentify.$dirty && form.peidentify.$invalid">
+                    <small class="error" ng-show="form.peidentify.$error.required">The Identify is Requiered</small>
+                    <small class="error" ng-show="form.peidentify.$error.maxlength">Telefono no mayor a 15 caracteres</small>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                <label>Tipo de Documento</label>
-                <select ng-model="selTipoDoc" class="form-control" ng-options="p.Descripcion for p in lstTipoDoc">
-                    <option value="">-- Seleccionar --</option>
-                </select>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6">
-                <label>
-                    Lugar Expedición
-                    <span class="glyphicon glyphicon-refresh" ng-click="loadAllMunicipiosClick()"></span>
-                </label>
-                <!--<input type="text" class="form-control" id="txtExpedido" ng-model="selExpedido" ng-options="item for item in lstMunicipios" bs-typeahead/>-->
-                <input type="text" name="txtExpedido" ng-model="selExpedidoStr" typeahead-on-select="selExpedidoChange($item)" data-animation="am-flip-x" typeahead="item.Value2 for item in lstMunicipios | filter:$viewValue | limitTo:8" class="form-control" required>
-                <div class="error" ng-show="form.txtExpedido.$dirty && form.txtExpedido.$invalid">
-                    <small class="error" ng-show="form.txtExpedido.$error.required">El lugar de expedición es obligatorio. </small>
-                </div>
-            </div>
+
         </div>
 
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                <label>Nombre</label>
-                <input type="text" class="form-control" name="txtNombre" ng-model="selNombre" ng-minlength="3" ng-maxlength="50" required />
+                <input type="text" class="form-control" name="pename" ng-model="pename" ng-minlength="3" ng-maxlength="50" required  placeholder="Enter your name"/>
                 <div class="error" ng-show="form.txtNombre.$dirty && form.txtNombre.$invalid">
                     <small class="error" ng-show="form.txtNombre.$error.required">El nombre es obligatorio. </small>
                     <small class="error" ng-show="form.txtNombre.$error.minlength">Nombre al menos de 3 caracteres </small>
@@ -48,8 +22,7 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6">
-                <label>Apellido</label>
-                <input type="text" class="form-control" name="txtApellido" ng-model="selApellido" ng-minlength="3" ng-maxlength="50" required />
+                <input type="text" class="form-control" name="pesurname" ng-model="pesurname" ng-minlength="3" ng-maxlength="50" required placeholder="Enter surname" />
                 <div class="error" ng-show="form.txtApellido.$dirty && form.txtApellido.$invalid">
                     <small class="error" ng-show="form.txtApellido.$error.required">El apellido es obligatorio. </small>
                     <small class="error" ng-show="form.txtApellido.$error.minlength">Apellido al menos de 3 caracteres </small>
@@ -57,170 +30,29 @@
                 </div>
             </div>
         </div>
-
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                <label>Genero</label>
-                <select ng-model="selGenero" class="form-control" ng-options="p.Descripcion for p in lstGenero">
-                    <option value="">-- Seleccionar --</option>
-                </select>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6">
-                <label>Estado Civil</label>
-                <select ng-model="selEstadoCivil" class="form-control" ng-options="p.Descripcion for p in lstEstadoCivil">
-                    <option value="">-- Seleccionar --</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                <label>Fecha Nacimiento (yyyy/mm/dd)</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" datepicker-popup="yyyy/MM/dd" ng-model="selFechaNacimiento" is-open="opened" close-text="Close" min="{{min}}" max="{{max}}"/>
-                    <span class="input-group-btn">
-                        <button class="btn btn-warning" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                    </span>
+                <input type="email" class="form-control" name="pemail" ng-model="selEmail" ng-minlength="3" ng-maxlength="50" required placeholder="Enter Email">
+                <div class="error-container" ng-show="form.pemail.$dirty && form.pemail.$invalid">
+                    <small class="error" ng-show="form.pemail.$error.required">El email es obligatorio.</small>
+                    <small class="error" ng-show="form.pemail.$error.minlength">Email al menos de 3 caracteres</small>
+                    <small class="error" ng-show="form.pemail.$error.email">No es un Email valido.</small>
+                    <small class="error" ng-show="form.pemail.$error.maxlength">Email no mayor a 50 caracteres</small>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6">
-                <label>
-                    Lugar Nacimiento
-                    <span class="glyphicon glyphicon-refresh" ng-click="loadAllMunicipiosClick()"></span>
-                </label>
-                <!--<input type="text" class="form-control" id="txtExpedido" ng-model="selExpedido" ng-options="item for item in lstMunicipios" bs-typeahead/>-->
-                <input type="text" name="txtNacimiento" ng-model="selNacimientoStr" typeahead-on-select="selNacimientoChange($item)" data-animation="am-flip-x" typeahead="item.Value2 for item in lstMunicipios | filter:$viewValue | limitTo:8" class="form-control" required>
-                <div class="error" ng-show="form.txtExpedido.$dirty && form.txtExpedido.$invalid">
-                    <small class="error" ng-show="form.txtExpedido.$error.required">El lugar de Nacimietno es obligatorio. </small>
+                <input type="text" class="form-control" name="petelephon" ng-model="selTelefono" ng-maxlength="15" required placeholder="Enter Telephone"/>
+                <div class="error-container" ng-show="form.petelephon.$dirty && form.petelephon.$invalid">
+                    <small class="error" ng-show="form.petelephon.$error.required">El telefono es obligatorio.</small>
+                    <small class="error" ng-show="form.petelephon.$error.maxlength">Telefono no mayor a 15 caracteres</small>
                 </div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                <label>Email</label>
-                <input type="email" class="form-control" name="txtEmail" ng-model="selEmail" ng-minlength="3" ng-maxlength="50" required>
-                <div class="error-container" ng-show="form.txtEmail.$dirty && form.txtEmail.$invalid">
-                    <small class="error" ng-show="form.txtEmail.$error.required">El email es obligatorio.</small>
-                    <small class="error" ng-show="form.txtEmail.$error.minlength">Email al menos de 3 caracteres</small>
-                    <small class="error" ng-show="form.txtEmail.$error.email">No es un Email valido.</small>
-                    <small class="error" ng-show="form.txtEmail.$error.maxlength">Email no mayor a 50 caracteres</small>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6">
-                <label>Telefono</label>
-                <input type="text" class="form-control" name="txtTelefono" ng-model="selTelefono" ng-maxlength="15" required />
-                <div class="error-container" ng-show="form.txtTelefono.$dirty && form.txtTelefono.$invalid">
-                    <small class="error" ng-show="form.txtTelefono.$error.required">El telefono es obligatorio.</small>
-                    <small class="error" ng-show="form.txtTelefono.$error.maxlength">Telefono no mayor a 15 caracteres</small>
-                </div>
-            </div>
-        </div>
-        <hr />
-
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                <label>
-                    Aseguradora
-                    <span class="glyphicon glyphicon-refresh" ng-click="loadAllEntidadClick()"></span>
-                </label>
-                <select ng-model="selEntidad" class="form-control" ng-options="p.Nombre for p in lstEntidad">
-                    <option value="">-- Seleccionar --</option>
-                </select>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6">
-                <label>Tipo de Afiliaci&#243;n</label>
-                <select ng-model="selAfiliacion" class="form-control" ng-options="p.Descripcion for p in lstAfiliacion">
-                    <option value="">-- Seleccionar --</option>
-                </select>
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                <label>
-                    Ocupaci&#243;n
-                    <span class="glyphicon glyphicon-refresh" ng-click="loadAllOcupacionClick()"></span>
-                </label>
-                <input type="text" name="txtOcupacion" ng-model="selOcupacionStr" typeahead-on-select="selOcupacionChange($item)" typeahead="item.Value1 for item in lstOcupacion | filter:$viewValue | limitTo:8" class="form-control" required>
-                <div class="error" ng-show="form.txtOcupacion.$dirty && form.txtOcupacion.$invalid">
-                    <small class="error" ng-show="form.txtOcupacion.$error.required">La ocupación es obligatoria. </small>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-4">
-                <label>Direcci&#243;n de Residencia</label>
-                <input type="text" class="form-control" name="txtDireccion" ng-model="selDireccion" ng-maxlength="50" required />
-                <div class="error-container" ng-show="form.txtDireccion.$dirty && form.txtDireccion.$invalid">
-                    <small class="error" ng-show="form.txtDireccion.$error.required">La dirección es obligatoria.</small>
-                    <small class="error" ng-show="form.txtDireccion.$error.maxlength">Dirección no mayor a 50 caracteres</small>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-2">
-                <label>Zona</label>
-                <select ng-model="selZona" class="form-control" ng-options="p.Descripcion for p in lstZona">
-                    <option value="">-- Seleccionar --</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                <label>
-                    Lugar de Residencia
-                    <span class="glyphicon glyphicon-refresh" ng-click="loadAllMunicipiosClick()"></span>
-                </label>
-                <!--<input type="text" class="form-control" id="txtMunicipio" ng-model="selMunicipio" placeholder="Ingrese Municipio" ng-options="item for item in lstMunicipios" bs-typeahead>-->
-                <input type="text" ng-model="selMunicipioStr" typeahead-on-select="selMunicipioChange($item)" typeahead="item.Value2 for item in lstMunicipios | filter:$viewValue | limitTo:8" class="form-control">
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6">
-                <label>Estrato</label>
-                <select ng-model="selEstrato" class="form-control" ng-options="p.GnesNombre for p in lstEstrato">
-                    <option value="">-- Seleccionar --</option>
-                </select>
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                <label>Nombres Madre</label>
-                <input type="text" class="form-control" id="txtMadre" ng-model="selMadre">
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6">
-                <label>Nombres Padre</label>
-                <input type="text" class="form-control" id="txtPadre" ng-model="selPadre" />
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                <label>Responsable</label>
-                <input type="text" class="form-control" id="txtResponsable" ng-model="selResponsable">
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6">
-                <label>Direcci&#243;n Responsable</label>
-                <input type="text" class="form-control" id="txtDireccioResp" ng-model="selDireccioResp" />
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                <label>Telefono Responsable</label>
-                <input type="text" class="form-control" id="txtTelefonoResp" ng-model="selTelefonoResp" />
-            </div>
-
-            <div class="col-xs-12 col-sm-12 col-md-6">
-                <label>Parentesco</label>
-                <select ng-model="selParentesco" class="form-control" ng-options="p.Descripcion for p in lstParentesco">
-                    <option value="">-- Seleccionar --</option>
-                </select>
-            </div>
-        </div>
-
         <div>
             <button type="button" class="btn btn-success" ng-click="insertClick();" ng-hide="!hideEdit">Guardar</button>
-            <button type="button" class="btn btn-primary" ng-click="updateClick();" ng-hide="hideEdit">Actualizar</button>
-            <button type="button" class="btn btn-danger" ng-click="deleteClick();" ng-hide="hideEdit">Eliminar</button>
-            <button type="button" class="btn btn-default" ng-click="cancelClick();" ng-hide="hideEdit">Cancelar</button>
+            <button type="button" class="btn btn-success" ng-click="updateClick();" ng-hide="hideEdit">Actualizar</button>
+            <button type="button" class="btn btn-success" ng-click="deleteClick();" ng-hide="hideEdit">Eliminar</button>
+            <button type="button" class="btn btn-success" ng-click="cancelClick();" ng-hide="hideEdit">Cancelar</button>
         </div>
     </div>
 </form>
