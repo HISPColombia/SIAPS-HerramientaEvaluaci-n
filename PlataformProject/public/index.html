@@ -46,16 +46,15 @@
 <!--Directives-->
 </head>
 <body>
-                    <div class="row bhoechie-tab-container" style="background: #c4e17f">
-                    <div class="panel-heading">
-                       <div class="col-md-12 text-center">
-                            <h2 style="font-size:25px;">{{'TITLE'| translate}} <small>{{'SUBTITLE'| translate}}</small></h2>
-                            <br>
-                        </div>
-                     </div>
-                </div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" >
+    <div class="panel-heading">
+        <div class="text-center">
+          <h2 style="font-size:25px;">{{'TITLE'| translate}} <small>{{'SUBTITLE'| translate}}</small></h2><br>
+        </div>
+    </div>
+</div>
 <div class="panel-body" ng-controller="indexController">                
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-9 bhoechie-tab-container" ng-controller="indexController">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" ng-controller="indexController">
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu" ng-controller="indexController">
               <div class="list-group" ng-controller="indexController">
 
@@ -80,19 +79,10 @@
                 </a>
               </div>
             </div>
-            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab">
-                            <div class="col-md-1"></div>
-                            <div class="col-md-10">
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
-                                        <div class="col-md-12"><div ng-view></div></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-1"></div>
-                        </div>
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 bhoechie-tab">
+                            <div ng-view></div>
+                       </div>
                     </div>
       </div>
- 
-</body>
+ </body>
 </html>

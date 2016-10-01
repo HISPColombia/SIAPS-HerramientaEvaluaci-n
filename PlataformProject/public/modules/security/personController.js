@@ -39,7 +39,7 @@ var $translate = $filter('translate');
    // $scope.getPerson();
 
     $scope.savePerson = function (peidentify,pename,pesurname,pestudies,peprofdescription,pemail,petelephon) {
-       person.post({peidentify: peidentify, pename: pename, pesurname: pesurname, pestudies: pestudies, peprofdescription: peprofdescription, pemail: pemail, petelephon: petelephon })
+       person.post({peidentify: peidentify, pename: pename, pesurname: pesurname, pestudies: pestudies, peprofdescription: peprofdescription, pemail: pemail, petelephon: petelephon})
       .$promise.then(function (resp) {
           if (resp.peidentify == peidentify) {
               $scope.getPerson();
