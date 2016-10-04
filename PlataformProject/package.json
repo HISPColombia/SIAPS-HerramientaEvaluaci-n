@@ -5,6 +5,7 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
+    "jwt-simple": "^0.5.0",
     "method-override": "^2.3.6",
     "passport": "^0.3.2",
     "pg": "^4.5.6",

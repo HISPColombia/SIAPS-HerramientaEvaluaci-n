@@ -18,7 +18,7 @@ var $translate = $filter('translate');
     }
     $scope.initform();
 
-    $scope.selectPerson = function (peoid,peidentify,pename,pesurname,pestudies,peprofdescription,pemail,petelephon) {
+    $scope.selectPerson = function (peoid,peidentify,pename,pesurname,pemail,pestudies,peprofdescription,petelephon) {
         $scope.mode = 'edit';
         $scope.peoid = peoid;
         $scope.peidentify = peidentify;
@@ -31,12 +31,20 @@ var $translate = $filter('translate');
     }
 
     $scope.getPerson = function () {
-        person.get({idper:'peoid'})
+        person.get({})
        .$promise.then(function (resp) {
-           $scope.person = resp;
+           $scope.listPerson = resp;
        });
     };
-   // $scope.getPerson();
+   $scope.getPerson();
+
+       $scope.deletePerson = function (peoid) {
+        person.delete({peoid:peoid})
+       .$promise.then(function (resp) {
+           $scope.getPerson();
+           $scope.initform();
+       });
+    };
 
     $scope.savePerson = function (peidentify,pename,pesurname,pestudies,peprofdescription,pemail,petelephon) {
        person.post({peidentify: peidentify, pename: pename, pesurname: pesurname, pestudies: pestudies, peprofdescription: peprofdescription, pemail: pemail, petelephon: petelephon})
@@ -52,6 +60,19 @@ var $translate = $filter('translate');
       });
     };
 
+    $scope.updatePerson = function (peoid,peidentify,pename,pesurname,pemail,pestudies,peprofdescription,petelephon) {
+        person.put({ peoid:peoid, peidentify:peidentify ,pename:pename ,pesurname:pesurname, pemail:pemail ,pestudies:pestudies ,peprofdescription:peprofdescription ,petelephon:petelephon })
+      .$promise.then(function (resp) {
+          if (resp.length > 0) {
+              $scope.getPerson();
+              $scope.alerts.push({ msg: $translate("BED_MSG_SUCCESS"), type: 'success' });
+              $scope.initform();
+          }
+          else {
+              $scope.alerts.push({ msg: $translate("BED_MSG_ERROR"), type: 'error' });
+          }
+      });
+    };
             $scope.addAlert = function (menssage) {
             $scope.alerts.push({ label: " ", msg: menssage });
         };

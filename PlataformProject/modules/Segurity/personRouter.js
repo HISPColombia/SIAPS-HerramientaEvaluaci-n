@@ -5,7 +5,7 @@ var router = express.Router();
 
 
 router.get('/sys/person', function (req, res) {
-    models.person.findAll({ limit: 1000 }).then(function (result) {
+    models.person.findAll({ limit: 1000,  order: '"peoid" ASC' }).then(function (result) {
         publicResource.ReturnResult(res, result);
     });
 });

@@ -8,8 +8,8 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true
     },
-    peidentify: {
-      type: DataTypes.STRING,
+    peidentify: { type: DataTypes.STRING,
+      unique:'compositeIndex',
       allowNull: true
     },
     pename: {
