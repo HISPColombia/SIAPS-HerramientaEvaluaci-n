@@ -2,9 +2,25 @@ var models = require("../../ControllerModels.js");
 var publicResource = require("../../ControllerRouters.js");
 var express = require('express');
 var router = express.Router();
+var middleware = require('../../config/middleware');
+//var jwt = require("jsonwebtoken");
 
+function ensureAuthorized(req, res, next) {
+    var bearerToken;
+    var bearerHeader = req.headers["authorization"];
+    if (typeof bearerHeader !== 'undefined') {
+        var bearer = bearerHeader.split(" ");
+        bearerToken = bearer[1];
+        req.token = bearerToken;
+        next();
+    } else {
+        res.send(403);
+    }
+}
 
 router.get('/sys/person', function (req, res) {
+    // var token = req.headers.authorization.split(" ")[1];  
+	// res.json({ message: 'Estás autenticado correctamente y tu _id es:' });
     models.person.findAll({ limit: 1000,  order: '"peoid" ASC' }).then(function (result) {
         publicResource.ReturnResult(res, result);
     });

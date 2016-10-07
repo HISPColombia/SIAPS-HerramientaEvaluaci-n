@@ -3,16 +3,15 @@
 +Architecture create by Tics Ingeniería
 ++Software health 
 */
-
 //include external module
 var http = require("http");
 var fs = require('fs');
-
 var express = require('express');
 var app = express();
 var bcrypt = require('bcrypt-nodejs');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var jwt = require("jsonwebtoken");
 //var restful = require('sequelize-restful'); // it is not using y now
 var path = require("path");
 

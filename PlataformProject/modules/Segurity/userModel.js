@@ -10,6 +10,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     usname: {
       type: DataTypes.STRING,
+      unique:'compositeIndex',
       allowNull: false
     },
     uspassword: {
@@ -27,6 +28,10 @@ module.exports = function(sequelize, DataTypes) {
     usstatus: {
       type: 'NUMERIC',
       allowNull: false
+    },
+    ustoken: {
+      type: DataTypes.TEXT,
+      allowNull: true
     }
   }, {
     tableName: 'user'
