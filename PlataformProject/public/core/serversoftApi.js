@@ -84,7 +84,7 @@ return $resource(commonvariable.url + "auth",
 }]);
 
 
-ServersoftApi.factory("authentication", function ($cookies, $cookieStore, $location, $q, loginservice) {
+ServersoftApi.factory("authentication", function ($cookies, $cookieStore, $localStorage, $location, $q, loginservice) {
     return {
         login: function (username, password) {
             //creamos la cookie con el nombre que nos han pasado
@@ -94,8 +94,9 @@ ServersoftApi.factory("authentication", function ($cookies, $cookieStore, $locat
             loginservice.post({ usname: username, uspassword: password })
             .$promise.then(function (credential) {
                 if (credential.length >= 1) {
-                    $cookies.dataUser = credential[0];
+                   // $cookies.dataUser = credential[0];
                     //mandamos a la adminaccess
+                    $localStorage.token = res.data.ustoken;
                     $location.path("/account");
                 }
                 else {
