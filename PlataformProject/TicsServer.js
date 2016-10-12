@@ -12,7 +12,6 @@ var bcrypt = require('bcrypt-nodejs');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var jwt = require("jsonwebtoken");
-//var restful = require('sequelize-restful'); // it is not using y now
 var path = require("path");
 
 //variable for configuration
@@ -50,6 +49,7 @@ app.use(function (request, response, next) {
    
 
 });
+
 
 //file public for wiew
 app.use(express.static(path.join(__dirname, 'public')));

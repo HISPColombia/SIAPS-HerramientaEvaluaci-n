@@ -4,15 +4,16 @@ var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcrypt-nodejs');
 var jwt = require("jsonwebtoken");
+var config = require('../../config/config');
+var middleware = require('../../config/middleware.js');
 
-
-router.get('/sys/user', function (req, res) {
+router.get('/sys/user', middleware.ensureAuthorized, function (req, res) {
     models.user.findAll({ limit: 1000 }).then(function (result) {
         publicResource.ReturnResult(res, result);
     });
 });
 
-router.get('/sys/user/id/:usoid', function (req, res) {
+router.get('/sys/user/id/:usoid', middleware.ensureAuthorized, function (req, res) {
     models.user.findAll({ 
         where: {
             usoid: req.params.usoid }}).then(function (result) {
@@ -20,7 +21,7 @@ router.get('/sys/user/id/:usoid', function (req, res) {
     });
 });
 
-router.get('/sys/user/st/:usstatus', function (req, res) {
+router.get('/sys/user/st/:usstatus', middleware.ensureAuthorized, function (req, res) {
     models.user.findAll({ 
         where: {
             usstatus: req.params.usstatus }}).then(function (result) {
@@ -28,16 +29,7 @@ router.get('/sys/user/st/:usstatus', function (req, res) {
     });
 });
 
-//  router.post('/sys/user', function (req, res) {
-//      var salt = bcrypt.genSaltSync(10);
-//    var passwordToSave = bcrypt.hashSync(req.body.uspassword, salt)
-//    models.user.create({ usoid: req.body.usoid, usname: req.body.usname, uspassword: passwordToSave, peoid: req.body.peoid, usstatus: 1,ustoken: req.body.ustoken })
-//     .then(function (user) {
-//        publicResource.ReturnResult(res, user);
-//     })
-//  });
-
-router.post('/sys/user', function (req, res) {
+router.post('/sys/user', middleware.ensureAuthorized, function (req, res) {
     models.user.findAll({ 
         where: { usname: req.body.usname }}).then(function (result) {
         if(result.length  > 0)
@@ -51,7 +43,7 @@ router.post('/sys/user', function (req, res) {
                 console.log("Creando Usuario!");
                 var salt = bcrypt.genSaltSync(10);
                 var passwordToSave = bcrypt.hashSync(req.body.uspassword, salt);
-                var token = jwt.sign({ usoid: req.body.usoid}, 'super_secret');
+                var token = jwt.sign({ usoid: req.body.usoid,}, config.TOKEN_SECRET);
                 console.log(token)
                 models.user.create({ usoid: req.body.usoid, usname: req.body.usname, uspassword: passwordToSave, peoid: req.body.peoid, usstatus: 1,ustoken: token })
                 .then(function (user) {
@@ -62,7 +54,7 @@ router.post('/sys/user', function (req, res) {
 });
 
 
-router.put('/sys/user/:usoid', function (req, res) {
+router.put('/sys/user/:usoid', middleware.ensureAuthorized, function (req, res) {
     models.user.update({ usname: req.body.usname, uspassword: req.body.uspassword, peoid: req.body.peoid, usstatus: req.body.usstatus, ustoken: req.body.ustoken },
     { 
         where: {
@@ -73,7 +65,7 @@ router.put('/sys/user/:usoid', function (req, res) {
    })
 });
 
-router.delete('/sys/user/:usoid', function (req, res) {
+router.delete('/sys/user/:usoid', middleware.ensureAuthorized, function (req, res) {
     models.user.destroy({ where: { usoid: req.params.usoid }})
     .then(function (user) {
        publicResource.ReturnResult(res, user);
