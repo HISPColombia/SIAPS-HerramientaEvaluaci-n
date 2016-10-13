@@ -1,4 +1,4 @@
-appServersoft.controller('personController', ['$scope', '$filter', 'commonvariable', 'authentication','person', function ($scope, $filter, commonvariable, authentication, person) {
+appServersoft.controller('personController', ['$scope', '$filter', 'commonvariable', 'authentication','$localStorage','person', function ($scope, $filter, commonvariable, authentication, $localStorage, person) {
 ///verify session
  //authentication.checkStatus();
 

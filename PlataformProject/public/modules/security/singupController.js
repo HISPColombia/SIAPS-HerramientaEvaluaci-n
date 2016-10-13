@@ -1,4 +1,4 @@
-appServersoft.controller('singupController', ['$scope', '$filter', '$localStorage', 'authentication', function ($scope, $filter, $localStorage,authentication) {
+appServersoft.controller('singupController', ['$scope', '$filter', 'authentication', function ($scope, $filter,authentication) {
         authentication.logout();
         $scope.alerts = [];
         $scope.login = function (user, password) {

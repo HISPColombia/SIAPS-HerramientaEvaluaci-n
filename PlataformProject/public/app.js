@@ -1,6 +1,6 @@
-var appServersoft = angular.module("appServersoft", ['ngRoute', 'ServersoftApi', 'pascalprecht.translate', 'ui.bootstrap', 'angular-md5', 'ngCookies']);
+var appServersoft = angular.module("appServersoft", ['ngStorage','ngRoute', 'ServersoftApi', 'pascalprecht.translate', 'ui.bootstrap', 'angular-md5', 'ngCookies']);
 
-appServersoft.config(function($routeProvider,$translateProvider) {
+appServersoft.config(function($routeProvider,$translateProvider,$httpProvider) {
  
     $routeProvider.when('/singup', {
         templateUrl: "/modules/security/singupView.html",
@@ -38,6 +38,26 @@ appServersoft.config(function($routeProvider,$translateProvider) {
 	   $routeProvider.otherwise({
 	     redirectTo: '/singup'
 	   });
+
+
+	       $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function($q, $location, $localStorage) {
+			   window.alert("interceptors")
+            return {
+                'request': function (config) {
+                    config.headers = config.headers || {};
+                    if ($localStorage.token) {
+                        config.headers.Authorization = 'Bearer ' + $localStorage.token;
+                    }
+                    return config;
+                },
+                'responseError': function(response) {
+                    if(response.status === 401 || response.status === 403) {
+                        $location.path('/singup');
+                    }
+                    return $q.reject(response);
+                }
+            };
+        }]);
 
 
 

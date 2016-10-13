@@ -4,7 +4,7 @@ var express = require('express');
 var router = express.Router();
 var middleware = require('../../config/middleware.js');
 
-router.get('/sys/person', middleware.ensureAuthorized, function (req, res) {
+router.get('/sys/person',middleware.ensureAuthorized, function (req, res) {
     models.person.findAll({ limit: 1000,  order: '"peoid" ASC' }).then(function (result) {
         publicResource.ReturnResult(res, result);
     });

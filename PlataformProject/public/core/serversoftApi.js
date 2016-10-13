@@ -17,7 +17,7 @@ ServersoftApi.factory("commonvariable", function () {
    return Vari; 
 });
 
-ServersoftApi.factory("person", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+ServersoftApi.factory("person", ['$resource', 'commonvariable','$localStorage', function ($resource, commonvariable, $localStorage) {
      return $resource(commonvariable.url + "person/:peoid",
      {
         peoid:'@peoid'
@@ -84,7 +84,39 @@ return $resource(commonvariable.url + "auth",
 }]);
 
 
-ServersoftApi.factory("authentication", function ($cookies, $cookieStore, $localStorage, $location, $q, loginservice) {
+ServersoftApi.factory("authentication", function ($cookies, $cookieStore, $location, $q, loginservice,$http, $localStorage) {
+      function changeUser(user) {
+            angular.extend(currentUser, user);
+        }
+
+        function urlBase64Decode(str) {
+            var output = str.replace('-', '+').replace('_', '/');
+            switch (output.length % 4) {
+                case 0:
+                    break;
+                case 2:
+                    output += '==';
+                    break;
+                case 3:
+                    output += '=';
+                    break;
+                default:
+                    throw 'Illegal base64url string!';
+            }
+            return window.atob(output);
+        }
+
+        function getUserFromToken() {
+            var token = $localStorage.token;
+            window.alert("Token: "+token);
+            var user = {};
+            if (typeof token !== 'undefined') {
+                var encoded = token.split('.')[1];
+                user = JSON.parse(urlBase64Decode(encoded));
+            }
+            return user;
+        }
+ var currentUser="";
     return {
         login: function (username, password) {
             //creamos la cookie con el nombre que nos han pasado
@@ -94,9 +126,11 @@ ServersoftApi.factory("authentication", function ($cookies, $cookieStore, $local
             loginservice.post({ usname: username, uspassword: password })
             .$promise.then(function (credential) {
                 if (credential.length >= 1) {
-                   // $cookies.dataUser = credential[0];
+                   $cookies.dataUser = credential[0];
+                    $localStorage.token = credential[0].ustoken;
+                    currentUser = getUserFromToken();
                     //mandamos a la adminaccess
-                    $localStorage.token = res.data.ustoken;
+                    //$localStorage.token = res.data.ustoken;
                     $location.path("/account");
                 }
                 else {
@@ -112,6 +146,7 @@ ServersoftApi.factory("authentication", function ($cookies, $cookieStore, $local
             $cookieStore.remove("dataUser"),
             //mandamos al login
             $location.path("/singup");
+            delete $localStorage.token;
         },
         checkStatus: function () {
             //creamos un array con las rutas que queremos controlar
@@ -139,8 +174,3 @@ ServersoftApi.factory("authentication", function ($cookies, $cookieStore, $local
 $(function(){
 $('a[title]').tooltip();
 });
-
-
-
-
-
