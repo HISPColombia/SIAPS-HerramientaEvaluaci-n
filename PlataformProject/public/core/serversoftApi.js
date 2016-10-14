@@ -108,7 +108,7 @@ ServersoftApi.factory("authentication", function ($cookies, $cookieStore, $locat
 
         function getUserFromToken() {
             var token = $localStorage.token;
-            window.alert("Token: "+token);
+          //  window.alert("Token: "+token);
             var user = {};
             if (typeof token !== 'undefined') {
                 var encoded = token.split('.')[1];

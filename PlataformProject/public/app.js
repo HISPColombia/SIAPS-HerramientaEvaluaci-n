@@ -41,7 +41,7 @@ appServersoft.config(function($routeProvider,$translateProvider,$httpProvider) {
 
 
 	       $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function($q, $location, $localStorage) {
-			   window.alert("interceptors")
+			  // window.alert("interceptors")
             return {
                 'request': function (config) {
                     config.headers = config.headers || {};
