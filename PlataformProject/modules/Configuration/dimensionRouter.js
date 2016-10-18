@@ -10,7 +10,7 @@ router.get('/sys/dimension', function (req, res) {
     });
 });
 
-router.get('/sys/dimension/id/:dioid', function (req, res) {
+router.get('/sys/dimension/:dioid', function (req, res) {
     models.dimension.findAll({ 
         where: {
             dioid: req.params.dioid }}).then(function (result) {

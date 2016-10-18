@@ -10,7 +10,7 @@ router.get('/sys/metric', function (req, res) {
     });
 });
 
-router.get('/sys/metric/id/:meoid', function (req, res) {
+router.get('/sys/metric/:meoid', function (req, res) {
     models.metric.findAll({ 
         where: {
             meoid: req.params.meoid }}).then(function (result) {

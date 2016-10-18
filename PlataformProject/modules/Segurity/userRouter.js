@@ -13,7 +13,7 @@ router.get('/sys/user', function (req, res) {
     });
 });
 
-router.get('/sys/user/id/:usoid', function (req, res) {
+router.get('/sys/user/:usoid', function (req, res) {
     models.user.findAll({ 
         where: {
             usoid: req.params.usoid }}).then(function (result) {

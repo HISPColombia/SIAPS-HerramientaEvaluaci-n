@@ -10,7 +10,7 @@ router.get('/sys/typequestion', function (req, res) {
     });
 });
 
-router.get('/sys/typequestion/id/:tqoid', function (req, res) {
+router.get('/sys/typequestion/:tqoid', function (req, res) {
     models.typequestion.findAll({ 
         where: {
             tqoid: req.params.tqoid }}).then(function (result) {

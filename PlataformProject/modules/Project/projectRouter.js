@@ -18,7 +18,7 @@ router.get('/sys/project/id/:proid', function (req, res) {
     });
 });
 
-router.get('/sys/project/st/:prstatus', function (req, res) {
+router.get('/sys/project/:prstatus', function (req, res) {
     models.project.findAll({ 
         where: {
             prstatus: req.params.prstatus }}).then(function (result) {

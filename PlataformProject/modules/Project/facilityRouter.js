@@ -10,7 +10,7 @@ router.get('/sys/facility', function (req, res) {
     });
 });
 
-router.get('/sys/facility/id/:faoid', function (req, res) {
+router.get('/sys/facility/:faoid', function (req, res) {
     models.facility.findAll({ 
         where: {
             faoid: req.params.faoid }}).then(function (result) {

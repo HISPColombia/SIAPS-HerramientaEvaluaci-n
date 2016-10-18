@@ -10,7 +10,7 @@ router.get('/sys/attribute', function (req, res) {
     });
 });
 
-router.get('/sys/attribute/id/:atoid', function (req, res) {
+router.get('/sys/attribute/:atoid', function (req, res) {
     models.attribute.findAll({ 
         where: {
             atoid: req.params.atoid }}).then(function (result) {

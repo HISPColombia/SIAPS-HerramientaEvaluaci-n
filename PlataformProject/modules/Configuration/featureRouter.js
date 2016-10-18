@@ -10,7 +10,7 @@ router.get('/sys/feature', function (req, res) {
     });
 });
 
-router.get('/sys/feature/id/:feoid', function (req, res) {
+router.get('/sys/feature/:feoid', function (req, res) {
     models.feature.findAll({ 
         where: {
             feoid: req.params.feoid }}).then(function (result) {

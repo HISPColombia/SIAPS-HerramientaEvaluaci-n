@@ -10,7 +10,7 @@ router.get('/sys/optionquestion', function (req, res) {
     });
 });
 
-router.get('/sys/optionquestion/id/:oqoid', function (req, res) {
+router.get('/sys/optionquestion/:oqoid', function (req, res) {
     models.optionquestion.findAll({ 
         where: {
             oqoid: req.params.oqoid }}).then(function (result) {

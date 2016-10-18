@@ -10,7 +10,7 @@ router.get('/sys/version', function (req, res) {
     });
 });
 
-router.get('/sys/version/id/:veoid', function (req, res) {
+router.get('/sys/version/:veoid', function (req, res) {
     models.version.findAll({ 
         where: {
             veoid: req.params.veoid }}).then(function (result) {

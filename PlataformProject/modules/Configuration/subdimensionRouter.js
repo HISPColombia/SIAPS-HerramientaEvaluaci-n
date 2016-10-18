@@ -10,7 +10,7 @@ router.get('/sys/subdimension', function (req, res) {
     });
 });
 
-router.get('/sys/subdimension/id/:suoid', function (req, res) {
+router.get('/sys/subdimension/:suoid', function (req, res) {
     models.subdimension.findAll({ 
         where: {
             suoid: req.params.suoid }}).then(function (result) {
@@ -18,7 +18,7 @@ router.get('/sys/subdimension/id/:suoid', function (req, res) {
     });
 });
 
-router.get('/sys/subdimension/fk/:dioid', function (req, res) {
+router.get('/sys/subdimension/:dioid', function (req, res) {
     models.subdimension.findAll({ 
         where: {
             dioid: req.params.dioid }}).then(function (result) {

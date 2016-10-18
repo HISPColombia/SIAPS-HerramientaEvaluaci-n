@@ -11,7 +11,7 @@ router.get('/sys/userrole', function (req, res) {
     });
 });
 
-router.get('/sys/userrole/id/:uroid', function (req, res) {
+router.get('/sys/userrole/:uroid', function (req, res) {
     models.userrole.findAll({ 
         where: {
             uroid: req.params.uroid }}).then(function (result) {

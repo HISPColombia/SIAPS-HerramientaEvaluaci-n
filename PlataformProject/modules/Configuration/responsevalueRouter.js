@@ -10,7 +10,7 @@ router.get('/sys/responsevalue', function (req, res) {
     });
 });
 
-router.get('/sys/responsevalue/id/:rvoid', function (req, res) {
+router.get('/sys/responsevalue/:rvoid', function (req, res) {
     models.responsevalue.findAll({ 
         where: {
             rvoid: req.params.rvoid }}).then(function (result) {

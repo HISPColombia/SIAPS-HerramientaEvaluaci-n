@@ -10,7 +10,7 @@ router.get('/sys/subfeature', function (req, res) {
     });
 });
 
-router.get('/sys/subfeature/id/:sfoid', function (req, res) {
+router.get('/sys/subfeature/:sfoid', function (req, res) {
     models.subfeature.findAll({ 
         where: {
             sfoid: req.params.sfoid }}).then(function (result) {

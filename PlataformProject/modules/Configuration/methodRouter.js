@@ -10,9 +10,9 @@ router.get('/sys/method', function (req, res) {
     });
 });
 
-router.get('/sys/method/id/:id', function (req, res) {
+router.get('/sys/method/:mtoid', function (req, res) {
     models.method.findAll({ 
-        where: { mtoid: req.params.id}}).then(function (result) {
+        where: { mtoid: req.params.mtoid}}).then(function (result) {
         publicResource.ReturnResult(res, result);
     });
 });

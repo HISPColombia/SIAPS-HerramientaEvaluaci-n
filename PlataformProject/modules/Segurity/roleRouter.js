@@ -6,7 +6,7 @@ var router = express.Router();
 
 
 router.get('/sys/role', function (req, res) {
-    models.role.findAll({ limit: 1000 }).then(function (result) {
+    models.role.findAll({ limit: 10000,  order: '"rooid" ASC' }).then(function (result) {
         publicResource.ReturnResult(res, result);
     });
 });

@@ -10,7 +10,7 @@ router.get('/sys/rolesubdimension', function (req, res) {
     });
 });
 
-router.get('/sys/rolesubdimension/id/:rsoid', function (req, res) {
+router.get('/sys/rolesubdimension/:rsoid', function (req, res) {
     models.rolesubdimension.findAll({ 
         where: {
             rsoid: req.params.rsoid }}).then(function (result) {

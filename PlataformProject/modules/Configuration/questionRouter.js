@@ -10,9 +10,9 @@ router.get('/sys/question', function (req, res) {
     });
 });
 
-router.get('/sys/question/id/:id', function (req, res) {
+router.get('/sys/question/:quoid', function (req, res) {
     models.question.findAll({ 
-        where: { quoid: req.params.id}}).then(function (result) {
+        where: { quoid: req.params.quoid}}).then(function (result) {
         publicResource.ReturnResult(res, result);
     });
 });

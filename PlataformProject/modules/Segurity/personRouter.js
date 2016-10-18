@@ -7,7 +7,7 @@ var middleware = require('../../config/middleware.js');
 // router.get('/sys/person', function (req, res) {
 
 router.get('/sys/person', function (req, res) {
-    models.person.findAll({ limit: 1000,  order: '"peoid" ASC' }).then(function (result) {
+    models.person.findAll({ limit: 10000,  order: '"peoid" ASC' }).then(function (result) {
         publicResource.ReturnResult(res, result);
     });
 });

@@ -10,7 +10,7 @@ router.get('/sys/variable', function (req, res) {
     });
 });
 
-router.get('/sys/variable/id/:vaoid', function (req, res) {
+router.get('/sys/variable/:vaoid', function (req, res) {
     models.variable.findAll({ 
         where: {
             vaoid: req.params.vaoid }}).then(function (result) {

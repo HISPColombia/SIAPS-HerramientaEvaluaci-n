@@ -17,6 +17,7 @@ ServersoftApi.factory("commonvariable", function () {
    return Vari; 
 });
 
+//Security Factory
 ServersoftApi.factory("person", ['$resource', 'commonvariable','$localStorage', function ($resource, commonvariable, $localStorage) {
      return $resource(commonvariable.url + "person/:peoid",
      {
@@ -30,9 +31,20 @@ ServersoftApi.factory("person", ['$resource', 'commonvariable','$localStorage', 
   	});
 }]);
 
-ServersoftApi.factory("room", ['$resource', 'commonvariable', function ($resource, commonvariable) {
-    return $resource(commonvariable.url + "room/:roid",
-	{roid:'@roid'},
+ServersoftApi.factory("role", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "role/:rooid",
+	{rooid:'@rooid'},
+  	{
+  	    get: { method: "GET", isArray: true },
+  	    post: { method: "POST" },
+  	    put: { method: "PUT", isArray: true },
+  	    remove: { method: 'DELETE' }
+  	});
+}]);
+
+ServersoftApi.factory("user", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "user/:usoid",
+	{ usoid: '@usoid' },
   	{
   	    get: { method: "GET", isArray: true },
   	    post: { method: "POST" },
@@ -42,9 +54,20 @@ ServersoftApi.factory("room", ['$resource', 'commonvariable', function ($resourc
 }]);
 
 
-ServersoftApi.factory("hospitalization", ['$resource', 'commonvariable', function ($resource, commonvariable) {
-    return $resource(commonvariable.url + "hospitalization/:hoid",
-	{ hoid: '@hoid' },
+ServersoftApi.factory("userrole",['$resource','commonvariable', function ($resource,commonvariable) {
+	return $resource( commonvariable.url+"userrole", 
+	{userrole: '@userrole'},
+  	{
+        get: { method: "GET",isArray: true},
+	    post: { method: "POST"},
+	    put: { method: "PUT", isArray: true },
+	    remove: {method:'DELETE'}
+    });
+}]);
+//project Factory
+ServersoftApi.factory("facility", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "facility/:faoid",
+	{ usoid: '@faoid' },
   	{
   	    get: { method: "GET", isArray: true },
   	    post: { method: "POST" },
@@ -53,21 +76,225 @@ ServersoftApi.factory("hospitalization", ['$resource', 'commonvariable', functio
   	});
 }]);
 
-
-ServersoftApi.factory("bedView",['$resource','commonvariable', function ($resource,commonvariable) {
-	return $resource( commonvariable.url+"bedview", 
-	{},
-  	{get: { method: "GET",isArray: true},
-	post: { method: "POST"},
-	put: { method: "PUT"},
-	remove: {method:'DELETE'}
-  });
+ServersoftApi.factory("participation", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "participation/:proid",
+	{ proid: '@proid' },
+  	{
+  	    get: { method: "GET", isArray: true },
+  	    post: { method: "POST" },
+  	    put: { method: "PUT", isArray: true },
+  	    remove: { method: 'DELETE' }
+  	});
 }]);
 
+ServersoftApi.factory("PHCPhase", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "PHCPhase/:phoid",
+	{ phoid: '@phoid' },
+  	{
+  	    get: { method: "GET", isArray: true },
+  	    post: { method: "POST" },
+  	    put: { method: "PUT", isArray: true },
+  	    remove: { method: 'DELETE' }
+  	});
+}]);
 
+ServersoftApi.factory("project", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "project/:proid",
+	{ proid: '@proid' },
+  	{
+  	    get: { method: "GET", isArray: true },
+  	    post: { method: "POST" },
+  	    put: { method: "PUT", isArray: true },
+  	    remove: { method: 'DELETE' }
+  	});
+}]);
 
-////Factoria sesiones
+ServersoftApi.factory("teamproject", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "teamproject/:tpoid",
+	{ tpoid: '@tpoid' },
+  	{
+  	    get: { method: "GET", isArray: true },
+  	    post: { method: "POST" },
+  	    put: { method: "PUT", isArray: true },
+  	    remove: { method: 'DELETE' }
+  	});
+}]);
 
+ServersoftApi.factory("typefacility", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "typefacility/:tfoid",
+	{ tfoid: '@tfoid' },
+  	{
+  	    get: { method: "GET", isArray: true },
+  	    post: { method: "POST" },
+  	    put: { method: "PUT", isArray: true },
+  	    remove: { method: 'DELETE' }
+  	});
+}]);
+////Configuration factory
+ServersoftApi.factory("attribute", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "attribute/:atoid",
+	{ atoid: '@atoid' },
+  	{
+  	    get: { method: "GET", isArray: true },
+  	    post: { method: "POST" },
+  	    put: { method: "PUT", isArray: true },
+  	    remove: { method: 'DELETE' }
+  	});
+}]);
+
+ServersoftApi.factory("dimension", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "dimension/:dioid",
+	{ dioid: '@dioid' },
+  	{
+  	    get: { method: "GET", isArray: true },
+  	    post: { method: "POST" },
+  	    put: { method: "PUT", isArray: true },
+  	    remove: { method: 'DELETE' }
+  	});
+}]);
+
+ServersoftApi.factory("feature", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "feature/:feoid",
+	{ feoid: '@feoid' },
+  	{
+  	    get: { method: "GET", isArray: true },
+  	    post: { method: "POST" },
+  	    put: { method: "PUT", isArray: true },
+  	    remove: { method: 'DELETE' }
+  	});
+}]);
+
+ServersoftApi.factory("method", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "method/:mtoid",
+	{ mtoid: '@mtoid' },
+  	{
+  	    get: { method: "GET", isArray: true },
+  	    post: { method: "POST" },
+  	    put: { method: "PUT", isArray: true },
+  	    remove: { method: 'DELETE' }
+  	});
+}]);
+
+ServersoftApi.factory("methodology", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "methodology/:meoid",
+	{ meoid: '@meoid' },
+  	{
+  	    get: { method: "GET", isArray: true },
+  	    post: { method: "POST" },
+  	    put: { method: "PUT", isArray: true },
+  	    remove: { method: 'DELETE' }
+  	});
+}]);
+
+ServersoftApi.factory("metric", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "metric/:meoid",
+	{ meoid: '@meoid' },
+  	{
+  	    get: { method: "GET", isArray: true },
+  	    post: { method: "POST" },
+  	    put: { method: "PUT", isArray: true },
+  	    remove: { method: 'DELETE' }
+  	});
+}]);
+
+ServersoftApi.factory("optionquestion", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "optionquestion/:oqoid",
+	{ oqoid: '@oqoid' },
+  	{
+  	    get: { method: "GET", isArray: true },
+  	    post: { method: "POST" },
+  	    put: { method: "PUT", isArray: true },
+  	    remove: { method: 'DELETE' }
+  	});
+}]);
+
+ServersoftApi.factory("question", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "question/:quoid",
+	{ quoid: '@quoid' },
+  	{
+  	    get: { method: "GET", isArray: true },
+  	    post: { method: "POST" },
+  	    put: { method: "PUT", isArray: true },
+  	    remove: { method: 'DELETE' }
+  	});
+}]);
+
+ServersoftApi.factory("responsevalue", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "responsevalue/:rvoid",
+	{ rvoid: '@rvoid' },
+  	{
+  	    get: { method: "GET", isArray: true },
+  	    post: { method: "POST" },
+  	    put: { method: "PUT", isArray: true },
+  	    remove: { method: 'DELETE' }
+  	});
+}]);
+
+ServersoftApi.factory("rolesubdimension", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "rolesubdimension/:rsoid",
+	{ rsoid: '@rsoid' },
+  	{
+  	    get: { method: "GET", isArray: true },
+  	    post: { method: "POST" },
+  	    put: { method: "PUT", isArray: true },
+  	    remove: { method: 'DELETE' }
+  	});
+}]);
+
+ServersoftApi.factory("subdimension", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "subdimension/:dioid",
+	{ dioid: '@dioid' },
+  	{
+  	    get: { method: "GET", isArray: true },
+  	    post: { method: "POST" },
+  	    put: { method: "PUT", isArray: true },
+  	    remove: { method: 'DELETE' }
+  	});
+}]);
+
+ServersoftApi.factory("subfeature", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "subfeature/:sfoid",
+	{ sfoid: '@sfoid' },
+  	{
+  	    get: { method: "GET", isArray: true },
+  	    post: { method: "POST" },
+  	    put: { method: "PUT", isArray: true },
+  	    remove: { method: 'DELETE' }
+  	});
+}]);
+
+ServersoftApi.factory("typequestion", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "typequestion/:tqoid",
+	{ tqoid: '@tqoid' },
+  	{
+  	    get: { method: "GET", isArray: true },
+  	    post: { method: "POST" },
+  	    put: { method: "PUT", isArray: true },
+  	    remove: { method: 'DELETE' }
+  	});
+}]);
+
+ServersoftApi.factory("variable", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "variable/:vaoid",
+	{ vaoid: '@vaoid' },
+  	{
+  	    get: { method: "GET", isArray: true },
+  	    post: { method: "POST" },
+  	    put: { method: "PUT", isArray: true },
+  	    remove: { method: 'DELETE' }
+  	});
+}]);
+
+ServersoftApi.factory("version", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "version/:veoid",
+	{ veoid: '@veoid' },
+  	{
+  	    get: { method: "GET", isArray: true },
+  	    post: { method: "POST" },
+  	    put: { method: "PUT", isArray: true },
+  	    remove: { method: 'DELETE' }
+  	});
+}]);
 //factoria que controla la autentificación, devuelve un objeto
 //$cookies para crear cookies
 //$cookieStore para actualizar o eliminar

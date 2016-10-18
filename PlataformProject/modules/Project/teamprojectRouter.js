@@ -10,7 +10,7 @@ router.get('/sys/teamproject', function (req, res) {
     });
 });
 
-router.get('/sys/teamproject/id/:tpoid', function (req, res) {
+router.get('/sys/teamproject/:tpoid', function (req, res) {
     models.teamproject.findAll({ 
         where: {
             tpoid: req.params.tpoid }}).then(function (result) {
