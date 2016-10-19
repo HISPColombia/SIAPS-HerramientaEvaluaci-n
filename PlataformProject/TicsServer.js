@@ -67,16 +67,24 @@ app.get('/view', function (request, response) {
 //////Modules/////
 
 ////Routers Segurity
-var user = require("./Modules/Segurity/authRouter.js")
-app.use("/api",user);
+var auth = require("./Modules/Segurity/authRouter.js")
+app.use("/api",auth);
+
 var user = require("./Modules/Segurity/userRouter.js")
 app.use("/api",user);
+
 var person = require("./Modules/Segurity/personRouter.js")
 app.use("/api",person);
+
 var role = require("./Modules/Segurity/roleRouter.js")
 app.use("/api",role);
+
 var userrole = require("./Modules/Segurity/userroleRouter.js")
 app.use("/api",userrole);
+
+var audit = require("./Modules/Segurity/tbl_auditRouter.js")
+app.use("/api",audit);
+
 //Routers Configuration
 var version = require("./Modules/Configuration/versionRouter.js")
 app.use("/api",version);
