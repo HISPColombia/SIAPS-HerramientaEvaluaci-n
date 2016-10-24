@@ -13,7 +13,7 @@
     <div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                <input type="text" class="form-control" name="usname" ng-model="usname" ng-minlength="6" ng-maxlength="100" required  placeholder="{{'LIDENTIFY'| translate}}" />
+                <input type="text" class="form-control" name="usname" ng-model="usname" ng-minlength="6" ng-maxlength="100" required  placeholder="{{'LOGIN_USER'| translate}}" />
                 <div class="error-container" ng-show="form.usname.$dirty && form.usname.$invalid">
                     <small class="error" ng-show="form.usname.$error.required">{{'USER_REQUIRED'| translate}}</small>
                     <small class="error" ng-show="form.usname.$error.maxlength">{{'USER_LONG'| translate}}</small>
@@ -28,36 +28,20 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                <input type="email" class="form-control" name="pemail" ng-model="pemail" ng-minlength="3" ng-maxlength="50" required placeholder="{{'LEMAIL'| translate}}">
-                <div class="error-container" ng-show="form.pemail.$dirty && form.pemail.$invalid">
-                    <small class="error" ng-show="form.pemail.$error.required">El email es obligatorio.</small>
-                    <small class="error" ng-show="form.pemail.$error.minlength">Email al menos de 3 caracteres</small>
-                    <small class="error" ng-show="form.pemail.$error.email">No es un Email valido.</small>
-                    <small class="error" ng-show="form.pemail.$error.maxlength">Email no mayor a 50 caracteres</small>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6">
-                <input type="text" class="form-control" name="petelephon" ng-model="petelephon"  ng-minlength="8" ng-maxlength="15" required placeholder="{{'TELEPHONE'| translate}}"/>
-                <div class="error" ng-show="form.petelephon.$dirty && form.petelephon.$invalid">
-                    <small class="error" ng-show="form.petelephon.$error.required">El telefono es obligatorio.</small>
-                    <small class="error" ng-show="form.petelephon.$error.maxlength">Telefono no mayor a 15 caracteres</small>
-                </div>
-            </div>
-        </div>
-            <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 form-group">
-                <textarea rows="3" class="form-control" name="pestudies" id="pestudies" ng-model="pestudies" ng-minlength="0" ng-maxlength="50" required placeholder="{{'ESTUDIES'| translate}}"></textarea>
-             </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 form-group">
-                <textarea rows="3" class="form-control" name="peprofdescription" id="peprofdescription" ng-model="peprofdescription" ng-minlength="3" ng-maxlength="50" required placeholder="{{'PROFDESCRIP'| translate}}"></textarea>
-            </div>
-            </div>
-        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                <select ng-model="peoid" class="form-control" ng-options="p.pename for p in listPerson">
+                    <option value="">-- Seleccione una Persona --</option>
+                </select>
+        </div>     
+        <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                          <select class="form-control">
+                            <option>Estado</option>
+                            <option>Activo</option>
+                            <option>Inactivo</option>
+                          </select>
+        </div>    
+        
+                          
         <div>
             <button type="button" class="btn btn-success" ng-click="savePerson(usname,pename,pesurname,pestudies,peprofdescription,pemail,petelephon);" ng-show="mode=='create'">Guardar</button>
             <button type="button" class="btn btn-success" ng-click="updatePerson(peoid,usname,pename,pesurname,pemail,pestudies,peprofdescription,petelephon);" ng-show="mode=='edit'">Actualizar</button>
@@ -66,7 +50,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <!--<div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 ">
 
                 <div class="table-responsive">
@@ -74,31 +58,23 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th>{{'IDENTIFY'|translate}}</th>
-                            <th>{{'NAME'|translate}}</th>
-                            <th>{{'SURNAME'|translate}}</th>
-                            <th>{{'EMAIL'|translate}}</th>
-                            <!--<th>Clasificaci&#243;n</th>
-                            <th>Asa</th>
-                            <th>Observaci&#243;n</th>-->
+                            <th>{{'USER'|translate}}</th>
+                            <th>Persona</th>
+                            <th>Estado</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="Person in listPerson | filter:query">
                             <td><button ng-click="selectPerson(Person.peoid,Person.usname,Person.pename,Person.pesurname,Person.pemail,Person.pestudies,Person.peprofdescription,Person.petelephon)"><span class="glyphicon glyphicon-edit"></span></button></td>
-                            <td>{{Person.usname}}</td>
+                            <!--<td>{{Person.usname}}</td>
                             <td>{{Person.pename}}</td>
                             <td>{{Person.pesurname}}</td>
-                            <td>{{Person.pemail}}</td>
-                            <!--<td>{{item.HcdpClasif}}</td>
-                            <td>{{item.HcAsaEu}}{{item.HcAsa}}</td>
-                            <td>{{item.HcDescripdiag}}</td>-->
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-    </div>
+    </div>-->
 
 
         

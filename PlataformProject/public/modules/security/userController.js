@@ -1,4 +1,4 @@
-appServersoft.controller('userController', ['$scope', '$filter', 'commonvariable', 'authentication','$localStorage','user', function ($scope, $filter, commonvariable, authentication, $localStorage, user) {
+appServersoft.controller('userController', ['$scope', '$filter', 'commonvariable', 'authentication','$localStorage','person','user', function ($scope, $filter, commonvariable, authentication, $localStorage, person,user) {
 ///verify session
  //authentication.checkStatus();
 
@@ -70,6 +70,14 @@ var $translate = $filter('translate');
             $scope.addAlert = function (menssage) {
             $scope.alerts.push({ label: " ", msg: menssage });
         };
+
+    $scope.getPerson = function () {
+        person.get({})
+       .$promise.then(function (resp) {
+           $scope.listPerson = resp;
+       });
+    };
+$scope.getPerson();
         
         $scope.closeAlert = function (index) {
             $scope.alerts.splice(index, 1);
