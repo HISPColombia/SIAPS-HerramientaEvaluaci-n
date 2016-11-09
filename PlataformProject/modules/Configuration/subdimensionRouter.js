@@ -36,14 +36,14 @@ router.get('/sys/subdimension/nam/:name', function (req, res) {
 
 
 router.post('/sys/subdimension', function (req, res) {
-    models.subdimension.create({ suoid: req.body.suoid, sdname: req.body.sdname, dioid: req.body.dioid })
-   .then(function (subdimension) {
+    models.subdimension.create({ suoid: req.body.suoid, suname: req.body.suname, dioid: req.body.dioid })
+   .then(function (subdimension) {       
        publicResource.ReturnResult(res, subdimension);
    })
 });
 
 router.put('/sys/subdimension/:suoid', function (req, res) {
-    models.subdimension.update({ sdname: req.body.sdname, dioid: req.body.dioid  },
+    models.subdimension.update({ suoid: req.body.suoid, suname: req.body.suname, dioid: req.body.dioid },
     { 
         where: {
              suoid: req.params.suoid 

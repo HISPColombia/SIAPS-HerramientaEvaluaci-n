@@ -28,7 +28,7 @@ var $translate = $filter('translate');
     };
    $scope.getRole();
 
-   $scope.deleteRole = function (peoid) {
+   $scope.deleteRole = function (rooid) {
         role.delete({rooid:rooid})
        .$promise.then(function (resp) {
            $scope.getRole();

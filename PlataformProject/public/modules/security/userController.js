@@ -1,8 +1,10 @@
-appServersoft.controller('userController', ['$scope', '$filter', 'commonvariable', 'authentication','$localStorage','user', function ($scope, $filter, commonvariable, authentication, $localStorage, user) {
+appServersoft.controller('userController', ['$scope', '$filter', 'commonvariable', 'authentication','$localStorage','person','user', function ($scope, $filter, commonvariable, authentication, $localStorage, person,user) {
 ///verify session
  //authentication.checkStatus();
 
 ///variables
+$scope.lstEstados = [{ Descripcion: "Inactivo", ID: 0 },
+                        { Descripcion: "Activo", ID: 1 },];
 $scope.alerts = [];
 var $translate = $filter('translate');
    $scope.initform = function () {
@@ -10,19 +12,26 @@ var $translate = $filter('translate');
         $scope.usoid = 0;
         $scope.usname="";
         $scope.uspassword = "";
-        $scope.peoid = "";
-        $scope.usstatus = "";
+        $scope.peoid = 0;
+        $scope.usstatus = 0;
     }
     $scope.initform();
 
     $scope.selectUser = function (usoid,usname,uspassword,peoid,usstatus) {
         $scope.mode = 'edit';
         $scope.usoid = usoid;
-        $scope.uspassword = uspassword;
+        $scope.uspassword = '';
         $scope.usname=usname;
         $scope.peoid = peoid;
-        $scope.usstatus = usstatus;
+        var status = $scope.lstEstados.filter(function (item) {
+            return item.ID == usstatus;
+        });
+        $scope.usstatus = status[0];
     }
+   
+   $scope.getEstado = function (id) {
+        return $scope.lstEstados[id].Descripcion;
+    };
 
     $scope.getUser = function () {
         user.get({})
@@ -30,6 +39,7 @@ var $translate = $filter('translate');
            $scope.listUser = resp;
        });
     };
+
    $scope.getUser();
 
        $scope.deleteUser = function (usoid) {
@@ -41,9 +51,9 @@ var $translate = $filter('translate');
     };
 
     $scope.saveUser = function (usname,uspassword,peoid,usstatus) {
-       user.post({usname: usname, uspassword: uspassword, peoid: peoid, usstatus: usstatus})
+       user.post({usname: usname, uspassword: uspassword, peoid:2, usstatus: usstatus.ID})
       .$promise.then(function (resp) {
-          if (resp.uspassword == uspassword) {
+          if (resp.usname == usname) {
               $scope.getUser();
               $scope.alerts.push({ msg: $translate("ROOM_MSG_SUCCESS"), type: 'success' });
               $scope.initform();
@@ -55,7 +65,7 @@ var $translate = $filter('translate');
     };
 
     $scope.updateUser = function (usoid,usname,uspassword,peoid,usstatus) {
-        user.put({ usoid:usoid, uspassword:uspassword ,usname:usname ,peoid:peoid, usstatus:usstatus })
+        user.put({ usoid:usoid, usname:usname,uspassword:uspassword ,peoid:2, usstatus:usstatus.ID })
       .$promise.then(function (resp) {
           if (resp.length > 0) {
               $scope.getUser();
@@ -70,6 +80,14 @@ var $translate = $filter('translate');
             $scope.addAlert = function (menssage) {
             $scope.alerts.push({ label: " ", msg: menssage });
         };
+
+    $scope.getPerson = function () {
+        person.get({})
+       .$promise.then(function (resp) {
+           $scope.listPerson = resp;
+       });
+    };
+$scope.getPerson();
         
         $scope.closeAlert = function (index) {
             $scope.alerts.splice(index, 1);

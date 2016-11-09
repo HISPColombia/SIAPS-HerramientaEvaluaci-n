@@ -1,0 +1,93 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 ">
+        <h2>{{'methodology'| translate}}</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-3 ">
+           <input type="text" class="form-control materail_input" ng-model="query" placeholder="Ingrese busqueda">
+    </div>
+</div>
+<hr class="colorgraph"> 
+<form name="form">
+    <div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                <input type="text" class="form-control" name="mename" ng-model="mename" ng-minlength="3" ng-maxlength="100" required  placeholder="methodology" />
+                <div class="error-container" ng-show="form.mename.$dirty && form.mename.$invalid">
+                    <small class="error" ng-show="form.mename.$error.required"></small>
+                    <small class="error" ng-show="form.mename.$error.maxlength"></small>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                    <input type="text" name="meauthor"  id="meauthor" ng-model="meauthor" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="Autor">              
+                    <div class="error" ng-show="form.meauthor.$dirty && form.meauthor.$invalid">
+                        <small class="error" ng-show="form.meauthor.$error.required">El Password es obligatorio. </small>
+                        <small class="error" ng-show="form.meauthor.$error.minlength">Password al menos de 6 caracteres </small>
+                        <small class="error" ng-show="form.meauthor.$error.maxlength">Password no mayor a 100 caracteres</small>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                <select ng-model="veoid" name="veoid" id="veoid" class="form-control" ng-options="p.venumber for p in listversion">
+                    <option value="">-- Seleccione una Version --</option>
+                </select>
+             </div>     
+             <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                            <select name="mestatus"  id="mestatus" ng-model="mestatus" class="form-control" ng-options="e.Descripcion for e in lstEstados">
+                                <option value="">-- Seleccionar --</option>
+                            </select>
+              </div>    
+         </div>      
+
+ <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 form-group">
+                    <textarea rows="5" name="medescription"  id="medescription" ng-model="medescription" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="Description">  </textarea>            
+                    <div class="error" ng-show="form.medescription.$dirty && form.medescription.$invalid">
+                        <small class="error" ng-show="form.medescription.$error.required">El Password es obligatorio. </small>
+                        <small class="error" ng-show="form.medescription.$error.minlength">Password al menos de 6 caracteres </small>
+                        <small class="error" ng-show="form.medescription.$error.maxlength">Password no mayor a 100 caracteres</small>
+                </div>
+            </div>
+    </div>
+      <div>
+            <button type="button" class="btn btn-success" ng-click="savemethodology(mename,medescription,mestatus,veoid,meauthor);" ng-show="mode=='create'">Guardar</button>
+            <button type="button" class="btn btn-success" ng-click="updatemethodology(meoid,mename,medescription,mestatus,veoid,meauthor);" ng-show="mode=='edit'">Actualizar</button>
+            <button type="button" class="btn btn-success" ng-click="deletemethodology(meoid);" ng-show="mode=='edit'">Eliminar</button>
+            <button class="btn btn-default" ng-click="initform()">{{'ROOM_CANCEL'|translate}}</button>
+       </div>
+
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 ">
+
+                <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Methodology</th>
+                            <th>Description</th>
+                            <th>Author</th>
+                            <th>Version</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in listmethodology | filter:query">
+                            <td><button ng-click="selectmethodology(item.meoid,item.mename,item.medescription,item.mestatus,item.veoid,item.meauthor)"><span class="glyphicon glyphicon-edit"></span></button></td>
+                            <td>{{item.mename}}</td>
+                            <td>{{item.medescription}}</td>
+                            <td>{{item.meauthor}}</td>
+                            <td>{{item.veoid}}</td>
+                            <td>{{getEstado(item.mestatus)}}</td>
+                            </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+
+        
+</form>

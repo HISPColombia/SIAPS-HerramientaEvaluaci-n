@@ -1,47 +1,46 @@
-appServersoft.controller('featureController', ['$scope', '$filter', 'commonvariable', 'authentication','$localStorage','subdimension','feature', function ($scope, $filter, commonvariable, authentication, $localStorage, subdimension,feature) {
+appServersoft.controller('subfeatureController', ['$scope', '$filter', 'commonvariable', 'authentication','$localStorage','feature','subfeature', function ($scope, $filter, commonvariable, authentication, $localStorage, feature,subfeature) {
 ///verify session
- //authentication.checkStatus();
-
+//authentication.checkStatus();
 ///variables
 $scope.alerts = [];
 var $translate = $filter('translate');
    $scope.initform = function () {
         $scope.mode = 'create';
+        $scope.sfoid = 0;
+        $scope.sfname="";
         $scope.feoid = 0;
-        $scope.fename="";
-        $scope.suoid = 0;
     }
     $scope.initform();
 
-    $scope.selectfeature = function (feoid, fename, suoid) {
+    $scope.selectsubfeature = function (sfoid, sfname, feoid) {
         $scope.mode = 'edit';
-        $scope.feoid = feoid;
-        $scope.fename = fename;
-        $scope.suoid = suoid;
+        $scope.sfoid = sfoid;
+        $scope.sfname = sfname;
+        $scope.feoid = 1;
     }
    
-    $scope.getfeature = function () {
-        feature.get({})
+    $scope.getsubfeature = function () {
+        subfeature.get({})
        .$promise.then(function (resp) {
-           $scope.listfeature = resp;
+           $scope.listsubfeature = resp;
        });
     };
 
-   $scope.getfeature();
-
-       $scope.deletefeature = function (feoid) {
-        feature.delete({feoid:feoid})
+   $scope.getsubfeature();
+   
+       $scope.deletesubfeature = function (sfoid) {
+        subfeature.delete({sfoid:sfoid})
        .$promise.then(function (resp) {
-           $scope.getfeature();
+           $scope.getsubfeature();
            $scope.initform();
        });
     };
 
-    $scope.savefeature = function (fename,suoid) {
-       feature.post({fename: fename, suoid: 2})
+    $scope.savesubfeature = function (sfname,feoid) {
+       subfeature.post({ sfname: sfname, feoid: 5 })
       .$promise.then(function (resp) {
-          if (resp.fename == fename) {
-              $scope.getfeature();
+          if (resp.sfname == sfname) {
+              $scope.getsubfeature();
               $scope.alerts.push({ msg: $translate("ROOM_MSG_SUCCESS"), type: 'success' });
               $scope.initform();
           }
@@ -51,11 +50,11 @@ var $translate = $filter('translate');
       });
     };
 
-    $scope.updatefeature = function (feoid,fename,suoid) {
-        feature.put({ feoid:feoid, fename:fename, suoid:2 })
+    $scope.updatesubfeature = function (sfoid,sfname,feoid) {
+        subfeature.put({ sfoid:sfoid, sfname:sfname, feoid:5 })
       .$promise.then(function (resp) {
           if (resp.length > 0) {
-              $scope.getfeature();
+              $scope.getsubfeature();
               $scope.alerts.push({ msg: $translate("BED_MSG_SUCCESS"), type: 'success' });
               $scope.initform();
           }
@@ -68,13 +67,15 @@ var $translate = $filter('translate');
             $scope.alerts.push({ label: " ", msg: menssage });
         };
 
-    $scope.getsubdimension = function () {
-        subdimension.get({})
+    $scope.getfeature = function () {
+
+        feature.get({})
        .$promise.then(function (resp) {
-           $scope.listsubdimension = resp;
+           $scope.listfeature = resp;
        });
     };
-$scope.getsubdimension();
+
+$scope.getfeature();
         
         $scope.closeAlert = function (index) {
             $scope.alerts.splice(index, 1);

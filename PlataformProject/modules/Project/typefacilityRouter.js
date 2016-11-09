@@ -10,7 +10,7 @@ router.get('/sys/typefacility', function (req, res) {
     });
 });
 
-router.get('/sys/typefacility/id/:tfoid', function (req, res) {
+router.get('/sys/typefacility/tfoid/:tfoid', function (req, res) {
     models.typefacility.findAll({ 
         where: {
             tfoid: req.params.tfoid }}).then(function (result) {

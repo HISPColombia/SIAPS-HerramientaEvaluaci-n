@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 ">
+        <h2>Dimension</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-3 ">
+           <input type="text" class="form-control materail_input" ng-model="query" placeholder="Ingrese busqueda">
+    </div>
+</div>
+<hr class="colorgraph"> 
+<form name="form">
+    <div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-3 form-group">
+                <input type="text" class="form-control" name="diname" ng-model="diname" required="required" ng-minlength="3" ng-maxlength="100" required  placeholder="Dimension"/>
+                <div class="error" ng-show="form.diname.$dirty && form.diname.$invalid">
+                    <small class="error" ng-show="form.diname.$error.required">El campo es obligatorio. </small>
+                    <small class="error" ng-show="form.diname.$error.minlength">El campo debe tener al menos de 3 caracteres </small>
+                    <small class="error" ng-show="form.diname.$error.maxlength">El campo no debe tener mas de 100 caracteres </small>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button type="button" class="btn btn-success" ng-click="saveDimension(diname);" ng-show="mode=='create'">{{'BUTTON_SAVE'| translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="updateDimension(dioid,diname);" ng-show="mode=='edit'">{{'BUTTON_UPDATE'| translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="deleteDimension(dioid);" ng-show="mode=='edit'">{{'BUTTON_DELETE'| translate}}</button>
+            <button class="btn btn-default" ng-click="initform()">{{'ROOM_CANCEL'|translate}}</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 ">
+
+                <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Dimension</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr ng-repeat="item in listdimension | filter:query">
+                            <td><button ng-click="selectDimension(item.dioid,item.diname)"><span class="glyphicon glyphicon-edit"></span></button></td>
+                            <td>{{item.diname}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</form>

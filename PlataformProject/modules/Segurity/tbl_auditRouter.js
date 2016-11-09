@@ -25,7 +25,7 @@ router.get('/sys/audit/table/:table', function (req, res) {
     });
 });
 
-router.get('/sys/version', function (req, res) {
+router.get('/sys/auditversion', function (req, res) {
     models.tbl_audit.findOne({ order: '"pk_audit" DESC' }).then(function (result) {
         publicResource.ReturnResult(res, result.pk_audit);
     });

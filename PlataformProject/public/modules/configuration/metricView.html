@@ -1,0 +1,109 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 ">
+        <h2>{{'Metric'| translate}}</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-3 ">
+           <input type="text" class="form-control materail_input" ng-model="query" placeholder="Ingrese busqueda">
+    </div>
+</div>
+<hr class="colorgraph"> 
+<form name="form">
+    <div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                <input type="text" class="form-control" name="mename" ng-model="mename" ng-minlength="3" ng-maxlength="100" required  placeholder="Metric Name" />
+                <div class="error-container" ng-show="form.mename.$dirty && form.mename.$invalid">
+                    <small class="error" ng-show="form.mename.$error.required"></small>
+                    <small class="error" ng-show="form.mename.$error.maxlength"></small>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                <select ng-model="atoid" name="atoid" id="atoid" class="form-control" ng-options="p.atname for p in listattribute">
+                    <option value="">-- Seleccione Attribute --</option>
+                </select>
+             </div>   
+
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                    <input type="text" name="meformula"  id="meformula" ng-model="meformula" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="Fromula">              
+                    <div class="error" ng-show="form.meformula.$dirty && form.meformula.$invalid">
+                        <small class="error" ng-show="form.meformula.$error.required">formula es obligatorio. </small>
+                        <small class="error" ng-show="form.meformula.$error.minlength">Password al menos de 6 caracteres </small>
+                        <small class="error" ng-show="form.meformula.$error.maxlength">Password no mayor a 100 caracteres</small>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                    <input type="text" name="mevaluemax"  id="mevaluemax" ng-model="mevaluemax" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="Max Value">              
+                    <div class="error" ng-show="form.mevaluemax.$dirty && form.mevaluemax.$invalid">
+                        <small class="error" ng-show="form.mevaluemax.$error.required">formula es obligatorio. </small>
+                        <small class="error" ng-show="form.mevaluemax.$error.minlength">Password al menos de 6 caracteres </small>
+                        <small class="error" ng-show="form.mevaluemax.$error.maxlength">Password no mayor a 100 caracteres</small>
+                </div>
+            </div>
+              <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                    <input type="text" name="mevaluemin"  id="mevaluemin" ng-model="mevaluemin" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="Min Value">              
+                    <div class="error" ng-show="form.mevaluemin.$dirty && form.mevaluemin.$invalid">
+                        <small class="error" ng-show="form.mevaluemin.$error.required">formula es obligatorio. </small>
+                        <small class="error" ng-show="form.mevaluemin.$error.minlength">Password al menos de 6 caracteres </small>
+                        <small class="error" ng-show="form.mevaluemin.$error.maxlength">Password no mayor a 100 caracteres</small>
+                </div>
+            </div>
+  
+         </div>      
+
+ <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 form-group">
+                    <textarea rows="5" name="medescription"  id="medescription" ng-model="medescription" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="Description">  </textarea>            
+                    <div class="error" ng-show="form.medescription.$dirty && form.medescription.$invalid">
+                        <small class="error" ng-show="form.medescription.$error.required">El Password es obligatorio. </small>
+                        <small class="error" ng-show="form.medescription.$error.minlength">Password al menos de 6 caracteres </small>
+                        <small class="error" ng-show="form.medescription.$error.maxlength">Password no mayor a 100 caracteres</small>
+                </div>
+            </div>
+    </div>
+      <div>
+            <button type="button" class="btn btn-success" ng-click="savemetric(atoid,mename,meformula,mevaluemax,mevaluemin,melinebasevalref,metipeindicador);" ng-show="mode=='create'">Guardar</button>
+            <button type="button" class="btn btn-success" ng-click="updatemetric(meoid,atoid,mename,meformula,mevaluemax,mevaluemin,melinebasevalref,metipeindicador);" ng-show="mode=='edit'">Actualizar</button>
+            <button type="button" class="btn btn-success" ng-click="deletemetric(meoid);" ng-show="mode=='edit'">Eliminar</button>
+            <button class="btn btn-default" ng-click="initform()">{{'ROOM_CANCEL'|translate}}</button>
+       </div>
+
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 ">
+
+                <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Metric</th>
+                            <th>Attribute</th>
+                            <th>Formula</th>
+                            <th>Max Value</th>
+                            <th>Min Value</th>
+                            <th>Indicador</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in listmetric | filter:query">
+                            <td><button ng-click="selectmetric(item.meoid,item.atoid,item.mename,item.meformula,item.mevaluemax,item.mevaluemin,item.melinebasevalref,item.metipeindicador)"><span class="glyphicon glyphicon-edit"></span></button></td>
+                            <td>{{item.mename}}</td>
+                            <td>{{item.atoid}}</td>
+                            <td>{{item.meformula}}</td>
+                            <td>{{item.mevaluemax}}</td>
+                            <td>{{item.mevaluemin}}</td>
+                            <td>{{item.metipeindicador}}</td>
+                            </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+
+        
+</form>

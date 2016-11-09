@@ -3,7 +3,6 @@ var publicResource = require("../../ControllerRouters.js");
 var express = require('express');
 var router = express.Router();
 
-
 router.get('/sys/version', function (req, res) {
     models.version.findAll({ limit: 1000 }).then(function (result) {
         publicResource.ReturnResult(res, result);

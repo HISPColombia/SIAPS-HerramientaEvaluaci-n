@@ -5,8 +5,8 @@ module.exports = function(sequelize, DataTypes) {
     phoid: {
       type: 'NUMERIC',
       allowNull: false,
-      defaultValue: 'nextval(phcphase_seq::regclass)',
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     phaseid: {
       type: 'NUMERIC',

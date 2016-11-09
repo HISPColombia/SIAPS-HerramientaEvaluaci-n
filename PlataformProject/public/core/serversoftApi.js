@@ -31,6 +31,19 @@ ServersoftApi.factory("person", ['$resource', 'commonvariable','$localStorage', 
   	});
 }]);
 
+ServersoftApi.factory("user", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "user/:usoid",
+	{ 
+		usoid: '@usoid' 
+	 },
+  	{
+  	    get: { method: "GET", isArray: true },
+  	    post: { method: "POST" },
+  	    put: { method: "PUT", isArray: true },
+  	    remove: { method: 'DELETE' }
+  	});
+}]);
+
 ServersoftApi.factory("role", ['$resource', 'commonvariable', function ($resource, commonvariable) {
     return $resource(commonvariable.url + "role/:rooid",
 	{rooid:'@rooid'},
@@ -42,9 +55,9 @@ ServersoftApi.factory("role", ['$resource', 'commonvariable', function ($resourc
   	});
 }]);
 
-ServersoftApi.factory("user", ['$resource', 'commonvariable', function ($resource, commonvariable) {
-    return $resource(commonvariable.url + "user/:usoid",
-	{ usoid: '@usoid' },
+ServersoftApi.factory("typefacility", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "tfoid/:tfoid",
+	{rooid:'@tfoid'},
   	{
   	    get: { method: "GET", isArray: true },
   	    post: { method: "POST" },
@@ -64,6 +77,7 @@ ServersoftApi.factory("userrole",['$resource','commonvariable', function ($resou
 	    remove: {method:'DELETE'}
     });
 }]);
+
 //project Factory
 ServersoftApi.factory("facility", ['$resource', 'commonvariable', function ($resource, commonvariable) {
     return $resource(commonvariable.url + "facility/:faoid",
@@ -242,8 +256,8 @@ ServersoftApi.factory("rolesubdimension", ['$resource', 'commonvariable', functi
 }]);
 
 ServersoftApi.factory("subdimension", ['$resource', 'commonvariable', function ($resource, commonvariable) {
-    return $resource(commonvariable.url + "subdimension/:dioid",
-	{ dioid: '@dioid' },
+    return $resource(commonvariable.url + "subdimension/:suoid",
+	{ dioid: '@suoid' },
   	{
   	    get: { method: "GET", isArray: true },
   	    post: { method: "POST" },

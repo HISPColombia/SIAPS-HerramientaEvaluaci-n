@@ -86,8 +86,8 @@ var audit = require("./Modules/Segurity/tbl_auditRouter.js")
 app.use("/api",audit);
 
 //Routers Configuration
-var version = require("./Modules/Configuration/versionRouter.js")
-app.use("/api",version);
+ var version = require("./Modules/Configuration/versionRouter.js")
+ app.use("/api",version);
 
 var methodology = require("./Modules/Configuration/methodologyRouter.js")
 app.use("/api",methodology);

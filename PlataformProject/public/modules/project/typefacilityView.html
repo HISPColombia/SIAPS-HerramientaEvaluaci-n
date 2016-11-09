@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 ">
+        <h2>Type Facility</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-3 ">
+           <input type="text" class="form-control materail_input" ng-model="query" placeholder="Ingrese busqueda">
+    </div>
+</div>
+<hr class="colorgraph"> 
+<form name="form">
+    <div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-3 form-group">
+                <input type="text" class="form-control" name="tfname" ng-model="tfname" required="required" ng-minlength="3" ng-maxlength="100" required  placeholder="Typefacility"/>
+                <div class="error" ng-show="form.tfname.$dirty && form.tfname.$invalid">
+                    <small class="error" ng-show="form.tfname.$error.required">El campo es obligatorio. </small>
+                    <small class="error" ng-show="form.tfname.$error.minlength">El campo debe tener al menos de 3 caracteres </small>
+                    <small class="error" ng-show="form.tfname.$error.maxlength">El campo no debe tener mas de 100 caracteres </small>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button type="button" class="btn btn-success" ng-click="saveTypefacility(tfname);" ng-show="mode=='create'">{{'BUTTON_SAVE'| translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="updateTypefacility(tfoid,tfname);" ng-show="mode=='edit'">{{'BUTTON_UPDATE'| translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="deleteTypefacility(tfoid);" ng-show="mode=='edit'">{{'BUTTON_DELETE'| translate}}</button>
+            <button class="btn btn-default" ng-click="initform()">{{'ROOM_CANCEL'|translate}}</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 ">
+
+                <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>TypeFacility</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr ng-repeat="Type in listTypefacility | filter:query">
+                            <td><button ng-click="selectTypefacility(Type.tfoid,Type.tfname)"><span class="glyphicon glyphicon-edit"></span></button></td>
+                            <td>{{Type.tfname}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</form>
