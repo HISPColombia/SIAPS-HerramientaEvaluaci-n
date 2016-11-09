@@ -46,6 +46,7 @@
   "EMAIL":"Email",
   "ROLE":"Roles",
   "USER":"Usuarios",
+  "LOGIN_USER":"Ingrese Nombre de usuario",
   "ROLEDESCRIPTION":"Descripción del Rol",
   "ROLEINITIALS":"Abreviatura",
   "------VALIDATION": "------------------",
