@@ -29,7 +29,7 @@
         </div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                    <input type="text" name="meformula"  id="meformula" ng-model="meformula" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="Fromula">              
+                    <input type="text" name="meformula"  id="meformula" ng-model="meformula" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="Metric Fromula">              
                     <div class="error" ng-show="form.meformula.$dirty && form.meformula.$invalid">
                         <small class="error" ng-show="form.meformula.$error.required">formula es obligatorio. </small>
                         <small class="error" ng-show="form.meformula.$error.minlength">Password al menos de 6 caracteres </small>
@@ -37,11 +37,11 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                    <input type="text" name="mevaluemax"  id="mevaluemax" ng-model="mevaluemax" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="Max Value">              
-                    <div class="error" ng-show="form.mevaluemax.$dirty && form.mevaluemax.$invalid">
-                        <small class="error" ng-show="form.mevaluemax.$error.required">formula es obligatorio. </small>
-                        <small class="error" ng-show="form.mevaluemax.$error.minlength">Password al menos de 6 caracteres </small>
-                        <small class="error" ng-show="form.mevaluemax.$error.maxlength">Password no mayor a 100 caracteres</small>
+                    <input type="text" name="metipeindicador"  id="metipeindicador" ng-model="metipeindicador" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="Indicator">              
+                    <div class="error" ng-show="form.metipeindicador.$dirty && form.metipeindicador.$invalid">
+                        <small class="error" ng-show="form.metipeindicador.$error.required">formula es obligatorio. </small>
+                        <small class="error" ng-show="form.metipeindicador.$error.minlength">Password al menos de 6 caracteres </small>
+                        <small class="error" ng-show="form.metipeindicador.$error.maxlength">Password no mayor a 100 caracteres</small>
                 </div>
             </div>
               <div class="col-xs-12 col-sm-12 col-md-6 form-group">
@@ -52,16 +52,24 @@
                         <small class="error" ng-show="form.mevaluemin.$error.maxlength">Password no mayor a 100 caracteres</small>
                 </div>
             </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                    <input type="text" name="mevaluemax"  id="mevaluemax" ng-model="mevaluemax" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="Max Value">              
+                    <div class="error" ng-show="form.mevaluemax.$dirty && form.mevaluemax.$invalid">
+                        <small class="error" ng-show="form.mevaluemax.$error.required">formula es obligatorio. </small>
+                        <small class="error" ng-show="form.mevaluemax.$error.minlength">Password al menos de 6 caracteres </small>
+                        <small class="error" ng-show="form.mevaluemax.$error.maxlength">Password no mayor a 100 caracteres</small>
+                </div>
+            </div>
   
          </div>      
 
  <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 form-group">
-                    <textarea rows="5" name="medescription"  id="medescription" ng-model="medescription" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="Description">  </textarea>            
-                    <div class="error" ng-show="form.medescription.$dirty && form.medescription.$invalid">
-                        <small class="error" ng-show="form.medescription.$error.required">El Password es obligatorio. </small>
-                        <small class="error" ng-show="form.medescription.$error.minlength">Password al menos de 6 caracteres </small>
-                        <small class="error" ng-show="form.medescription.$error.maxlength">Password no mayor a 100 caracteres</small>
+                    <textarea rows="5" name="melinebasevalref"  id="melinebasevalref" ng-model="melinebasevalref" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="Linea base Metric">  </textarea>            
+                    <div class="error" ng-show="form.melinebasevalref.$dirty && form.melinebasevalref.$invalid">
+                        <small class="error" ng-show="form.melinebasevalref.$error.required">El Password es obligatorio. </small>
+                        <small class="error" ng-show="form.melinebasevalref.$error.minlength">Password al menos de 6 caracteres </small>
+                        <small class="error" ng-show="form.melinebasevalref.$error.maxlength">Password no mayor a 100 caracteres</small>
                 </div>
             </div>
     </div>
@@ -87,6 +95,7 @@
                             <th>Max Value</th>
                             <th>Min Value</th>
                             <th>Indicador</th>
+                            <th>Linea Base</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -98,6 +107,7 @@
                             <td>{{item.mevaluemax}}</td>
                             <td>{{item.mevaluemin}}</td>
                             <td>{{item.metipeindicador}}</td>
+                            <td>{{item.melinebasevalref}}</td>
                             </tbody>
                 </table>
             </div>

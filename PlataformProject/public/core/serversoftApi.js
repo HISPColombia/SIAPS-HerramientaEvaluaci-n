@@ -391,7 +391,7 @@ ServersoftApi.factory("authentication", function ($cookies, $cookieStore, $locat
         },
         checkStatus: function () {
             //creamos un array con las rutas que queremos controlar
-            var rutasPrivadas = ["/configuration","/singup","/account","/configuration","/person"];
+            var rutasPrivadas = ["/configuration","/singup","/account","/configuration"];
             if (this.in_array($location.path(), rutasPrivadas) && typeof ($cookies.dataUser) == "undefined") {
                 $location.path("/singup");
             }

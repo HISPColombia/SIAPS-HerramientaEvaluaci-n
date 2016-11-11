@@ -13,8 +13,8 @@ var $translate = $filter('translate');
         $scope.atoid = 0;  
         $scope.mename="";
         $scope.meformula="";
-        $scope.mevaluemax = 0;
-        $scope.mevaluemin = 0;
+        $scope.mevaluemax = "";
+        $scope.mevaluemin = "";
         $scope.melinebasevalref ="";
         $scope.metipeindicador="";
     }
