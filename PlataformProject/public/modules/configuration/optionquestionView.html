@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 ">
+        <h2>Attribute</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-3 ">
+           <input type="text" class="form-control materail_input" ng-model="query" placeholder="Ingrese busqueda">
+    </div>
+</div>
+<hr class="colorgraph"> 
+<form name="form">
+    <div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                <input type="text" class="form-control" name="atname" ng-model="atname" ng-minlength="3" ng-maxlength="100" required  placeholder="Attribute Name" />
+                <div class="error-container" ng-show="form.atname.$dirty && form.atname.$invalid">
+                    <small class="error" ng-show="form.atname.$error.required">{{'feature_REQUIRED'| translate}}</small>
+                    <small class="error" ng-show="form.atname.$error.maxlength">{{'feature_LONG'| translate}}</small>
+                </div>
+            </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                <select ng-model="sfoid" name="sfoid" id="sfoid" class="form-control" ng-options="p.sfname for p in listsubfeature">
+                    <option value="">-- Seleccione una Sub Caracteristica --</option>
+                </select>
+        </div>     
+ </div>              
+        <div>
+            <button type="button" class="btn btn-success" ng-click="saveattribute(atname,sfoid);" ng-show="mode=='create'">Guardar</button>
+            <button type="button" class="btn btn-success" ng-click="updateattribute(atoid,atname,sfoid);" ng-show="mode=='edit'">Actualizar</button>
+            <button type="button" class="btn btn-success" ng-click="deleteattribute(atoid);" ng-show="mode=='edit'">Eliminar</button>
+            <button class="btn btn-default" ng-click="initform()">{{'ROOM_CANCEL'|translate}}</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 ">
+
+                <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Attribute</th>
+                            <th>Sub Feature</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in listattribute | filter:query">
+                            <td><button ng-click="selectattribute(item.atoid, item.atname,item.sfoid)"><span class="glyphicon glyphicon-edit"></span></button></td>
+                            <td>{{item.atname}}</td>
+                            <td>{{item.sfoid}}</td>
+                            </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</form>
