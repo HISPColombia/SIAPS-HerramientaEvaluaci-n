@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 ">
+        <h2>{{'Role Subdimension'| translate}}</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-3 ">
+           <input type="text" class="form-control materail_input" ng-model="query" placeholder="Ingrese busqueda">
+    </div>
+</div>
+<hr class="colorgraph"> 
+<form name="form">
+    <div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                <select ng-model="suoid" name="suoid" id="suoid" class="form-control" ng-options="p.suname for p in listsubdimension">
+                    <option value="">-- Seleccione una Subdimension --</option>
+                </select>
+        </div>    
+        <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                <select ng-model="rooid" name="rooid" id="rooid" class="form-control" ng-options="p.rodescription for p in listrole">
+                    <option value="">-- Seleccione un Rol --</option>
+                </select>
+        </div>    
+       
+ </div>              
+        <div>
+            <button type="button" class="btn btn-success" ng-click="saverolesubdimension(suoid,rooid);" ng-show="mode=='create'">Guardar</button>
+            <button type="button" class="btn btn-success" ng-click="updaterolesubdimension(rsoid,suoid,rooid);" ng-show="mode=='edit'">Actualizar</button>
+            <button type="button" class="btn btn-success" ng-click="deleterolesubdimension(rsoid);" ng-show="mode=='edit'">Eliminar</button>
+            <button class="btn btn-default" ng-click="initform()">{{'ROOM_CANCEL'|translate}}</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 ">
+
+                <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Subdimension</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in listrolesubdimension | filter:query">
+                            <td><button ng-click="selectrolesubdimension(item.rsoid,item.suoid,item.rooid)"><span class="glyphicon glyphicon-edit"></span></button></td>
+                            <td>{{getsubdimensionName(item.suoid)}}</td>
+                            <td>{{getroleName(item.rooid)}}</td>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>       
+</form>

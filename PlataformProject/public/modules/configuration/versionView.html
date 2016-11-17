@@ -13,7 +13,7 @@
     <div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                <input type="text" class="form-control" name="venumber" ng-model="venumber" ng-minlength="6" ng-maxlength="100" required  placeholder="{{'venumber'| translate}}" />
+                <input type="text" class="form-control" name="venumber" ng-model="venumber" ng-minlength="1" ng-maxlength="3" required  placeholder="{{'venumber'| translate}}" />
                 <div class="error-container" ng-show="form.venumber.$dirty && form.venumber.$invalid">
                     <small class="error" ng-show="form.venumber.$error.required">{{'USER_REQUIRED'| translate}}</small>
                     <small class="error" ng-show="form.venumber.$error.maxlength">{{'USER_LONG'| translate}}</small>
