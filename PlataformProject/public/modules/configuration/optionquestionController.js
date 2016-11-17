@@ -1,4 +1,4 @@
-appServersoft.controller('attributeController', ['$scope', '$filter', 'commonvariable', 'authentication','$localStorage','subfeature','attribute', function ($scope, $filter, commonvariable, authentication, $localStorage, subfeature,attribute) {
+appServersoft.controller('optionquestionController', ['$scope', '$filter', 'commonvariable', 'authentication','$localStorage','question','optionquestion', function ($scope, $filter, commonvariable, authentication, $localStorage, question,optionquestion) {
 ///verify session
 //authentication.checkStatus();
 ///variables
@@ -6,41 +6,44 @@ $scope.alerts = [];
 var $translate = $filter('translate');
    $scope.initform = function () {
         $scope.mode = 'create';
-        $scope.atoid = 0;
-        $scope.atname="";
-        $scope.sfoid = 0;
+        $scope.oqoid = 0;
+        $scope.quoid = 0;
+        $scope.oqdescription="";
     }
     $scope.initform();
 
-    $scope.selectattribute = function (atoid, atname, sfoid) {
+    $scope.selectoptionquestion = function (oqoid, quoid, oqdescription ) {
         $scope.mode = 'edit';
-        $scope.atoid = atoid;
-        $scope.atname = atname;
-        $scope.sfoid = 1;
+        $scope.oqoid = oqoid;
+        $scope.oqdescription = oqdescription;
+        var option = $scope.listquestion.filter(function (item) {
+            return item.quoid == quoid;
+         });
+        $scope.quoid = option[0];
     }
    
-    $scope.getattribute = function () {
-        attribute.get({})
+    $scope.getoptionquestion = function () {
+        optionquestion.get({})
        .$promise.then(function (resp) {
-           $scope.listattribute = resp;
+           $scope.listoptionquestion = resp;
        });
     };
 
-   $scope.getattribute();
-   
-       $scope.deleteattribute = function (atoid) {
-        attribute.delete({atoid:atoid})
+   $scope.getoptionquestion();
+  
+   $scope.deleteoptionquestion = function (oqoid) {
+        optionquestion.delete({oqoid:oqoid})
        .$promise.then(function (resp) {
-           $scope.getattribute();
+           $scope.getoptionquestion();
            $scope.initform();
        });
     };
 
-    $scope.saveattribute = function (atname,sfoid) {
-       attribute.post({ atname: atname, sfoid: 1 })
+    $scope.saveoptionquestion = function (quoid, oqdescription) {
+       optionquestion.post({ oqdescription: oqdescription, quoid: quoid.quoid })
       .$promise.then(function (resp) {
-          if (resp.atname == atname) {
-              $scope.getattribute();
+          if (resp.oqdescription == oqdescription) {
+              $scope.getoptionquestion();
               $scope.alerts.push({ msg: $translate("ROOM_MSG_SUCCESS"), type: 'success' });
               $scope.initform();
           }
@@ -50,11 +53,11 @@ var $translate = $filter('translate');
       });
     };
 
-    $scope.updateattribute = function (atoid,atname,sfoid) {
-        attribute.put({ atoid:atoid, atname:atname, sfoid:1 })
+    $scope.updateoptionquestion = function (oqoid, quoid, oqdescription) {
+        optionquestion.put({ oqoid:oqoid, quoid: quoid.quoid, oqdescription:oqdescription })
       .$promise.then(function (resp) {
           if (resp.length > 0) {
-              $scope.getattribute();
+              $scope.getoptionquestion();
               $scope.alerts.push({ msg: $translate("BED_MSG_SUCCESS"), type: 'success' });
               $scope.initform();
           }
@@ -67,16 +70,22 @@ var $translate = $filter('translate');
             $scope.alerts.push({ label: " ", msg: menssage });
         };
 
-    $scope.getsubfeature = function () {
+    $scope.getquestion = function () {
 
-        subfeature.get({})
+        question.get({})
        .$promise.then(function (resp) {
-           $scope.listsubfeature = resp;
+           $scope.listquestion = resp;
        });
     };
 
-$scope.getsubfeature();
-        
+$scope.getquestion();
+
+$scope.getquestionName = function (quoid) {
+        var q = $scope.listquestion.filter(function (item) {
+            return item.quoid == quoid;
+         });
+         return q[0].ququestion;
+    };      
         $scope.closeAlert = function (index) {
             $scope.alerts.splice(index, 1);
         };   

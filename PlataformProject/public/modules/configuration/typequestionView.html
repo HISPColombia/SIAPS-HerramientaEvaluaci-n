@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 ">
+        <h2>{{'Type Question'| translate}}</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-3 ">
+           <input type="text" class="form-control materail_input" ng-model="query" placeholder="Ingrese busqueda">
+    </div>
+</div>
+<hr class="colorgraph"> 
+<form name="form">
+    <div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                <input type="text" class="form-control" name="tqdescription" ng-model="tqdescription" ng-minlength="6" ng-maxlength="100" required  placeholder="{{'Type Question Description'| translate}}" />
+                <div class="error-container" ng-show="form.tqdescription.$dirty && form.tqdescription.$invalid">
+                    <small class="error" ng-show="form.tqdescription.$error.required">{{'USER_REQUIRED'| translate}}</small>
+                    <small class="error" ng-show="form.tqdescription.$error.maxlength">{{'USER_LONG'| translate}}</small>
+                </div>
+            </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                <select ng-model="tqstate" name="tqstate" id="tqstate" class="form-control" ng-options="p.Descripcion for p in lstEstados">
+                    <option value="">-- Seleccione un Estado--</option>
+                </select>
+        </div>     
+     
+ </div>              
+        <div>
+            <button type="button" class="btn btn-success" ng-click="savetypequestion(tqdescription, tqstate);" ng-show="mode=='create'">Guardar</button>
+            <button type="button" class="btn btn-success" ng-click="updatetypequestion(tqoid,tqdescription, tqstate);" ng-show="mode=='edit'">Actualizar</button>
+            <button type="button" class="btn btn-success" ng-click="deletetypequestion(tqoid);" ng-show="mode=='edit'">Eliminar</button>
+            <button class="btn btn-default" ng-click="initform()">{{'ROOM_CANCEL'|translate}}</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 ">
+
+                <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>User</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in listtypequestion | filter:query">
+                            <td><button ng-click="selecttypequestion(item.tqoid, item.tqdescription,item.tqstate)"><span class="glyphicon glyphicon-edit"></span></button></td>
+                            <td>{{item.tqdescription}}</td>
+                            <td>{{getEstado(item.tqstate)}}</td>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>       
+</form>
