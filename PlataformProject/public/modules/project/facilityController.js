@@ -1,56 +1,48 @@
-appServersoft.controller('facilityController', ['$scope', '$filter', 'commonvariable', 'authentication','$localStorage','facility', function ($scope, $filter, commonvariable, authentication, $localStorage, facility) {
+appServersoft.controller('facilityController', ['$scope', '$filter', 'commonvariable', 'authentication','$localStorage','typefacility','facility', function ($scope, $filter, commonvariable, authentication, $localStorage, typefacility,facility) {
 ///verify session
- //authentication.checkStatus();
-
+//authentication.checkStatus();
 ///variables
 $scope.alerts = [];
 var $translate = $filter('translate');
    $scope.initform = function () {
         $scope.mode = 'create';
-        $scope.peoid = 0;
-        $scope.peidentify = "";
-        $scope.pename="";
-        $scope.pesurname = "";
-        $scope.pestudies = "";
-        $scope.peprofdescription = "";
-        $scope.pemail = "";
-        $scope.petelephon = "";
+        $scope.faoid = 0;
+        $scope.faname="";
+        $scope.tfoid = 0;
     }
     $scope.initform();
 
-    $scope.selectPerson = function (peoid,peidentify,pename,pesurname,pemail,pestudies,peprofdescription,petelephon) {
+    $scope.selectfacility = function (faoid, faname, tfoid) {
         $scope.mode = 'edit';
-        $scope.peoid = peoid;
-        $scope.peidentify = peidentify;
-        $scope.pename=pename;
-        $scope.pesurname = pesurname;
-        $scope.pestudies = pestudies;
-        $scope.peprofdescription = peprofdescription;
-        $scope.pemail = pemail;
-        $scope.petelephon = petelephon;
-    }
-
-    $scope.getPerson = function () {
-        person.get({})
+        $scope.faoid = faoid;
+        $scope.faname = faname;
+        var fc = $scope.listtypefacility.filter(function (item) {
+            return item.tfoid == tfoid;
+         });
+        $scope.tfoid = fc[0];
+   }
+    $scope.getfacility = function () {
+        facility.get({})
        .$promise.then(function (resp) {
-           $scope.listPerson = resp;
+           $scope.listfacility = resp;
        });
     };
-   $scope.getPerson();
 
-       $scope.deletePerson = function (peoid) {
-        person.delete({peoid:peoid})
+   $scope.getfacility();
+   
+       $scope.deletefacility = function (faoid) {
+        facility.delete({faoid:faoid})
        .$promise.then(function (resp) {
-           $scope.getPerson();
+           $scope.getfacility();
            $scope.initform();
        });
     };
 
-    $scope.savePerson = function (peidentify,pename,pesurname,pestudies,peprofdescription,pemail,petelephon) {
-       person.post({peidentify: peidentify, pename: pename, pesurname: pesurname, pestudies: pestudies, peprofdescription: peprofdescription, pemail: pemail, petelephon: petelephon})
+    $scope.savefacility = function (faname,tfoid) {
+       facility.post({ faname: faname, tfoid: tfoid.tfoid  })
       .$promise.then(function (resp) {
-          if (resp.peidentify == peidentify) {
-              $scope.getPerson();
+          if (resp.faname == faname) {
+              $scope.getfacility();
               $scope.alerts.push({ msg: $translate("ROOM_MSG_SUCCESS"), type: 'success' });
               $scope.initform();
           }
@@ -60,11 +52,11 @@ var $translate = $filter('translate');
       });
     };
 
-    $scope.updatePerson = function (peoid,peidentify,pename,pesurname,pemail,pestudies,peprofdescription,petelephon) {
-        person.put({ peoid:peoid, peidentify:peidentify ,pename:pename ,pesurname:pesurname, pemail:pemail ,pestudies:pestudies ,peprofdescription:peprofdescription ,petelephon:petelephon })
-      .$promise.then(function (resp) {
+    $scope.updatefacility = function (faoid,faname,tfoid) {
+        facility.put({ faoid:faoid, faname:faname, tfoid: tfoid })
+        .$promise.then(function (resp) {
           if (resp.length > 0) {
-              $scope.getPerson();
+              $scope.getfacility();
               $scope.alerts.push({ msg: $translate("BED_MSG_SUCCESS"), type: 'success' });
               $scope.initform();
           }
@@ -76,6 +68,25 @@ var $translate = $filter('translate');
             $scope.addAlert = function (menssage) {
             $scope.alerts.push({ label: " ", msg: menssage });
         };
+
+    $scope.gettypefacility = function () {
+
+        typefacility.get({})
+       .$promise.then(function (resp) {
+           $scope.listtypefacility = resp;
+       });
+    };
+
+$scope.gettypefacility();
+
+  $scope.getName = function (tfoid) {
+      if(tfoid > 0){
+        var feature = $scope.listtypefacility.filter(function (item) {
+            return item.tfoid == tfoid;
+         });
+         return feature[0].tfname;
+      }
+    };
         
         $scope.closeAlert = function (index) {
             $scope.alerts.splice(index, 1);

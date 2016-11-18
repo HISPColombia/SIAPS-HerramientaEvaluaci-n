@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 ">
+        <h2>{{'Facility' | translate}}</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-3 ">
+           <input type="text" class="form-control materail_input" ng-model="query" placeholder="Ingrese busqueda">
+    </div>
+</div>
+<hr class="colorgraph"> 
+<form name="form">
+    <div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                <input type="text" class="form-control" name="faname" ng-model="faname" ng-minlength="3" ng-maxlength="100" required  placeholder="facility Name" />
+                <div class="error-container" ng-show="form.faname.$dirty && form.faname.$invalid">
+                    <small class="error" ng-show="form.faname.$error.required">{{'feature_REQUIRED'| translate}}</small>
+                    <small class="error" ng-show="form.faname.$error.maxlength">{{'feature_LONG'| translate}}</small>
+                </div>
+            </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                <select ng-model="tfoid" name="tfoid" id="tfoid" class="form-control" ng-options="p.tfname for p in listtypefacility">
+                    <option value="">-- Seleccione Type Facility --</option>
+                </select>
+        </div>     
+ </div>              
+        <div>
+            <button type="button" class="btn btn-success" ng-click="savefacility(faname,tfoid);" ng-show="mode=='create'">Guardar</button>
+            <button type="button" class="btn btn-success" ng-click="updatefacility(faoid,faname,tfoid);" ng-show="mode=='edit'">Actualizar</button>
+            <button type="button" class="btn btn-success" ng-click="deletefacility(faoid);" ng-show="mode=='edit'">Eliminar</button>
+            <button class="btn btn-default" ng-click="initform()">{{'ROOM_CANCEL'|translate}}</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 ">
+
+                <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Facility</th>
+                            <th>Type Facility</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in listfacility | filter:query">
+                            <td><button ng-click="selectfacility(item.faoid, item.faname, item.tfoid)"><span class="glyphicon glyphicon-edit"></span></button></td>
+                            <td>{{item.faname}}</td>
+                            <td>{{getName(item.tfoid)}}</td>
+                            </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</form>
