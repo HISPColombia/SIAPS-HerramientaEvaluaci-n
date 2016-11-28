@@ -17,7 +17,11 @@ var $translate = $filter('translate');
         $scope.mode = 'edit';
         $scope.suoid = suoid;
         $scope.suname=suname;
-        $scope.dioid = dioid;
+        var dm = $scope.listDimension.filter(function (item) {
+            return item.dioid == dioid;
+         });
+        $scope.dioid = dm[0];
+
     }
    
     $scope.getSubdimension = function () {
@@ -38,7 +42,7 @@ var $translate = $filter('translate');
     };
 
     $scope.saveSubdimension = function (suname,dioid) {
-       subdimension.post({ suname: suname, dioid: 1 })
+       subdimension.post({ suname: suname, dioid: dioid.dioid })
       .$promise.then(function (resp) {
           if (resp.suname == suname) {
               $scope.getSubdimension();
@@ -53,7 +57,7 @@ var $translate = $filter('translate');
     };
 
     $scope.updateSubdimension = function (suoid, suname, dioid) {
-        subdimension.put({ suoid: suoid, suname: suname, dioid: 1 })
+        subdimension.put({ suoid: suoid, suname: suname, dioid: dioid.dioid })
       .$promise.then(function (resp) {
           if (resp.length > 0) {
               $scope.getSubdimension();
@@ -74,6 +78,14 @@ var $translate = $filter('translate');
        .$promise.then(function (resp) {
            $scope.listDimension = resp;
        });
+    };
+      $scope.getName = function (dioid) {
+      if(dioid > 0){
+        var dn = $scope.listDimension.filter(function (item) {
+            return item.dioid == dioid;
+         });
+         return dn[0].diname;
+      }
     };
 $scope.getDimension();
         

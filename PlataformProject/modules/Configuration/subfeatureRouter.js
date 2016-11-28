@@ -2,12 +2,22 @@ var models = require("../../ControllerModels.js");
 var publicResource = require("../../ControllerRouters.js");
 var express = require('express');
 var router = express.Router();
+var connection = require("../../ConnectionDB.js");
 
 
 router.get('/sys/subfeature', function (req, res) {
-    models.subfeature.findAll({ limit: 1000 }).then(function (result) {
+    models.subfeature.findAll({ limit: 1000, order: '"sfoid" ASC' }).then(function (result) {
         publicResource.ReturnResult(res, result);
     });
+});
+
+router.get('/sys/subfeaturelist', function (req, res) {
+    var sequelize = connection.open();
+    var query = "SELECT subfeature.sfoid, subfeature.sfname, feature.fename, subdimension.suname FROM public.feature, public.subfeature, public.subdimension WHERE feature.suoid = subdimension.suoid AND subfeature.feoid = feature.feoid order by subfeature.sfname asc;";
+    sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
+  .then(function (result) {
+      publicResource.ReturnResult(res, result);
+  })
 });
 
 router.get('/sys/subfeature/:sfoid', function (req, res) {

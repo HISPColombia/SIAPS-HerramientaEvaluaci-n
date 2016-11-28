@@ -21,7 +21,7 @@
             </div>
 
         <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                <select ng-model="sfoid" name="sfoid" id="sfoid" class="form-control" ng-options="p.sfname for p in listsubfeature">
+                <select ng-model="sfoid" name="sfoid" id="sfoid" class="form-control" ng-options="p.sfname+' '+p.fename+' '+p.suname for p in listsubfeature">
                     <option value="">-- Seleccione una Sub Caracteristica --</option>
                 </select>
         </div>     
@@ -50,7 +50,7 @@
                         <tr ng-repeat="item in listattribute | filter:query">
                             <td><button ng-click="selectattribute(item.atoid, item.atname,item.sfoid)"><span class="glyphicon glyphicon-edit"></span></button></td>
                             <td>{{item.atname}}</td>
-                            <td>{{item.sfoid}}</td>
+                            <td>{{getName(item.sfoid)}}</td>
                             </tbody>
                 </table>
             </div>

@@ -49,7 +49,7 @@
                         <tr ng-repeat="feature in listfeature | filter:query">
                             <td><button ng-click="selectfeature(feature.feoid, feature.fename,feature.suoid)"><span class="glyphicon glyphicon-edit"></span></button></td>
                             <td>{{feature.fename}}</td>
-                            <td>{{feature.suoid}}</td>
+                            <td>{{getName(feature.suoid)}}</td>
                             </tbody>
                 </table>
             </div>

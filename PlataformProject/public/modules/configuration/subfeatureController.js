@@ -1,4 +1,4 @@
-appServersoft.controller('subfeatureController', ['$scope', '$filter', 'commonvariable', 'authentication','$localStorage','feature','subfeature', function ($scope, $filter, commonvariable, authentication, $localStorage, feature,subfeature) {
+appServersoft.controller('subfeatureController', ['$scope', '$filter', 'commonvariable', 'authentication','$localStorage','feature','subfeature','featuresubdimension', function ($scope, $filter, commonvariable, authentication, $localStorage, feature,subfeature,featuresubdimension) {
 ///verify session
 //authentication.checkStatus();
 ///variables
@@ -16,7 +16,11 @@ var $translate = $filter('translate');
         $scope.mode = 'edit';
         $scope.sfoid = sfoid;
         $scope.sfname = sfname;
-        $scope.feoid = 1;
+        var fe = $scope.listfeature.filter(function (item) {
+            return item.feoid == feoid;
+         });
+        $scope.feoid = fe[0];
+
     }
    
     $scope.getsubfeature = function () {
@@ -37,7 +41,7 @@ var $translate = $filter('translate');
     };
 
     $scope.savesubfeature = function (sfname,feoid) {
-       subfeature.post({ sfname: sfname, feoid: 5 })
+       subfeature.post({ sfname: sfname, feoid: feoid.feoid })
       .$promise.then(function (resp) {
           if (resp.sfname == sfname) {
               $scope.getsubfeature();
@@ -51,7 +55,7 @@ var $translate = $filter('translate');
     };
 
     $scope.updatesubfeature = function (sfoid,sfname,feoid) {
-        subfeature.put({ sfoid:sfoid, sfname:sfname, feoid:5 })
+        subfeature.put({ sfoid:sfoid, sfname:sfname, feoid: feoid.feoid })
       .$promise.then(function (resp) {
           if (resp.length > 0) {
               $scope.getsubfeature();
@@ -68,13 +72,19 @@ var $translate = $filter('translate');
         };
 
     $scope.getfeature = function () {
-
-        feature.get({})
+        featuresubdimension.get({})
        .$promise.then(function (resp) {
            $scope.listfeature = resp;
        });
     };
-
+  $scope.getName = function (feoid) {
+      if(feoid > 0){
+        var feature = $scope.listfeature.filter(function (item) {
+            return item.feoid == feoid;
+         });
+         return feature[0].fename+' '+feature[0].suname;
+      }
+    };
 $scope.getfeature();
         
         $scope.closeAlert = function (index) {

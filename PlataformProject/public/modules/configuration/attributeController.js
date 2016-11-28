@@ -1,4 +1,4 @@
-appServersoft.controller('attributeController', ['$scope', '$filter', 'commonvariable', 'authentication','$localStorage','subfeature','attribute', function ($scope, $filter, commonvariable, authentication, $localStorage, subfeature,attribute) {
+appServersoft.controller('attributeController', ['$scope', '$filter', 'commonvariable', 'authentication','$localStorage','subfeature','attribute','subfeaturelist', function ($scope, $filter, commonvariable, authentication, $localStorage, subfeature,attribute,subfeaturelist) {
 ///verify session
 //authentication.checkStatus();
 ///variables
@@ -16,8 +16,13 @@ var $translate = $filter('translate');
         $scope.mode = 'edit';
         $scope.atoid = atoid;
         $scope.atname = atname;
-        $scope.sfoid = 1;
-    }
+        var sf = $scope.listsubfeature.filter(function (item) {
+            return item.sfoid == sfoid;
+         });
+        $scope.sfoid = sf[0];    
+
+
+}
    
     $scope.getattribute = function () {
         attribute.get({})
@@ -37,7 +42,7 @@ var $translate = $filter('translate');
     };
 
     $scope.saveattribute = function (atname,sfoid) {
-       attribute.post({ atname: atname, sfoid: 1 })
+       attribute.post({ atname: atname, sfoid: sfoid.sfoid })
       .$promise.then(function (resp) {
           if (resp.atname == atname) {
               $scope.getattribute();
@@ -51,7 +56,7 @@ var $translate = $filter('translate');
     };
 
     $scope.updateattribute = function (atoid,atname,sfoid) {
-        attribute.put({ atoid:atoid, atname:atname, sfoid:1 })
+        attribute.put({ atoid:atoid, atname:atname, sfoid: sfoid.sfoid })
       .$promise.then(function (resp) {
           if (resp.length > 0) {
               $scope.getattribute();
@@ -69,12 +74,19 @@ var $translate = $filter('translate');
 
     $scope.getsubfeature = function () {
 
-        subfeature.get({})
+        subfeaturelist.get({})
        .$promise.then(function (resp) {
            $scope.listsubfeature = resp;
        });
     };
-
+  $scope.getName = function (sfoid) {
+      if(sfoid > 0){
+        var sfeature = $scope.listsubfeature.filter(function (item) {
+            return item.sfoid == sfoid;
+         });
+         return sfeature[0].sfname+' '+ sfeature[0].suname;
+      }
+    };
 $scope.getsubfeature();
         
         $scope.closeAlert = function (index) {

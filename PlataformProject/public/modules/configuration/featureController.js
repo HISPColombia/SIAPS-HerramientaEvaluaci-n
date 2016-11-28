@@ -18,6 +18,12 @@ var $translate = $filter('translate');
         $scope.feoid = feoid;
         $scope.fename = fename;
         $scope.suoid = suoid;
+
+        var sd = $scope.listsubdimension.filter(function (item) {
+            return item.suoid == suoid;
+         });
+        $scope.suoid = sd[0];
+
     }
    
     $scope.getfeature = function () {
@@ -38,7 +44,7 @@ var $translate = $filter('translate');
     };
 
     $scope.savefeature = function (fename,suoid) {
-       feature.post({fename: fename, suoid: 2})
+       feature.post({fename: fename, suoid: suoid.suoid})
       .$promise.then(function (resp) {
           if (resp.fename == fename) {
               $scope.getfeature();
@@ -52,7 +58,7 @@ var $translate = $filter('translate');
     };
 
     $scope.updatefeature = function (feoid,fename,suoid) {
-        feature.put({ feoid:feoid, fename:fename, suoid:2 })
+        feature.put({ feoid:feoid, fename:fename, suoid: suoid.suoid })
       .$promise.then(function (resp) {
           if (resp.length > 0) {
               $scope.getfeature();
@@ -67,6 +73,16 @@ var $translate = $filter('translate');
             $scope.addAlert = function (menssage) {
             $scope.alerts.push({ label: " ", msg: menssage });
         };
+
+    $scope.getName = function (suoid) {
+      if(suoid > 0){
+        var sd = $scope.listsubdimension.filter(function (item) {
+            return item.suoid == suoid;
+         });
+         return sd[0].suname;
+      }
+    };
+        
 
     $scope.getsubdimension = function () {
         subdimension.get({})

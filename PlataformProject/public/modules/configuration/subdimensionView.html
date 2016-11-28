@@ -49,7 +49,7 @@
                         <tr ng-repeat="item in listSubdimension | filter:query">
                             <td><button ng-click="selectSubdimension(item.suoid,item.suname,item.dioid)"><span class="glyphicon glyphicon-edit"></span></button></td>
                             <td>{{item.suname}}</td>
-                            <td>{{item.dioid}}</td>
+                            <td>{{getName(item.dioid)}}</td>
                             </tbody>
                 </table>
             </div>

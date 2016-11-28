@@ -178,6 +178,17 @@ ServersoftApi.factory("feature", ['$resource', 'commonvariable', function ($reso
   	});
 }]);
 
+ServersoftApi.factory("featuresubdimension", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "featuresubdimension",
+	{},
+  	{
+  	    get: { method: "GET", isArray: true },
+  	    post: { method: "POST" },
+  	    put: { method: "PUT", isArray: true },
+  	    remove: { method: 'DELETE' }
+  	});
+}]);
+
 ServersoftApi.factory("method", ['$resource', 'commonvariable', function ($resource, commonvariable) {
     return $resource(commonvariable.url + "method/:mtoid",
 	{ mtoid: '@mtoid' },
@@ -277,6 +288,16 @@ ServersoftApi.factory("subfeature", ['$resource', 'commonvariable', function ($r
   	});
 }]);
 
+ServersoftApi.factory("subfeaturelist", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "subfeaturelist",
+	{},
+  	{
+  	    get: { method: "GET", isArray: true },
+  	    post: { method: "POST" },
+  	    put: { method: "PUT", isArray: true },
+  	    remove: { method: 'DELETE' }
+  	});
+}]);
 ServersoftApi.factory("typequestion", ['$resource', 'commonvariable', function ($resource, commonvariable) {
     return $resource(commonvariable.url + "typequestion/:tqoid",
 	{ tqoid: '@tqoid' },
