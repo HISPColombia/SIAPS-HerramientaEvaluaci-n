@@ -79,7 +79,7 @@
         </div>
     </div>
 </div>
-<div class="panel-body">                
+<!--<div class="panel-body">                
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container">
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
               <div class="list-group" >
@@ -106,6 +106,15 @@
                   <ui-view></ui-view>
             </div>
                     </div>
-      </div>
+      </div>-->
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container">
+<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
+    <a ui-sref="account" ui-sref-active="active" class="list-group-item active text-center"><h4 class="glyphicon glyphicon-user"></h4><br/>Account</a>
+    <a ui-sref="configuration" ui-sref-active="active" class="list-group-item text-center"><h4 class="glyphicon glyphicon-cog"></h4><br/>Configuration</a>
+</div>
+<div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 bhoechie-tab">
+    <ui-view></ui-view>
+</div>
+</div>
  </body>
 </html>

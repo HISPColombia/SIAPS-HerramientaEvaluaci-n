@@ -393,7 +393,7 @@ ServersoftApi.factory("authentication", function ($cookies, $cookieStore, $locat
                     currentUser = getUserFromToken();
                     //mandamos a la adminaccess
                     //$localStorage.token = res.data.ustoken;
-                    $location.path("/account");
+                    $location.path("/account","/configuration");
                 }
                 else {
                     defered.resolve({ error: "error" });
