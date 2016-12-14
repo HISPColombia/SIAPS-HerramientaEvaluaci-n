@@ -393,7 +393,7 @@ ServersoftApi.factory("authentication", function ($cookies, $cookieStore, $locat
                     currentUser = getUserFromToken();
                     //mandamos a la adminaccess
                     //$localStorage.token = res.data.ustoken;
-                    $location.path("/account","/configuration");
+                    $location.path("/dashboard","/configuration");
                 }
                 else {
                     defered.resolve({ error: "error" });
@@ -414,11 +414,12 @@ ServersoftApi.factory("authentication", function ($cookies, $cookieStore, $locat
             //creamos un array con las rutas que queremos controlar
             var rutasPrivadas = ["/configuration","/singup","/account","/configuration"];
             if (this.in_array($location.path(), rutasPrivadas) && typeof ($cookies.dataUser) == "undefined") {
-                $location.path("/singup");
+                // $location.path("/singup");
+				$location.path("/dashboard");
             }
             //en el caso de que intente acceder al login y ya haya iniciado sesión lo mandamos a la home
             if (this.in_array("/singup", rutasPrivadas) && typeof ($cookies.dataUser) != "undefined") {
-                $location.path("/account");
+                $location.path("/dashboard");
             }
         },
         in_array: function (needle, haystack) {

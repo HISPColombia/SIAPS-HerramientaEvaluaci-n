@@ -3,29 +3,98 @@ var appServersoft = angular.module("appServersoft", ['ngStorage','ui.router', 'S
 appServersoft.config(function($stateProvider,$translateProvider,$httpProvider,$urlRouterProvider) {
 //Routers Security
 // http://plnkr.co/edit/1kpmUiacrb3Aoo4E19O1?p=preview
-        $urlRouterProvider.otherwise("/configuration");
+    //  $urlRouterProvider.otherwise("/configuration");
 
-        $stateProvider
-            .state('singup', {
-        		url: "/singup",
-				templateUrl: "/modules/security/singupView.html",
-     			controller: "singupController"
-            })
-            .state('account', {
-                url: "/account",
-		     	templateUrl: "/modules/security/accountView.html",
-		  	    controller: "accountController"
-            })
-			.state('person', {
-                url: "/person",
-		     	templateUrl: "/modules/security/personView.html",
-		  	    controller: "personController"
-            })
-            .state('configuration', {
-                url: "/configuration",
-		     	templateUrl: "/modules/configuration/configurationView.html",
-		  	    controller: "configurationController"
-            })
+    // 	$routeProvider.when('/singup', {//login
+//         templateUrl: "/modules/security/singupView.html",
+//         controller: "singupController"
+//     });
+      $stateProvider
+        .state('singup', {
+        url: "/singup",
+        views: {
+          "": { templateUrl:"/modules/security/singupView.html" , controller: "singupController"}
+        }     
+      })
+      .state('dashboard', {
+        url: "/dashboard",
+        views: {
+          "" :  { templateUrl: "dashboard.html" },
+          "menu@dashboard": { templateUrl: "menu.html" },
+          "header@dashboard": { templateUrl: "navbar.html" }
+         
+        }
+      })
+      // Personal Menu : sub-menus and contents
+      .state('dashboard.menu1', {
+        url: "/menu1",
+        views: {
+          "sub-menu@dashboard": { templateUrl: "pmenu.html" }, 
+          "sub-content@dashboard": { templateUrl: "ppage.html" }
+        } 
+      })
+      
+      .state('dashboard.menu1.submenu1', {
+        url: "/person",
+        views: {
+          "sub-content@dashboard": { templateUrl:"/modules/security/personView.html", controller: "personController"}
+        }     
+      })
+      		// 	.state('person', {
+        //         url: "/person",
+		//      	templateUrl: "/modules/security/personView.html",
+		//   	    controller: "personController"
+        //     })
+      .state('dashboard.menu1.submenu2', {
+        url: "/submenu2",
+        views: {
+          "sub-content@dashboard": { templateUrl:"submenu2.html"}
+        }     
+      })
+      
+      .state('dashboard.menu1.submenu3', {
+        url: "/submenu3",
+        views: {
+          "sub-content@dashboard": { templateUrl:"submenu3.html"}
+        }     
+      })
+      
+      .state('dashboard.menu2', {
+        url: "/menu2",
+        views: {
+          "content": { templateUrl:"menu2.html"}
+        }     
+      })
+      
+      .state('dashboard.menu3', {
+        url: "/menu3",
+        views: {
+          "content": { templateUrl:"menu3.html"}
+        }     
+      })
+      $urlRouterProvider.otherwise("/singup")
+
+        // $stateProvider
+        //     .state('singup', {
+        // 		url: "/singup",
+		// 		templateUrl: "/modules/security/singupView.html",
+     	// 		controller: "singupController"
+        //     })
+        //     .state('account', {
+        //         url: "/account",
+		//      	templateUrl: "/modules/security/accountView.html",
+		//   	    controller: "accountController"
+        //     })
+		// 	.state('person', {
+        //         url: "/person",
+		//      	templateUrl: "/modules/security/personView.html",
+		//   	    controller: "personController"
+        //     })
+        //     .state('configuration', {
+        //         url: "/configuration",
+		//      	templateUrl: "/modules/configuration/configurationView.html",
+		//   	    controller: "configurationController"
+        //     })
 
 // 	$routeProvider.when('/singup', {//login
 //         templateUrl: "/modules/security/singupView.html",

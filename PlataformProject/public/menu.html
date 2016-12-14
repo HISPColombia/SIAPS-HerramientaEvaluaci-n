@@ -1,0 +1,28 @@
+        <!--<ul class="nav nav-sidebar" ng-class="{active: $state.includes('dashboard')}">
+          <li ui-sref-active="active"><a ui-sref=".menu1.submenu1">Menu 1</a></li>
+          <li ui-sref-active="active"><a ui-sref=".menu2">Menu 2</a></li>
+          <li ui-sref-active="active"><a ui-sref=".menu3">Menu 3</a></li>
+        </ul>-->
+<br/>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
+              
+              <div class="list-group" ng-class="{active: $state.includes('dashboard')}" >
+
+                <a ui-sref-active="active"><a ui-sref=".menu1.submenu1" class="list-group-item active text-center">
+                  <h4 class="glyphicon glyphicon-user"></h4><br/>Menu1
+                </a>
+                
+                <a ui-sref-active="active"><a ui-sref=".menu2" class="list-group-item text-center">
+                  <h4 class="glyphicon glyphicon-globe"></h4><br/>Menu2
+                </a>
+                <a ui-sref-active="active"><a ui-sref=".menu3"class="list-group-item text-center">
+                  <h4 class="glyphicon glyphicon-cog"></h4><br/>Menu3
+                </a>
+               <a ui-sref-active="active"><a ui-sref=".menu2" class="list-group-item text-center">
+                  <h4 class="glyphicon glyphicon-tasks"></h4><br/>Project
+                </a>
+                <a href="#/adminaccess" ng-click="shutdown()" class="list-group-item text-center">
+                  <h4 class="glyphicon glyphicon-off"></h4><br/>Sing out
+                </a>
+              </div>
+            </div>
