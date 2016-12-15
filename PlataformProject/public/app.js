@@ -20,58 +20,137 @@ appServersoft.config(function($stateProvider,$translateProvider,$httpProvider,$u
         url: "/dashboard",
         views: {
           "" :  { templateUrl: "dashboard.html" },
-          "menu@dashboard": { templateUrl: "menu.html" },
-          "header@dashboard": { templateUrl: "navbar.html" }
+          "menu@dashboard": { templateUrl: "main.html" }
          
         }
       })
-      // Personal Menu : sub-menus and contents
-      .state('dashboard.menu1', {
-        url: "/menu1",
+      // Security Menu : sub-menus and contents
+      .state('dashboard.mainsecurity', {
+        url: "/mainsecurity",
         views: {
-          "sub-menu@dashboard": { templateUrl: "pmenu.html" }, 
-          "sub-content@dashboard": { templateUrl: "ppage.html" }
+          "sub-menu@dashboard": { templateUrl: "/modules/security/main.html" }
         } 
       })
       
-      .state('dashboard.menu1.submenu1', {
+      .state('dashboard.mainsecurity.person', {
         url: "/person",
         views: {
           "sub-content@dashboard": { templateUrl:"/modules/security/personView.html", controller: "personController"}
         }     
       })
-      		// 	.state('person', {
-        //         url: "/person",
-		//      	templateUrl: "/modules/security/personView.html",
-		//   	    controller: "personController"
-        //     })
-      .state('dashboard.menu1.submenu2', {
-        url: "/submenu2",
+      .state('dashboard.mainsecurity.role', {
+        url: "/role",
         views: {
-          "sub-content@dashboard": { templateUrl:"submenu2.html"}
+          "sub-content@dashboard": { templateUrl:"/modules/security/roleView.html", controller: "roleController"}
         }     
       })
       
-      .state('dashboard.menu1.submenu3', {
-        url: "/submenu3",
+      .state('dashboard.mainsecurity.user', {
+        url: "/user",
         views: {
-          "sub-content@dashboard": { templateUrl:"submenu3.html"}
+          "sub-content@dashboard": { templateUrl:"/modules/security/userView.html", controller: "userController"}
         }     
       })
       
-      .state('dashboard.menu2', {
-        url: "/menu2",
+      // Project Menu : sub-menus and contents
+      .state('dashboard.mainproject', {
+        url: "/mainproject",
         views: {
-          "content": { templateUrl:"menu2.html"}
+          "sub-menu@dashboard": { templateUrl: "/modules/project/main.html" }
+        }     
+      })
+
+      .state('dashboard.mainproject.facility', {
+        url: "/facility",
+        views: {
+          "sub-content@dashboard": { templateUrl:"/modules/project/facilityView.html", controller: "facilityController"}
+        }     
+      })
+      .state('dashboard.mainproject.participation', {
+        url: "/participation",
+        views: {
+          "sub-content@dashboard": { templateUrl:"/modules/project/participationView", controller: "participationController"}
         }     
       })
       
-      .state('dashboard.menu3', {
-        url: "/menu3",
+      .state('dashboard.mainproject.typefacility', {
+        url: "/typefacility",
         views: {
-          "content": { templateUrl:"menu3.html"}
+          "sub-content@dashboard": { templateUrl:"/modules/project/typefacilityView.html", controller: "typefacilityController"}
         }     
       })
+
+      // Configiration Menu : sub-menus and contents
+      .state('dashboard.mainconfiguration', {
+        url: "/mainconfiguration",
+        views: {
+          "sub-menu@dashboard": { templateUrl: "/modules/configuration/main.html" }
+        }     
+      })
+
+      .state('dashboard.mainconfiguration.attribute', {
+        url: "/attribute",
+        views: {
+          "sub-content@dashboard": { templateUrl:"/modules/configuration/attributeView.html", controller: "attributeController"}
+        }     
+      })
+      .state('dashboard.mainconfiguration.dimension', {
+        url: "/dimension",
+        views: {
+          "sub-content@dashboard": { templateUrl:"/modules/configuration/dimensionView.html", controller: "dimensionController"}
+        }     
+      })
+      
+      .state('dashboard.mainconfiguration.feature', {
+        url: "/feature",
+        views: {
+          "sub-content@dashboard": { templateUrl:"/modules/configuration/featureView.html", controller: "featureController"}
+        }     
+      })
+       .state('dashboard.mainconfiguration.method', {
+        url: "/method",
+        views: {
+          "sub-content@dashboard": { templateUrl:"/modules/configuration/methodView.html", controller: "methodController"}
+        }     
+      })
+       .state('dashboard.mainconfiguration.methodology', {
+        url: "/methodology",
+        views: {
+          "sub-content@dashboard": { templateUrl:"/modules/configuration/methodologyView.html", controller: "methodologyController"}
+        }     
+      })
+       .state('dashboard.mainconfiguration.metric', {
+        url: "/metric",
+        views: {
+          "sub-content@dashboard": { templateUrl:"/modules/configuration/metricView.html", controller: "metricController"}
+        }     
+      })
+       .state('dashboard.mainconfiguration.question', {
+        url: "/question",
+        views: {
+          "sub-content@dashboard": { templateUrl:"/modules/configuration/questionView.html", controller: "questionController"}
+        }     
+      })
+       .state('dashboard.mainconfiguration.optionquestion', {
+        url: "/optionquestion",
+        views: {
+          "sub-content@dashboard": { templateUrl:"/modules/configuration/optionquestionView.html", controller: "optionquestionController"}
+        }     
+      })
+
+       .state('dashboard.mainconfiguration.subdimension', {
+        url: "/subdimension",
+        views: {
+          "sub-content@dashboard": { templateUrl:"/modules/configuration/subdimensionView.html", controller: "subdimensionController"}
+        }     
+      })
+
+
+
+
+
+
+
       $urlRouterProvider.otherwise("/singup")
 
         // $stateProvider
