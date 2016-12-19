@@ -9,6 +9,15 @@ appServersoft.config(function($stateProvider,$translateProvider,$httpProvider,$u
 //         templateUrl: "/modules/security/singupView.html",
 //         controller: "singupController"
 //     });
+
+      $stateProvider
+        .state('chart', {
+        url: "/chart",
+        views: {
+          "": { templateUrl:"/chart.html" }
+        }     
+      })
+
       $stateProvider
         .state('singup', {
         url: "/singup",

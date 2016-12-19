@@ -5,6 +5,7 @@ appServersoft.controller('roleController', ['$scope', '$filter', 'commonvariable
 ///variables
 $scope.alerts = [];
 var $translate = $filter('translate');
+
    $scope.initform = function () {
         $scope.mode = 'create';
         $scope.rooid = 0;
