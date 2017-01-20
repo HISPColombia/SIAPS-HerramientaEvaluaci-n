@@ -412,14 +412,14 @@ ServersoftApi.factory("authentication", function ($cookies, $cookieStore, $locat
         },
         checkStatus: function () {
             //creamos un array con las rutas que queremos controlar
-            var rutasPrivadas = ["/configuration","/singup","/account","/configuration"];
+            var rutasPrivadas = ["/configuration","/singup","/account"];
             if (this.in_array($location.path(), rutasPrivadas) && typeof ($cookies.dataUser) == "undefined") {
                 // $location.path("/singup");
-				$location.path("/dashboard");
+				$location.path("/chars");
             }
             //en el caso de que intente acceder al login y ya haya iniciado sesión lo mandamos a la home
             if (this.in_array("/singup", rutasPrivadas) && typeof ($cookies.dataUser) != "undefined") {
-                $location.path("/dashboard");
+                $location.path("/chars");
             }
         },
         in_array: function (needle, haystack) {
