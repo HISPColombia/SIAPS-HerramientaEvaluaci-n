@@ -1,17 +1,17 @@
 <br/>
-  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bhoechie-tab-menu">
+  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 bhoechie-tab-menu">
     <div class="list-group" ng-class="{active: $state.includes('dashboard')}" >
-        <a ui-sref-active="active"><a ui-sref=".mainsecurity.person" class="list-group-item active text-center">
-           <h4 class="glyphicon glyphicon-user"></h4><br/>Security
-         </a>
+        <a ui-sref-active="active"><a ui-sref=".mainchars.chars" class="list-group-item text-center">
+             <h4 class="glyphicon glyphicon-signal"></h4><br/>Chars
+        </a>
          <a ui-sref-active="active"><a ui-sref=".mainproject.facility" class="list-group-item text-center">
             <h4 class="glyphicon glyphicon-globe"></h4><br/>Project
          </a>
-         <a ui-sref-active="active"><a ui-sref=".mainconfiguration.attribute"class="list-group-item text-center">
+         <a ui-sref-active="active"><a ui-sref=".mainconfiguration.attribute" class="list-group-item text-center">
              <h4 class="glyphicon glyphicon-cog"></h4><br/>Configuration
          </a>
-         <a ui-sref-active="active"><a ui-sref=".mainchars.chars"class="list-group-item text-center">
-             <h4 class="glyphicon glyphicon-cog"></h4><br/>Chars
+        <a ui-sref-active="active"><a ui-sref=".mainsecurity.person" class="list-group-item active text-center">
+           <h4 class="glyphicon glyphicon-lock"></h4><br/>Security
          </a>
          <a href="#/adminaccess" ng-click="shutdown()" class="list-group-item text-center">
              <h4 class="glyphicon glyphicon-off"></h4><br/>Sing out

@@ -4,12 +4,17 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-3 ">
+    <div class="col-xs-3 col-sm-3 col-md-3 ">
            <input type="text" class="form-control materail_input" ng-model="query" placeholder="Ingrese busqueda">
+    </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 ">
+        <label>New</label>
+       <button class="glyphicon glyphicon-download-alt" data-toggle="collapse" data-target="#Role"></button>
     </div>
 </div>
 <hr class="colorgraph"> 
 <form name="form">
+    <div id="Role" class="collapse">
     <div>
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-3 form-group">
@@ -33,10 +38,10 @@
             <button type="button" class="btn btn-success" ng-click="saveRole(rodescription,roinitials);" ng-show="mode=='create'">{{'BUTTON_SAVE'| translate}}</button>
             <button type="button" class="btn btn-success" ng-click="updateRole(rooid,rodescription,roinitials);" ng-show="mode=='edit'">{{'BUTTON_UPDATE'| translate}}</button>
             <button type="button" class="btn btn-success" ng-click="deleteRole(rooid);" ng-show="mode=='edit'">{{'BUTTON_DELETE'| translate}}</button>
-            <button class="btn btn-default" ng-click="initform()">{{'ROOM_CANCEL'|translate}}</button>
+            <button class="btn btn-default" ng-click="initform()" data-toggle="collapse" data-target="#Role">{{'ROOM_CANCEL'|translate}}</button>
         </div>
     </div>
-
+</div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 ">
 
@@ -51,7 +56,7 @@
                     </thead>
                     <tbody>
                             <tr ng-repeat="Role in listRole | filter:query">
-                            <td><button ng-click="selectRole(Role.rooid,Role.rodescription,Role.roinitials)"><span class="glyphicon glyphicon-edit"></span></button></td>
+                            <td><button data-toggle="collapse" data-target="#Role" ng-click="selectRole(Role.rooid,Role.rodescription,Role.roinitials)"><span class="glyphicon glyphicon-edit"></span></button></td>
                             <td>{{Role.rodescription}}</td>
                             <td>{{Role.roinitials}}</td>
                         </tr>

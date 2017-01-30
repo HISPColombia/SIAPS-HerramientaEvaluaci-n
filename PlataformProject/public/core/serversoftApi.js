@@ -44,6 +44,17 @@ ServersoftApi.factory("user", ['$resource', 'commonvariable', function ($resourc
   	});
 }]);
 
+ServersoftApi.factory("userrole",['$resource','commonvariable', function ($resource,commonvariable) {
+	return $resource( commonvariable.url+"userrole/:usoid", 
+	{userrole: '@userrole'},
+  	{
+        get: { method: "GET",isArray: true},
+	    post: { method: "POST"},
+	    put: { method: "PUT", isArray: true },
+	    remove: {method:'DELETE'}
+    });
+}]);
+
 ServersoftApi.factory("role", ['$resource', 'commonvariable', function ($resource, commonvariable) {
     return $resource(commonvariable.url + "role/:rooid",
 	{rooid:'@rooid'},
@@ -64,18 +75,6 @@ ServersoftApi.factory("typefacility", ['$resource', 'commonvariable', function (
   	    put: { method: "PUT", isArray: true },
   	    remove: { method: 'DELETE' }
   	});
-}]);
-
-
-ServersoftApi.factory("userrole",['$resource','commonvariable', function ($resource,commonvariable) {
-	return $resource( commonvariable.url+"userrole", 
-	{userrole: '@userrole'},
-  	{
-        get: { method: "GET",isArray: true},
-	    post: { method: "POST"},
-	    put: { method: "PUT", isArray: true },
-	    remove: {method:'DELETE'}
-    });
 }]);
 
 //project Factory

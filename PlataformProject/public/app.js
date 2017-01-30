@@ -1,7 +1,5 @@
 var appServersoft = angular.module("appServersoft", ['ngStorage','ui.router', 'ServersoftApi', 'pascalprecht.translate', 'ui.bootstrap', 'angular-md5', 'ngCookies']);
-
 appServersoft.config(function($stateProvider,$translateProvider,$httpProvider,$urlRouterProvider) {
-
       $stateProvider
         .state('singup', {
         url: "/singup",
@@ -17,8 +15,6 @@ appServersoft.config(function($stateProvider,$translateProvider,$httpProvider,$u
          
         }
       })
-
-
      // Chart Menu
       .state('dashboard.mainchars', {
          url: "/mainchars",
@@ -60,6 +56,13 @@ appServersoft.config(function($stateProvider,$translateProvider,$httpProvider,$u
           "sub-content@dashboard": { templateUrl:"/modules/security/userView.html", controller: "userController"}
         }     
       })
+
+      .state('dashboard.mainsecurity.userrole', {
+        url: "/userrole",
+        views: {
+          "sub-content@dashboard": { templateUrl:"/modules/security/userroleView.html", controller: "userroleController"}
+        }     
+      })
       
       // Project Menu : sub-menus and contents
       .state('dashboard.mainproject', {
@@ -69,10 +72,22 @@ appServersoft.config(function($stateProvider,$translateProvider,$httpProvider,$u
         }     
       })
 
+      .state('dashboard.mainproject.project', {
+        url: "/project",
+        views: {
+          "sub-content@dashboard": { templateUrl:"/modules/project/projectView.html", controller: "projectController"}
+        }     
+      })
       .state('dashboard.mainproject.facility', {
         url: "/facility",
         views: {
           "sub-content@dashboard": { templateUrl:"/modules/project/facilityView.html", controller: "facilityController"}
+        }     
+      })
+      .state('dashboard.mainproject.teamproject', {
+        url: "/teamproject",
+        views: {
+          "sub-content@dashboard": { templateUrl:"/modules/project/teamprojectView.html", controller: "teamprojectController"}
         }     
       })
       .state('dashboard.mainproject.participation', {
@@ -82,12 +97,6 @@ appServersoft.config(function($stateProvider,$translateProvider,$httpProvider,$u
         }     
       })
       
-      .state('dashboard.mainproject.typefacility', {
-        url: "/typefacility",
-        views: {
-          "sub-content@dashboard": { templateUrl:"/modules/project/typefacilityView.html", controller: "typefacilityController"}
-        }     
-      })
 
       // Configiration Menu : sub-menus and contents
       .state('dashboard.mainconfiguration', {
@@ -97,41 +106,66 @@ appServersoft.config(function($stateProvider,$translateProvider,$httpProvider,$u
         }     
       })
 
-      .state('dashboard.mainconfiguration.attribute', {
-        url: "/attribute",
-        views: {
-          "sub-content@dashboard": { templateUrl:"/modules/configuration/attributeView.html", controller: "attributeController"}
-        }     
-      })
       .state('dashboard.mainconfiguration.dimension', {
         url: "/dimension",
         views: {
           "sub-content@dashboard": { templateUrl:"/modules/configuration/dimensionView.html", controller: "dimensionController"}
         }     
       })
-      
+
+      .state('dashboard.mainconfiguration.subdimension', {
+        url: "/subdimension",
+        views: {
+          "sub-content@dashboard": { templateUrl:"/modules/configuration/subdimensionView.html", controller: "subdimensionController"}
+        }     
+      })  
+
+      .state('dashboard.mainconfiguration.rolesubdimension', {
+        url: "/rolesubdimension",
+        views: {
+          "sub-content@dashboard": { templateUrl:"/modules/configuration/rolesubdimensionView.html", controller: "rolesubdimensionController"}
+        }     
+      })  
+     
       .state('dashboard.mainconfiguration.feature', {
         url: "/feature",
         views: {
           "sub-content@dashboard": { templateUrl:"/modules/configuration/featureView.html", controller: "featureController"}
         }     
       })
-       .state('dashboard.mainconfiguration.method', {
-        url: "/method",
+
+      .state('dashboard.mainconfiguration.subfeature', {
+        url: "/subfeature",
         views: {
-          "sub-content@dashboard": { templateUrl:"/modules/configuration/methodView.html", controller: "methodController"}
+          "sub-content@dashboard": { templateUrl:"/modules/configuration/subfeatureView.html", controller: "subfeatureController"}
         }     
       })
-       .state('dashboard.mainconfiguration.methodology', {
+
+      .state('dashboard.mainconfiguration.attribute', {
+        url: "/attribute",
+        views: {
+          "sub-content@dashboard": { templateUrl:"/modules/configuration/attributeView.html", controller: "attributeController"}
+        }     
+      })
+       
+      .state('dashboard.mainconfiguration.metric', {
+        url: "/metric",
+        views: {
+          "sub-content@dashboard": { templateUrl:"/modules/configuration/metricView.html", controller: "metricController"}
+        }     
+      })
+
+      .state('dashboard.mainconfiguration.methodology', {
         url: "/methodology",
         views: {
           "sub-content@dashboard": { templateUrl:"/modules/configuration/methodologyView.html", controller: "methodologyController"}
         }     
       })
-       .state('dashboard.mainconfiguration.metric', {
-        url: "/metric",
+
+      .state('dashboard.mainconfiguration.method', {
+        url: "/method",
         views: {
-          "sub-content@dashboard": { templateUrl:"/modules/configuration/metricView.html", controller: "metricController"}
+          "sub-content@dashboard": { templateUrl:"/modules/configuration/methodView.html", controller: "methodController"}
         }     
       })
        .state('dashboard.mainconfiguration.question', {
@@ -140,17 +174,17 @@ appServersoft.config(function($stateProvider,$translateProvider,$httpProvider,$u
           "sub-content@dashboard": { templateUrl:"/modules/configuration/questionView.html", controller: "questionController"}
         }     
       })
-       .state('dashboard.mainconfiguration.optionquestion', {
-        url: "/optionquestion",
+       .state('dashboard.mainconfiguration.PHCPhase', {
+        url: "/PHCPhase",
         views: {
-          "sub-content@dashboard": { templateUrl:"/modules/configuration/optionquestionView.html", controller: "optionquestionController"}
+          "sub-content@dashboard": { templateUrl:"/modules/configuration/PHCPhaseView.html", controller: "PHCPhaseController"}
         }     
       })
 
-       .state('dashboard.mainconfiguration.subdimension', {
-        url: "/subdimension",
+       .state('dashboard.mainconfiguration.typefacility', {
+        url: "/typefacility",
         views: {
-          "sub-content@dashboard": { templateUrl:"/modules/configuration/subdimensionView.html", controller: "subdimensionController"}
+          "sub-content@dashboard": { templateUrl:"/modules/configuration/typefacilityView.html", controller: "typefacilityController"}
         }     
       })
 

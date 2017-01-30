@@ -1,16 +1,16 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700);
 /* written by riliwan balogun http://www.facebook.com/riliwan.rabo*/
 .board{
-    width: 75%;
-margin: 60px auto;
+    width: 100%;
+margin: 100px auto;
 height: 500px;
 background: #fff;
 /*box-shadow: 10px 10px #ccc,-10px 20px #ddd;*/
 }
 .board .nav-tabs {
-    position: relative;
+    position: absolute;
     /* border-bottom: 0; */
-    /* width: 80%; */
+    width: 100%; 
     margin: 10px auto;
     margin-bottom: 0;
     box-sizing: border-box;
@@ -48,8 +48,8 @@ p.narrow{
 }
 
 span.round-tabs{
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 30px;
     line-height: 50px;
     display: inline-block;
     border-radius: 60px;
@@ -58,7 +58,7 @@ span.round-tabs{
     position: absolute;
     left: 0;
     text-align: center;
-    font-size: 20px;
+    font-size: 14px;
 }
 
 span.round-tabs.one{
@@ -161,11 +161,31 @@ li.active span.round-tabs.ten{
     color: #999;
 }
 
+span.round-tabs.eleven{
+    color: #5cb85c;border: 2px solid #5cb85c;
+}
+
+li.active span.round-tabs.eleven{
+    background: #fff !important;
+    border: 2px solid #ddd;
+    color: #5cb85c;
+}
+
+span.round-tabs.twelve{
+    color: #3e5e9a;border: 2px solid #3e5e9a;
+}
+
+li.active span.round-tabs.twelve{
+    background: #fff !important;
+    border: 2px solid #ddd;
+    color: #3e5e9a;
+}
+
 .nav-tabs > li.active > a span.round-tabs{
     background: #fafafa;
 }
 .nav-tabs > li {
-    width: 10%;
+    width: 8%;
 }
 /*li.active:before {
     content: " ";
@@ -182,7 +202,7 @@ li.active span.round-tabs.ten{
 .nav-tabs > li:after {
     content: " ";
     position: absolute;
-    left: 25%;
+    left: 0%;
    opacity:0;
     margin: 0 auto;
     bottom: 0px;
@@ -194,7 +214,7 @@ li.active span.round-tabs.ten{
 .nav-tabs > li.active:after {
     content: " ";
     position: absolute;
-    left: 25%;
+    left: 0%;
    opacity:1;
     margin: 0 auto;
     bottom: 0px;
@@ -203,7 +223,7 @@ li.active span.round-tabs.ten{
     
 }
 .nav-tabs > li a{
-   width: 60px;
+   width: 100px;
    height: 60px;
    margin: 10px auto;
    border-radius: 100%;
@@ -257,7 +277,7 @@ line-height: 50px;
         font-size:20px;
         }
     .nav-tabs > li a {
-width: 90px;
+width: 100px;
 height: 90px;
 line-height:50px;
 }

@@ -57,13 +57,7 @@ router.put('/sys/userrole/:uroid', function (req, res) {
    })
 });
 
-router.delete('/sys/userrole/:uroid', function (req, res) {
-    models.userrole.destroy({ where: { uroid: req.params.uroid }})
-    .then(function (userrole) {
-       publicResource.ReturnResult(res, userrole);
-   })
-});
-router.delete('/sys/userrole/usoid/:usoid', function (req, res) {
+router.delete('/sys/userrole/:usoid', function (req, res) {
     models.userrole.destroy({ where: { usoid: req.params.usoid }})
     .then(function (userrole) {
        publicResource.ReturnResult(res, userrole);

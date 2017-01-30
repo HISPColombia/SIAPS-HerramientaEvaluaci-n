@@ -4,12 +4,17 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-3 ">
+    <div class="col-xs-3 col-sm-3 col-md-3 ">
            <input type="text" class="form-control materail_input" ng-model="query" placeholder="Ingrese busqueda">
+    </div>
+    <div class="col-xs-3 col-sm-3 col-md-3 ">
+        <label>New</label>
+       <button class="glyphicon glyphicon-download-alt" data-toggle="collapse" data-target="#User"></button>
     </div>
 </div>
 <hr class="colorgraph"> 
 <form name="form">
+    <div id="User" class="collapse">
     <div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 form-group">
@@ -41,14 +46,38 @@
                             </select>
         </div>    
         
- </div>              
+ </div>    
+ <div class="row">
+    <div align="center"  class="col-xs-12 col-sm-12 col-md-6 ">
+        <h2>{{'ROLE'| translate}}</h2>
+    </div>
+    <div align="center" class="col-xs-12 col-sm-12 col-md-6 ">
+        <h2>{{'ROLE'| translate}} Asignados</h2>
+    </div>
+</div> 
+<div class="row">
+<div align="right" class="col-xs-5 col-sm-5 col-md-5">
+ <select style="width: 400px;" ng-model="origen" name="origen[]" id="origen" class="form-control" multiple="multiple" size="14" ng-options="r.rodescription for r in listRole">
+</select>
+</div>
+<div align="center" class="col-xs-2 col-sm- col-md-2"><br><br><br><br>
+      <input type="button" class="pasar" value=">"><input type="button" class="pasartodos" value=">>"><input type="button" class="quitartodos" value="<<"><input type="button" class="quitar" value="<">
+      <br><input type="button" ng-click="deleteUserrole(5)" value="Verificar">
+</div>
+<div align="left" class="col-xs-5 col-sm-5 col-md-5">
+<select style="width: 400px;" ng-model="destino" name="destino[]" id="destino" multiple="multiple" size="14">
+</select>
+</div>
+<br>
+</div> <br><br>
         <div>
             <button type="button" class="btn btn-success" ng-click="saveUser(usname,uspassword,peoid,usstatus);" ng-show="mode=='create'">Guardar</button>
             <button type="button" class="btn btn-success" ng-click="updateUser(usoid,usname,uspassword,peoid,usstatus);" ng-show="mode=='edit'">Actualizar</button>
             <button type="button" class="btn btn-success" ng-click="deleteUser(usoid);" ng-show="mode=='edit'">Eliminar</button>
-            <button class="btn btn-default" ng-click="initform()">{{'ROOM_CANCEL'|translate}}</button>
+            <button class="btn btn-default" ng-click="initform()" data-toggle="collapse" data-target="#User">{{'ROOM_CANCEL'|translate}}</button>
         </div>
     </div>
+</div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 ">
 
@@ -58,13 +87,15 @@
                         <tr>
                             <th></th>
                             <th>User</th>
+                            <th>Person</th>
                             <th>Estado</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="User in listUser | filter:query">
-                            <td><button ng-click="selectUser(User.usoid,User.usname,User.usstatus)"><span class="glyphicon glyphicon-edit"></span></button></td>
+                            <td><button data-toggle="collapse" data-target="#User" ng-click="selectUser(User.usoid,User.usname,User.peoid,User.usstatus)"><span class="glyphicon glyphicon-edit"></span></button></td>
                             <td>{{User.usname}}</td>
+                            <td>{{getNamePerson(User.peoid)}}</td>
                             <td>{{getEstado(User.usstatus)}}</td>
                     </tbody>
                 </table>
