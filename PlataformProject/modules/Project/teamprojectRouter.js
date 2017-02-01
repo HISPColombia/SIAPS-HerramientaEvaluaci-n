@@ -27,14 +27,14 @@ router.get('/sys/teamproject/fk/:proid', function (req, res) {
 });
 
 router.post('/sys/teamproject', function (req, res) {
-    models.teamproject.create({ tpoid: req.body.tpoid, proid: req.body.proid, usoidleader: req.body.usoidleader, usoidtech: req.body.usoidtech })
+    models.teamproject.create({ tpoid: req.body.tpoid, proid: req.body.proid, rooid: req.body.rooid, usoid: req.body.usoid })
    .then(function (teamproject) {
        publicResource.ReturnResult(res, teamproject);
    })
 });
 
 router.put('/sys/teamproject/:tpoid', function (req, res) {
-    models.teamproject.update({ proid: req.body.proid, usoidleader: req.body.usoidleader, usoidtech: req.body.usoidtech },
+    models.teamproject.update({ proid: req.body.proid, rooid: req.body.rooid, usoid: req.body.usoid },
     { 
         where: {
              tpoid: req.params.tpoid 

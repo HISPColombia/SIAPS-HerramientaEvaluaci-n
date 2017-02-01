@@ -1,5 +1,4 @@
 /* jshint indent: 2 */
-
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('teamproject', {
     tpoid: {
@@ -16,15 +15,15 @@ module.exports = function(sequelize, DataTypes) {
         key: 'proid'
       }
     },
-    usoidleader: {
+    rooid: {
       type: 'NUMERIC',
       allowNull: false,
       references: {
-        model: 'user',
-        key: 'usoid'
+        model: 'role',
+        key: 'rooid'
       }
     },
-    usoidtech: {
+    usoid: {
       type: 'NUMERIC',
       allowNull: false,
       references: {
