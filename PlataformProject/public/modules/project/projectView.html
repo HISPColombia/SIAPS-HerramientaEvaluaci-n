@@ -1,105 +1,72 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-6 ">
-        <h2>{{'USER'| translate}}</h2>
+        <h2>Project</h2>
     </div>
 </div>
 <div class="row">
-    <div class="col-xs-3 col-sm-3 col-md-3 ">
+    <div class="col-xs-12 col-sm-12 col-md-3 ">
            <input type="text" class="form-control materail_input" ng-model="query" placeholder="Ingrese busqueda">
     </div>
     <div class="col-xs-3 col-sm-3 col-md-3 ">
         <label>New</label>
-       <button class="glyphicon glyphicon-download-alt" data-toggle="collapse" data-target="#User"></button>
+       <button class="glyphicon glyphicon-download-alt" data-toggle="collapse" data-target="#project"></button>
     </div>
 </div>
 <hr class="colorgraph"> 
 <form name="form">
-    <div id="User" class="collapse">
+    <div id="project" class="collapse">
     <div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                <input type="text" class="form-control" name="usname" ng-model="usname" ng-minlength="6" ng-maxlength="100" required  placeholder="{{'LOGIN_USER'| translate}}" />
-                <div class="error-container" ng-show="form.usname.$dirty && form.usname.$invalid">
-                    <small class="error" ng-show="form.usname.$error.required">{{'USER_REQUIRED'| translate}}</small>
-                    <small class="error" ng-show="form.usname.$error.maxlength">{{'USER_LONG'| translate}}</small>
+                <input type="text" class="form-control" name="prname" ng-model="prname" ng-minlength="3" ng-maxlength="100" required  placeholder="Project Name" />
+                <div class="error-container" ng-show="form.prname.$dirty && form.prname.$invalid">
+                    <small class="error" ng-show="form.prname.$error.required">{{'feature_REQUIRED'| translate}}</small>
+                    <small class="error" ng-show="form.prname.$error.maxlength">{{'feature_LONG'| translate}}</small>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                    <input type="password" name="uspassword"  id="uspassword" ng-model="uspassword" ng-minlength="6" ng-maxlength="100" required  class="form-control" placeholder="Password">              
-                    <div class="error" ng-show="form.uspassword.$dirty && form.uspassword.$invalid">
-                        <small class="error" ng-show="form.uspassword.$error.required">El Password es obligatorio. </small>
-                        <small class="error" ng-show="form.uspassword.$error.minlength">Password al menos de 6 caracteres </small>
-                        <small class="error" ng-show="form.uspassword.$error.maxlength">Password no mayor a 100 caracteres</small>
-                </div>
-            </div>
-        </div>
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                <select ng-model="peoid" name="peoid" id="peoid" class="form-control" ng-options="p.pename for p in listPerson">
-                    <option value="">-- Seleccione una Persona --</option>
+            <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                <select name="prstatus"  id="prstatus" ng-model="prstatus" class="form-control" ng-options="e.Descripcion for e in lstEstados">
+                   <option value="">-- Selection Estatus --</option>
                 </select>
-        </div>     
-        <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                         </select>
-                            <select name="usstatus"  id="usstatus" ng-model="usstatus" class="form-control" ng-options="e.Descripcion for e in lstEstados">
-                                <option value="">-- Seleccionar --</option>
-                            </select>
-        </div>    
-        
- </div>    
- <div class="row">
-    <div align="center"  class="col-xs-12 col-sm-12 col-md-6 ">
-        <h2>{{'ROLE'| translate}}</h2>
-    </div>
-    <div align="center" class="col-xs-12 col-sm-12 col-md-6 ">
-        <h2>{{'ROLE'| translate}} Asignados</h2>
-    </div>
-</div> 
-<div class="row">
-<div align="right" class="col-xs-5 col-sm-5 col-md-5">
- <select style="width: 400px;" ng-model="origen" name="origen[]" id="origen" class="form-control" multiple="multiple" size="14" ng-options="r.rodescription for r in listRole">
-</select>
-</div>
-<div align="center" class="col-xs-2 col-sm- col-md-2"><br><br><br><br>
-      <input type="button" class="pasar" value=">"><input type="button" class="pasartodos" value=">>"><input type="button" class="quitartodos" value="<<"><input type="button" class="quitar" value="<">
-      <br><input type="button" ng-click="deleteUserrole(5)" value="Verificar">
-</div>
-<div align="left" class="col-xs-5 col-sm-5 col-md-5">
-<select style="width: 400px;" ng-model="destino" name="destino[]" id="destino" multiple="multiple" size="14">
-</select>
-</div>
-<br>
-</div> <br><br>
+            </div>   
+            <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                <div class="input-group">
+                    <input type="text" class="form-control" datepicker-popup="yyyy/MM/dd" ng-model="prdateend" name="prdateend" is-open="opened" close-text="Close" min="{{min}}" max="{{max}}" placeholder="Fin Project (yyyy/mm/dd)"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-warning" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            </div>     
+ </div>              
         <div>
-            <button type="button" class="btn btn-success" ng-click="saveUser(usname,uspassword,peoid,usstatus);" ng-show="mode=='create'">Guardar</button>
-            <button type="button" class="btn btn-success" ng-click="updateUser(usoid,usname,uspassword,peoid,usstatus);" ng-show="mode=='edit'">Actualizar</button>
-            <button type="button" class="btn btn-success" ng-click="deleteUser(usoid);" ng-show="mode=='edit'">Eliminar</button>
-            <button class="btn btn-default" ng-click="initform()" data-toggle="collapse" data-target="#User">{{'ROOM_CANCEL'|translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="saveproject(prname,prstatus,prdateend);" ng-show="mode=='create'">Guardar</button>
+            <button type="button" class="btn btn-success" ng-click="updateproject(proid,prname,prstatus,prdateend);" ng-show="mode=='edit'">Actualizar</button>
+            <button type="button" class="btn btn-success" ng-click="deleteproject(proid);" ng-show="mode=='edit'">Eliminar</button>
+            <button class="btn btn-default" ng-click="initform()" data-toggle="collapse" data-target="#project">{{'ROOM_CANCEL'|translate}}</button>
         </div>
     </div>
-</div>
+ </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 ">
-
                 <div class="table-responsive">
                 <table class="table table-hover table-striped">
                     <thead>
                         <tr>
                             <th></th>
-                            <th>User</th>
-                            <th>Person</th>
-                            <th>Estado</th>
+                            <th>project</th>
+                            <th>Estatus</th>
+                            <th>Finalización</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="User in listUser | filter:query">
-                            <td><button data-toggle="collapse" data-target="#User" ng-click="selectUser(User.usoid,User.usname,User.peoid,User.usstatus)"><span class="glyphicon glyphicon-edit"></span></button></td>
-                            <td>{{User.usname}}</td>
-                            <td>{{getNamePerson(User.peoid)}}</td>
-                            <td>{{getEstado(User.usstatus)}}</td>
+                        <tr ng-repeat="item in listproject | filter:query">
+                            <td><button data-toggle="collapse" data-target="#project" ng-click="selectproject(item.proid, item.prname, item.prstatus, item.prdateend)"><span class="glyphicon glyphicon-edit"></span></button></td>
+                            <td>{{item.prname}}</td>
+                            <td>{{getEstado(item.prstatus)}}</td>
+                            <td>{{item.prdateend | date:'dd/MM/yyyy'}}</td>
                     </tbody>
                 </table>
             </div>
         </div>
-    </div>       
+    </div>
 </form>
