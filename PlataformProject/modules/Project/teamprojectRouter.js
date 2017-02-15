@@ -27,6 +27,14 @@ router.get('/sys/teamproject/rol/:rooid', function (req, res) {
   })
 });
 
+router.get('/sys/teamproject/user/:usoid', function (req, res) {//listar los proyectos que son del usuario con el filtro de rol y usuario
+    var sequelize = connection.open();
+    var query = "SELECT feature.feoid, feature.fename, subdimension.suname FROM public.feature inner join public.subdimension on subdimension.suoid = feature.suoid order by feoid asc";
+    sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
+  .then(function (result) {
+      publicResource.ReturnResult(res, result);
+  })
+});
 
 router.get('/sys/teamproject/fk/:proid', function (req, res) {
     models.teamproject.findAll({ 

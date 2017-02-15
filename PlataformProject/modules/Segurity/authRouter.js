@@ -24,7 +24,7 @@ router.post('/sys/auth', function (req, res) {
                     // message: 'Enjoy your token!',
                     // token: token
                     // });
-                    publicResource.ReturnResult(res, result); 
+                    publicResource.ReturnResult( res.json({ success: true, message: 'Authentication success' }) + res, result); 
                  }
                     //publicResource.ReturnResult(res, result); 
                 else 		// return the information including token as JSON
