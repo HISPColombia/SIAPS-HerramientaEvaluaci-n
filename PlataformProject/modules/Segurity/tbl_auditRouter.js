@@ -3,12 +3,17 @@ var publicResource = require("../../ControllerRouters.js");
 var express = require('express');
 var middleware = require('../../config/middleware.js');
 var router = express.Router();
+var connection = require("../../ConnectionDB.js");
 
 
 router.get('/sys/audit', function (req, res) {
-    models.tbl_audit.findAll({ order: '"pk_audit" ASC' }).then(function (result) {
-        publicResource.ReturnResult(res, result);
-    });
+    var sequelize = connection.open();
+    //SELECT tbl_audit."TableName", count(tbl_audit."TableName") as Version FROM public.tbl_audit group by tbl_audit."TableName" order by tbl_audit."TableName" asc;
+    var query = "SELECT tbl_audit.TableName, count(tbl_audit.TableName) as Version FROM public.tbl_audit group by tbl_audit.TableName order by tbl_audit.TableName asc;";
+    sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
+  .then(function (result) {
+      publicResource.ReturnResult(res, result);
+  })
 });
 
 router.get('/sys/audit/:pk_audit', function (req, res) {

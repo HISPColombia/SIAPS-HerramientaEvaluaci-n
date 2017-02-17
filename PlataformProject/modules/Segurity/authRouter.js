@@ -17,14 +17,16 @@ router.post('/sys/auth', function (req, res) {
              else
                 if(bcrypt.compareSync(req.body.uspassword, result[0].uspassword) == true )
                 {
-                    // var token = jwt.sign({ usname: req.body.usname}, config.TOKEN_SECRET);
-                    // console.log(token);
-                    // res.json({
-                    // success: true,
-                    // message: 'Enjoy your token!',
-                    // token: token
-                    // });
-                    publicResource.ReturnResult( res.json({ success: true, message: 'Authentication success' }) + res, result); 
+                    var auth ={
+                    success: true,
+                    usoid:  result[0].usoid,
+                    usname: result[0].usname,
+                    uspassword:  result[0].uspassword,
+                    peoid:  result[0].peoid,
+                    usstatus:  result[0].usstatus,
+                    ustoken:  result[0].ustoken
+                     };
+                publicResource.ReturnResult(res, auth); 
                  }
                     //publicResource.ReturnResult(res, result); 
                 else 		// return the information including token as JSON
