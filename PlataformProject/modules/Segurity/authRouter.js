@@ -17,18 +17,19 @@ router.post('/sys/auth', function (req, res) {
              else
                 if(bcrypt.compareSync(req.body.uspassword, result[0].uspassword) == true )
                 {
-                    var auth ={
+                    var auth =[{
                     success: true,
                     usoid:  result[0].usoid,
                     usname: result[0].usname,
                     uspassword:  result[0].uspassword,
                     peoid:  result[0].peoid,
                     usstatus:  result[0].usstatus,
-                    ustoken:  result[0].ustoken
-                     };
+                    ustoken:  result[0].ustoken                    
+                }];
                 publicResource.ReturnResult(res, auth); 
+                 //publicResource.ReturnResult(res, result); 
                  }
-                    //publicResource.ReturnResult(res, result); 
+                   
                 else 		// return the information including token as JSON
                     res.json({ success: false, message: 'Authentication failed. Wrong password.' });
                  });

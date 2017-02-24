@@ -18,12 +18,12 @@
     <div>
         <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-3 form-group">
-                <select ng-model="prname" name="prname" id="prname" class="form-control" ng-options="p.prname for p in listteamproject">
+                <select ng-model="proid" name="proid" id="proid" class="form-control" ng-options="p.prname for p in listproject">
                     <option value="">-- Seleccione un teamprojecto --</option>
                 </select>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-3 form-group">
-                <select ng-model="rooid" name="rooid" id="rooid" class="form-control" ng-options="p.rodescription for p in listRole">
+                <select ng-model="rooid" name="rooid" id="rooid" class="form-control" ng-change="changeRol()" ng-options="p.rodescription for p in listRole">
                     <option value="">-- Seleccione un Rol --</option>
                 </select>
         </div> 
@@ -56,9 +56,9 @@
                     <tbody>
                         <tr ng-repeat="item in listteamproject | filter:query">
                             <td><button data-toggle="collapse" data-target="#teamproject" ng-click="selectteamproject(item.tpoid, item.proid, item.rooid, item.usoid )"><span class="glyphicon glyphicon-edit"></span></button></td>
-                            <td>{{item.proid}}</td>
-                            <td>{{item.rooid}}</td>
-                            <td>{{item.usoid}}</td>
+                            <td>{{item.prname}}</td>
+                            <td>{{item.rodescription}}</td>
+                            <td>{{item.usname}}</td>
                     </tbody>
                 </table>
             </div>

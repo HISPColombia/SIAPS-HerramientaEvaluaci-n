@@ -30,11 +30,11 @@ router.get('/sys/audit/table/:table', function (req, res) {
     });
 });
 
-router.get('/sys/auditversion', function (req, res) {//Listar la tabla y la version en que va
-    models.tbl_audit.findOne({ order: '"pk_audit" DESC' }).then(function (result) {
-        publicResource.ReturnResult(res, result.pk_audit);
-    });
-});
+// router.get('/sys/auditversion', function (req, res) {//Listar la tabla y la version en que va
+//     models.tbl_audit.findOne({ order: '"pk_audit" DESC' }).then(function (result) {
+//         publicResource.ReturnResult(res, result.pk_audit);
+//     });
+// });
 
 router.p
 module.exports = router;

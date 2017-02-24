@@ -6,6 +6,7 @@ var bcrypt = require('bcrypt-nodejs');
 var jwt = require("jsonwebtoken");
 var config = require('../../config/config');
 var middleware = require('../../config/middleware.js');
+var connection = require("../../ConnectionDB.js");
 
 router.get('/sys/user', function (req, res) {
     models.user.findAll({ limit: 1000 }).then(function (result) {
@@ -19,6 +20,15 @@ router.get('/sys/user/:usoid', function (req, res) {
             usoid: req.params.usoid }}).then(function (result) {
         publicResource.ReturnResult(res, result);
     });
+});
+
+router.get('/sys/user/rooid/:rooid', function (req, res) {
+    var sequelize = connection.open();
+    var query = "SELECT u.usoid,u.usname,u.peoid FROM public.user u, public.userrole ur WHERE u.usoid = ur.usoid and ur.rooid="+ req.params.rooid+" order by u.usoid asc";
+    sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
+    .then(function (result) {
+      publicResource.ReturnResult(res, result);
+  })
 });
 
 router.get('/sys/user/st/:usstatus', function (req, res) {

@@ -43,6 +43,18 @@ ServersoftApi.factory("user", ['$resource', 'commonvariable', function ($resourc
   	    remove: { method: 'DELETE' }
   	});
 }]);
+ServersoftApi.factory("userxrole", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "user/rooid/:rooid",
+	{ 
+		rooid: '@rooid' 
+	 },
+  	{
+  	    get: { method: "GET", isArray: true },
+  	    post: { method: "POST" },
+  	    put: { method: "PUT", isArray: true },
+  	    remove: { method: 'DELETE' }
+  	});
+}]);
 
 ServersoftApi.factory("userrole",['$resource','commonvariable', function ($resource,commonvariable) {
 	return $resource( commonvariable.url+"userrole/:usoid", 

@@ -2,12 +2,16 @@ var models = require("../../ControllerModels.js");
 var publicResource = require("../../ControllerRouters.js");
 var express = require('express');
 var router = express.Router();
+var connection = require("../../ConnectionDB.js");
 
 
 router.get('/sys/teamproject', function (req, res) {
-    models.teamproject.findAll({ limit: 1000 }).then(function (result) {
-        publicResource.ReturnResult(res, result);
-    });
+     var sequelize = connection.open();
+    var query = "SELECT tp.tpoid, tp.proid, tp.rooid, tp.usoid, pr.prname ,ro.rodescription, ro.roinitials, u.usname FROM public.teamproject tp, public.role ro, public.user u, public.project pr WHERE tp.rooid = ro.rooid AND tp.usoid = u.usoid and tp.proid = pr.proid order by tp.tpoid asc";
+    sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
+  .then(function (result) {
+      publicResource.ReturnResult(res, result);
+  })
 });
 
 router.get('/sys/teamproject/:tpoid', function (req, res) {
@@ -45,7 +49,7 @@ router.get('/sys/teamproject/fk/:proid', function (req, res) {
 });
 
 router.post('/sys/teamproject', function (req, res) {
-    models.teamproject.create({ tpoid: req.body.tpoid, proid: req.body.proid, rooid: req.body.rooid, usoid: req.body.usoid })
+    models.teamproject.create({ proid: req.body.proid, rooid: req.body.rooid, usoid: req.body.usoid })
    .then(function (teamproject) {
        publicResource.ReturnResult(res, teamproject);
    })

@@ -1,4 +1,4 @@
-appServersoft.controller('teamprojectController', ['$scope', '$filter', 'commonvariable', 'authentication','$localStorage','project','role','user', function ($scope, $filter, commonvariable, authentication, $localStorage, project, role, user ) {
+appServersoft.controller('teamprojectController', ['$scope', '$filter', 'commonvariable', 'authentication','$localStorage','teamproject','project','role','user','userxrole', function ($scope, $filter, commonvariable, authentication, $localStorage, teamproject, project, role, user, userxrole ) {
 ///verify session
 //authentication.checkStatus();
 ///variables
@@ -15,15 +15,22 @@ var $translate = $filter('translate');
     }
     $scope.initform();
 
-    $scope.selectproject = function (tpoid, proid, prstatus, prdateend) {
+    $scope.selectteamproject = function (tpoid, proid, rooid, usoid) {
         $scope.mode = 'edit';
+        $scope.tpoid= tpoid;
         $scope.proid = proid;
-        $scope.prname = prname;
-        $scope.prdateend = prdateend;
-        var status = $scope.lstEstados.filter(function (item) {
-            return item.ID == prstatus;
+        var pr = $scope.listproject.filter(function (item) {
+            return item.proid == proid;
         });
-        $scope.prstatus = status[0];
+        $scope.proid = pr[0];
+        var ro = $scope.listRole.filter(function (item) {
+            return item.rooid == rooid;
+        });
+        $scope.rooid = ro[0];
+        var us = $scope.listUser.filter(function (item) {
+            return item.usoid == usoid;
+        });
+        $scope.usoid = us[0];
    }
     $scope.getproject = function () {
         project.get({})
@@ -32,6 +39,15 @@ var $translate = $filter('translate');
        });
     };
    $scope.getproject();
+
+   $scope.getteamproject = function () {
+         teamproject.get({})
+        .$promise.then(function (resp) {
+            $scope.listteamproject = resp;
+        });
+     };
+    $scope.getteamproject();
+
 
    $scope.getRole = function () {
         role.get({})
@@ -42,12 +58,20 @@ var $translate = $filter('translate');
    $scope.getRole();
 
    $scope.getUser = function () {
-        user.get({})
+         user.get({})
+        .$promise.then(function (resp) {
+             $scope.listUser = resp;
+       });
+    };
+  $scope.getUser();
+
+   $scope.changeRol = function () {
+        userxrole.get({rooid: $scope.rooid.rooid })
        .$promise.then(function (resp) {
            $scope.listUser = resp;
        });
     };
-   $scope.getUser();
+   $scope.changeRol();
    
    $scope.deleteproject = function (proid) {
     project.delete({proid: proid})
@@ -60,11 +84,11 @@ var $translate = $filter('translate');
         return $scope.lstEstados[id].Descripcion;
     };
 
-    $scope.saveproject = function (prname,prstatus,prdateend) {
-       project.post({ prname: prname, prstatus: prstatus.ID, prdateend: prdateend  })
+    $scope.saveteamproject = function (proid,rooid,usoid) {
+       teamproject.post({ proid: proid.proid, rooid: rooid.rooid, usoid: usoid.usoid })
       .$promise.then(function (resp) {
-          if (resp.prname == prname) {
-              $scope.getproject();
+          if (resp.length > 0) {
+              $scope.getteamproject();
               $scope.alerts.push({ msg: $translate("ROOM_MSG_SUCCESS"), type: 'success' });
               $scope.initform();
           }
@@ -74,11 +98,11 @@ var $translate = $filter('translate');
       });
     };
 
-    $scope.updateproject = function (proid, prname, prstatus, prdateend) {
-        project.put({ proid: proid, prname: prname, prstatus: prstatus.ID, prdateend: prdateend })
+    $scope.updateteamproject = function (tpoid,proid,rooid,usoid) {
+        teamproject.put({ tpoid: tpoid  ,proid: proid.proid, rooid: rooid.rooid, usoid: usoid.usoid  })
         .$promise.then(function (resp) {
           if (resp.length > 0) {
-              $scope.getproject();
+              $scope.getteamproject();
               $scope.alerts.push({ msg: $translate("BED_MSG_SUCCESS"), type: 'success' });
               $scope.initform();
           }
