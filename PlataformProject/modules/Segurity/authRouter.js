@@ -13,7 +13,7 @@ router.post('/sys/auth', function (req, res) {
              usname: req.body.usname
          }}).then(function (result) {
              if(result.length == 0 )
-                   res.json({ success: false, message: 'Authentication failed. User not found.' });
+                   res.json([{ success: false, message: 'Authentication failed. User not found.' }]);
              else
                 if(bcrypt.compareSync(req.body.uspassword, result[0].uspassword) == true )
                 {
@@ -31,7 +31,7 @@ router.post('/sys/auth', function (req, res) {
                  }
                    
                 else 		// return the information including token as JSON
-                    res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+                    res.json([{ success: false, message: 'Authentication failed. Wrong password.' }]);
                  });
 });
 module.exports = router;
