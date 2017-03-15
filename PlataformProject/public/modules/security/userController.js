@@ -1,7 +1,6 @@
 appServersoft.controller('userController', ['$scope', '$filter', 'commonvariable', 'authentication','$localStorage','person','user','role', 'userrole',function ($scope, $filter, commonvariable, authentication, $localStorage, person, user, role, userrole) {
 ///verify session
- //authentication.checkStatus();
-
+//authentication.checkStatus();
 ///variables
 $scope.lstEstados = [{ Descripcion: "Inactivo", ID: 0 },
                         { Descripcion: "Activo", ID: 1 },];

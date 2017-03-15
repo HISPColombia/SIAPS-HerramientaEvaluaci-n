@@ -1,0 +1,18 @@
+1. quitar la relacion question-feature
+2. agregar relacion question-metric
+2.1 aqgregar relacion subdimension-question
+3. quitar la relacion feature-subdimencion
+4. cambiar las subfeature de acuerdoal excel
+5. cambiar los datos de atributos
+6. en metric quitar el campo indicador, min value:0 , maxvalue: 100, linea base: 70
+7. en Method poner le nombre de la metodologia
+8. PHCphase: cargar en la tabla, no se requiere interface, es un combo
+9. typefacility: no requiere interface, solo cargar datos, es cun combo
+10. quitar interface de methodology, dejar la tabla
+11. crear interface de participation
+12. optionquestion se convierte ne un campo de la question
+13. typequestion es un combo, solo crear datos en la tabla
+14. al proyect ose le debe asignar la metodologia
+15. en responsvalue mirar el iteem 5 del correo
+16. crear una nueva tabla systems que debe ir en en menu configuration, campos. nombre de sistema yun consecutivo, sigla opcional, crear en el proyecto la asociacion con los systemas
+similar a los usuarios roles
