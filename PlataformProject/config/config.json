@@ -25,7 +25,7 @@
     "username": "postgres",
     "password": "9004",
     "database": "SGE_APS",
-    "host": "localhost",
+    "host": "190.5.195.91",
     "dialect": "postgres",
     "define": {
       "timestamps": false,
