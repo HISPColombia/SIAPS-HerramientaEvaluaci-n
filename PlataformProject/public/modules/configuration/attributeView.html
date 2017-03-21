@@ -50,7 +50,7 @@
                         <tr ng-repeat="item in listattribute | filter:query">
                             <td><button ng-click="selectattribute(item.atoid, item.atname,item.sfoid)"><span class="glyphicon glyphicon-edit"></span></button></td>
                             <td>{{item.atname}}</td>
-                            <td>{{getName(item.sfoid)}}</td>
+                            <td>{{getNameSubfeature(item.sfoid)}}</td>
                             </tbody>
                 </table>
             </div>

@@ -73,7 +73,6 @@ var $translate = $filter('translate');
         };
 
     $scope.getsubfeature = function () {
-
         subfeaturelist.get({})
        .$promise.then(function (resp) {
            $scope.listsubfeature = resp;
