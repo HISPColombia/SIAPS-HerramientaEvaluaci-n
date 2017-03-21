@@ -15,14 +15,6 @@ module.exports = function(sequelize, DataTypes) {
     mtdescription: {
       type: DataTypes.TEXT,
       allowNull: true
-    },
-    meoid: {
-      type: DataTypes.DOUBLE,
-      allowNull: false,
-      references: {
-        model: 'methodology',
-        key: 'meoid'
-      }
     }
   }, {
     tableName: 'method'

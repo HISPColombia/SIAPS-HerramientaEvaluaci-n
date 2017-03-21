@@ -39,14 +39,14 @@ router.get('/sys/question/fkfeoid/:feoid', function (req, res) {
 });
 
 router.post('/sys/question', function (req, res) {
-    models.question.create({ quoid: req.body.quoid, qucode: req.body.qucode, ququestion: req.body.ququestion, mtoid: req.body.mtoid,feoid: req.body.feoid })
+    models.question.create({ quoid: req.body.quoid, qucode: req.body.qucode, ququestion: req.body.ququestion, mtoid: req.body.mtoid,meoid: req.body.meoid, tqoid: req.body.tqoid, optionquestion: req.body.optionquestion  })
    .then(function (question) {
        publicResource.ReturnResult(res, question);
    })
 });
 
 router.put('/sys/question/:quoid', function (req, res) {
-  models.question.update({ qucode: req.body.qucode, ququestion: req.body.ququestion, mtoid: req.body.mtoid, feoid: req.body.feoid  },
+  models.question.update({ qucode: req.body.qucode, ququestion: req.body.ququestion, mtoid: req.body.mtoid,meoid: req.body.meoid, tqoid: req.body.tqoid, optionquestion: req.body.optionquestion  },
     { 
         where: {
              quoid: req.params.quoid 

@@ -3,13 +3,13 @@
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('metric', {
     meoid: {
-      type: 'NUMERIC',
+      type: DataTypes.DOUBLE,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
     atoid: {
-      type: 'NUMERIC',
+      type: DataTypes.DOUBLE,
       allowNull: false,
       references: {
         model: 'attribute',
@@ -21,24 +21,20 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     meformula: {
-       type: DataTypes.STRING,
+      type: DataTypes.STRING,
       allowNull: false
     },
     mevaluemax: {
-      type: 'NUMERIC',
+      type: DataTypes.DOUBLE,
       allowNull: false
     },
     mevaluemin: {
-      type: 'NUMERIC',
+      type: DataTypes.DOUBLE,
       allowNull: false
     },
     melinebasevalref: {
       type: DataTypes.STRING,
       allowNull: true
-    },
-    metipeindicador: {
-      type: DataTypes.STRING,
-      allowNull: false
     }
   }, {
     tableName: 'metric'

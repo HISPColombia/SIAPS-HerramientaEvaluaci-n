@@ -16,6 +16,14 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.TEXT,
       allowNull: false
     },
+    mtoid: {
+      type: DataTypes.DOUBLE,
+      allowNull: false,
+      references: {
+        model: 'method',
+        key: 'mtoid'
+      }
+    },
     meoid: {
       type: DataTypes.DOUBLE,
       allowNull: false,
@@ -24,12 +32,12 @@ module.exports = function(sequelize, DataTypes) {
         key: 'meoid'
       }
     },
-    suoid: {
+    tqoid: {
       type: DataTypes.DOUBLE,
       allowNull: false,
       references: {
-        model: 'subdimension',
-        key: 'suoid'
+        model: 'typequestion',
+        key: 'tqoid'
       }
     },
     optionquestion: {

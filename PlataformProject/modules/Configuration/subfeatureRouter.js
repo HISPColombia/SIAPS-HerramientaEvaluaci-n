@@ -13,7 +13,7 @@ router.get('/sys/subfeature', function (req, res) {
 
 router.get('/sys/subfeaturelist', function (req, res) {
     var sequelize = connection.open();
-    var query = "SELECT subfeature.sfoid, subfeature.sfname, feature.fename, subdimension.suname FROM public.feature, public.subfeature, public.subdimension WHERE feature.suoid = subdimension.suoid AND subfeature.feoid = feature.feoid order by subfeature.sfname asc;";
+    var query = "SELECT subfeature.sfoid, subfeature.sfname, feature.fename FROM public.feature, public.subfeature WHERE subfeature.feoid = feature.feoid order by subfeature.sfname asc;";
     sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
   .then(function (result) {
       publicResource.ReturnResult(res, result);

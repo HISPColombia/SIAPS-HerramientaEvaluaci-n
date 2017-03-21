@@ -3,7 +3,7 @@
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('feature', {
     feoid: {
-      type: 'NUMERIC',
+      type: DataTypes.DOUBLE,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
@@ -11,14 +11,6 @@ module.exports = function(sequelize, DataTypes) {
     fename: {
       type: DataTypes.STRING,
       allowNull: false
-    },
-    suoid: {
-      type: 'NUMERIC',
-      allowNull: false,
-      references: {
-        model: 'subdimension',
-        key: 'suoid'
-      }
     }
   }, {
     tableName: 'feature'

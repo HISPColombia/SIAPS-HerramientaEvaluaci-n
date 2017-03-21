@@ -9,21 +9,13 @@ var $translate = $filter('translate');
         $scope.mode = 'create';
         $scope.feoid = 0;
         $scope.fename="";
-        $scope.suoid = 0;
     }
     $scope.initform();
 
-    $scope.selectfeature = function (feoid, fename, suoid) {
+    $scope.selectfeature = function (feoid, fename) {
         $scope.mode = 'edit';
         $scope.feoid = feoid;
         $scope.fename = fename;
-        $scope.suoid = suoid;
-
-        var sd = $scope.listsubdimension.filter(function (item) {
-            return item.suoid == suoid;
-         });
-        $scope.suoid = sd[0];
-
     }
    
     $scope.getfeature = function () {
@@ -74,24 +66,7 @@ var $translate = $filter('translate');
             $scope.alerts.push({ label: " ", msg: menssage });
         };
 
-    $scope.getName = function (suoid) {
-      if(suoid > 0){
-        var sd = $scope.listsubdimension.filter(function (item) {
-            return item.suoid == suoid;
-         });
-         return sd[0].suname;
-      }
-    };
-        
-
-    $scope.getsubdimension = function () {
-        subdimension.get({})
-       .$promise.then(function (resp) {
-           $scope.listsubdimension = resp;
-       });
-    };
-$scope.getsubdimension();
-        
+      
         $scope.closeAlert = function (index) {
             $scope.alerts.splice(index, 1);
         };   

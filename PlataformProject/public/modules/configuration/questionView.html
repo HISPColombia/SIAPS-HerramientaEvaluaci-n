@@ -12,14 +12,14 @@
 <form name="form">
     <div>
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+            <div class="col-xs-12 col-sm-12 col-md-2 form-group">
                 <input type="text" class="form-control" name="qucode" ng-model="qucode" ng-minlength="6" ng-maxlength="100" required  placeholder="{{'Codigo'| translate}}" />
                 <div class="error-container" ng-show="form.qucode.$dirty && form.qucode.$invalid">
                     <small class="error" ng-show="form.qucode.$error.required">{{'USER_REQUIRED'| translate}}</small>
                     <small class="error" ng-show="form.qucode.$error.maxlength">{{'USER_LONG'| translate}}</small>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+            <div class="col-xs-12 col-sm-12 col-md-10 form-group">
                     <input type="text" name="ququestion"  id="ququestion" ng-model="ququestion" ng-minlength="6" ng-maxlength="100" required  class="form-control" placeholder="Question">              
                     <div class="error" ng-show="form.ququestion.$dirty && form.ququestion.$invalid">
                         <small class="error" ng-show="form.ququestion.$error.required">El Password es obligatorio. </small>
@@ -35,15 +35,24 @@
                 </select>
         </div>    
         <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                <select ng-model="feoid" name="feoid" id="feoid" class="form-control" ng-options="p.fename for p in listFeature">
-                    <option value="">-- Seleccione un Caracteristica --</option>
+                <select ng-model="meoid" name="meoid" id="meoid" class="form-control" ng-options="p.mename for p in listMetric">
+                    <option value="">-- Seleccione un Metrica --</option>
                 </select>
         </div>    
-       
- </div>              
+    </div>   
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                <select ng-model="tqoid" name="tqoid" id="tqoid" class="form-control" ng-options="p.tqdescription for p in listTypequestion">
+                    <option value="">-- Seleccione un Tipo --</option>
+                </select>
+        </div>    
+        <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+              <input type="text" name="optionquestion"  id="optionquestion" ng-model="optionquestion" ng-minlength="6" ng-maxlength="100" required  class="form-control" placeholder="Opciones">              
+        </div>    
+    </div>               
         <div>
-            <button type="button" class="btn btn-success" ng-click="savequestion(qucode,ququestion,mtoid,feoid);" ng-show="mode=='create'">Guardar</button>
-            <button type="button" class="btn btn-success" ng-click="updatequestion(quoid,qucode,ququestion,mtoid,feoid);" ng-show="mode=='edit'">Actualizar</button>
+            <button type="button" class="btn btn-success" ng-click="savequestion(qucode,ququestion,mtoid,meoid);" ng-show="mode=='create'">Guardar</button>
+            <button type="button" class="btn btn-success" ng-click="updatequestion(quoid,qucode,ququestion,mtoid,meoid);" ng-show="mode=='edit'">Actualizar</button>
             <button type="button" class="btn btn-success" ng-click="deletequestion(quoid);" ng-show="mode=='edit'">Eliminar</button>
             <button class="btn btn-default" ng-click="initform()">{{'ROOM_CANCEL'|translate}}</button>
         </div>
@@ -59,17 +68,17 @@
                             <th></th>
                             <th>Codigo</th>
                             <th>Question</th>
-                            <th>Metodo</th>
-                            <th>Feature</th>
+                            <!--<th>Metodo</th>-->
+                            <!--<th>Feature</th>-->
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="item in listquestion | filter:query">
-                            <td><button ng-click="selectquestion(item.quoid,item.qucode,item.ququestion,item.mtoid,item.feoid)"><span class="glyphicon glyphicon-edit"></span></button></td>
+                            <td><button ng-click="selectquestion(item.quoid,item.qucode,item.ququestion,item.mtoid,item.meoid,item.tqoid, item.optionquestion)"><span class="glyphicon glyphicon-edit"></span></button></td>
                             <td>{{item.qucode}}</td>
                             <td>{{item.ququestion}}</td>
-                            <td>{{getMethodName(item.mtoid)}}</td>
-                            <td>{{getFeatureName(item.feoid)}}</td>
+                            <!--<td>{{getMethodName(item.mtoid)}}</td>-->
+                            <!--<td>{{getFeatureName(item.meoid)}}</td>-->
                     </tbody>
                 </table>
             </div>

@@ -3,7 +3,7 @@
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('question', {
     quoid: {
-      type: 'NUMERIC',
+      type: DataTypes.DOUBLE,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
@@ -17,20 +17,32 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     mtoid: {
-      type: 'NUMERIC',
+      type: DataTypes.DOUBLE,
       allowNull: false,
       references: {
         model: 'method',
         key: 'mtoid'
       }
     },
-    feoid: {
-      type: 'NUMERIC',
+    meoid: {
+      type: DataTypes.DOUBLE,
       allowNull: false,
       references: {
-        model: 'feature',
-        key: 'feoid'
+        model: 'metric',
+        key: 'meoid'
       }
+    },
+    tqoid: {
+      type: DataTypes.DOUBLE,
+      allowNull: false,
+      references: {
+        model: 'typequestion',
+        key: 'tqoid'
+      }
+    },
+    optionquestion: {
+      type: DataTypes.TEXT,
+      allowNull: true
     }
   }, {
     tableName: 'question'

@@ -72,21 +72,20 @@ var $translate = $filter('translate');
         };
 
     $scope.getfeature = function () {
-        featuresubdimension.get({})
+        feature.get({})
        .$promise.then(function (resp) {
            $scope.listfeature = resp;
        });
     };
-  $scope.getName = function (feoid) {
-      if(feoid > 0){
+    $scope.getfeature();
+
+    $scope.getNameFeature = function (feoid) {
         var feature = $scope.listfeature.filter(function (item) {
             return item.feoid == feoid;
          });
-         return feature[0].fename+' '+feature[0].suname;
-      }
+         return feature[0].fename;
     };
-$scope.getfeature();
-        
+       
         $scope.closeAlert = function (index) {
             $scope.alerts.splice(index, 1);
         };   
