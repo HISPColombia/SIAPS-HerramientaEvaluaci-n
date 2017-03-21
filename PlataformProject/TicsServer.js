@@ -125,13 +125,13 @@ app.use("/api",metric);
 var variable = require("./Modules/Configuration/variableRouter.js")
 app.use("/api",variable);
 
-var responsevalue = require("./Modules/Configuration/responsevalueRouter.js")
-app.use("/api",responsevalue);
-
 var rolesubdimension = require("./Modules/Configuration/rolesubdimensionRouter.js")
 app.use("/api",rolesubdimension);
 
 //Routers Project
+
+var responsevalue = require("./Modules/Project/responsevalueRouter.js")
+app.use("/api",responsevalue);
 
 var PHCPhase = require("./Modules/Project/PHCPhaseRouter.js")
 app.use("/api",PHCPhase);
