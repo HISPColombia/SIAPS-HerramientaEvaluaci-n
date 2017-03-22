@@ -7,7 +7,7 @@ var connection = require("../../ConnectionDB.js");
 
 router.get('/sys/teamproject', function (req, res) {
      var sequelize = connection.open();
-    var query = "SELECT tp.tpoid, tp.proid, tp.rooid, tp.usoid, pr.prname ,ro.rodescription, ro.roinitials, u.usname FROM public.teamproject tp, public.role ro, public.user u, public.project pr WHERE tp.rooid = ro.rooid AND tp.usoid = u.usoid and tp.proid = pr.proid order by tp.tpoid asc";
+    var query = "SELECT tp.tpoid, tp.proid, tp.rooid, tp.usoid, pr.prname, pr.prstatus ,ro.rodescription, ro.roinitials, u.usname FROM public.teamproject tp, public.role ro, public.user u, public.project pr WHERE tp.rooid = ro.rooid AND tp.usoid = u.usoid and tp.proid = pr.proid order by tp.tpoid asc";
     sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
   .then(function (result) {
       publicResource.ReturnResult(res, result);
@@ -33,7 +33,7 @@ router.get('/sys/teamproject/rol/:rooid', function (req, res) {
 
 router.get('/sys/teamproject/user/:usoid', function (req, res) {//listar los proyectos que son del usuario con el filtro de rol y usuario
     var sequelize = connection.open();
-    var query = "SELECT pr.proid, pr.prname, r.rooid, r.rodescription, u.usoid, u.usname FROM public.teamproject tp, public.project pr, public.user u, public.role r WHERE pr.proid = tp.proid AND u.usoid = tp.usoid AND r.rooid = tp.rooid AND u.usoid ="+req.params.usoid+" order by pr.proid asc";
+    var query = "SELECT pr.proid, pr.prname, pr.prstatus, r.rooid, r.rodescription, u.usoid, u.usname FROM public.teamproject tp, public.project pr, public.user u, public.role r WHERE pr.proid = tp.proid AND u.usoid = tp.usoid AND r.rooid = tp.rooid AND u.usoid ="+req.params.usoid+" order by pr.proid asc";
     sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
   .then(function (result) {
       publicResource.ReturnResult(res, result);
