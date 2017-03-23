@@ -2,6 +2,17 @@ var models = require("../../ControllerModels.js");
 var publicResource = require("../../ControllerRouters.js");
 var express = require('express');
 var router = express.Router();
+var connection = require("../../ConnectionDB.js");
+
+
+router.get('/sys/systemproject/:proid', function (req, res) {
+     var sequelize = connection.open();
+    var query = "SELECT project.prname,systemproject.sysoid, system.sysname, system.initials FROM public.system, public.systemproject, public.project WHERE system.sysoid = systemproject.sysoid AND project.proid = systemproject.proid AND project.proid = "+req.params.proid;
+    sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
+  .then(function (result) {
+      publicResource.ReturnResult(res, result);
+  })
+});
 
 
 router.get('/sys/project', function (req, res) {
