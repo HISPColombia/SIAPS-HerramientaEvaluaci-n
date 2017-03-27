@@ -43,6 +43,11 @@ module.exports = function(sequelize, DataTypes) {
     optionquestion: {
       type: DataTypes.TEXT,
       allowNull: true
+    },
+    reqsystem: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+      defaultValue: false
     }
   }, {
     tableName: 'question'
