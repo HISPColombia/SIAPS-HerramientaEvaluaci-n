@@ -45,9 +45,9 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     reqsystem: {
-      type: DataTypes.BOOLEAN,
-      allowNull: true,
-      defaultValue: false
+      type: DataTypes.DOUBLE,
+      allowNull: false,
+      defaultValue: 0
     }
   }, {
     tableName: 'question'
