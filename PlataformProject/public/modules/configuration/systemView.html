@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 ">
+        <h2>{{'SYSTEM'| translate}}</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-3 ">
+           <input type="text" class="form-control materail_input" ng-model="query" placeholder="{{'FILTER' | translate}}">
+    </div>
+</div>
+<hr class="colorgraph"> 
+<form name="form">
+    <div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-8 form-group">
+                <input type="text" class="form-control" name="sysname" ng-model="sysname" ng-minlength="3" ng-maxlength="100" required  placeholder="{{'NAME_OF'| translate}}{{'SYSTEM'| translate}}" />
+                <div class="error-container" ng-show="form.sysname.$dirty && form.sysname.$invalid">
+                    <small class="error" ng-show="form.sysname.$error.required"></small>
+                    <small class="error" ng-show="form.sysname.$error.maxlength"></small>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                     <input type="text" class="form-control" name="initials" ng-model="initials" ng-minlength="3" ng-maxlength="100" required  placeholder="{{'DESCRIPTION'| translate}}{{'SYSTEM'| translate}}" />
+            </div>
+    </div>
+      <div>
+            <button type="button" class="btn btn-success" ng-click="savesystem(sysname,initials);" ng-show="mode=='create'">Guardar</button>
+            <button type="button" class="btn btn-success" ng-click="updatesystem(sysoid,sysname,initials);" ng-show="mode=='edit'">Actualizar</button>
+            <button type="button" class="btn btn-success" ng-click="deletesystem(sysoid);" ng-show="mode=='edit'">Eliminar</button>
+            <button class="btn btn-default" ng-click="initform()">{{'ROOM_CANCEL'|translate}}</button>
+       </div>
+
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 ">
+
+                <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>System</th>
+                            <th>Description</th>
+                            <!--<th>systemology</th>-->
+                         </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in listsystem | filter:query">
+                            <td><button ng-click="selectsystem(item.sysoid,item.sysname,item.initials)"><span class="glyphicon glyphicon-edit"></span></button></td>
+                            <td>{{item.sysname}}</td>
+                            <td>{{item.initials}}</td>
+                            <!--<td>{{item.meoid}}</td>-->
+                         </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+</form>

@@ -1,22 +1,18 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('system', {
-    sysoid: {
+  return sequelize.define('version', {
+    veoid: {
       type: DataTypes.DOUBLE,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    sysname: {
-      type: DataTypes.TEXT,
+    venumber: {
+      type: DataTypes.DOUBLE,
       allowNull: false
-    },
-    initials: {
-      type: DataTypes.CHAR,
-      allowNull: true
     }
   }, {
-    tableName: 'system'
+    tableName: 'version'
   });
 };

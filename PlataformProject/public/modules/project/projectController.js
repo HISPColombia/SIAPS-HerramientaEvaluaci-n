@@ -1,4 +1,4 @@
-appServersoft.controller('projectController', ['$scope', '$filter', 'commonvariable', 'authentication','$localStorage','project', function ($scope, $filter, commonvariable, authentication, $localStorage, project) {
+appServersoft.controller('projectController', ['$scope', '$filter', 'commonvariable', 'authentication','$localStorage','project','methodology', function ($scope, $filter, commonvariable, authentication, $localStorage, project, methodology) {
 ///verify session
 //authentication.checkStatus();
 ///variables
@@ -12,18 +12,25 @@ var $translate = $filter('translate');
         $scope.prname="";
         $scope.prstatus = 0;
         $scope.prdateend = null;
+        $scope.meoid = 0;  
     }
     $scope.initform();
 
-    $scope.selectproject = function (proid, prname, prstatus, prdateend) {
+    $scope.selectproject = function (proid, prname, prstatus, prdateend, meoid) {
         $scope.mode = 'edit';
         $scope.proid = proid;
         $scope.prname = prname;
         $scope.prdateend = prdateend;
+
         var status = $scope.lstEstados.filter(function (item) {
             return item.ID == prstatus;
         });
         $scope.prstatus = status[0];
+
+        var methodology = $scope.listmethodology.filter(function (item) {
+            return item.meoid == meoid;
+        });
+        $scope.meoid = methodology[0]; 
    }
     $scope.getproject = function () {
         project.get({})
@@ -44,8 +51,8 @@ var $translate = $filter('translate');
         return $scope.lstEstados[id].Descripcion;
     };
 
-    $scope.saveproject = function (prname,prstatus,prdateend) {
-       project.post({ prname: prname, prstatus: prstatus.ID, prdateend: prdateend  })
+    $scope.saveproject = function (prname,prstatus,prdateend,meoid) {
+       project.post({ prname: prname, prstatus: prstatus.ID, prdateend: prdateend , meoid: meoid.meoid })
       .$promise.then(function (resp) {
           if (resp.prname == prname) {
               $scope.getproject();
@@ -58,8 +65,8 @@ var $translate = $filter('translate');
       });
     };
 
-    $scope.updateproject = function (proid, prname, prstatus, prdateend) {
-        project.put({ proid: proid, prname: prname, prstatus: prstatus.ID, prdateend: prdateend })
+    $scope.updateproject = function (proid, prname, prstatus, prdateend, meoid) {
+        project.put({ proid: proid, prname: prname, prstatus: prstatus.ID, prdateend: prdateend, meoid: meoid.meoid })
         .$promise.then(function (resp) {
           if (resp.length > 0) {
               $scope.getproject();
@@ -75,14 +82,22 @@ var $translate = $filter('translate');
             $scope.alerts.push({ label: " ", msg: menssage });
         };
 
-  $scope.getName = function (tfoid) {
-      if(tfoid > 0){
-        var feature = $scope.listtypeproject.filter(function (item) {
-            return item.tfoid == tfoid;
+  $scope.getNameMetodologia = function (meoid) {
+      if(meoid > 0){
+        var mt = $scope.listmethodology.filter(function (item) {
+            return item.meoid == meoid;
          });
-         return feature[0].tfname;
+         return mt[0].medescription;
       }
     };
+    
+   $scope.getmethodology = function () {
+        methodology.get({})
+       .$promise.then(function (resp) {
+           $scope.listmethodology = resp;
+       });
+    };
+    $scope.getmethodology();
 
     $scope.open = function ($event) {
         $event.preventDefault();

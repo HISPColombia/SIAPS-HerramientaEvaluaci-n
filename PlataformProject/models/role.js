@@ -1,22 +1,22 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('system', {
-    sysoid: {
+  return sequelize.define('role', {
+    rooid: {
       type: DataTypes.DOUBLE,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    sysname: {
-      type: DataTypes.TEXT,
+    rodescription: {
+      type: DataTypes.STRING,
       allowNull: false
     },
-    initials: {
+    roinitials: {
       type: DataTypes.CHAR,
-      allowNull: true
+      allowNull: false
     }
   }, {
-    tableName: 'system'
+    tableName: 'role'
   });
 };

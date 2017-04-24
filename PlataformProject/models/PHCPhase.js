@@ -1,22 +1,18 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('system', {
-    sysoid: {
+  return sequelize.define('PHCPhase', {
+    phoid: {
       type: DataTypes.DOUBLE,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    sysname: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    initials: {
+    phcDescription: {
       type: DataTypes.CHAR,
-      allowNull: true
+      allowNull: false
     }
   }, {
-    tableName: 'system'
+    tableName: 'PHCPhase'
   });
 };

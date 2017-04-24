@@ -13,22 +13,19 @@
     <div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                <input type="text" class="form-control" name="mtname" ng-model="mtname" ng-minlength="3" ng-maxlength="100" required  placeholder="methodology" />
+                <input type="text" class="form-control" name="mtname" ng-model="mtname" ng-minlength="3" ng-maxlength="100" required  placeholder="{{'Method'| translate}}" />
                 <div class="error-container" ng-show="form.mtname.$dirty && form.mtname.$invalid">
                     <small class="error" ng-show="form.mtname.$error.required"></small>
                     <small class="error" ng-show="form.mtname.$error.maxlength"></small>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                <select ng-model="meoid" name="meoid" id="meoid" class="form-control" ng-options="p.mename for p in listmethodology">
-                    <option value="">-- Seleccione--</option>
+            <!--<div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                <select ng-model="meoid" name="meoid" id="meoid" class="form-control" ng-options="p.mename +' '+ p.medescription for p in listmethodology">
+                    <option value="">-- Select {{'methodology'| translate}}--</option>
                 </select>
-             </div>     
-         </div>  
-         
- <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 form-group">
-                    <textarea rows="5" name="mtdescription"  id="mtdescription" ng-model="mtdescription" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="Description">  </textarea>            
+             </div>     -->
+            <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                    <textarea rows="1" name="mtdescription"  id="mtdescription" ng-model="mtdescription" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="Description">  </textarea>            
                     <div class="error" ng-show="form.mtdescription.$dirty && form.mtdescription.$invalid">
                         <small class="error" ng-show="form.mtdescription.$error.required">El Password es obligatorio. </small>
                         <small class="error" ng-show="form.mtdescription.$error.minlength">Password al menos de 6 caracteres </small>
@@ -54,7 +51,7 @@
                             <th></th>
                             <th>Methodo</th>
                             <th>Description</th>
-                            <th>methodology</th>
+                            <!--<th>methodology</th>-->
                          </tr>
                     </thead>
                     <tbody>
@@ -62,13 +59,11 @@
                             <td><button ng-click="selectmethod(item.mtoid,item.mtname,item.mtdescription,item.mestatus,item.mtoid,item.meauthor)"><span class="glyphicon glyphicon-edit"></span></button></td>
                             <td>{{item.mtname}}</td>
                             <td>{{item.mtdescription}}</td>
-                            <td>{{item.meoid}}</td>
+                            <!--<td>{{item.meoid}}</td>-->
                          </tbody>
                 </table>
             </div>
         </div>
     </div>
     </div>
-
-        
 </form>

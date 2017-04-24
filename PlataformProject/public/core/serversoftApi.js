@@ -212,6 +212,18 @@ ServersoftApi.factory("method", ['$resource', 'commonvariable', function ($resou
   	});
 }]);
 
+ServersoftApi.factory("system", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "system/:sysoid",
+	{ mtoid: '@sysoid' },
+  	{
+  	    get: { method: "GET", isArray: true },
+  	    post: { method: "POST" },
+  	    put: { method: "PUT", isArray: true },
+  	    remove: { method: 'DELETE' }
+  	});
+}]);
+
+
 ServersoftApi.factory("methodology", ['$resource', 'commonvariable', function ($resource, commonvariable) {
     return $resource(commonvariable.url + "methodology/:meoid",
 	{ meoid: '@meoid' },

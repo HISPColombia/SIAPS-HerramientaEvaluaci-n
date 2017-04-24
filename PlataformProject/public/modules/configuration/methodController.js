@@ -82,7 +82,7 @@ var $translate = $filter('translate');
            $scope.listmethodology = resp;
        });
     };
-$scope.getmethodology();
+    $scope.getmethodology();
         
         $scope.closeAlert = function (index) {
             $scope.alerts.splice(index, 1);

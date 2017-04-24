@@ -12,20 +12,13 @@
 <form name="form">
     <div>
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+            <div class="col-xs-12 col-sm-12 col-md-12 form-group">
                 <input type="text" class="form-control" name="mename" ng-model="mename" ng-minlength="3" ng-maxlength="100" required  placeholder="Metric Name" />
                 <div class="error-container" ng-show="form.mename.$dirty && form.mename.$invalid">
                     <small class="error" ng-show="form.mename.$error.required"></small>
                     <small class="error" ng-show="form.mename.$error.maxlength"></small>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                <select ng-model="atoid" name="atoid" id="atoid" class="form-control" ng-options="p.atname for p in listattribute">
-                    <option value="">-- Seleccione Attribute --</option>
-                </select>
-             </div>   
-
-
         </div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 form-group">
@@ -37,13 +30,10 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                    <input type="text" name="metipeindicador"  id="metipeindicador" ng-model="metipeindicador" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="Indicator">              
-                    <div class="error" ng-show="form.metipeindicador.$dirty && form.metipeindicador.$invalid">
-                        <small class="error" ng-show="form.metipeindicador.$error.required">formula es obligatorio. </small>
-                        <small class="error" ng-show="form.metipeindicador.$error.minlength">Password al menos de 6 caracteres </small>
-                        <small class="error" ng-show="form.metipeindicador.$error.maxlength">Password no mayor a 100 caracteres</small>
-                </div>
-            </div>
+                <select ng-model="atoid" name="atoid" id="atoid" class="form-control" ng-options="p.atname for p in listattribute">
+                    <option value="">-- Seleccione Attribute --</option>
+                </select>
+             </div>   
               <div class="col-xs-12 col-sm-12 col-md-6 form-group">
                     <input type="text" name="mevaluemin"  id="mevaluemin" ng-model="mevaluemin" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="Min Value">              
                     <div class="error" ng-show="form.mevaluemin.$dirty && form.mevaluemin.$invalid">

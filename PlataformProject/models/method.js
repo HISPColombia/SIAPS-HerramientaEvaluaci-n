@@ -1,22 +1,22 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('system', {
-    sysoid: {
+  return sequelize.define('method', {
+    mtoid: {
       type: DataTypes.DOUBLE,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    sysname: {
-      type: DataTypes.TEXT,
+    mtname: {
+      type: DataTypes.STRING,
       allowNull: false
     },
-    initials: {
-      type: DataTypes.CHAR,
+    mtdescription: {
+      type: DataTypes.TEXT,
       allowNull: true
     }
   }, {
-    tableName: 'system'
+    tableName: 'method'
   });
 };

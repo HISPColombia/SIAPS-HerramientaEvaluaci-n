@@ -1,22 +1,22 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('system', {
-    sysoid: {
+  return sequelize.define('typequestion', {
+    tqoid: {
       type: DataTypes.DOUBLE,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    sysname: {
-      type: DataTypes.TEXT,
+    tqdescription: {
+      type: DataTypes.STRING,
       allowNull: false
     },
-    initials: {
-      type: DataTypes.CHAR,
-      allowNull: true
+    tqstate: {
+      type: DataTypes.DOUBLE,
+      allowNull: false
     }
   }, {
-    tableName: 'system'
+    tableName: 'typequestion'
   });
 };

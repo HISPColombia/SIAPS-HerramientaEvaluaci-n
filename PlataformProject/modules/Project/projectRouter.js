@@ -46,14 +46,14 @@ router.get('/sys/project/nam/:name', function (req, res) {
 });
 
 router.post('/sys/project', function (req, res) {
-    models.project.create({ proid: req.body.proid, prname: req.body.prname, prstatus: req.body.prstatus, prdateend: req.body.prdateend })
+    models.project.create({ proid: req.body.proid, prname: req.body.prname, prstatus: req.body.prstatus, prdateend: req.body.prdateend, meoid: req.body.meoid })
    .then(function (project) {
        publicResource.ReturnResult(res, project);
    })
 });
 
 router.put('/sys/project/:proid', function (req, res) {
-    models.project.update({  prname: req.body.prname, prstatus: req.body.prstatus, prdateend: req.body.prdateend  },
+    models.project.update({  prname: req.body.prname, prstatus: req.body.prstatus, prdateend: req.body.prdateend, meoid: req.body.meoid  },
     { 
         where: {
              proid: req.params.proid 

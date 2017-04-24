@@ -154,13 +154,18 @@ appServersoft.config(function($stateProvider,$translateProvider,$httpProvider,$u
           "sub-content@dashboard": { templateUrl:"/modules/configuration/metricView.html", controller: "metricController"}
         }     
       })
-
-      .state('dashboard.mainconfiguration.methodology', {
-        url: "/methodology",
+      .state('dashboard.mainconfiguration.system', {
+        url: "/system",
         views: {
-          "sub-content@dashboard": { templateUrl:"/modules/configuration/methodologyView.html", controller: "methodologyController"}
+          "sub-content@dashboard": { templateUrl:"/modules/configuration/systemView.html", controller: "systemController"}
         }     
       })
+      // .state('dashboard.mainconfiguration.methodology', {
+      //   url: "/methodology",
+      //   views: {
+      //     "sub-content@dashboard": { templateUrl:"/modules/configuration/methodologyView.html", controller: "methodologyController"}
+      //   }     
+      // })
 
       .state('dashboard.mainconfiguration.method', {
         url: "/method",
