@@ -3,26 +3,14 @@
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('PHCPhase', {
     phoid: {
-      type: 'NUMERIC',
+      type: DataTypes.DOUBLE,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    phaseid: {
-      type: 'NUMERIC',
+    phcDescription: {
+      type: DataTypes.CHAR,
       allowNull: false
-    },
-    phdimension: {
-      type: 'NUMERIC',
-      allowNull: true
-    },
-    phdimension2: {
-      type: 'NUMERIC',
-      allowNull: true
-    },
-    phdimension3: {
-      type: 'NUMERIC',
-      allowNull: true
     }
   }, {
     tableName: 'PHCPhase'

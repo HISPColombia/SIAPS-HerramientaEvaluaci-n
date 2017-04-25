@@ -93,7 +93,14 @@ appServersoft.config(function($stateProvider,$translateProvider,$httpProvider,$u
       .state('dashboard.mainproject.participation', {
         url: "/participation",
         views: {
-          "sub-content@dashboard": { templateUrl:"/modules/project/participationView", controller: "participationController"}
+          "sub-content@dashboard": { templateUrl:"/modules/project/participationView.html", controller: "participationController"}
+        }     
+      })
+
+       .state('dashboard.mainproject.systemproject', {
+        url: "/systemproject",
+        views: {
+          "sub-content@dashboard": { templateUrl:"/modules/project/systemprojectView.html", controller: "systemprojectController"}
         }     
       })
       

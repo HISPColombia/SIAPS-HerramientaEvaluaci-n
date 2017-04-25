@@ -2,18 +2,30 @@
 
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('participation', {
-    proid: {
-      type: 'NUMERIC',
+    ptoid: {
+      type: DataTypes.DOUBLE,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
+    proid: {
+      type: DataTypes.DOUBLE,
+      allowNull: false,
+      references: {
+        model: 'project',
+        key: 'proid'
+      }
+    },
     faoid: {
-      type: 'NUMERIC',
-      allowNull: false
+      type: DataTypes.DOUBLE,
+      allowNull: false,
+      references: {
+        model: 'facility',
+        key: 'faoid'
+      }
     },
     phoid: {
-      type: 'NUMERIC',
+      type: DataTypes.DOUBLE,
       allowNull: false,
       references: {
         model: 'PHCPhase',

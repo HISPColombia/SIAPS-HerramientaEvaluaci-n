@@ -19,14 +19,14 @@ router.get('/sys/PHCPhase/id/:phoid', function (req, res) {
 });
 
 router.post('/sys/PHCPhase', function (req, res) {
-    models.PHCPhase.create({ phoid: req.body.phoid, phaseid: req.body.phaseid, phdimension: req.body.phdimension, phdimension2: req.body.phdimension2, phdimension3: req.body.phdimension3 })
+    models.PHCPhase.create({ phoid: req.body.phoid, phcDescription: req.body.phcDescription })
    .then(function (PHCPhase) {
        publicResource.ReturnResult(res, PHCPhase);
    })
 });
 
 router.put('/sys/PHCPhase/:phoid', function (req, res) {
-    models.PHCPhase.update({ phaseid: req.body.phaseid, phdimension: req.body.phdimension, phdimension2: req.body.phdimension2, phdimension3: req.body.phdimension3 },
+    models.PHCPhase.update({ phaseid: req.body.phaseid, phcDescription: req.body.phcDescription },
     { 
         where: {
              phoid: req.params.phoid 

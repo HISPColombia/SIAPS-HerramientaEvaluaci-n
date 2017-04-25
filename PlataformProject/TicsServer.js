@@ -130,6 +130,9 @@ app.use("/api",variable);
 var rolesubdimension = require("./Modules/Configuration/rolesubdimensionRouter.js")
 app.use("/api",rolesubdimension);
 
+var systemproject = require("./Modules/Configuration/systemprojectRouter.js")
+app.use("/api",systemproject);
+
 //Routers Project
 
 var responsevalue = require("./Modules/Project/responsevalueRouter.js")

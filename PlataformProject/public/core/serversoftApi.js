@@ -113,9 +113,32 @@ ServersoftApi.factory("facility", ['$resource', 'commonvariable', function ($res
   	});
 }]);
 
+ServersoftApi.factory("teamproject", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "teamproject/:tpoid",
+	{ tpoid: '@tpoid' },
+  	{
+  	    get: { method: "GET", isArray: true },
+  	    post: { method: "POST" },
+  	    put: { method: "PUT", isArray: true },
+  	    remove: { method: 'DELETE' }
+  	});
+}]);
+
+ServersoftApi.factory("systemproject", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "systemproject/:sysproid",
+	{ tpoid: '@sysproid' },
+  	{
+  	    get: { method: "GET", isArray: true },
+  	    post: { method: "POST" },
+  	    put: { method: "PUT", isArray: true },
+  	    remove: { method: 'DELETE' }
+  	});
+}]);
+
 ServersoftApi.factory("participation", ['$resource', 'commonvariable', function ($resource, commonvariable) {
-    return $resource(commonvariable.url + "participation/:proid",
-	{ proid: '@proid' },
+	console.log("Factory participation");
+    return $resource(commonvariable.url + "participation/:ptoid",
+	{ proid: '@ptoid' },
   	{
   	    get: { method: "GET", isArray: true },
   	    post: { method: "POST" },
@@ -135,16 +158,6 @@ ServersoftApi.factory("PHCPhase", ['$resource', 'commonvariable', function ($res
   	});
 }]);
 
-ServersoftApi.factory("teamproject", ['$resource', 'commonvariable', function ($resource, commonvariable) {
-    return $resource(commonvariable.url + "teamproject/:tpoid",
-	{ tpoid: '@tpoid' },
-  	{
-  	    get: { method: "GET", isArray: true },
-  	    post: { method: "POST" },
-  	    put: { method: "PUT", isArray: true },
-  	    remove: { method: 'DELETE' }
-  	});
-}]);
 
 ServersoftApi.factory("typefacility", ['$resource', 'commonvariable', function ($resource, commonvariable) {
     return $resource(commonvariable.url + "typefacility/:tfoid",

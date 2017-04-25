@@ -10,10 +10,10 @@ router.get('/sys/participation', function (req, res) {
     });
 });
 
-router.get('/sys/participation/id/:proid', function (req, res) {
+router.get('/sys/participation/id/:ptoid', function (req, res) {
     models.participation.findAll({ 
         where: {
-            proid: req.params.proid }}).then(function (result) {
+            ptoid: req.params.ptoid }}).then(function (result) {
         publicResource.ReturnResult(res, result);
     });
 });
@@ -35,25 +35,25 @@ router.get('/sys/participation/fkphoid/:phoid', function (req, res) {
 });
 
 router.post('/sys/participation', function (req, res) {
-    models.participation.create({ proid: req.body.proid, faoid: req.body.faoid, phoid: req.body.phoid })
+    models.participation.create({ ptoid: req.body.ptoid, faoid: req.body.faoid, phoid: req.body.phoid })
    .then(function (participation) {
        publicResource.ReturnResult(res, participation);
    })
 });
 
-router.put('/sys/participation/:proid', function (req, res) {
-    models.participation.update({ faoid: req.body.faoid, rooid: req.body.rooid },
+router.put('/sys/participation/:ptoid', function (req, res) {
+    models.participation.update({ proid: req.body.proid, faoid: req.body.faoid, phoid: req.body.phoid },
     { 
         where: {
-             proid: req.params.proid 
+             ptoid: req.params.ptoid 
             }
         }).then(function (participation) {
        publicResource.ReturnResult(res, participation);
    })
 });
 
-router.delete('/sys/participation/:proid', function (req, res) {
-    models.participation.destroy({ where: { proid: req.params.proid }})
+router.delete('/sys/participation/:ptoid', function (req, res) {
+    models.participation.destroy({ where: { ptoid: req.params.ptoid }})
     .then(function (participation) {
        publicResource.ReturnResult(res, participation);
    })

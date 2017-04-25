@@ -1,5 +1,6 @@
 /* jshint indent: 2 */
 
+
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('responsevalue', {
     rvoid: {
@@ -51,8 +52,12 @@ module.exports = function(sequelize, DataTypes) {
         model: 'question',
         key: 'quoid'
       }
+    },
+    image: {
+      type: DataTypes.TEXT,
+      allowNull: true
     }
   }, {
     tableName: 'responsevalue'
   });
-};
+}
