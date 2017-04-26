@@ -39,6 +39,14 @@ var $translate = $filter('translate');
        });
     };
    $scope.getproject();
+
+   $scope.getmethodology = function () {
+        methodology.get({})
+       .$promise.then(function (resp) {
+           $scope.listmethodology = resp;
+       });
+    };
+    $scope.getmethodology();
    
    $scope.deleteproject = function (proid) {
     project.delete({proid: proid})
@@ -47,6 +55,7 @@ var $translate = $filter('translate');
            $scope.initform();
        });
    };
+
  $scope.getEstado = function (id) {
         return $scope.lstEstados[id].Descripcion;
     };
@@ -81,8 +90,7 @@ var $translate = $filter('translate');
             $scope.addAlert = function (menssage) {
             $scope.alerts.push({ label: " ", msg: menssage });
         };
-
-  $scope.getNameMetodologia = function (meoid) {
+      $scope.getNameMetodologia = function (meoid) {
       if(meoid > 0){
         var mt = $scope.listmethodology.filter(function (item) {
             return item.meoid == meoid;
@@ -90,14 +98,8 @@ var $translate = $filter('translate');
          return mt[0].medescription;
       }
     };
-    
-   $scope.getmethodology = function () {
-        methodology.get({})
-       .$promise.then(function (resp) {
-           $scope.listmethodology = resp;
-       });
-    };
-    $scope.getmethodology();
+
+
 
     $scope.open = function ($event) {
         $event.preventDefault();

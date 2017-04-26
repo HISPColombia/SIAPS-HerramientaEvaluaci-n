@@ -33,15 +33,6 @@ var $translate = $filter('translate');
     };
    $scope.getproject();
 
-   $scope.getsystemproject = function () {
-         systemproject.get({})
-        .$promise.then(function (resp) {
-            $scope.listsystemproject = resp;
-        });
-     };
-    $scope.getsystemproject();
-
-
    $scope.getSystem = function () {
         system.get({})
        .$promise.then(function (resp) {
@@ -72,8 +63,8 @@ var $translate = $filter('translate');
       });
     };
 
-    $scope.updatesystemproject = function (sysproid,proid,sysoid) {
-        systemproject.put({ sysproid: sysproid, proid: proid.proid, sysoid: sysoid.sysoid })
+    $scope.updatesystemproject = function (proid,sysoid) {
+        systemproject.put({ sysproid:$scope.sysproid, proid: proid.proid, sysoid: sysoid.sysoid })
         .$promise.then(function (resp) {
           if (resp.sysproid > 0) {
               $scope.getsystemproject();
@@ -88,6 +79,15 @@ var $translate = $filter('translate');
             $scope.addAlert = function (menssage) {
             $scope.alerts.push({ label: " ", msg: menssage });
         };
+
+   $scope.getsystemproject = function () {
+         systemproject.get({})
+        .$promise.then(function (resp) {
+            $scope.listsystemproject = resp;
+        });
+     };
+    $scope.getsystemproject();
+
 
   $scope.getNameProject = function (proid) {
       if(proid > 0){

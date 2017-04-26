@@ -5,7 +5,7 @@
 </div>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-3 ">
-           <input type="text" class="form-control materail_input" ng-model="query" placeholder="Ingrese busqueda">
+           <input type="text" class="form-control materail_input" ng-model="query" placeholder={{'PERSON'| translate}}>
     </div>
 </div>
 <hr class="colorgraph"> 
@@ -14,20 +14,20 @@
         <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 form-group">
                 <select ng-model="proid" name="proid" id="proid" class="form-control" ng-options="p.prname for p in listproject">
-                    <option value="">-- Seleccione un teamprojecto --</option>
+                    <option value="">-- Seleccione un Projecto --</option>
                 </select>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 form-group">
                 <select ng-model="sysoid" name="sysoid" id="sysoid" class="form-control" ng-options="p.sysname for p in listSystem">
-                    <option value="">-- Seleccione un Rol --</option>
+                    <option value="">-- Seleccione un Systema --</option>
                 </select>
         </div> 
            
         <div>
-            <button type="button" class="btn btn-success" ng-click="saveteamproject(proid,sysoid);" ng-show="mode=='create'">Guardar</button>
-            <button type="button" class="btn btn-success" ng-click="updateteamproject(proid,sysoid);" ng-show="mode=='edit'">Actualizar</button>
+            <button type="button" class="btn btn-success" ng-click="savesystemproject(proid,sysoid);" ng-show="mode=='create'">Guardar</button>
+            <button type="button" class="btn btn-success" ng-click="updatesystemproject(proid,sysoid);" ng-show="mode=='edit'">Actualizar</button>
             <button type="button" class="btn btn-success" ng-click="deletesystemproject();" ng-show="mode=='edit'">Eliminar</button>
-            <button class="btn btn-default" ng-click="initform()" data-toggle="collapse" data-target="#teamproject">{{'ROOM_CANCEL'|translate}}</button>
+            <button class="btn btn-default" ng-click="initform()" data-target="#systemproject">{{'ROOM_CANCEL'|translate}}</button>
         </div>
     </div>
  </div>
@@ -44,7 +44,7 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="item in listsystemproject | filter:query">
-                            <td><button data-toggle="collapse" data-target="#teamproject" ng-click="selectteamproject(item.sysproid, item.proid, item.sysoid )"><span class="glyphicon glyphicon-edit"></span></button></td>
+                            <td><button data-target="#systemproject" ng-click="selectsystemproject(item.sysproid, item.proid, item.sysoid )"><span class="glyphicon glyphicon-edit"></span></button></td>
                             <td>{{getNameProject(item.proid)}}</td>
                             <td>{{getnameSystem(item.sysoid)}}</td>
                     </tbody>

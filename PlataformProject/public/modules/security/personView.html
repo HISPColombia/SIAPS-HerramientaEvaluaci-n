@@ -1,46 +1,42 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-4 ">
-       <h1>{{'PERSON'| translate}} </h1>
+       <h1>{{'PERSON'| translate}}</h1>
     </div>
 
 </div>
 <div class="row">
     <div class="col-xs-3 col-sm-3 col-md-3 ">
-           <input type="text" class="form-control materail_input" ng-model="query" placeholder="Ingrese busqueda">
-    </div>
-    <div class="col-xs-3 col-sm-3 col-md-3 ">
-        <label>New</label>
-       <button class="glyphicon glyphicon-download-alt" data-toggle="collapse" data-target="#Person"></button>
+           <input type="text" class="form-control materail_input" ng-model="query" placeholder="{{'FILTER'| translate}} ">
     </div>
 </div>
 <hr class="colorgraph"> 
 <form name="form">
-    <div id="Person" class="collapse">
     <div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 form-group">
                 <input type="text" class="form-control" name="peidentify" ng-model="peidentify" ng-minlength="3" ng-maxlength="50" required  placeholder="{{'LIDENTIFY'| translate}}" />
                 <div class="error-container" ng-show="form.peidentify.$dirty && form.peidentify.$invalid">
-                    <small class="error" ng-show="form.peidentify.$error.required">{{'IDENTIFY_REQUIRED'| translate}}</small>
-                    <small class="error" ng-show="form.peidentify.$error.maxlength">{{'IDENTIFY_LONG'| translate}}</small>
+                    <small class="error" ng-show="form.peidentify.$error.required">{{'REQUIRED'| translate}}{{'LIDENTIFY'| translate}}</small>
+                    <small class="error" ng-show="form.peidentify.$error.minlength">{{'LONG'| translate}}</small>
+                    <small class="error" ng-show="form.peidentify.$error.maxlength">{{'LONG'| translate}}</small>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 form-group">
                 <input type="text" class="form-control" name="pename" ng-model="pename" ng-minlength="3" ng-maxlength="50" required  placeholder="{{'LNAME'| translate}}"/>
-                <div class="error" ng-show="form.txtNombre.$dirty && form.txtNombre.$invalid">
-                    <small class="error" ng-show="form.txtNombre.$error.required">El nombre es obligatorio. </small>
-                    <small class="error" ng-show="form.txtNombre.$error.minlength">Nombre al menos de 3 caracteres </small>
-                    <small class="error" ng-show="form.txtNombre.$error.maxlength">Nombre no mayor a 50 caracteres </small>
+                <div class="error" ng-show="form.pename.$dirty && form.pename.$invalid">
+                    <small class="error" ng-show="form.pename.$error.required">{{'REQUIRED'| translate}}{{'LNAME'| translate}}</small>
+                    <small class="error" ng-show="form.pename.$error.minlength">{{'LONG'| translate}}</small>
+                    <small class="error" ng-show="form.pename.$error.maxlength">{{'LONG'| translate}}</small>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6">
                 <input type="text" class="form-control" name="pesurname" ng-model="pesurname" ng-minlength="3" ng-maxlength="50" required placeholder="{{'LSURNAME'| translate}}"/>
-                <div class="error" ng-show="form.txtApellido.$dirty && form.txtApellido.$invalid">
-                    <small class="error" ng-show="form.txtApellido.$error.required">El apellido es obligatorio. </small>
-                    <small class="error" ng-show="form.txtApellido.$error.minlength">Apellido al menos de 3 caracteres </small>
-                    <small class="error" ng-show="form.txtApellido.$error.maxlength">Apellido no mayor a 50 caracteres</small>
+                <div class="error" ng-show="form.pesurname.$dirty && form.pesurname.$invalid">
+                    <small class="error" ng-show="form.pesurname.$error.required">{{'REQUIRED'| translate}}{{'LSURNAME'| translate}}</small>
+                    <small class="error" ng-show="form.pesurname.$error.minlength">{{'LONG'| translate}}</small>
+                    <small class="error" ng-show="form.pesurname.$error.maxlength">{{'LONG'| translate}}</small>
                 </div>
             </div>
         </div>
@@ -48,17 +44,18 @@
             <div class="col-xs-12 col-sm-12 col-md-6 form-group">
                 <input type="email" class="form-control" name="pemail" ng-model="pemail" ng-minlength="3" ng-maxlength="50" required placeholder="{{'LEMAIL'| translate}}">
                 <div class="error-container" ng-show="form.pemail.$dirty && form.pemail.$invalid">
-                    <small class="error" ng-show="form.pemail.$error.required">El email es obligatorio.</small>
-                    <small class="error" ng-show="form.pemail.$error.minlength">Email al menos de 3 caracteres</small>
-                    <small class="error" ng-show="form.pemail.$error.email">No es un Email valido.</small>
-                    <small class="error" ng-show="form.pemail.$error.maxlength">Email no mayor a 50 caracteres</small>
+                    <small class="error" ng-show="form.pemail.$error.required">{{'REQUIRED'| translate}}{{'LEMAIL'| translate}}</small>
+                    <small class="error" ng-show="form.pemail.$error.minlength">{{'LONG'| translate}}</small>
+                    <small class="error" ng-show="form.pemail.$error.email">{{'VAL_MAIL'| translate}}</small>
+                    <small class="error" ng-show="form.pemail.$error.maxlength">{{'LONG'| translate}}</small>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6">
                 <input type="text" class="form-control" name="petelephon" ng-model="petelephon"  ng-minlength="8" ng-maxlength="15" required placeholder="{{'TELEPHONE'| translate}}"/>
                 <div class="error" ng-show="form.petelephon.$dirty && form.petelephon.$invalid">
-                    <small class="error" ng-show="form.petelephon.$error.required">El telefono es obligatorio.</small>
-                    <small class="error" ng-show="form.petelephon.$error.maxlength">Telefono no mayor a 15 caracteres</small>
+                    <small class="error" ng-show="form.petelephon.$error.required">{{'REQUIRED'| translate}}{{'TELEPHONE'| translate}}</small>
+                    <small class="error" ng-show="form.petelephon.$error.minlength">{{'LONG'| translate}}</small>
+                    <small class="error" ng-show="form.petelephon.$error.maxlength">{{'LONG'| translate}}</small>
                 </div>
             </div>
         </div>
@@ -74,12 +71,11 @@
             </div>
         </div>
         <div>
-            <button type="button" class="btn btn-success" ng-click="savePerson(peidentify,pename,pesurname,pestudies,peprofdescription,pemail,petelephon);" ng-show="mode=='create'">Guardar</button>
-            <button type="button" class="btn btn-success" ng-click="updatePerson(peoid,peidentify,pename,pesurname,pemail,pestudies,peprofdescription,petelephon);" ng-show="mode=='edit'">Actualizar</button>
-            <button type="button" class="btn btn-success" ng-click="deletePerson(peoid);" ng-show="mode=='edit'">Eliminar</button>
-            <button class="btn btn-default" ng-click="initform()" data-toggle="collapse" data-target="#Person">{{'ROOM_CANCEL'|translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="savePerson(peidentify,pename,pesurname,pestudies,peprofdescription,pemail,petelephon);" ng-show="mode=='create'">{{'BUTTON_SAVE'| translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="updatePerson(peoid,peidentify,pename,pesurname,pemail,pestudies,peprofdescription,petelephon);" ng-show="mode=='edit'">{{'BUTTON_UPDATE'| translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="deletePerson(peoid);" ng-show="mode=='edit'">{{'BUTTON_DELETE'| translate}}</button>
+            <button class="btn btn-default" ng-click="initform()"  data-target="#Person">{{'ROOM_CANCEL'|translate}}</button>
         </div>
-    </div>
 </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 ">
@@ -97,7 +93,7 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="Person in listPerson | filter:query">
-                            <td><button data-toggle="collapse" data-target="#Person" ng-click="selectPerson(Person.peoid,Person.peidentify,Person.pename,Person.pesurname,Person.pemail,Person.pestudies,Person.peprofdescription,Person.petelephon)"><span class="glyphicon glyphicon-edit"></span></button></td>
+                            <td><button  data-target="#Person" ng-click="selectPerson(Person.peoid,Person.peidentify,Person.pename,Person.pesurname,Person.pemail,Person.pestudies,Person.peprofdescription,Person.petelephon)"><span class="glyphicon glyphicon-edit"></span></button></td>
                             <td>{{Person.peidentify}}</td>
                             <td>{{Person.pename}}</td>
                             <td>{{Person.pesurname}}</td>

@@ -77,11 +77,25 @@ var $translate = $filter('translate');
           }
       });
     };
+    // $scope.updateproject = function (proid, prname, prstatus, prdateend, meoid) {
+    //     project.put({ proid: proid, prname: prname, prstatus: prstatus.ID, prdateend: prdateend, meoid: meoid.meoid })
+    //     .$promise.then(function (resp) {
+    //       if (resp.length > 0) {
+    //           $scope.getproject();
+    //           $scope.alerts.push({ msg: $translate("BED_MSG_SUCCESS"), type: 'success' });
+    //           $scope.initform();
+    //       }
+    //       else {
+    //           $scope.alerts.push({ msg: $translate("BED_MSG_ERROR"), type: 'error' });
+    //       }
+    //   });
+    // };
+
 
     $scope.updateparticipation = function (ptoid,proid,faoid,phoid) {
-        participation.put({ ptoid:ptoid, proid: proid.proid, faoid: faoid.faoid, phoid: phoid.phoid  })
+        participation.put({ ptoid: ptoid, proid: proid.proid, faoid: faoid.faoid, phoid: phoid.phoid  })
         .$promise.then(function (resp) {
-          if (resp.ptoid > 0) {
+          if (resp.length > 0) {
               $scope.getparticipation();
               $scope.alerts.push({ msg: $translate("BED_MSG_SUCCESS"), type: 'success' });
               $scope.initform();
@@ -91,6 +105,10 @@ var $translate = $filter('translate');
           }
       });
     };
+       $scope.addAlert = function (menssage) {
+            $scope.alerts.push({ label: " ", msg: menssage });
+        };
+
 
     $scope.getparticipation = function () {
          participation.get({})

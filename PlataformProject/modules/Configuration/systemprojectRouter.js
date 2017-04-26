@@ -4,45 +4,38 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/sys/systemproject', function (req, res) {
-    models.systemproject.findAll({ limit: 1000, order: '"sysoid" ASC' }).then(function (result) {
+    models.systemproject.findAll({ limit: 1000, order: '"sysproid" ASC' }).then(function (result) {
         publicResource.ReturnResult(res, result);
     });
 });
 
-router.get('/sys/systemproject/:sysoid', function (req, res) {
+router.get('/sys/systemproject/:sysproid', function (req, res) {
     models.systemproject.findAll({ 
-        where: { sysoid: req.params.sysoid}}).then(function (result) {
-        publicResource.ReturnResult(res, result);
-    });
-});
-
-router.get('/sys/systemproject/sysDescription/:sysDescription', function (req, res) {
-    models.systemproject.findAll({ 
-        where: { $or: [{sysDescription: {$like: '%'+req.params.sysDescription+'%'}},{qusystemproject: {like: '%'+ req.params.sysDescription+'%'}}] }}).then(function (result) {
+        where: { sysproid: req.params.sysproid}}).then(function (result) {
         publicResource.ReturnResult(res, result);
     });
 });
 
 router.post('/sys/systemproject', function (req, res) {
-    models.systemproject.create({ sysoid: req.body.sysoid, sysDescription: req.body.sysDescription, initials: req.body.initials })
+    models.systemproject.create({ sysoid: req.body.sysoid, proid: req.body.proid })
    .then(function (systemproject) {
        publicResource.ReturnResult(res, systemproject);
    })
 });
 
-router.put('/sys/systemproject/:sysoid', function (req, res) {
-  models.systemproject.update({ sysDescription: req.body.sysDescription, initials: req.body.initials  },
+router.put('/sys/systemproject/:sysproid', function (req, res) {
+  models.systemproject.update({ proid: req.body.proid, sysoid: req.body.sysoid },
     { 
         where: {
-             sysoid: req.params.sysoid 
+             sysproid: req.params.sysproid 
             }
         }).then(function (systemproject) {
        publicResource.ReturnResult(res, systemproject);
    })
 });
 
-router.delete('/sys/systemproject/:sysoid', function (req, res) {
-    models.systemproject.destroy({ where: { sysoid: req.params.sysoid }})
+router.delete('/sys/systemproject/:sysproid', function (req, res) {
+    models.systemproject.destroy({ where: { sysproid: req.params.sysproid }})
     .then(function (systemproject) {
        publicResource.ReturnResult(res, systemproject);
    })
