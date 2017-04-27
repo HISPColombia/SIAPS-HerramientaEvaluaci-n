@@ -1,46 +1,40 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-6 ">
-        <h2>Team teamproject</h2>
+        <h2>{{'TEAM'| translate}}{{'PROJECT'| translate}}</h2>
     </div>
 </div>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-3 ">
-           <input type="text" class="form-control materail_input" ng-model="query" placeholder={{'PERSON'| translate}}>
-    </div>
-    <div class="col-xs-3 col-sm-3 col-md-3 ">
-        <label>New</label>
-       <button class="glyphicon glyphicon-download-alt" data-toggle="collapse" data-target="#teamproject"></button>
+           <input type="text" class="form-control materail_input" ng-model="query" placeholder="{{'FILTER'| translate}}">
     </div>
 </div>
 <hr class="colorgraph"> 
 <form name="form">
-    <div id="teamproject" class="collapse">
     <div>
         <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-3 form-group">
                 <select ng-model="proid" name="proid" id="proid" class="form-control" ng-options="p.prname for p in listproject">
-                    <option value="">-- Seleccione un teamprojecto --</option>
+                    <option value="">{{'SELECTION' | translate}}{{'PROJECT' | translate}}</option>
                 </select>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-3 form-group">
                 <select ng-model="rooid" name="rooid" id="rooid" class="form-control" ng-change="changeRol()" ng-options="p.rodescription for p in listRole">
-                    <option value="">-- Seleccione un Rol --</option>
+                    <option value="">{{'SELECTION' | translate}}{{'ROLE' | translate}}</option>
                 </select>
         </div> 
         <div class="col-xs-12 col-sm-12 col-md-3 form-group">
                 <select ng-model="usoid" name="usoid" id="usoid" class="form-control" ng-options="p.usname for p in listUser">
-                    <option value="">-- Seleccione un Usuario --</option>
+                    <option value="">{{'SELECTION' | translate}}{{'USER' | translate}}</option>
                 </select>
         </div> 
  </div>              
         <div>
-            <button type="button" class="btn btn-success" ng-click="saveteamproject(proid,rooid,usoid);" ng-show="mode=='create'">Guardar</button>
-            <button type="button" class="btn btn-success" ng-click="updateteamproject(tpoid,proid,rooid,usoid);" ng-show="mode=='edit'">Actualizar</button>
-            <button type="button" class="btn btn-success" ng-click="deleteteamproject(tpoid);" ng-show="mode=='edit'">Eliminar</button>
-            <button class="btn btn-default" ng-click="initform()" data-toggle="collapse" data-target="#teamproject">{{'ROOM_CANCEL'|translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="saveteamproject(proid,rooid,usoid);" ng-show="mode=='create'">{{'BUTTON_SAVE'| translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="updateteamproject(tpoid,proid,rooid,usoid);" ng-show="mode=='edit'">{{'BUTTON_UPDATE'| translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="deleteteamproject(tpoid);" ng-show="mode=='edit'">{{'BUTTON_DELETE'| translate}}</button>
+            <button class="btn btn-default" ng-click="initform()" data-target="#teamproject">{{'BUTTON_CANCEL'| translate}}</button>
         </div>
     </div>
- </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 ">
                 <div class="table-responsive">
@@ -48,14 +42,14 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Poject</th>
-                            <th>Rol</th>
-                            <th>Usuario</th>
+                            <th>{{'PROJECT'| translate}}</th>
+                            <th>{{'ROLE'| translate}}</th>
+                            <th>{{'USER'| translate}}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="item in listteamproject | filter:query">
-                            <td><button data-toggle="collapse" data-target="#teamproject" ng-click="selectteamproject(item.tpoid, item.proid, item.rooid, item.usoid )"><span class="glyphicon glyphicon-edit"></span></button></td>
+                            <td><button data-target="#teamproject" ng-click="selectteamproject(item.tpoid, item.proid, item.rooid, item.usoid )"><span class="glyphicon glyphicon-edit"></span></button></td>
                             <td>{{item.prname}}</td>
                             <td>{{item.rodescription}}</td>
                             <td>{{item.usname}}</td>

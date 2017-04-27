@@ -1,11 +1,11 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-6 ">
-        <h2>{{'Facility' | translate}}</h2>
+        <h2>{{'FACILITY' | translate}}</h2>
     </div>
 </div>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-3 ">
-           <input type="text" class="form-control materail_input" ng-model="query" placeholder={{'PERSON'| translate}}>
+           <input type="text" class="form-control materail_input" ng-model="query" placeholder="{{'FILTER'| translate}}">
     </div>
 </div>
 <hr class="colorgraph"> 
@@ -13,24 +13,25 @@
     <div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                <input type="text" class="form-control" name="faname" ng-model="faname" ng-minlength="3" ng-maxlength="100" required  placeholder="facility Name" />
+                <input type="text" class="form-control" name="faname" ng-model="faname" ng-minlength="3" ng-maxlength="100" required  placeholder="{{'NAME_OF'| translate}}{{'FACILITY'| translate}}" />
                 <div class="error-container" ng-show="form.faname.$dirty && form.faname.$invalid">
-                    <small class="error" ng-show="form.faname.$error.required">{{'feature_REQUIRED'| translate}}</small>
-                    <small class="error" ng-show="form.faname.$error.maxlength">{{'feature_LONG'| translate}}</small>
+                    <small class="error" ng-show="form.faname.$error.required">{{'REQUIRED'| translate}}{{'FACILITY'| translate}}</small>
+                    <small class="error" ng-show="form.faname.$error.maxlength">{{'LONG'| translate}}</small>
+                    <small class="error" ng-show="form.faname.$error.maxlength">{{'LONG'| translate}}</small>
                 </div>
             </div>
 
         <div class="col-xs-12 col-sm-12 col-md-6 form-group">
                 <select ng-model="tfoid" name="tfoid" id="tfoid" class="form-control" ng-options="p.tfname for p in listtypefacility">
-                    <option value="">-- Seleccione Type Facility --</option>
+                    <option value="">{{'SELECTION'| translate}}{{'TYPE_FACILITY'| translate}}</option>
                 </select>
         </div>     
  </div>              
         <div>
-            <button type="button" class="btn btn-success" ng-click="savefacility(faname,tfoid);" ng-show="mode=='create'">Guardar</button>
-            <button type="button" class="btn btn-success" ng-click="updatefacility(faoid,faname,tfoid);" ng-show="mode=='edit'">Actualizar</button>
-            <button type="button" class="btn btn-success" ng-click="deletefacility(faoid);" ng-show="mode=='edit'">Eliminar</button>
-            <button class="btn btn-default" ng-click="initform()">{{'ROOM_CANCEL'|translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="savefacility(faname,tfoid);" ng-show="mode=='create'">{{'BUTTON_SAVE'| translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="updatefacility(faoid,faname,tfoid);" ng-show="mode=='edit'">{{'BUTTON_UPDATE'| translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="deletefacility(faoid);" ng-show="mode=='edit'">{{'BUTTON_DELETE'| translate}}</button>
+            <button class="btn btn-default" ng-click="initform()">{{'BUTTON_CANCEL'| translate}}</button>
         </div>
     </div>
 
@@ -42,8 +43,8 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Facility</th>
-                            <th>Type Facility</th>
+                            <th>{{'FACILITY'| translate}}</th>
+                            <th>{{'TYPE_FACILITY'| translate}}</th>
                         </tr>
                     </thead>
                     <tbody>

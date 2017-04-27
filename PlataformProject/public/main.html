@@ -1,20 +1,20 @@
 <br/>
   <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 bhoechie-tab-menu">
-    <div class="list-group" ng-class="{active: $state.includes('dashboard')}" >
+    <div class="list-group" >
         <a ui-sref-active="active"><a ui-sref=".mainchars.chars" class="list-group-item text-center">
-             <h4 class="glyphicon glyphicon-signal"></h4><br/>Chars
+             <h4 class="glyphicon glyphicon-signal"></h4><br/>{{'CHARS'|translate}}
         </a>
          <a ui-sref-active="active"><a ui-sref=".mainproject.project" class="list-group-item text-center">
-            <h4 class="glyphicon glyphicon-globe"></h4><br/>Project
+            <h4 class="glyphicon glyphicon-globe"></h4><br/>{{'PROJECT'|translate}}
          </a>
          <a ui-sref-active="active"><a ui-sref=".mainconfiguration.attribute" class="list-group-item text-center">
-             <h4 class="glyphicon glyphicon-cog"></h4><br/>Configuration
+             <h4 class="glyphicon glyphicon-cog"></h4><br/>{{'CONFIGURATION'|translate}}
          </a>
         <a ui-sref-active="active"><a ui-sref=".mainsecurity.person" class="list-group-item active text-center">
-           <h4 class="glyphicon glyphicon-lock"></h4><br/>Security
+           <h4 class="glyphicon glyphicon-lock"></h4><br/>{{'SECURITY'|translate}}
          </a>
          <a href="#/adminaccess" ng-click="shutdown()" class="list-group-item text-center">
-             <h4 class="glyphicon glyphicon-off"></h4><br/>Sing out
+             <h4 class="glyphicon glyphicon-off"></h4><br/>{{'SING_OUT'|translate}}
          </a>
         </div>
   </div>

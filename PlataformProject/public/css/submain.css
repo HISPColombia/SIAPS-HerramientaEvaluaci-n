@@ -1,63 +1,15 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700);
 /* written by riliwan balogun http://www.facebook.com/riliwan.rabo*/
-.board{
-    width: 100%;
-margin: 100px auto;
-height: 500px;
-background: #fff;
-/*box-shadow: 10px 10px #ccc,-10px 20px #ddd;*/
-}
-.board .nav-tabs {
-    position: absolute;
-    /* border-bottom: 0; */
-    width: 100%; 
-    margin: 10px auto;
-    margin-bottom: 0;
-    box-sizing: border-box;
-
-}
-
-.board > div.board-inner{
-    background: #fafafa url(http://subtlepatterns.com/patterns/geometry2.png);
-    background-size: 100%;
-}
-
-p.narrow{
-    width: 60%;
-    margin: 10px auto;
-}
-
-.liner{
-    height: 2px;
-    background: #ddd;
-    position: absolute;
-    width: 80%;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    top: 50%;
-    z-index: 1;
-}
-
-.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
-    color: #555555;
-    cursor: default;
-    /* background-color: #ffffff; */
-    border: 0;
-    border-bottom-color: transparent;
-}
 
 span.round-tabs{
-    width: 100px;
-    height: 30px;
-    line-height: 50px;
-    display: inline-block;
+    width: 110px;
+    height: 50px;
     border-radius: 60px;
-    background: white;
     z-index: 2;
     position: absolute;
     left: 0;
     text-align: center;
+    text-align-last: center;
     font-size: 14px;
 }
 
@@ -187,19 +139,7 @@ li.active span.round-tabs.twelve{
 .nav-tabs > li {
     width: 8%;
 }
-/*li.active:before {
-    content: " ";
-    position: absolute;
-    left: 45%;
-    opacity:0;
-    margin: 0 auto;
-    bottom: -2px;
-    border: 10px solid transparent;
-    border-bottom-color: #fff;
-    z-index: 1;
-    transition:0.2s ease-in-out;
-}*/
-.nav-tabs > li:after {
+/*.nav-tabs > li:after {
     content: " ";
     position: absolute;
     left: 0%;
@@ -210,21 +150,21 @@ li.active span.round-tabs.twelve{
     border-bottom-color: #ddd;
     transition:0.1s ease-in-out;
     
-}
+}*/
 .nav-tabs > li.active:after {
     content: " ";
     position: absolute;
-    left: 0%;
-   opacity:1;
+    left: 50%;
+    opacity:1;
     margin: 0 auto;
     bottom: 0px;
     border: 10px solid transparent;
-    border-bottom-color: #ddd;
+    border-bottom-color: #5cb85c;
     
 }
 .nav-tabs > li a{
-   width: 100px;
-   height: 60px;
+   width: 112px;
+   height: 70px;
    margin: 10px auto;
    border-radius: 100%;
    padding: 0;

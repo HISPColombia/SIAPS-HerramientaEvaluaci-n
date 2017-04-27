@@ -1,11 +1,11 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-6 ">
-        <h2>Dimension</h2>
+        <h2>{{'DIMENSION'| translate}}</h2>
     </div>
 </div>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-3 ">
-           <input type="text" class="form-control materail_input" ng-model="query" placeholder={{'PERSON'| translate}}>
+           <input type="text" class="form-control materail_input" ng-model="query" placeholder="{{'FILTER'| translate}}">
     </div>
 </div>
 <hr class="colorgraph"> 
@@ -13,11 +13,11 @@
     <div>
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-3 form-group">
-                <input type="text" class="form-control" name="diname" ng-model="diname" required="required" ng-minlength="3" ng-maxlength="100" required  placeholder="Dimension"/>
+                <input type="text" class="form-control" name="diname" ng-model="diname" required="required" ng-minlength="3" ng-maxlength="100" required  placeholder="{{'NAME_OF'| translate}}{{'DIMENSION'| translate}}"/>
                 <div class="error" ng-show="form.diname.$dirty && form.diname.$invalid">
-                    <small class="error" ng-show="form.diname.$error.required">El campo es obligatorio. </small>
-                    <small class="error" ng-show="form.diname.$error.minlength">El campo debe tener al menos de 3 caracteres </small>
-                    <small class="error" ng-show="form.diname.$error.maxlength">El campo no debe tener mas de 100 caracteres </small>
+                    <small class="error" ng-show="form.diname.$error.required">{{'REQUIRED'| translate}}{{'DIMENSION'| translate}}</small>
+                    <small class="error" ng-show="form.diname.$error.minlength">{{'LONG'| translate}}</small>
+                    <small class="error" ng-show="form.diname.$error.maxlength">{{'LONG'| translate}}</small>
                 </div>
             </div>
         </div>
@@ -25,7 +25,7 @@
             <button type="button" class="btn btn-success" ng-click="saveDimension(diname);" ng-show="mode=='create'">{{'BUTTON_SAVE'| translate}}</button>
             <button type="button" class="btn btn-success" ng-click="updateDimension(dioid,diname);" ng-show="mode=='edit'">{{'BUTTON_UPDATE'| translate}}</button>
             <button type="button" class="btn btn-success" ng-click="deleteDimension(dioid);" ng-show="mode=='edit'">{{'BUTTON_DELETE'| translate}}</button>
-            <button class="btn btn-default" ng-click="initform()">{{'ROOM_CANCEL'|translate}}</button>
+            <button class="btn btn-default" ng-click="initform()">{{'BUTTON_CANCEL'|translate}}</button>
         </div>
     </div>
 
@@ -37,7 +37,7 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Dimension</th>
+                            <th>{{'DIMENSION'| translate}}</th>
                         </tr>
                     </thead>
                     <tbody>

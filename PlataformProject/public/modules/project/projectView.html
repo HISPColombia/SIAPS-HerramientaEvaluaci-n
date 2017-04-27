@@ -5,7 +5,7 @@
 </div>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-3 ">
-           <input type="text" class="form-control materail_input" ng-model="query" placeholder={{'PERSON'| translate}}>
+           <input type="text" class="form-control materail_input" ng-model="query" placeholder="{{'FILTER'| translate}}">
     </div>
 </div>
 <hr class="colorgraph"> 
@@ -13,25 +13,26 @@
     <div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-4 form-group">
-                <input type="text" class="form-control" name="prname" ng-model="prname" ng-minlength="3" ng-maxlength="100" required  placeholder="Project Name" />
+                <input type="text" class="form-control" name="prname" ng-model="prname" ng-minlength="3" ng-maxlength="100" required  placeholder="{{'NAME_OF'| translate}}{{'PROJECT'| translate}}" />
                 <div class="error-container" ng-show="form.prname.$dirty && form.prname.$invalid">
-                    <small class="error" ng-show="form.prname.$error.required">{{'feature_REQUIRED'| translate}}</small>
+                    <small class="error" ng-show="form.prname.$error.required">{{'REQUIRED'| translate}}{{'PROJECT'| translate}}</small>
+                    <small class="error" ng-show="form.prname.$error.minlength">{{'feature_LONG'| translate}}</small>
                     <small class="error" ng-show="form.prname.$error.maxlength">{{'feature_LONG'| translate}}</small>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 form-group">
                 <select ng-model="meoid" name="meoid" id="meoid" class="form-control" ng-options="p.mename +' '+ p.medescription for p in listmethodology">
-                    <option value="">-- Select {{'methodology'| translate}}--</option>
+                    <option value="">{{'SELECTION'| translate}}{{'METODOLOGY'| translate}}</option>
                 </select>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-2 form-group">
                 <select name="prstatus"  id="prstatus" ng-model="prstatus" class="form-control" ng-options="e.Descripcion for e in lstEstados">
-                   <option value="">-- Selection Estatus --</option>
+                   <option value="">{{'STATUS'| translate}}</option>
                 </select>
             </div>   
             <div class="col-xs-12 col-sm-12 col-md-2 form-group">
                 <div class="input-group">
-                    <input type="text" class="form-control" datepicker-popup="yyyy/MM/dd" ng-model="prdateend" name="prdateend" is-open="opened" close-text="Close" min="{{min}}" max="{{max}}" placeholder="Fin Project (yyyy/mm/dd)"/>
+                    <input type="text" class="form-control" datepicker-popup="yyyy/MM/dd" ng-model="prdateend" name="prdateend" is-open="opened" close-text="Close" min="{{min}}" max="{{max}}" placeholder="{{'END'|translate}}{{'PROJECT'|translate}}{{'DATE_FORMAT'|translate}}"/>
                     <span class="input-group-btn">
                         <button class="btn btn-warning" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
@@ -39,10 +40,10 @@
             </div>     
  </div>              
         <div>
-            <button type="button" class="btn btn-success" ng-click="saveproject(prname,prstatus,prdateend,meoid);" ng-show="mode=='create'">Guardar</button>
-            <button type="button" class="btn btn-success" ng-click="updateproject(proid,prname,prstatus,prdateend,meoid);" ng-show="mode=='edit'">Actualizar</button>
-            <button type="button" class="btn btn-success" ng-click="deleteproject(proid);" ng-show="mode=='edit'">Eliminar</button>
-            <button class="btn btn-default" ng-click="initform()" data-toggle="collapse" data-target="#project">{{'ROOM_CANCEL'|translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="saveproject(prname,prstatus,prdateend,meoid);" ng-show="mode=='create'">{{'BUTTON_SAVE'| translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="updateproject(proid,prname,prstatus,prdateend,meoid);" ng-show="mode=='edit'">{{'BUTTON_UPDATE'| translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="deleteproject(proid);" ng-show="mode=='edit'">{{'BUTTON_DELETE'| translate}}</button>
+            <button class="btn btn-default" ng-click="initform()" data-target="#project">{{'BUTTON_CANCEL'| translate}}</button>
         </div>
     </div>
 
@@ -53,15 +54,15 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th>project</th>
-                            <th>metodologia</th>
-                            <th>Estatus</th>
-                            <th>Finalización</th>
+                            <th>{{'PROJECT'| translate}}</th>
+                            <th>{{'METODOLOGY'| translate}}</th>
+                            <th>{{'STATUS'| translate}}</th>
+                            <th>{{'END'| translate}}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="item in listproject | filter:query">
-                            <td><button data-toggle="collapse" data-target="#project" ng-click="selectproject(item.proid, item.prname, item.prstatus, item.prdateend, item.meoid)"><span class="glyphicon glyphicon-edit"></span></button></td>
+                            <td><button data-target="#project" ng-click="selectproject(item.proid, item.prname, item.prstatus, item.prdateend, item.meoid)"><span class="glyphicon glyphicon-edit"></span></button></td>
                             <td>{{item.prname}}</td>
                             <td>{{getNameMetodologia(item.meoid)}}</td>
                             <td>{{getEstado(item.prstatus)}}</td>

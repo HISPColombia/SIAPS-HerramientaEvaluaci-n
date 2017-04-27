@@ -20,14 +20,14 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 form-group">
-                     <input type="text" class="form-control" name="initials" ng-model="initials" ng-minlength="3" ng-maxlength="100" required  placeholder="{{'DESCRIPTION'| translate}}{{'SYSTEM'| translate}}" />
+                     <input type="text" class="form-control" name="initials" ng-model="initials" ng-minlength="3" ng-maxlength="100" required  placeholder="{{'INITIALS'| translate}}{{'SYSTEM'| translate}}" />
             </div>
     </div>
       <div>
-            <button type="button" class="btn btn-success" ng-click="savesystem(sysname,initials);" ng-show="mode=='create'">Guardar</button>
-            <button type="button" class="btn btn-success" ng-click="updatesystem(sysoid,sysname,initials);" ng-show="mode=='edit'">Actualizar</button>
-            <button type="button" class="btn btn-success" ng-click="deletesystem(sysoid);" ng-show="mode=='edit'">Eliminar</button>
-            <button class="btn btn-default" ng-click="initform()">{{'ROOM_CANCEL'|translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="savesystem(sysname,initials);" ng-show="mode=='create'">{{'BUTTON_SAVE'| translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="updatesystem(sysoid,sysname,initials);" ng-show="mode=='edit'">{{'BUTTON_UPDATE'| translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="deletesystem(sysoid);" ng-show="mode=='edit'">{{'BUTTON_DELETE'| translate}}</button>
+            <button class="btn btn-default" ng-click="initform()">{{'BUTTON_CANCEL'|translate}}</button>
        </div>
 
 
@@ -39,8 +39,8 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th>System</th>
-                            <th>Description</th>
+                            <th>{{'SYSTEM'| translate}}</th>
+                            <th>{{'INITIALS'| translate}}</th>
                             <!--<th>systemology</th>-->
                          </tr>
                     </thead>

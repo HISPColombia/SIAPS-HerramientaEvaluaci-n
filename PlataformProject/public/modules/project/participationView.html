@@ -1,11 +1,11 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-6 ">
-        <h2>Participation</h2>
+        <h2>{{'PARTICIPATION'| translate}}</h2>
     </div>
 </div>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-3 ">
-           <input type="text" class="form-control materail_input" ng-model="query" placeholder={{'PERSON'| translate}}>
+           <input type="text" class="form-control materail_input" ng-model="query" placeholder="{{'FILTER'| translate}}">
     </div>
 </div>
 <hr class="colorgraph"> 
@@ -13,25 +13,25 @@
         <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-3 form-group">
                 <select ng-model="proid" name="proid" id="proid" class="form-control" ng-options="p.prname for p in listproject">
-                    <option value="">-- Seleccione un Project --</option>
+                    <option value="">{{'SELECTION'| translate}} {{'PROJECT'| translate}}</option>
                 </select>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-3 form-group">
                 <select ng-model="faoid" name="faoid" id="faoid" class="form-control"  ng-options="p.faname for p in listFacility">
-                    <option value="">-- Seleccione una Facility --</option>
+                    <option value="">{{'SELECTION'| translate}}{{'FACILITY'| translate}}</option>
                 </select>
         </div> 
         <div class="col-xs-12 col-sm-12 col-md-3 form-group">
                 <select ng-model="phoid" name="phoid" id="phoid" class="form-control" ng-options="p.phcDescription for p in listPh">
-                    <option value="">-- Seleccione un Phase --</option>
+                    <option value="">{{'SELECTION'| translate}}{{'PHASE'| translate}}</option>
                 </select>
         </div> 
  </div>              
         <div>
-            <button type="button" class="btn btn-success" ng-click="saveparticipation(proid,faoid,phoid);" ng-show="mode=='create'">Guardar</button>
-            <button type="button" class="btn btn-success" ng-click="updateparticipation(ptoid,proid,faoid,phoid);" ng-show="mode=='edit'">Actualizar</button>
-            <button type="button" class="btn btn-success" ng-click="deleteparticipation();" ng-show="mode=='edit'">Eliminar</button>
-            <button class="btn btn-default" ng-click="initform()" data-toggle="collapse" data-target="#participation">{{'ROOM_CANCEL'|translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="saveparticipation(proid,faoid,phoid);" ng-show="mode=='create'">{{'BUTTON_SAVE'| translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="updateparticipation(ptoid,proid,faoid,phoid);" ng-show="mode=='edit'">{{'BUTTON_UPDATE'| translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="deleteparticipation();" ng-show="mode=='edit'">{{'BUTTON_DELETE'| translate}}</button>
+            <button class="btn btn-default" ng-click="initform()" data-target="#participation">{{'BUTTON_CANCEL'| translate}}</button>
         </div>
  </div>
     <div class="row">
@@ -41,9 +41,9 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Poject</th>
-                            <th>Facility</th>
-                            <th>Phase</th>
+                            <th>{{'PROJECT'| translate}}</th>
+                            <th>{{'FACILITY'| translate}}</th>
+                            <th>{{'PHASE'| translate}}</th>
                         </tr>
                     </thead>
                     <tbody>

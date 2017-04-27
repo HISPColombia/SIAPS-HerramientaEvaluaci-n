@@ -1,11 +1,11 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-6 ">
-        <h2>{{'Metric'| translate}}</h2>
+        <h2>{{'METRIC'| translate}}</h2>
     </div>
 </div>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-3 ">
-           <input type="text" class="form-control materail_input" ng-model="query" placeholder={{'PERSON'| translate}}>
+           <input type="text" class="form-control materail_input" ng-model="query" placeholder="{{'FILTER'| translate}}">
     </div>
 </div>
 <hr class="colorgraph"> 
@@ -13,41 +13,42 @@
     <div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 form-group">
-                <input type="text" class="form-control" name="mename" ng-model="mename" ng-minlength="3" ng-maxlength="100" required  placeholder="Metric Name" />
-                <div class="error-container" ng-show="form.mename.$dirty && form.mename.$invalid">
-                    <small class="error" ng-show="form.mename.$error.required"></small>
-                    <small class="error" ng-show="form.mename.$error.maxlength"></small>
+                <input type="text" class="form-control" name="mename" ng-model="mename" ng-minlength="3" ng-maxlength="100" required  placeholder="{{'NAME_OF'| translate}}{{'METRIC'| translate}}" />
+                <div class="error" ng-show="form.mename.$dirty && form.mename.$invalid">
+                    <small class="error" ng-show="form.mename.$error.required">{{'REQUIRED'| translate}}{{'METRIC'| translate}}</small>
+                    <small class="error" ng-show="form.mename.$error.minlength">{{'LONG'| translate}}</small>
+                    <small class="error" ng-show="form.mename.$error.maxlength">{{'LONG'| translate}}</small>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                    <input type="text" name="meformula"  id="meformula" ng-model="meformula" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="Metric Fromula">              
-                    <div class="error" ng-show="form.meformula.$dirty && form.meformula.$invalid">
-                        <small class="error" ng-show="form.meformula.$error.required">formula es obligatorio. </small>
-                        <small class="error" ng-show="form.meformula.$error.minlength">Password al menos de 6 caracteres </small>
-                        <small class="error" ng-show="form.meformula.$error.maxlength">Password no mayor a 100 caracteres</small>
+                    <input type="text" name="meformula"  id="meformula" ng-model="meformula" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="{{'FORMULA'| translate}}">              
+                <div class="error" ng-show="form.meformula.$dirty && form.meformula.$invalid">
+                    <small class="error" ng-show="form.meformula.$error.required">{{'REQUIRED'| translate}}{{'FORMULA'| translate}}</small>
+                    <small class="error" ng-show="form.meformula.$error.minlength">{{'LONG'| translate}}</small>
+                    <small class="error" ng-show="form.meformula.$error.maxlength">{{'LONG'| translate}}</small>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 form-group">
                 <select ng-model="atoid" name="atoid" id="atoid" class="form-control" ng-options="p.atname for p in listattribute">
-                    <option value="">-- Seleccione Attribute --</option>
+                    <option value="">{{'SELECTION'| translate}}{{'ATTRIBUTE'| translate}}</option>
                 </select>
              </div>   
               <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                    <input type="text" name="mevaluemin"  id="mevaluemin" ng-model="mevaluemin" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="Min Value">              
+                    <input type="text" name="mevaluemin"  id="mevaluemin" ng-model="mevaluemin" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="{{'MINVAL'| translate}}">              
                     <div class="error" ng-show="form.mevaluemin.$dirty && form.mevaluemin.$invalid">
-                        <small class="error" ng-show="form.mevaluemin.$error.required">formula es obligatorio. </small>
-                        <small class="error" ng-show="form.mevaluemin.$error.minlength">Password al menos de 6 caracteres </small>
-                        <small class="error" ng-show="form.mevaluemin.$error.maxlength">Password no mayor a 100 caracteres</small>
+                        <small class="error" ng-show="form.mevaluemin.$error.required">{{'REQUIRED'| translate}}{{'MINVAL'| translate}}</small>
+                        <small class="error" ng-show="form.mevaluemin.$error.minlength">{{'LONG'| translate}} </small>
+                        <small class="error" ng-show="form.mevaluemin.$error.maxlength">{{'LONG'| translate}}</small>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                    <input type="text" name="mevaluemax"  id="mevaluemax" ng-model="mevaluemax" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="Max Value">              
+                    <input type="text" name="mevaluemax"  id="mevaluemax" ng-model="mevaluemax" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="{{'MAXVAL'| translate}}">              
                     <div class="error" ng-show="form.mevaluemax.$dirty && form.mevaluemax.$invalid">
-                        <small class="error" ng-show="form.mevaluemax.$error.required">formula es obligatorio. </small>
-                        <small class="error" ng-show="form.mevaluemax.$error.minlength">Password al menos de 6 caracteres </small>
-                        <small class="error" ng-show="form.mevaluemax.$error.maxlength">Password no mayor a 100 caracteres</small>
+                        <small class="error" ng-show="form.mevaluemax.$error.required">{{'REQUIRED'| translate}}{{'MAXVAL'| translate}}</small>
+                        <small class="error" ng-show="form.mevaluemax.$error.minlength">{{'LONG'| translate}} </small>
+                        <small class="error" ng-show="form.mevaluemax.$error.maxlength">{{'LONG'| translate}}</small>
                 </div>
             </div>
   
@@ -55,19 +56,19 @@
 
  <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 form-group">
-                    <textarea rows="5" name="melinebasevalref"  id="melinebasevalref" ng-model="melinebasevalref" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="Linea base Metric">  </textarea>            
+                    <textarea rows="5" name="melinebasevalref"  id="melinebasevalref" ng-model="melinebasevalref" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="{{'LINE_BASE'| translate}}">  </textarea>            
                     <div class="error" ng-show="form.melinebasevalref.$dirty && form.melinebasevalref.$invalid">
-                        <small class="error" ng-show="form.melinebasevalref.$error.required">El Password es obligatorio. </small>
-                        <small class="error" ng-show="form.melinebasevalref.$error.minlength">Password al menos de 6 caracteres </small>
-                        <small class="error" ng-show="form.melinebasevalref.$error.maxlength">Password no mayor a 100 caracteres</small>
+                        <small class="error" ng-show="form.melinebasevalref.$error.required">{{'REQUIRED'| translate}}{{'LINE_BASE'| translate}} </small>
+                        <small class="error" ng-show="form.melinebasevalref.$error.minlength">{{'LONG'| translate}} </small>
+                        <small class="error" ng-show="form.melinebasevalref.$error.maxlength">{{'LONG'| translate}}</small>
                 </div>
             </div>
     </div>
       <div>
-            <button type="button" class="btn btn-success" ng-click="savemetric(atoid,mename,meformula,mevaluemax,mevaluemin,melinebasevalref,metipeindicador);" ng-show="mode=='create'">Guardar</button>
-            <button type="button" class="btn btn-success" ng-click="updatemetric(meoid,atoid,mename,meformula,mevaluemax,mevaluemin,melinebasevalref,metipeindicador);" ng-show="mode=='edit'">Actualizar</button>
-            <button type="button" class="btn btn-success" ng-click="deletemetric(meoid);" ng-show="mode=='edit'">Eliminar</button>
-            <button class="btn btn-default" ng-click="initform()">{{'ROOM_CANCEL'|translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="savemetric(atoid,mename,meformula,mevaluemax,mevaluemin,melinebasevalref,metipeindicador);" ng-show="mode=='create'">{{'BUTTON_SAVE'|translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="updatemetric(meoid,atoid,mename,meformula,mevaluemax,mevaluemin,melinebasevalref,metipeindicador);" ng-show="mode=='edit'">{{'BUTTON_UPDATE'|translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="deletemetric(meoid);" ng-show="mode=='edit'">{{'BUTTON_DELETE'|translate}}</button>
+            <button class="btn btn-default" ng-click="initform()">{{'BUTTON_CANCEL'|translate}}</button>
        </div>
 
 
@@ -79,13 +80,12 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Metric</th>
-                            <th>Attribute</th>
-                            <th>Formula</th>
-                            <th>Max Value</th>
-                            <th>Min Value</th>
-                            <th>Indicador</th>
-                            <th>Linea Base</th>
+                            <th>{{'METRIC'|translate}}</th>
+                            <th>{{'ATTRIBUTE'|translate}}</th>
+                            <th>{{'FORMULA'|translate}}</th>
+                            <th>{{'MAXVAL'|translate}}</th>
+                            <th>{{'MINVAL'|translate}}</th>
+                            <th>{{'LINE_BASE'|translate}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -96,7 +96,6 @@
                             <td>{{item.meformula}}</td>
                             <td>{{item.mevaluemax}}</td>
                             <td>{{item.mevaluemin}}</td>
-                            <td>{{item.metipeindicador}}</td>
                             <td>{{item.melinebasevalref}}</td>
                             </tbody>
                 </table>

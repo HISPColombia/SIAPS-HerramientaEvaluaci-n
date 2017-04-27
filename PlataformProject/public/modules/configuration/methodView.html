@@ -1,11 +1,11 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-6 ">
-        <h2>{{'Method'| translate}}</h2>
+        <h2>{{'METHOD'| translate}}</h2>
     </div>
 </div>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-3 ">
-           <input type="text" class="form-control materail_input" ng-model="query" placeholder={{'PERSON'| translate}}>
+           <input type="text" class="form-control materail_input" ng-model="query" placeholder="{{'FILTER'| translate}}">
     </div>
 </div>
 <hr class="colorgraph"> 
@@ -13,34 +13,28 @@
     <div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                <input type="text" class="form-control" name="mtname" ng-model="mtname" ng-minlength="3" ng-maxlength="100" required  placeholder="{{'Method'| translate}}" />
-                <div class="error-container" ng-show="form.mtname.$dirty && form.mtname.$invalid">
-                    <small class="error" ng-show="form.mtname.$error.required"></small>
-                    <small class="error" ng-show="form.mtname.$error.maxlength"></small>
+                <input type="text" class="form-control" name="mtname" ng-model="mtname" ng-minlength="3" ng-maxlength="100" required  placeholder="{{'NAME_OF'| translate}}{{'METHOD'| translate}}" />
+                <div class="error" ng-show="form.mtname.$dirty && form.mtname.$invalid">
+                    <small class="error" ng-show="form.mtname.$error.required">{{'REQUIRED'| translate}}{{'METHOD'| translate}}</small>
+                    <small class="error" ng-show="form.mtname.$error.minlength">{{'LONG'| translate}}</small>
+                    <small class="error" ng-show="form.mtname.$error.maxlength">{{'LONG'| translate}}</small>
                 </div>
             </div>
-            <!--<div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                <select ng-model="meoid" name="meoid" id="meoid" class="form-control" ng-options="p.mename +' '+ p.medescription for p in listmethodology">
-                    <option value="">-- Select {{'methodology'| translate}}--</option>
-                </select>
-             </div>     -->
             <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                    <textarea rows="1" name="mtdescription"  id="mtdescription" ng-model="mtdescription" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="Description">  </textarea>            
+                    <textarea rows="1" name="mtdescription"  id="mtdescription" ng-model="mtdescription" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="{{'DESCRIPTION'| translate}}">  </textarea>            
                     <div class="error" ng-show="form.mtdescription.$dirty && form.mtdescription.$invalid">
-                        <small class="error" ng-show="form.mtdescription.$error.required">El Password es obligatorio. </small>
-                        <small class="error" ng-show="form.mtdescription.$error.minlength">Password al menos de 6 caracteres </small>
-                        <small class="error" ng-show="form.mtdescription.$error.maxlength">Password no mayor a 100 caracteres</small>
+                        <small class="error" ng-show="form.mtdescription.$error.required">{{'REQUIRED'| translate}}{{'DESCRIPTION'| translate}}</small>
+                        <small class="error" ng-show="form.mtdescription.$error.minlength">{{'LONG'| translate}}</small>
+                        <small class="error" ng-show="form.mtdescription.$error.maxlength">{{'LONG'| translate}}</small>
                 </div>
             </div>
     </div>
       <div>
-            <button type="button" class="btn btn-success" ng-click="savemethod(mtname,mtdescription,meoid);" ng-show="mode=='create'">Guardar</button>
-            <button type="button" class="btn btn-success" ng-click="updatemethod(mtoid,mtname,mtdescription,meoid);" ng-show="mode=='edit'">Actualizar</button>
-            <button type="button" class="btn btn-success" ng-click="deletemethod(mtoid);" ng-show="mode=='edit'">Eliminar</button>
-            <button class="btn btn-default" ng-click="initform()">{{'ROOM_CANCEL'|translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="savemethod(mtname,mtdescription,meoid);" ng-show="mode=='create'">{{'BUTTON_SAVE'|translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="updatemethod(mtoid,mtname,mtdescription,meoid);" ng-show="mode=='edit'">{{'BUTTON_UPDATE'|translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="deletemethod(mtoid);" ng-show="mode=='edit'">{{'BUTTON_DELETE'|translate}}</button>
+            <button class="btn btn-default" ng-click="initform()">{{'BUTTON_CANCEL'|translate}}</button>
        </div>
-
-
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 ">
 
@@ -49,9 +43,8 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Methodo</th>
-                            <th>Description</th>
-                            <!--<th>methodology</th>-->
+                            <th>{{'METHOD'|translate}}</th>
+                            <th>{{'DESCRIPTION'|translate}}</th>
                          </tr>
                     </thead>
                     <tbody>
@@ -59,7 +52,6 @@
                             <td><button ng-click="selectmethod(item.mtoid,item.mtname,item.mtdescription,item.mestatus,item.mtoid,item.meauthor)"><span class="glyphicon glyphicon-edit"></span></button></td>
                             <td>{{item.mtname}}</td>
                             <td>{{item.mtdescription}}</td>
-                            <!--<td>{{item.meoid}}</td>-->
                          </tbody>
                 </table>
             </div>

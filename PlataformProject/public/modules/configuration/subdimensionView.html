@@ -1,11 +1,11 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-6 ">
-        <h2>Subdimension</h2>
+        <h2>{{'SUB_DIMENSION'| translate}}</h2>
     </div>
 </div>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-3 ">
-           <input type="text" class="form-control materail_input" ng-model="query" placeholder={{'PERSON'| translate}}>
+           <input type="text" class="form-control materail_input" ng-model="query" placeholder="{{'FILTER'| translate}}">
     </div>
 </div>
 <hr class="colorgraph"> 
@@ -13,23 +13,24 @@
     <div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                <input type="text" class="form-control" name="suname" ng-model="suname" ng-minlength="6" ng-maxlength="100" required  placeholder="Subdimension" />
-                <div class="error-container" ng-show="form.suname.$dirty && form.suname.$invalid">
-                    <small class="error" ng-show="form.suname.$error.required">Subdimension</small>
-                    <small class="error" ng-show="form.suname.$error.maxlength">Subdimension</small>
+                <input type="text" class="form-control" name="suname" ng-model="suname" ng-minlength="6" ng-maxlength="100" required  placeholder="{{'NAME_OF'| translate}}{{'SUB_DIMENSION'| translate}}" />
+                <div class="error" ng-show="form.suname.$dirty && form.suname.$invalid">
+                    <small class="error" ng-show="form.suname.$error.required">{{'REQUIRED'| translate}}{{'DIMENSION'| translate}}</small>
+                    <small class="error" ng-show="form.suname.$error.minlength">{{'LONG'| translate}}</small>
+                    <small class="error" ng-show="form.suname.$error.maxlength">{{'LONG'| translate}}</small>
                 </div>
             </div>
         <div class="col-xs-12 col-sm-12 col-md-6 form-group">
                 <select ng-model="dioid" name="dioid" id="dioid" class="form-control" ng-options="p.diname for p in listDimension">
-                    <option value="">-- Seleccione una Dimension --</option>
+                    <option value="">{{'SELECTION'| translate}}{{'DIMENSION'| translate}}</option>
                 </select>
         </div>     
  </div>              
         <div>
-            <button type="button" class="btn btn-success" ng-click="saveSubdimension(suname,dioid);" ng-show="mode=='create'">Guardar</button>
-            <button type="button" class="btn btn-success" ng-click="updateSubdimension(suoid,suname,dioid);" ng-show="mode=='edit'">Actualizar</button>
-            <button type="button" class="btn btn-success" ng-click="deleteSubdimension(suoid);" ng-show="mode=='edit'">Eliminar</button>
-            <button class="btn btn-default" ng-click="initform()">{{'ROOM_CANCEL'|translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="saveSubdimension(suname,dioid);" ng-show="mode=='create'">{{'BUTTON_SAVE'|translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="updateSubdimension(suoid,suname,dioid);" ng-show="mode=='edit'">{{'BUTTON_UPDATE'|translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="deleteSubdimension(suoid);" ng-show="mode=='edit'">{{'BUTTON_DELETE'|translate}}</button>
+            <button class="btn btn-default" ng-click="initform()">{{'BUTTON_CANCEL'|translate}}</button>
         </div>
     </div>
 
@@ -41,8 +42,8 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Subdimension</th>
-                            <th>Dimension</th>
+                            <th>{{'SUB_DIMENSION'|translate}}</th>
+                            <th>{{'DIMENSION'|translate}}</th>
                         </tr>
                     </thead>
                     <tbody>

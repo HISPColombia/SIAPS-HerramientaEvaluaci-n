@@ -1,11 +1,11 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-6 ">
-        <h2>SubFeature</h2>
+        <h2>{{'SUB_FEATURE'| translate}}</h2>
     </div>
 </div>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-3 ">
-           <input type="text" class="form-control materail_input" ng-model="query" placeholder={{'PERSON'| translate}}>
+           <input type="text" class="form-control materail_input" ng-model="query" placeholder="{{'FILTER'| translate}}">
     </div>
 </div>
 <hr class="colorgraph"> 
@@ -13,24 +13,25 @@
     <div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                <input type="text" class="form-control" name="sfname" ng-model="sfname" ng-minlength="3" ng-maxlength="100" required  placeholder="Subfeature Name" />
-                <div class="error-container" ng-show="form.sfname.$dirty && form.sfname.$invalid">
-                    <small class="error" ng-show="form.sfname.$error.required">{{'feature_REQUIRED'| translate}}</small>
-                    <small class="error" ng-show="form.sfname.$error.maxlength">{{'feature_LONG'| translate}}</small>
+                <input type="text" class="form-control" name="sfname" ng-model="sfname" ng-minlength="3" ng-maxlength="100" required  placeholder="{{'NAME_OF'| translate}}{{'SUB_FEATURE'| translate}}" />
+                <div class="error" ng-show="form.sfname.$dirty && form.sfname.$invalid">
+                    <small class="error" ng-show="form.sfname.$error.required">{{'REQUIRED'| translate}}{{'SUB_FEATURE'| translate}}</small>
+                    <small class="error" ng-show="form.sfname.$error.minlength">{{'LONG'| translate}}</small>
+                    <small class="error" ng-show="form.sfname.$error.maxlength">{{'LONG'| translate}}</small>
                 </div>
             </div>
 
         <div class="col-xs-12 col-sm-12 col-md-6 form-group">
                 <select ng-model="feoid" name="feoid" id="feoid" class="form-control" ng-options="p.fename +' '+ p.suname for p in listfeature">
-                    <option value="">-- Seleccione una Caracteristica --</option>
+                    <option value="">{{'SELECTION'| translate}}{{'FEATURE'| translate}}</option>
                 </select>
         </div>     
  </div>              
         <div>
-            <button type="button" class="btn btn-success" ng-click="savesubfeature(sfname,feoid);" ng-show="mode=='create'">Guardar</button>
-            <button type="button" class="btn btn-success" ng-click="updatesubfeature(sfoid,sfname,feoid);" ng-show="mode=='edit'">Actualizar</button>
-            <button type="button" class="btn btn-success" ng-click="deletesubfeature(sfoid);" ng-show="mode=='edit'">Eliminar</button>
-            <button class="btn btn-default" ng-click="initform()">{{'ROOM_CANCEL'|translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="savesubfeature(sfname,feoid);" ng-show="mode=='create'">{{'BUTTON_SAVE'|translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="updatesubfeature(sfoid,sfname,feoid);" ng-show="mode=='edit'">{{'BUTTON_UPDATE'|translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="deletesubfeature(sfoid);" ng-show="mode=='edit'">{{'BUTTON_DELETE'|translate}}</button>
+            <button class="btn btn-default" ng-click="initform()">{{'BUTTON_CANCEL'|translate}}</button>
         </div>
     </div>
 

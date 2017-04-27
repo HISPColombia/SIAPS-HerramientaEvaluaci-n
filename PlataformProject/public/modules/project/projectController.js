@@ -2,8 +2,8 @@ appServersoft.controller('projectController', ['$scope', '$filter', 'commonvaria
 ///verify session
 //authentication.checkStatus();
 ///variables
-$scope.lstEstados = [{ Descripcion: "Inactivo", ID: 0 },
-                     { Descripcion: "Activo", ID: 1 },];
+$scope.lstEstados = [{ Descripcion: "En Proceso de Evaluacion", ID: 0 },
+                     { Descripcion: "Evaluado", ID: 1 },];
 $scope.alerts = [];
 var $translate = $filter('translate');
    $scope.initform = function () {

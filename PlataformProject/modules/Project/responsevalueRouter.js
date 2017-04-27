@@ -51,7 +51,7 @@ router.get('/sys/responsevalue/sys/:sysoid', function (req, res) {//listar los p
 });
 
 router.post('/sys/responsevalue', function (req, res) {
-    models.responsevalue.create({ rvoid: req.body.rvoid, usoid: req.body.usoid, rvresp: req.body.rvresp, rvdate: req.body.rvdate, proid: req.body.proid, sysoid: req.body.sysoid, faoidsource: req.body.faoidsource, faoiddestination: req.body.faoiddestination, quoid: req.body.quoid, image: req.body.image })
+    models.responsevalue.create({ rvoid: req.body.rvoid, usoid: req.body.usoid, rvresp: req.body.rvresp, rvdate: req.body.rvdate, proid: req.body.proid, sysoid: req.body.sysoid, faoidsource: req.body.faoidsource, faoiddestination: req.body.faoiddestination, quoid: req.body.quoid, image: req.body.image, tqoid: req.body.tqoid })
    .then(function (responsevalue) {
        publicResource.ReturnResult(res, responsevalue);
    })

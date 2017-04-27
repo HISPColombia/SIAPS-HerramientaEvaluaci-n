@@ -1,11 +1,11 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-6 ">
-        <h2>{{'Question'| translate}}</h2>
+        <h2>{{'QUESTION'| translate}}</h2>
     </div>
 </div>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-3 ">
-           <input type="text" class="form-control materail_input" ng-model="query" placeholder={{'PERSON'| translate}}>
+           <input type="text" class="form-control materail_input" ng-model="query" placeholder="{{'FILTER'| translate}}">
     </div>
 </div>
 <hr class="colorgraph"> 
@@ -13,48 +13,49 @@
     <div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-2 form-group">
-                <input type="text" class="form-control" name="qucode" ng-model="qucode" ng-minlength="6" ng-maxlength="100" required  placeholder="{{'Codigo'| translate}}" />
-                <div class="error-container" ng-show="form.qucode.$dirty && form.qucode.$invalid">
-                    <small class="error" ng-show="form.qucode.$error.required">{{'USER_REQUIRED'| translate}}</small>
-                    <small class="error" ng-show="form.qucode.$error.maxlength">{{'USER_LONG'| translate}}</small>
+                <input type="text" class="form-control" name="qucode" ng-model="qucode" ng-minlength="6" ng-maxlength="100" required  placeholder="{{'CODE'| translate}}" />
+                <div class="error" ng-show="form.qucode.$dirty && form.qucode.$invalid">
+                    <small class="error" ng-show="form.qucode.$error.required">{{'REQUIRED'| translate}}{{'QUESTION'| translate}}</small>
+                    <small class="error" ng-show="form.qucode.$error.minlength">{{'LONG'| translate}}</small>
+                    <small class="error" ng-show="form.qucode.$error.maxlength">{{'LONG'| translate}}</small>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-10 form-group">
-                    <input type="text" name="ququestion"  id="ququestion" ng-model="ququestion" ng-minlength="6" ng-maxlength="100" required  class="form-control" placeholder="Question">              
-                    <div class="error" ng-show="form.ququestion.$dirty && form.ququestion.$invalid">
-                        <small class="error" ng-show="form.ququestion.$error.required">El Password es obligatorio. </small>
-                        <small class="error" ng-show="form.ququestion.$error.minlength">Password al menos de 6 caracteres </small>
-                        <small class="error" ng-show="form.ququestion.$error.maxlength">Password no mayor a 100 caracteres</small>
+                    <input type="text" name="ququestion"  id="ququestion" ng-model="ququestion" ng-minlength="6" ng-maxlength="100" required  class="form-control" placeholder="{{'QUESTION'| translate}}">              
+                <div class="error" ng-show="form.ququestion.$dirty && form.ququestion.$invalid">
+                    <small class="error" ng-show="form.ququestion.$error.required">{{'REQUIRED'| translate}}{{'QUESTION'| translate}}</small>
+                    <small class="error" ng-show="form.ququestion.$error.minlength">{{'LONG'| translate}}</small>
+                    <small class="error" ng-show="form.ququestion.$error.maxlength">{{'LONG'| translate}}</small>
                 </div>
             </div>
         </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 form-group">
                 <select ng-model="mtoid" name="mtoid" id="mtoid" class="form-control" ng-options="p.mtname for p in listMethod">
-                    <option value="">-- Seleccione un Metodo --</option>
+                    <option value="">{{'SELECTION'| translate}}{{'METHOD'| translate}}</option>
                 </select>
         </div>    
         <div class="col-xs-12 col-sm-12 col-md-6 form-group">
                 <select ng-model="meoid" name="meoid" id="meoid" class="form-control" ng-options="p.mename for p in listMetric">
-                    <option value="">-- Seleccione un Metrica --</option>
+                    <option value="">{{'SELECTION'| translate}}{{'METRIC'| translate}}</option>
                 </select>
         </div>    
     </div>   
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 form-group">
                 <select ng-model="tqoid" name="tqoid" id="tqoid" class="form-control" ng-options="p.tqdescription for p in listTypequestion">
-                    <option value="">-- Seleccione un Tipo --</option>
+                    <option value="">{{'SELECTION'| translate}}{{'TYPE'| translate}}</option>
                 </select>
         </div>    
         <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-              <input type="text" name="optionquestion"  id="optionquestion" ng-model="optionquestion" ng-minlength="6" ng-maxlength="100" required  class="form-control" placeholder="Opciones">              
+              <input type="text" name="optionquestion"  id="optionquestion" ng-model="optionquestion" ng-minlength="6" ng-maxlength="100" required  class="form-control" placeholder="{{'OPTIONS'|translate}}">              
         </div>    
     </div>               
         <div>
-            <button type="button" class="btn btn-success" ng-click="savequestion(qucode,ququestion,mtoid,meoid);" ng-show="mode=='create'">Guardar</button>
-            <button type="button" class="btn btn-success" ng-click="updatequestion(quoid,qucode,ququestion,mtoid,meoid);" ng-show="mode=='edit'">Actualizar</button>
-            <button type="button" class="btn btn-success" ng-click="deletequestion(quoid);" ng-show="mode=='edit'">Eliminar</button>
-            <button class="btn btn-default" ng-click="initform()">{{'ROOM_CANCEL'|translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="savequestion(qucode,ququestion,mtoid,meoid);" ng-show="mode=='create'">{{'BUTTON_CANCEL'|translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="updatequestion(quoid,qucode,ququestion,mtoid,meoid);" ng-show="mode=='edit'">{{'BUTTON_UPDATE'|translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="deletequestion(quoid);" ng-show="mode=='edit'">{{'BUTTON_DELETE'|translate}}</button>
+            <button class="btn btn-default" ng-click="initform()">{{'BUTTON_CANCEL'|translate}}</button>
         </div>
     </div>
 
@@ -66,8 +67,8 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Codigo</th>
-                            <th>Question</th>
+                            <th>{{'CODE'|translate}}</th>
+                            <th>{{'QUESTION'|translate}}</th>
                             <!--<th>Metodo</th>-->
                             <!--<th>Feature</th>-->
                         </tr>

@@ -9,36 +9,33 @@ div.bhoechie-tab-container{
   border:1px solid #ddd;
   margin-top: 10px;
   margin-left: 10px;
-  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
-  box-shadow: 0 6px 12px rgba(0,0,0,.175);
-  -moz-box-shadow: 0 6px 12px rgba(0,0,0,.175);
   background-clip: padding-box;
   opacity: 0.97;
   filter: alpha(opacity=97);
 }
-div.bhoechie-tab-menu{
+/*div.bhoechie-tab-menu{
   padding-right: 0;
   padding-left: 10;
   padding-bottom: 10;
-}
-div.bhoechie-tab-menu div.list-group{
+}*/
+/*div.bhoechie-tab-menu div.list-group{
   margin-bottom: 0;
 }
 div.bhoechie-tab-menu div.list-group>a{
   margin-bottom: 0;
-}
+}*/
 div.bhoechie-tab-menu div.list-group>a .glyphicon,
 div.bhoechie-tab-menu div.list-group>a .fa {
   color: #5cb85c;
 }
-div.bhoechie-tab-menu div.list-group>a:first-child{
+/*div.bhoechie-tab-menu div.list-group>a:first-child{
   border-top-right-radius: 0;
   -moz-border-top-right-radius: 0;
-}
-div.bhoechie-tab-menu div.list-group>a:last-child{
+}*/
+/*div.bhoechie-tab-menu div.list-group>a:last-child{
   border-bottom-right-radius: 0;
   -moz-border-bottom-right-radius: 0;
-}
+}*/
 div.bhoechie-tab-menu div.list-group>a.active,
 div.bhoechie-tab-menu div.list-group>a.active .glyphicon,
 div.bhoechie-tab-menu div.list-group>a.active .fa{
@@ -58,12 +55,12 @@ div.bhoechie-tab-menu div.list-group>a.active:after{
   border-left: 10px solid #5cb85c;
 }
 
-div.bhoechie-tab-content{
-  background-color: #ffffff;
+/*div.bhoechie-tab-content{
+  background-color: #ffffff;*/
   /* border: 1px solid #eeeeee; */
-  padding-left: 20px;
+  /*padding-left: 20px;
   padding-top: 10px;
-}
+}*/
 
 div.bhoechie-tab div.bhoechie-tab-content:not(.active){
   display: none;

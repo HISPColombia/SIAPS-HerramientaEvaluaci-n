@@ -1,15 +1,12 @@
    <ul class="nav nav-tabs" ng-class="{active: $state.includes('dashboard')}" >
-      <li ui-sref-active="active"><a ui-sref=".dimension"><span class="round-tabs one"><i class="glyphicon glyphicon-cog">dimension</i></span></a></li>
-      <li ui-sref-active="active"><a ui-sref=".subdimension"><span <span class="round-tabs two"><i class="glyphicon glyphicon-cog">subdimen</i></span></a></li>
-      <li ui-sref-active="active"><a ui-sref=".rolesubdimension"><span class="round-tabs three"><i class="glyphicon glyphicon-cog">rolesubdim</i></span></a></li>
-      <li ui-sref-active="active"><a ui-sref=".feature"><span <span class="round-tabs four"><i class="glyphicon glyphicon-cog">feature</i></span></a></li>
-      <li ui-sref-active="active"><a ui-sref=".subfeature"><span <span class="round-tabs five"> <i class="glyphicon glyphicon-cog">subfeature</i></span></a></li>
-      <li ui-sref-active="active"><a ui-sref=".attribute"><span <span class="round-tabs six"><i class="glyphicon glyphicon-cog">attribute</i></span></a></li>
-      <li ui-sref-active="active"><a ui-sref=".metric"><span <span class="round-tabs seven"><i class="glyphicon glyphicon-cog">metric</i></span></a></li>
+      <li ui-sref-active="active"><a ui-sref=".dimension"><span class="round-tabs one"><i class="glyphicon glyphicon-cog">{{'DIMENSION'| translate}}</i></span></a></li>
+      <li ui-sref-active="active"><a ui-sref=".subdimension"><span <span class="round-tabs two"><i class="glyphicon glyphicon-cog">{{'SUB_DIMENSION'| translate}}</i></span></a></li>
+      <li ui-sref-active="active"><a ui-sref=".rolesubdimension"><span class="round-tabs three"><i class="glyphicon glyphicon-cog">{{'ROLE'| translate}}{{'SUB_DIMENSION'| translate}}</i></span></a></li>
+      <li ui-sref-active="active"><a ui-sref=".feature"><span <span class="round-tabs four"><i class="glyphicon glyphicon-cog">{{'FEATURE'| translate}}</i></span></a></li>
+      <li ui-sref-active="active"><a ui-sref=".subfeature"><span <span class="round-tabs five"> <i class="glyphicon glyphicon-cog">{{'SUB_FEATURE'| translate}}</i></span></a></li>
+      <li ui-sref-active="active"><a ui-sref=".attribute"><span <span class="round-tabs six"><i class="glyphicon glyphicon-cog">{{'ATTRIBUTE'| translate}}</i></span></a></li>
+      <li ui-sref-active="active"><a ui-sref=".metric"><span <span class="round-tabs seven"><i class="glyphicon glyphicon-cog">{{'METRIC'| translate}}</i></span></a></li>
       <li ui-sref-active="active"><a ui-sref=".system"><span <span class="round-tabs eight"><i class="glyphicon glyphicon-cog">{{'SYSTEM'| translate}}</i></span></a></li>
-      <!--<li ui-sref-active="active"><a ui-sref=".methodology"><span <span class="round-tabs eight"> <i class="glyphicon glyphicon-cog">methodo</i></span></a></li>-->
-      <li ui-sref-active="active"><a ui-sref=".method"><span <span class="round-tabs nine"><i class="glyphicon glyphicon-cog">method</i></span></a></li>
-      <li ui-sref-active="active"><a ui-sref=".question"><span <span class="round-tabs ten"><i class="glyphicon glyphicon-cog">question</i></span></a></li>
-      <li ui-sref-active="active"><a ui-sref=".PHCPhase"><span <span class="round-tabs eleven"><i class="glyphicon glyphicon-cog">PHCPhase</i></span></a></li>
-      <li ui-sref-active="active"><a ui-sref=".typefacility"><span <span class="round-tabs twelve"><i class="glyphicon glyphicon-cog">typefacility</i></span></a></li>
-  </ul>
+      <li ui-sref-active="active"><a ui-sref=".method"><span <span class="round-tabs nine"><i class="glyphicon glyphicon-cog">{{'METHOD'| translate}}</i></span></a></li>
+      <li ui-sref-active="active"><a ui-sref=".question"><span <span class="round-tabs ten"><i class="glyphicon glyphicon-cog">{{'QUESTION'| translate}}</i></span></a></li>
+   </ul>
