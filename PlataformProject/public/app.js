@@ -12,8 +12,7 @@ appServersoft.config(function($stateProvider,$translateProvider,$httpProvider,$u
         views: {
           "" :  { templateUrl: "dashboard.html" },
           "menu@dashboard": { templateUrl: "main.html" }
-         
-        }
+         }
       })
      // Chart Menu
       .state('dashboard.mainchars', {
