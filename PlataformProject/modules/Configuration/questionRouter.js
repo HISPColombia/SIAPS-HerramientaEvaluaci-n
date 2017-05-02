@@ -4,7 +4,8 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/sys/question', function (req, res) {
-    models.question.findAll({ limit: 1000, order: '"quoid" ASC' }).then(function (result) {
+    models.question.findAll({ 
+        where: { $or: [{mtoid: 3 },{mtoid:4 }] }}).then(function (result) {
         publicResource.ReturnResult(res, result);
     });
 });

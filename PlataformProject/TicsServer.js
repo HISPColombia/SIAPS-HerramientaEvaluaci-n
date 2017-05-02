@@ -27,6 +27,7 @@ app.use(methodOverride());
 var listdomain = {
     "http://localhost:6911": true,
     "http://192.168.100.190:6911": true,
+	"http://190.5.195.91:6911": true,
 };
 app.use(function (request, response, next) {
     if (request.headers.origin == undefined) {
@@ -43,7 +44,7 @@ app.use(function (request, response, next) {
             next();
         }
         else {
-            response.send(403, { access: "Client"+ request.headers.origin+"doesn't allow"});
+            response.send(403, { access: "Client"+ request.headers.origin+" doesn't allow"});
         }
     }
    

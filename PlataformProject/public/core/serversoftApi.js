@@ -9,7 +9,7 @@ var ServersoftApi = angular.module("ServersoftApi", ['ngResource']);
 //Create all common variables of the apps 
 ServersoftApi.factory("commonvariable", function () {
 	var Vari={
-	    url: "http://localhost:6911/api/sys/",
+	    url: "http://190.5.195.91:6911/api/sys/",
 	    //urlCredential: "http://192.168.100.190:6911/api/sys/",
 			OptionSetSelected:[]
 			};

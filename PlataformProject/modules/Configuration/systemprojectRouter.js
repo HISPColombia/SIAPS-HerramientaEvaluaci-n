@@ -9,12 +9,12 @@ router.get('/sys/systemproject', function (req, res) {
     });
 });
 
-router.get('/sys/systemproject/:sysproid', function (req, res) {
-    models.systemproject.findAll({ 
-        where: { sysproid: req.params.sysproid}}).then(function (result) {
-        publicResource.ReturnResult(res, result);
-    });
-});
+// router.get('/sys/systemproject/:sysproid', function (req, res) {
+    // models.systemproject.findAll({ 
+        // where: { sysproid: req.params.sysproid}}).then(function (result) {
+        // publicResource.ReturnResult(res, result);
+    // });
+// });
 
 router.post('/sys/systemproject', function (req, res) {
     models.systemproject.create({ sysoid: req.body.sysoid, proid: req.body.proid })
@@ -23,7 +23,7 @@ router.post('/sys/systemproject', function (req, res) {
    })
 });
 
-router.put('/sys/systemproject/:sysproid', function (req, res) {
+router.put('/sys/systemproject01/:sysproid', function (req, res) {
   models.systemproject.update({ proid: req.body.proid, sysoid: req.body.sysoid },
     { 
         where: {
