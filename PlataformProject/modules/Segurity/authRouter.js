@@ -8,12 +8,11 @@ var jwt = require("jsonwebtoken");
 var config = require('../../config/config');
 
 router.post('/sys/auth', function (req, res) {
-        models.user.findAll({
-        where: {
-             usname: req.body.usname
-         }}).then(function (result) {
-             if(result.length == 0 )
+        models.user.findAll({ where: { usname: req.body.usname }}).then(function (result) {
+             if(result.length == 0 ){
+                   console.log("result.length == 0");
                    res.json([{ success: false, message: 'Authentication failed. User not found.' }]);
+                }
              else
                 if(bcrypt.compareSync(req.body.uspassword, result[0].uspassword) == true )
                 {

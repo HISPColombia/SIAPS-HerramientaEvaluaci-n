@@ -44,6 +44,14 @@ var $translate = $filter('translate');
         return $scope.lstEstados[id].Descripcion;
     };
 
+    $scope.getPerson = function () {
+        person.get({})
+       .$promise.then(function (resp) {
+           $scope.listPerson = resp;
+       });
+    };
+    $scope.getPerson();
+
     $scope.getUser = function () {
         user.get({})
        .$promise.then(function (resp) {
@@ -53,7 +61,10 @@ var $translate = $filter('translate');
    $scope.getUser();
 
    $scope.deleteUser = function (usoid) {
-        user.delete({usoid: usoid })
+              
+      userrole.delete({usoid: usoid })
+       .$promise.then(function (resp) { });
+      user.delete({usoid: usoid })
        .$promise.then(function (resp) {
            $scope.getUser();
            $scope.initform();
@@ -105,13 +116,14 @@ var $translate = $filter('translate');
          userrole.delete({usoid: 5 }).$promise.then(function (resp){ });
     };
 
-    $scope.getPerson = function () {
-        person.get({})
-       .$promise.then(function (resp) {
-           $scope.listPerson = resp;
-       });
+    $scope.getNamePerson = function (peoid) {
+      if(peoid > 0){
+        var person = $scope.listPerson.filter(function (item) {
+            return item.peoid == peoid;
+         });
+         return person[0].pename;
+      }
     };
-    $scope.getPerson();
     
     $scope.getRole = function () {
         role.get({})
@@ -128,15 +140,6 @@ var $translate = $filter('translate');
             }
   };
 
-  $scope.getNamePerson = function (peoid) {
-      if(peoid > 0){
-        var person = $scope.listPerson.filter(function (item) {
-            return item.peoid == peoid;
-         });
-         return person[0].pename;
-      }
-    };
-        
         $scope.closeAlert = function (index) {
             $scope.alerts.splice(index, 1);
         };   

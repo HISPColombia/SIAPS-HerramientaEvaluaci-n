@@ -56,7 +56,7 @@ app.use(function (request, response, next) {
 app.use(express.static(path.join(__dirname, 'public')));
 //root path
 app.get('/', function (request, response) {
-    response.send('Rest API create by < J Tecnolgía >');
+    response.send('Rest API create by < J Tics Ingenieria >');
 });
 //view 
 app.get('/view', function (request, response) {

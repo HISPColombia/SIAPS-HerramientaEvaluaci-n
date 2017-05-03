@@ -31,7 +31,7 @@
         <div>
             <button type="button" class="btn btn-success" ng-click="saveteamproject(proid,rooid,usoid);" ng-show="mode=='create'">{{'BUTTON_SAVE'| translate}}</button>
             <button type="button" class="btn btn-success" ng-click="updateteamproject(tpoid,proid,rooid,usoid);" ng-show="mode=='edit'">{{'BUTTON_UPDATE'| translate}}</button>
-            <button type="button" class="btn btn-success" ng-click="deleteteamproject(tpoid);" ng-show="mode=='edit'">{{'BUTTON_DELETE'| translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="deleteteamproject();" ng-show="mode=='edit'">{{'BUTTON_DELETE'| translate}}</button>
             <button class="btn btn-default" ng-click="initform()" data-target="#teamproject">{{'BUTTON_CANCEL'| translate}}</button>
         </div>
     </div>

@@ -1,13 +1,12 @@
 appServersoft.controller('personController', ['$scope', '$filter', 'commonvariable', 'authentication','$localStorage','person', function ($scope, $filter, commonvariable, authentication, $localStorage, person) {
-///verify session
- //authentication.checkStatus();
-
-///variables
+//verify session
+//authentication.checkStatus();
+//variables
 $scope.alerts = [];
 var $translate = $filter('translate');
    $scope.initform = function () {
         $scope.mode = 'create';
-        $scope.peoid = 0;
+        $scope.peoid = null;
         $scope.peidentify = "";
         $scope.pename="";
         $scope.pesurname = "";
@@ -61,7 +60,7 @@ var $translate = $filter('translate');
     };
 
     $scope.updatePerson = function (peoid,peidentify,pename,pesurname,pemail,pestudies,peprofdescription,petelephon) {
-        person.put({ peoid:peoid, peidentify:peidentify ,pename:pename ,pesurname:pesurname, pemail:pemail ,pestudies:pestudies ,peprofdescription:peprofdescription ,petelephon:petelephon })
+      person.put({ peoid:peoid, peidentify:peidentify ,pename:pename ,pesurname:pesurname, pemail:pemail ,pestudies:pestudies ,peprofdescription:peprofdescription ,petelephon:petelephon })
       .$promise.then(function (resp) {
           if (resp.length > 0) {
               $scope.getPerson();

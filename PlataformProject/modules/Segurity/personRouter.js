@@ -34,7 +34,7 @@ router.post('/sys/person', function (req, res) {
 });
 
 router.put('/sys/person/:peoid', function (req, res) {
-  models.person.update({ peidentify: req.body.peidentify, pename: req.body.pename, pesurname: req.body.pesurname, pestudies: req.body.pestudies, peprofdescription: req.body.peprofdescription,pemail: req.body.pemail,petelephon: req.body.petelephon },
+  models.person.update({ peidentify: req.body.peidentify, pename: req.body.pename, pesurname: req.body.pesurname, pestudies: req.body.pestudies, peprofdescription: req.body.peprofdescription, pemail: req.body.pemail, petelephon: req.body.petelephon },
     { 
         where: {
              peoid: req.params.peoid 

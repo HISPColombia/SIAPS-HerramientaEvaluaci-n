@@ -73,10 +73,10 @@ var $translate = $filter('translate');
     };
    $scope.changeRol();
    
-   $scope.deleteproject = function (proid) {
-    project.delete({proid: proid})
+   $scope.deleteteamproject = function () {
+    teamproject.delete({ tpoid: $scope.tpoid})
       .$promise.then(function (resp) {
-          $scope.getproject();
+          $scope.getteamproject();
            $scope.initform();
        });
    };

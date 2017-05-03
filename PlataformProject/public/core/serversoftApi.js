@@ -9,7 +9,7 @@ var ServersoftApi = angular.module("ServersoftApi", ['ngResource']);
 //Create all common variables of the apps 
 ServersoftApi.factory("commonvariable", function () {
 	var Vari={
-	    url: "http://190.5.195.91:6911/api/sys/",
+	    url: "http://localhost:6911/api/sys/",
 	    //urlCredential: "http://192.168.100.190:6911/api/sys/",
 			OptionSetSelected:[]
 			};
@@ -421,7 +421,6 @@ ServersoftApi.factory("authentication", function ($cookies, $cookieStore, $locat
             //creamos la cookie con el nombre que nos han pasado
             var defered = $q.defer();
             var promise = defered.promise;
-
             loginservice.post({ usname: username, uspassword: password })
             .$promise.then(function (credential) {
                 if (credential.length >= 1) {
