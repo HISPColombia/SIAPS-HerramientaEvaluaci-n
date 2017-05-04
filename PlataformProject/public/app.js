@@ -103,6 +103,13 @@ appServersoft.config(function($stateProvider,$translateProvider,$httpProvider,$u
         }     
       })
       
+       .state('dashboard.mainproject.facilityproject', {
+        url: "/facilityproject",
+        views: {
+          "sub-content@dashboard": { templateUrl:"/modules/project/facilityprojectView.html", controller: "facilityprojectController"}
+        }     
+      })
+      
 
       // Configiration Menu : sub-menus and contents
       .state('dashboard.mainconfiguration', {

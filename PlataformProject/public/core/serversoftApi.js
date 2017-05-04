@@ -135,6 +135,17 @@ ServersoftApi.factory("systemproject", ['$resource', 'commonvariable', function 
   	});
 }]);
 
+ServersoftApi.factory("facilityproject", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "facilityproject/:facproid",
+	{ tpoid: '@facproid' },
+  	{
+  	    get: { method: "GET", isArray: true },
+  	    post: { method: "POST" },
+  	    put: { method: "PUT", isArray: true },
+  	    remove: { method: 'DELETE' }
+  	});
+}]);
+
 ServersoftApi.factory("participation", ['$resource', 'commonvariable', function ($resource, commonvariable) {
 	console.log("Factory participation");
     return $resource(commonvariable.url + "participation/:ptoid",

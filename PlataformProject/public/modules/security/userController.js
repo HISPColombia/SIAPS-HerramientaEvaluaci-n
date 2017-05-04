@@ -114,6 +114,7 @@ var $translate = $filter('translate');
     
     $scope.deleteUserrole = function (usoid) {
          userrole.delete({usoid: 5 }).$promise.then(function (resp){ });
+         $scope.initform();
     };
 
     $scope.getNamePerson = function (peoid) {

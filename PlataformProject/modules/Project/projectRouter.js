@@ -14,6 +14,15 @@ router.get('/sys/systemproject/:proid', function (req, res) {
   })
 });
 
+router.get('/sys/facilityproject/:proid', function (req, res) {
+     var sequelize = connection.open();
+    var query = "SELECT project.proid, project.prname,facility.faoid, facility.faname FROM public.facility, public.facilityproject, public.project WHERE facility.faoid = facilityproject.faoid AND project.proid = facilityproject.proid AND project.proid = "+req.params.proid;
+    sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
+  .then(function (result) {
+      publicResource.ReturnResult(res, result);
+  })
+});
+
 
 router.get('/sys/project', function (req, res) {
     models.project.findAll({ limit: 1000 }).then(function (result) {

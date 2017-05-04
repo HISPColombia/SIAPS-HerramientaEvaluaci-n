@@ -134,6 +134,9 @@ app.use("/api",rolesubdimension);
 var systemproject = require("./Modules/Configuration/systemprojectRouter.js")
 app.use("/api",systemproject);
 
+var facilityproject = require("./Modules/Project/facilityprojectRouter.js")
+app.use("/api",facilityproject);
+
 //Routers Project
 
 var responsevalue = require("./Modules/Project/responsevalueRouter.js")
