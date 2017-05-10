@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                    <textarea rows="1" name="mtdescription"  id="mtdescription" ng-model="mtdescription" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="{{'DESCRIPTION'| translate}}">  </textarea>            
+                    <textarea rows="1" name="mtdescription"  id="mtdescription" ng-model="mtdescription" ng-minlength="0" ng-maxlength="100" required  class="form-control" placeholder="{{'DESCRIPTION'| translate}}">  </textarea>            
                     <div class="error" ng-show="form.mtdescription.$dirty && form.mtdescription.$invalid">
                         <small class="error" ng-show="form.mtdescription.$error.required">{{'REQUIRED'| translate}}{{'DESCRIPTION'| translate}}</small>
                         <small class="error" ng-show="form.mtdescription.$error.minlength">{{'LONG'| translate}}</small>

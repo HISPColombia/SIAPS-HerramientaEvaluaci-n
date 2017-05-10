@@ -7,16 +7,17 @@ $scope.lstEstados = [{ Descripcion: "Inactivo", ID: 0 },
                         { Descripcion: "Activo", ID: 1 },];
 $scope.alerts = [];
 var $translate = $filter('translate');
-   $scope.initform = function () {
+
+$scope.initform = function () {
         $scope.mode = 'create';
         $scope.meoid = 0;
         $scope.atoid = 0;  
         $scope.mename="";
         $scope.meformula="";
-        $scope.mevaluemax = "";
-        $scope.mevaluemin = "";
+        $scope.mevaluemax = 0;
+        $scope.mevaluemin = 0;
         $scope.melinebasevalref ="";
-        $scope.metipeindicador="";
+        $scope.metipeindicador=0;
     }
     $scope.initform();
 
@@ -57,11 +58,10 @@ var $translate = $filter('translate');
       .$promise.then(function (resp) {
           if (resp.mename == mename) {
               $scope.getmetric();
-              $scope.alerts.push({ msg: $translate("ROOM_MSG_SUCCESS"), type: 'success' });
               $scope.initform();          
           } 
           else {
-              $scope.alerts.push({ msg: $translate("ROOM_MSG_ERROR"), type: 'error' });
+              alert({ msg: $translate("MSG_ERROR")});
           }
       });
     };
@@ -71,11 +71,10 @@ var $translate = $filter('translate');
       .$promise.then(function (resp) {
           if (resp.length > 0) {
               $scope.getmetric();
-              $scope.alerts.push({ msg: $translate("BED_MSG_SUCCESS"), type: 'success' });
               $scope.initform();
           }
           else {
-              $scope.alerts.push({ msg: $translate("BED_MSG_ERROR"), type: 'error' });
+              alert({ msg: $translate("MSG_ERROR")});
           }
       });
     };

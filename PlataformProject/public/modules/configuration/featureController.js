@@ -3,7 +3,7 @@ appServersoft.controller('featureController', ['$scope', '$filter', 'commonvaria
  //authentication.checkStatus();
 
 ///variables
-$scope.alerts = [];
+// $scope.alerts = [];
 var $translate = $filter('translate');
    $scope.initform = function () {
         $scope.mode = 'create';
@@ -35,39 +35,39 @@ var $translate = $filter('translate');
        });
     };
 
-    $scope.savefeature = function (fename,suoid) {
-       feature.post({fename: fename, suoid: suoid.suoid})
+    $scope.savefeature = function (fename) {
+       feature.post({fename: fename})
       .$promise.then(function (resp) {
           if (resp.fename == fename) {
               $scope.getfeature();
-              $scope.alerts.push({ msg: $translate("ROOM_MSG_SUCCESS"), type: 'success' });
+              //alert({ msg: $translate("MSG_SUCCESS") });
               $scope.initform();
           }
           else {
-              $scope.alerts.push({ msg: $translate("ROOM_MSG_ERROR"), type: 'error' });
+              alert({ msg: $translate("MSG_ERROR")});
           }
       });
     };
 
-    $scope.updatefeature = function (feoid,fename,suoid) {
-        feature.put({ feoid:feoid, fename:fename, suoid: suoid.suoid })
+    $scope.updatefeature = function (fename) {
+        feature.put({ feoid:$scope.feoid, fename:fename })
       .$promise.then(function (resp) {
           if (resp.length > 0) {
               $scope.getfeature();
-              $scope.alerts.push({ msg: $translate("BED_MSG_SUCCESS"), type: 'success' });
+              //alert($translate("MSG_SUCCESS"));
               $scope.initform();
           }
           else {
-              $scope.alerts.push({ msg: $translate("BED_MSG_ERROR"), type: 'error' });
+              alert({ msg: $translate("MSG_ERROR")});
           }
       });
     };
-            $scope.addAlert = function (menssage) {
-            $scope.alerts.push({ label: " ", msg: menssage });
-        };
+    // $scope.addAlert = function (menssage) {
+    //         $scope.alerts.push({ label: " ", msg: menssage });
+    //     };
 
       
-        $scope.closeAlert = function (index) {
-            $scope.alerts.splice(index, 1);
-        };   
+    //     $scope.closeAlert = function (index) {
+    //         $scope.alerts.splice(index, 1);
+    //     };   
 }]);

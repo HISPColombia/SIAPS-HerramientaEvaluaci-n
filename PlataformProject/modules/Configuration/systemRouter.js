@@ -23,15 +23,21 @@ router.get('/sys/system/sysDescription/:sysDescription', function (req, res) {
     });
 });
 
+// router.post('/sys/system', function (req, res) {
+//     models.system.create({ sysoid: req.body.sysoid, sysDescription: req.body.sysDescription, initials: req.body.initials })
+//    .then(function (system) {
+//        publicResource.ReturnResult(res, system);
+//    })
+// });
 router.post('/sys/system', function (req, res) {
-    models.system.create({ sysoid: req.body.sysoid, sysDescription: req.body.sysDescription, initials: req.body.initials })
+    models.system.create({ sysname: req.body.sysname, initials: req.body.initials })
    .then(function (system) {
        publicResource.ReturnResult(res, system);
    })
 });
 
 router.put('/sys/system/:sysoid', function (req, res) {
-  models.system.update({ sysDescription: req.body.sysDescription, initials: req.body.initials  },
+  models.system.update({sysoid:req.body.sysoid, sysname: req.body.sysname, initials: req.body.initials  },
     { 
         where: {
              sysoid: req.params.sysoid 

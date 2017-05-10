@@ -23,7 +23,7 @@
         </div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                    <input type="text" name="meformula"  id="meformula" ng-model="meformula" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="{{'FORMULA'| translate}}">              
+                    <input type="text" name="meformula"  id="meformula" ng-model="meformula" ng-minlength="0" ng-maxlength="100" required  class="form-control" placeholder="{{'FORMULA'| translate}}">              
                 <div class="error" ng-show="form.meformula.$dirty && form.meformula.$invalid">
                     <small class="error" ng-show="form.meformula.$error.required">{{'REQUIRED'| translate}}{{'FORMULA'| translate}}</small>
                     <small class="error" ng-show="form.meformula.$error.minlength">{{'LONG'| translate}}</small>
@@ -36,7 +36,7 @@
                 </select>
              </div>   
               <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                    <input type="text" name="mevaluemin"  id="mevaluemin" ng-model="mevaluemin" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="{{'MINVAL'| translate}}">              
+                    <input type="text" name="mevaluemin"  id="mevaluemin" ng-model="mevaluemin" ng-minlength="0" ng-maxlength="100" required  class="form-control" placeholder="{{'MINVAL'| translate}}">              
                     <div class="error" ng-show="form.mevaluemin.$dirty && form.mevaluemin.$invalid">
                         <small class="error" ng-show="form.mevaluemin.$error.required">{{'REQUIRED'| translate}}{{'MINVAL'| translate}}</small>
                         <small class="error" ng-show="form.mevaluemin.$error.minlength">{{'LONG'| translate}} </small>
@@ -44,19 +44,18 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 form-group">
-                    <input type="text" name="mevaluemax"  id="mevaluemax" ng-model="mevaluemax" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="{{'MAXVAL'| translate}}">              
+                    <input type="text" name="mevaluemax"  id="mevaluemax" ng-model="mevaluemax" ng-minlength="0" ng-maxlength="100" required  class="form-control" placeholder="{{'MAXVAL'| translate}}">              
                     <div class="error" ng-show="form.mevaluemax.$dirty && form.mevaluemax.$invalid">
                         <small class="error" ng-show="form.mevaluemax.$error.required">{{'REQUIRED'| translate}}{{'MAXVAL'| translate}}</small>
                         <small class="error" ng-show="form.mevaluemax.$error.minlength">{{'LONG'| translate}} </small>
                         <small class="error" ng-show="form.mevaluemax.$error.maxlength">{{'LONG'| translate}}</small>
                 </div>
             </div>
-  
-         </div>      
+       </div>      
 
  <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 form-group">
-                    <textarea rows="5" name="melinebasevalref"  id="melinebasevalref" ng-model="melinebasevalref" ng-minlength="3" ng-maxlength="100" required  class="form-control" placeholder="{{'LINE_BASE'| translate}}">  </textarea>            
+                    <textarea rows="5" name="melinebasevalref"  id="melinebasevalref" ng-model="melinebasevalref" ng-minlength="0" ng-maxlength="100" required  class="form-control" placeholder="{{'LINE_BASE'| translate}}">  </textarea>            
                     <div class="error" ng-show="form.melinebasevalref.$dirty && form.melinebasevalref.$invalid">
                         <small class="error" ng-show="form.melinebasevalref.$error.required">{{'REQUIRED'| translate}}{{'LINE_BASE'| translate}} </small>
                         <small class="error" ng-show="form.melinebasevalref.$error.minlength">{{'LONG'| translate}} </small>

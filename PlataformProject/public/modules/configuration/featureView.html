@@ -12,7 +12,7 @@
 <form name="form">
     <div>
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 form-group">
+            <div class="col-xs-12 col-sm-12 col-md-6 form-group">
                 <input type="text" class="form-control" name="fename" ng-model="fename" ng-minlength="6" ng-maxlength="100" required  placeholder="{{'NAME_OF'| translate}}{{'FEATURE'| translate}}" />
                 <div class="error" ng-show="form.fename.$dirty && form.fename.$invalid">
                     <small class="error" ng-show="form.fename.$error.required">{{'REQUIRED'| translate}}{{'FEATURE'| translate}}</small>
@@ -23,7 +23,7 @@
  </div>              
         <div>
             <button type="button" class="btn btn-success" ng-click="savefeature(fename);" ng-show="mode=='create'">{{'BUTTON_SAVE'|translate}}</button>
-            <button type="button" class="btn btn-success" ng-click="updatefeature(feoid,fename);" ng-show="mode=='edit'">{{'BUTTON_UPDATE'|translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="updatefeature(fename);" ng-show="mode=='edit'">{{'BUTTON_UPDATE'|translate}}</button>
             <button type="button" class="btn btn-success" ng-click="deletefeature(feoid);" ng-show="mode=='edit'">{{'BUTTON_DELETE'|translate}}</button>
             <button class="btn btn-default" ng-click="initform()">{{'BUTTON_CANCEL'|translate}}</button>
         </div>

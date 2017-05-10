@@ -238,7 +238,7 @@ ServersoftApi.factory("method", ['$resource', 'commonvariable', function ($resou
 
 ServersoftApi.factory("system", ['$resource', 'commonvariable', function ($resource, commonvariable) {
     return $resource(commonvariable.url + "system/:sysoid",
-	{ mtoid: '@sysoid' },
+	{ sysoid: '@sysoid' },
   	{
   	    get: { method: "GET", isArray: true },
   	    post: { method: "POST" },
@@ -434,6 +434,7 @@ ServersoftApi.factory("authentication", function ($cookies, $cookieStore, $locat
             var promise = defered.promise;
             loginservice.post({ usname: username, uspassword: password })
             .$promise.then(function (credential) {
+				alert(credential.length);
                 if (credential.length >= 1) {
                    $cookies.dataUser = credential[0];
                     $localStorage.token = credential[0].ustoken;

@@ -40,15 +40,15 @@ var $translate = $filter('translate');
     };
 
     $scope.savesystem = function ( sysname,initials) {
-       system.post({sysname: sysname, initials: initials })
+       alert(sysname +" "+ initials);
+       system.post({ sysname: sysname, initials: initials })
       .$promise.then(function (resp) {
           if (resp.sysname == sysname) {
               $scope.getsystem();
-              $scope.alerts.push({ msg: $translate("ROOM_MSG_SUCCESS"), type: 'success' });
               $scope.initform();          
           } 
           else {
-              $scope.alerts.push({ msg: $translate("ROOM_MSG_ERROR"), type: 'error' });
+              alert({ msg: $translate("MSG_ERROR")});
           }
       });
     };
@@ -58,11 +58,10 @@ var $translate = $filter('translate');
       .$promise.then(function (resp) {
           if (resp.length > 0) {
               $scope.getsystem();
-              $scope.alerts.push({ msg: $translate("BED_MSG_SUCCESS"), type: 'success' });
               $scope.initform();
           }
           else {
-              $scope.alerts.push({ msg: $translate("BED_MSG_ERROR"), type: 'error' });
+              alert({ msg: $translate("MSG_ERROR")});;
           }
       });
     };

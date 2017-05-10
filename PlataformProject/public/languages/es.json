@@ -8,6 +8,8 @@
   "CONFIGURATION":"Configuración",
   "SECURITY":"Seguridad",
   "SING_OUT":"Cerrar Sesion",
+  "MSG_SUCCESS":"Datos Registrados",
+  "MSG_ERROR":"Se presentaron problemas por favor contacta al adminsitrador del software",
   "------LOGIN": "-------------------",
   "LOGIN_TITTLE": "Por Favor regístrese",
   "USER": "Usuario",

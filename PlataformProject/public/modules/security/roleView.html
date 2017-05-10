@@ -13,17 +13,17 @@
     <div>
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-3 form-group">
-                <input type="text" class="form-control" name="rodescription" ng-model="rodescription" required="required" ng-minlength="3" ng-maxlength="100" required  placeholder="{{'ROLEDESCRIPTION'| translate}}"/>
+                <input type="text" class="form-control" name="rodescription" ng-model="rodescription" required="required" ng-minlength="3" ng-maxlength="100" required  placeholder="{{'DESCRIPTION'| translate}}{{'ROLE'| translate}}"/>
                 <div class="error" ng-show="form.rodescription.$dirty && form.rodescription.$invalid">
-                    <small class="error" ng-show="form.rodescription.$error.required">{{'REQUIRED'| translate}}{{'ROLEDESCRIPTION'| translate}}</small>
+                    <small class="error" ng-show="form.rodescription.$error.required">{{'REQUIRED'| translate}}{{'DESCRIPTION'| translate}}{{'ROLE'| translate}}</small>
                     <small class="error" ng-show="form.rodescription.$error.minlength">{{'LONG'| translate}}</small>
                     <small class="error" ng-show="form.rodescription.$error.maxlength">{{'LONG'| translate}}</small>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6">
-                <input type="text" class="form-control" name="roinitials" ng-model="roinitials" ng-minlength="3" required="required" ng-maxlength="10" required placeholder="{{'ROLEINITIALS'| translate}}"/>
+                <input type="text" class="form-control" name="roinitials" ng-model="roinitials" ng-minlength="0" required="required" ng-maxlength="10" required placeholder="{{'INITIALS'| translate}}"/>
                 <div class="error" ng-show="form.roinitials.$dirty && form.roinitials.$invalid">
-                    <small class="error" ng-show="form.roinitials.$error.required">{{'REQUIRED'| translate}}{{'ROLEINITIALS'| translate}}</small>
+                    <small class="error" ng-show="form.roinitials.$error.required">{{'REQUIRED'| translate}}{{'INITIALS'| translate}}</small>
                     <small class="error" ng-show="form.roinitials.$error.minlength">{{'LONG'| translate}}</small>
                     <small class="error" ng-show="form.roinitials.$error.maxlength">{{'LONG'| translate}}</small>
                 </div>
@@ -33,7 +33,7 @@
             <button type="button" class="btn btn-success" ng-click="saveRole(rodescription,roinitials);" ng-show="mode=='create'">{{'BUTTON_SAVE'| translate}}</button>
             <button type="button" class="btn btn-success" ng-click="updateRole(rooid,rodescription,roinitials);" ng-show="mode=='edit'">{{'BUTTON_UPDATE'| translate}}</button>
             <button type="button" class="btn btn-success" ng-click="deleteRole(rooid);" ng-show="mode=='edit'">{{'BUTTON_DELETE'| translate}}</button>
-            <button class="btn btn-default" ng-click="initform()"  data-target="#Role">{{'ROOM_CANCEL'|translate}}</button>
+            <button class="btn btn-default" ng-click="initform()"  data-target="#Role">{{'BUTTON_CANCEL'|translate}}</button>
         </div>
     </div>
     <div class="row">

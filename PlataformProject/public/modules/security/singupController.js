@@ -2,7 +2,6 @@ appServersoft.controller('singupController', ['$scope', '$filter', 'authenticati
         authentication.logout();
         $scope.alerts = [];
         $scope.login = function (user, password) {
-        alert(user+" "+password);
         authentication.login(user, password).then(function (data){
                 $scope.addAlert("Usuario y/o contrase�a incorrecta");
             });

@@ -49,11 +49,10 @@ var $translate = $filter('translate');
       .$promise.then(function (resp) {
      $scope.getrolesubdimension();
           if (resp.suoid == suoid) {
-              $scope.alerts.push({ msg: $translate("ROOM_MSG_SUCCESS"), type: 'success' });
               $scope.initform();
           }
           else {
-              $scope.alerts.push({ msg: $translate("ROOM_MSG_ERROR"), type: 'error' });
+              alert({ msg: $translate("MSG_ERROR")});
           }
       });
     };
@@ -63,11 +62,10 @@ var $translate = $filter('translate');
       .$promise.then(function (resp) {
           if (resp.length > 0) {
               $scope.getrolesubdimension();
-              $scope.alerts.push({ msg: $translate("BED_MSG_SUCCESS"), type: 'success' });
               $scope.initform();
           }
           else {
-              $scope.alerts.push({ msg: $translate("BED_MSG_ERROR"), type: 'error' });
+                alert({ msg: $translate("MSG_ERROR")});
           }
       });
     };
