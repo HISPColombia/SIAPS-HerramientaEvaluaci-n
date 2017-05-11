@@ -1,4 +1,5 @@
 /* jshint indent: 2 */
+
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('responsevalue', {
     rvoid: {
@@ -6,34 +7,6 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
-    },
-    usoid: {
-      type: DataTypes.DOUBLE,
-      allowNull: false,
-      references: {
-        model: 'user',
-        key: 'usoid'
-      }
-    },
-    rvresp: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    rvdate: {
-      type: DataTypes.DATE,
-      allowNull: false
-    },
-    proid: {
-      type: DataTypes.DOUBLE,
-      allowNull: false,
-      references: {
-        model: 'project',
-        key: 'proid'
-      }
-    },
-    sysoid: {
-      type: DataTypes.DOUBLE,
-      allowNull: true
     },
     faoidsource: {
       type: DataTypes.DOUBLE,
@@ -43,6 +16,14 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DOUBLE,
       allowNull: true
     },
+    proid: {
+      type: DataTypes.DOUBLE,
+      allowNull: false,
+      references: {
+        model: 'project',
+        key: 'proid'
+      }
+    },
     quoid: {
       type: DataTypes.DOUBLE,
       allowNull: false,
@@ -51,13 +32,29 @@ module.exports = function(sequelize, DataTypes) {
         key: 'quoid'
       }
     },
-    image: {
+    rvdate: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    rvresp: {
       type: DataTypes.TEXT,
+      allowNull: false
+    },
+    sysoid: {
+      type: DataTypes.DOUBLE,
       allowNull: true
     },
     tqoid: {
       type: DataTypes.DOUBLE,
       allowNull: true
+    },
+    usoid: {
+      type: DataTypes.DOUBLE,
+      allowNull: false,
+      references: {
+        model: 'user',
+        key: 'usoid'
+      }
     }
   }, {
     tableName: 'responsevalue'

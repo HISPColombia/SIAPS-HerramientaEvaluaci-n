@@ -51,14 +51,14 @@ router.get('/sys/responsevalue/sys/:sysoid', function (req, res) {//listar los p
 });
 
 router.post('/sys/responsevalue', function (req, res) {
-    models.responsevalue.create({ rvoid: req.body.rvoid, usoid: req.body.usoid, rvresp: req.body.rvresp, rvdate: req.body.rvdate, proid: req.body.proid, sysoid: req.body.sysoid, faoidsource: req.body.faoidsource, faoiddestination: req.body.faoiddestination, quoid: req.body.quoid, image: req.body.image, tqoid: req.body.tqoid })
+    models.responsevalue.create({ rvoid:req.body.rvoid, faoidsource: req.body.faoidsource, faoiddestination: req.body.faoiddestination, proid: req.body.proid, quoid: req.body.quoid, rvdate: req.body.rvdate, rvresp: req.body.rvresp, sysoid: req.body.sysoid, tqoid: req.body.tqoid, usoid: req.body.usoid })
    .then(function (responsevalue) {
        publicResource.ReturnResult(res, responsevalue);
    })
 });
 
 router.put('/sys/responsevalue/:rvoid', function (req, res) {
-    models.responsevalue.update({ rvoid: req.body.rvoid, usoid: req.body.usoid, rvresp: req.body.rvresp, rvdate: req.body.rvdate, proid: req.body.proid, sysoid: req.body.sysoid, faoidsource: req.body.faoidsource, faoiddestination: req.body.faoiddestination, quoid: req.body.quoid, image: req.body.image },
+    models.responsevalue.update({ faoidsource: req.body.faoidsource, faoiddestination: req.body.faoiddestination, proid: req.body.proid, quoid: req.body.quoid, rvdate: req.body.rvdate, rvresp: req.body.rvresp, sysoid: req.body.sysoid, tqoid: req.body.tqoid, usoid: req.body.usoid },
     { 
         where: {
              rvoid: req.params.rvoid 
