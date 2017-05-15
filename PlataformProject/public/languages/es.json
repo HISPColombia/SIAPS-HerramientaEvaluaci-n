@@ -17,7 +17,7 @@
   "LOGIN_BUTTON": "Ingresar",
   "LOGIN_PLACEHOLDER_USER": "ingrese nombre de usuario",
   "LOGIN_PLACEHOLDER_PASS": "ingrese una contraseña",
-  "MESSAGE_ERROR":"el usuario y/o Contraseña son incorrectos",
+  "MESSAGE_ERROR":"El usuario y/o Contraseña son incorrectos",
   "-----common---":"---------------",
   "BUTTON_CANCEL": "Cancelar",
   "BUTTON_DELETE": "Eliminar",

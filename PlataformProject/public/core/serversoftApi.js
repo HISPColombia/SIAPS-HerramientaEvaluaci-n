@@ -434,8 +434,7 @@ ServersoftApi.factory("authentication", function ($cookies, $cookieStore, $locat
             var promise = defered.promise;
             loginservice.post({ usname: username, uspassword: password })
             .$promise.then(function (credential) {
-				alert(credential.length);
-                if (credential.length >= 1) {
+                if (credential[0].success == true) {
                    $cookies.dataUser = credential[0];
                     $localStorage.token = credential[0].ustoken;
                     currentUser = getUserFromToken();

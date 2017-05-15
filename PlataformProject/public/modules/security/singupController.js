@@ -1,9 +1,10 @@
 appServersoft.controller('singupController', ['$scope', '$filter', 'authentication', function ($scope, $filter,authentication) {
+        var $translate = $filter('translate');
         authentication.logout();
         $scope.alerts = [];
         $scope.login = function (user, password) {
         authentication.login(user, password).then(function (data){
-                $scope.addAlert("Usuario y/o contrase�a incorrecta");
+                $scope.addAlert($translate("MESSAGE_ERROR"));
             });
         }
         
