@@ -49,6 +49,8 @@
   "SURNAME":"Apellidos",
   "IDENTIFY":"Identificación",
   "EMAIL":"Email",
+  "QUICK":"Quick",
+  "SETTINGS":"Settings",
   "------VIEWS PROJECT": "------------------",
   "ROLE":"Roles",
   "INSTAL_PROJECT":"InstalProject",
