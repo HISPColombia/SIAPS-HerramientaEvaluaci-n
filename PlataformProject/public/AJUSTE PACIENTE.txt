@@ -1,0 +1,148 @@
+--SECCION-------------------------------------------------------------
+----------------------------------------------------------------------
+----------------- TABLES ---------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+--- TABLE: GNPACIENTE
+--- DESCRIPTION: Cambio Entidad Paciente a int  GNENTIDAD.OID 
+--- HISTORY: 27 de Agosto 2017 Leonardo Andres Cobo Molina REQ: Error Cubrimiento Contratos
+----------------------------------------------
+UPDATE       GNPACIENTE
+SET                gnpentpac = GNENTIDAD.OID
+FROM            GNPACIENTE INNER JOIN
+                         GNENTIDAD ON GNPACIENTE.gnpentpac = GNENTIDAD.CODIGO
+GO	
+----------------------------------------------
+--- TABLE: CMCITA
+--- DESCRIPTION: Ajustar Entidad en Citas
+--- HISTORY: 27 de Agosto 2017 Leonardo Andres Cobo Molina REQ: Error Cubrimiento Contratos
+----------------------------------------------					 					 
+UPDATE       CMCITA
+SET                gneps = GNENTIDAD.OID
+FROM            CMCITA INNER JOIN
+                         GNENTIDAD ON CMCITA.gneps = GNENTIDAD.CODIGO
+GO	
+----------------------------------------------
+--- VISTA: VW_CITAS_AGENDA_MEDICA
+--- DESCRIPTION: Ajustar Entidad en Citas
+--- HISTORY: 27 de Agosto 2017 Leonardo Andres Cobo Molina REQ: Error Cubrimiento Contratos
+----------------------------------------------					 					 
+IF EXISTS(SELECT * FROM sysobjects WHERE id = OBJECT_ID(N'[dbo].[VW_CITAS_AGENDA_MEDICA]'))
+BEGIN
+ DROP VIEW VW_CITAS_AGENDA_MEDICA
+END
+GO
+CREATE VIEW [dbo].[VW_CITAS_AGENDA_MEDICA]
+AS
+SELECT        PAC.gnpoid AS pac_oid, PAC.gnpnumdoc AS pac_num_doc, PAC.gnpnompac AS pac_nombre, PAC.gnpapepac AS pac_apellido, PAC.gnpesconfirmado AS pac_es_confirmado, CIT.cmcoid AS cita_oid, CIT.cmHora AS cita_hora24, 
+                         CASE WHEN CIT.cmHora <= 12 THEN CIT.cmHora ELSE CIT.cmHora - 12 END AS cita_hora, CIT.cmMinuto AS cita_minuto, CASE WHEN CIT.cmHora <= 12 THEN 'AM' ELSE 'PM' END AS cita_ampm, 
+                         CIT.cmDuracion AS cita_duracion, CIT.cmfechasolicitada AS cita_fecha_solicitada, CIT.cmcestado AS cita_estado, T.cmtoid AS tipo_cita_oid, T.cmtdescripcion AS tipo_cita_desc, AG.cmaoid AS agenda_oid, 
+                         AG.gnmedico AS agenda_oid_medico, ESP.gnecoddesc AS cod_esp, ESP.gnenomespc AS especialidad, PAC.gnptelefo, CIT.gneps, E.NOMBRE AS EntNombre, E.OID AS EntOid
+FROM            dbo.CMAGENDA AS AG INNER JOIN
+                         dbo.CMCITA AS CIT ON AG.cmaoid = CIT.cmagenda INNER JOIN
+                         dbo.CMTIPOS AS T ON CIT.cmtipos = T.cmtoid INNER JOIN
+                         dbo.GNMEDICO AS M ON AG.gnmedico = M.gnmdoid INNER JOIN
+                         dbo.GNESPECIALI AS ESP ON M.gnmespec1 = ESP.gneoid INNER JOIN
+                         dbo.GNPACIENTE AS PAC ON CIT.gnpaciente = PAC.gnpoid LEFT OUTER JOIN
+                         dbo.GNENTIDAD AS E ON CIT.gneps = E.OID
+GO
+----------------------------------------------
+--- PROCEDURE: HC_IMPRESION_FOLIO_DATOS_PACIENTE
+--- DESCRIPTION: Ajustar Entidad en Reportes
+--- HISTORY: 27 de Agosto 2017 Leonardo Andres Cobo Molina REQ: Error Cubrimiento Contratos
+----------------------------------------------					 					 
+IF EXISTS(SELECT * FROM sysobjects WHERE id = OBJECT_ID(N'[dbo].[HC_IMPRESION_FOLIO_DATOS_PACIENTE]'))
+BEGIN
+ DROP PROCEDURE HC_IMPRESION_FOLIO_DATOS_PACIENTE
+END
+GO
+CREATE PROCEDURE [dbo].[HC_IMPRESION_FOLIO_DATOS_PACIENTE]
+(
+     @hcfolio int
+)
+AS
+BEGIN
+SELECT        GNPACIENTE.gnpoid, RTRIM(GNPACIENTE.gnpnompac) + ' ' + RTRIM(GNPACIENTE.gnpapepac) AS Nompac, GNPACIENTE.gnpnumdoc, CASE WHEN gnpsexpac = 1 THEN 'Masculino' ELSE 'Femenino' END AS genero, 
+                         GNPACIENTE.gnpfecnac AS FecNac, dbo.CalcularEdadAtencion(GNPACIENTE.gnpfecnac, HCFOLIO.hcffecfol) AS EdadPac, 
+                         CASE gnpestcivil WHEN 1 THEN 'Soltero' WHEN 2 THEN 'Casado' WHEN 3 THEN 'Viudo' WHEN 4 THEN 'Union Libre' WHEN 5 THEN 'Separado' WHEN 6 THEN 'Menor' ELSE '' END AS EstaCivil, GNMUNICIPI.gnmnommuni, 
+                         GNOCUPACIO.gnonomocu, GNPACIENTE.gnptelefo, GNPACIENTE.gnpdirpac, GNPACIENTE.gnpemail, 
+                         CASE GNPACIENTE.gnptippac WHEN 1 THEN 'Contributivo' WHEN 2 THEN 'Subsidiado' WHEN 3 THEN 'Vinculado' WHEN 4 THEN 'Particular' WHEN 5 THEN 'Otros' WHEN 6 THEN 'Desplazado' WHEN 7 THEN 'Desplazado Reg Sub'
+                          WHEN 8 THEN 'Desplazado no Vinculado' ELSE 'Otros' END AS TipPac, GNPACIENTE.gnpentpac + '-' + GNENTIDAD.NOMBRE AS entidad, HCFOLIO.hcfnumfol, HCFOLIO.hcffecfol, GNMEDICO.gnmnombre, 
+                         GNESPECIALI.gnenomespc, GNMEDICO.gnmtarpro, GNMEDICO.gnmurl, GNPACIENTE.gnprespon, GNPACIENTE.gnpdirres, GNPACIENTE.gnptelres, GNPACIENTE.gnpparres, ADINGRESO.adacompa, 
+                         CASE dbo.ADINGRESO.adparente WHEN 1 THEN 'Esposo' WHEN 2 THEN 'Hijo' WHEN 3 THEN 'Hermano' WHEN 4 THEN 'Madre' WHEN 5 THEN 'Padre' WHEN 6 THEN 'Abuelo' WHEN 7 THEN 'Primo' WHEN 8 THEN 'Tio' WHEN
+                          9 THEN 'Otro' END AS adparente, ADINGRESO.addiracomp, ADINGRESO.adtelacomp, ADINGRESO.adconvenio, GNMEDICO.gnmpie1, GNMEDICO.gnmpie2, GNMEDICO.gnmpie3, 
+                         GNMUNICIPI_1.gnmnommuni + N' - ' + GNDEPTOS_1.gndpnom AS expdoc, ADINGRESO.adoid, GNPACIENTE.gnppadre, GNPACIENTE.gnpmadre, GNMUNICIPI.gnmnommuni + N' - ' + GNDEPTOS.gndpnom AS lugnacimiento, 
+                         GNDEPTOS.gndpnom, GNDEPTOS_1.gndpnom AS Expr1
+FROM            GNMUNICIPI AS GNMUNICIPI_2 RIGHT OUTER JOIN
+                         GNDEPTOS AS GNDEPTOS_1 INNER JOIN
+                         GNMUNICIPI AS GNMUNICIPI_1 ON GNDEPTOS_1.gndcod = GNMUNICIPI_1.gndeptos RIGHT OUTER JOIN
+                         GNPACIENTE INNER JOIN
+                         HCFOLIO ON GNPACIENTE.gnpoid = HCFOLIO.gnpaciente INNER JOIN
+                         GNMEDICO ON HCFOLIO.gnmedico = GNMEDICO.gnmdoid INNER JOIN
+                         GNESPECIALI ON HCFOLIO.gnespeci = GNESPECIALI.gneoid INNER JOIN
+                         ADINGRESO ON HCFOLIO.adningreso = ADINGRESO.adoid LEFT OUTER JOIN
+                         GNENTIDAD ON GNPACIENTE.gnpentpac = GNENTIDAD.OID LEFT OUTER JOIN
+                         GNOCUPACIO ON GNPACIENTE.gnpocupac = GNOCUPACIO.gnooid ON GNMUNICIPI_1.gnmoid = GNPACIENTE.gnpexpdoc LEFT OUTER JOIN
+                         GNDEPTOS INNER JOIN
+                         GNMUNICIPI ON GNDEPTOS.gndcod = GNMUNICIPI.gndeptos ON GNPACIENTE.gnmunicipi = GNMUNICIPI.gnmoid ON GNMUNICIPI_2.gnmoid = GNPACIENTE.gnplugnac
+						 WHERE        (HCFOLIO.hcfoid = @hcfolio)
+END
+GO
+----------------------------------------------
+--- PROCEDURE: HC_IMPRESION_FOLIO_DATOS_PACIENTE_BY_IDEN
+--- DESCRIPTION: Ajustar Entidad en Reportes
+--- HISTORY: 27 de Agosto 2017 Leonardo Andres Cobo Molina REQ: Error Cubrimiento Contratos
+----------------------------------------------					 					 
+IF EXISTS(SELECT * FROM sysobjects WHERE id = OBJECT_ID(N'[dbo].[HC_IMPRESION_FOLIO_DATOS_PACIENTE_BY_IDEN]'))
+BEGIN
+ DROP PROCEDURE HC_IMPRESION_FOLIO_DATOS_PACIENTE_BY_IDEN
+END
+GO
+CREATE PROCEDURE [dbo].[HC_IMPRESION_FOLIO_DATOS_PACIENTE_BY_IDEN]
+(
+     @_idenPac varchar(50)
+)
+AS
+BEGIN
+SELECT                    GNPACIENTE.gnpoid, RTRIM(GNPACIENTE.gnpnompac) + ' ' + RTRIM(GNPACIENTE.gnpapepac) AS Nompac, GNPACIENTE.gnpnumdoc, 
+                         CASE WHEN gnpsexpac = 1 THEN 'Masculino' ELSE 'Femenino' END AS genero, GNPACIENTE.gnpfecnac AS FecNac, dbo.CalcularEdad(GNPACIENTE.gnpfecnac) AS EdadPac, 
+                         CASE gnpestcivil WHEN 1 THEN 'Soltero' WHEN 2 THEN 'Casado' WHEN 3 THEN 'Viudo' WHEN 4 THEN 'Union Libre' WHEN 5 THEN 'Separado' WHEN 6 THEN 'Menor' ELSE '' END AS EstaCivil, 
+                         GNMUNICIPI.gnmnommuni, GNOCUPACIO.gnonomocu, GNPACIENTE.gnptelefo, GNPACIENTE.gnpdirpac, GNPACIENTE.gnpemail, 
+                         CASE GNPACIENTE.gnptippac WHEN 1 THEN 'Contributivo - Cotizante' WHEN 2 THEN 'Contributivo - Beneficiario' WHEN 3 THEN 'Subsidiado' WHEN 4 THEN 'Vinculado' WHEN 5 THEN 'Particular' ELSE 'Otros' END
+                          AS TipPac, GNPACIENTE.gnpentpac + '-' + GNENTIDAD.NOMBRE AS entidad, GNPACIENTE.gnprespon, GNPACIENTE.gnpdirres, GNPACIENTE.gnptelres, GNPACIENTE.gnpparres, 
+                         GNMUNICIPI_1.gnmnommuni AS expdoc, GNPACIENTE.gnppadre, GNPACIENTE.gnpmadre, GNMUNICIPI_2.gnmnommuni AS lugnacimiento
+FROM            GNPACIENTE INNER JOIN
+                         GNMUNICIPI ON GNPACIENTE.gnmunicipi = GNMUNICIPI.gnmoid INNER JOIN
+                         GNOCUPACIO ON GNPACIENTE.gnpocupac = GNOCUPACIO.gnooid INNER JOIN
+                         GNMUNICIPI AS GNMUNICIPI_1 ON GNPACIENTE.gnpexpdoc = GNMUNICIPI_1.gnmoid INNER JOIN
+                         GNMUNICIPI AS GNMUNICIPI_2 ON GNPACIENTE.gnplugnac = GNMUNICIPI_2.gnmoid LEFT OUTER JOIN
+                         GNENTIDAD ON GNPACIENTE.gnpentpac = GNENTIDAD.OID
+WHERE        (GNPACIENTE.gnpnumdoc = @_idenPac)
+END
+GO
+----------------------------------------------
+--- PROCEDURE: HC_IMPRESION_ANTECEDPER
+--- DESCRIPTION: Ajustar Reportes Ginecologia
+--- HISTORY: 27 de Agosto 2017 Leonardo Andres Cobo Molina REQ:REprote Ginecologia
+----------------------------------------------					 					 
+IF EXISTS(SELECT * FROM sysobjects WHERE id = OBJECT_ID(N'[dbo].[HC_IMPRESION_ANTECEDPER]'))
+BEGIN
+ DROP PROCEDURE HC_IMPRESION_ANTECEDPER
+END
+GO
+CREATE PROCEDURE [dbo].[HC_IMPRESION_ANTECEDPER]
+(
+     @paciente int, @FOLIO int
+)
+AS
+BEGIN
+SELECT hcapoid, gnpaciente, HcPsicopatoligia, HcCiruPrevias, HcCiruObs, HcAlergia, HcAlergiaObs, HcIngesMed, HcIngesMedObs, HcAntCua, HcAntCuaObs, 
+                  CASE HcEnfCardHta WHEN 1 THEN 'SI' ELSE 'NO' END AS HcEnfCardHta, CASE HcEnfCardArrit WHEN 1 THEN 'SI' ELSE 'NO' END AS HcEnfCardArrit, 
+                  CASE HcEnfCardCor WHEN 1 THEN 'SI' ELSE 'NO' END AS HcEnfCardCor, HcEnfCardHtaObs, CASE HcEnfPulFuma WHEN 1 THEN 'SI' ELSE 'NO' END AS HcEnfPulFuma, 
+                  CASE HcEnfPulAsma WHEN 1 THEN 'SI' ELSE 'NO' END AS HcEnfPulAsma, CASE HcEnfPulBron WHEN 1 THEN 'SI' ELSE 'NO' END AS HcEnfPulBron, HcEnfPulObs, 
+                  CASE HcEnfEndoDbt WHEN 1 THEN 'SI' ELSE 'NO' END AS HcEnfEndoDbt, CASE HcEnfEndotir WHEN 1 THEN 'SI' ELSE 'NO' END AS HcEnfEndotir, CASE HcEnfOtras WHEN 1 THEN 'SI' ELSE 'NO' END AS HcEnfOtras, 
+                  HcEnfOtrasObs, HcGinObsteG, HcGinObsteP, HcGinObsteC, HcGinObsteA, HcGinObsteFup, HcGinObsteFum, HcExpPer, HcExpPerObs, hcAntFami, hcFechaReg, HcAntObs,HcLstGinObste
+FROM     dbo.HCANTECEDPER
+where gnpaciente = @paciente and hcfolio = @FOLIO
+END

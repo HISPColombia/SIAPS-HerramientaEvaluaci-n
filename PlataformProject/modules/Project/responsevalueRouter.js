@@ -5,14 +5,14 @@ var router = express.Router();
 var connection = require("../../ConnectionDB.js");
 
 
-// router.get('/sys/responsevalue', function (req, res) {
-//      var sequelize = connection.open();
-//     var query = "SELECT tp.tpoid, tp.proid, tp.rooid, tp.usoid, pr.prname ,ro.rodescription, ro.roinitials, u.usname FROM public.responsevalue tp, public.role ro, public.user u, public.project pr WHERE tp.rooid = ro.rooid AND tp.usoid = u.usoid and tp.proid = pr.proid order by tp.tpoid asc";
-//     sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
-//   .then(function (result) {
-//       publicResource.ReturnResult(res, result);
-//   })
-// });
+router.get('/sys/responsevalue/chars', function (req, res) {
+     var sequelize = connection.open();
+     var query = "SELECT question.ququestion, responsevalue.proid, question.optionquestion, responsevalue.rvdate, typequestion.tqdescription,responsevalue.rvresp FROM public.responsevalue, public.question, public.typequestion WHERE responsevalue.tqoid = typequestion.tqoid AND question.quoid = responsevalue.quoid AND responsevalue.proid = 1 ORDER BY responsevalue.quoid DESC";
+     sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
+    .then(function (result) {
+       publicResource.ReturnResult(res, result);
+   })
+});
 router.get('/sys/responsevalue', function (req, res) {
     models.responsevalue.findAll({ limit: 1000 }).then(function (result) {
         publicResource.ReturnResult(res, result);

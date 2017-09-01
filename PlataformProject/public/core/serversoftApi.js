@@ -303,6 +303,18 @@ ServersoftApi.factory("responsevalue", ['$resource', 'commonvariable', function 
   	});
 }]);
 
+ServersoftApi.factory("responsevaluechars", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+     return $resource(commonvariable.url + "responsevalue/chars",
+ 	{},
+   	{
+   	    get: { method: "GET", isArray: true },
+   	    post: { method: "POST" },
+   	    put: { method: "PUT", isArray: true },
+   	    remove: { method: 'DELETE' }
+   	});
+ }]);
+
+
 ServersoftApi.factory("rolesubdimension", ['$resource', 'commonvariable', function ($resource, commonvariable) {
     return $resource(commonvariable.url + "rolesubdimension/:rsoid",
 	{ rsoid: '@rsoid' },

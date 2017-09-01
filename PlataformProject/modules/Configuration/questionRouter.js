@@ -2,12 +2,21 @@ var models = require("../../ControllerModels.js");
 var publicResource = require("../../ControllerRouters.js");
 var express = require('express');
 var router = express.Router();
+var connection = require("../../ConnectionDB.js");
 
+// router.get('/sys/question', function (req, res) {
+//     models.question.findAll({ 
+//         where: { $or: [{mtoid: 3 },{mtoid:4 }] }}).then(function (result) {
+//         publicResource.ReturnResult(res, result);
+//     });
+// });
 router.get('/sys/question', function (req, res) {
-    models.question.findAll({ 
-        where: { $or: [{mtoid: 3 },{mtoid:4 }] }}).then(function (result) {
-        publicResource.ReturnResult(res, result);
-    });
+    var sequelize = connection.open();
+   var query = "SELECT question.quoid, question.qucode, question.ququestion, question.mtoid, question.meoid, question.tqoid, question.optionquestion, question.reqsystem, question.quimage, role.rooid, role.rodescription FROM public.question, public.subdimension, public.rolesubdimension, public.role WHERE question.suoid = subdimension.suoid AND subdimension.suoid = rolesubdimension.suoid AND rolesubdimension.rooid = role.rooid";
+   sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
+ .then(function (result) {
+     publicResource.ReturnResult(res, result);
+ })
 });
 
 router.get('/sys/question/:quoid', function (req, res) {
