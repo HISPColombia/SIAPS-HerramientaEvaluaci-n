@@ -11,7 +11,25 @@ var $translate = $filter('translate');
         $scope.tfoid = 0;
     }
     $scope.initform();
-
+    $scope.gettypefacility = function () {
+        
+                typefacility.get({})
+               .$promise.then(function (resp) {
+                   $scope.listtypefacility = resp;
+               });
+            };
+        
+        $scope.gettypefacility();
+        
+          $scope.getName = function (tfoid) {
+              if(tfoid > 0){
+                var feature = $scope.listtypefacility.filter(function (item) {
+                    return item.tfoid == tfoid;
+                 });
+                 return feature[0].tfname;
+              }
+            };
+                
     $scope.selectfacility = function (faoid, faname, tfoid) {
         $scope.mode = 'edit';
         $scope.faoid = faoid;
@@ -69,25 +87,7 @@ var $translate = $filter('translate');
             $scope.alerts.push({ label: " ", msg: menssage });
         };
 
-    $scope.gettypefacility = function () {
-
-        typefacility.get({})
-       .$promise.then(function (resp) {
-           $scope.listtypefacility = resp;
-       });
-    };
-
-$scope.gettypefacility();
-
-  $scope.getName = function (tfoid) {
-      if(tfoid > 0){
-        var feature = $scope.listtypefacility.filter(function (item) {
-            return item.tfoid == tfoid;
-         });
-         return feature[0].tfname;
-      }
-    };
-        
+   
         $scope.closeAlert = function (index) {
             $scope.alerts.splice(index, 1);
         };   

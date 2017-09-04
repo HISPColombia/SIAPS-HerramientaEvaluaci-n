@@ -15,6 +15,13 @@ var $translate = $filter('translate');
         $scope.meoid = 0;  
     }
     $scope.initform();
+    $scope.getmethodology = function () {
+        methodology.get({})
+       .$promise.then(function (resp) {
+           $scope.listmethodology = resp;
+       });
+    };
+    $scope.getmethodology();
 
     $scope.selectproject = function (proid, prname, prstatus, prdateend, meoid) {
         $scope.mode = 'edit';
@@ -40,13 +47,7 @@ var $translate = $filter('translate');
     };
    $scope.getproject();
 
-   $scope.getmethodology = function () {
-        methodology.get({})
-       .$promise.then(function (resp) {
-           $scope.listmethodology = resp;
-       });
-    };
-    $scope.getmethodology();
+
    
    $scope.deleteproject = function (proid) {
     project.delete({proid: proid})
@@ -90,17 +91,16 @@ var $translate = $filter('translate');
             $scope.addAlert = function (menssage) {
             $scope.alerts.push({ label: " ", msg: menssage });
         };
-      $scope.getNameMetodologia = function (meoid) {
-      if(meoid > 0){
-        var mt = $scope.listmethodology.filter(function (item) {
-            return item.meoid == meoid;
-         });
-         return mt[0].medescription;
-      }
-    };
-
-
-
+        $scope.getNameMetodologia = function (meoid) {
+            if(meoid > 0){
+              var mt = $scope.listmethodology.filter(function (item) {
+                  return item.meoid == meoid;
+               });
+               return mt[0].medescription;
+            }
+            else
+              return '';
+          };
     $scope.open = function ($event) {
         $event.preventDefault();
         $event.stopPropagation();

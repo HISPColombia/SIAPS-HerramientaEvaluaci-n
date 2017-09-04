@@ -12,7 +12,21 @@ var $translate = $filter('translate');
         $scope.dioid = 0;
    }
     $scope.initform();
-
+    $scope.getDimension = function () {
+        dimension.get({})
+       .$promise.then(function (resp) {
+           $scope.listDimension = resp;
+       });
+    };
+    $scope.getDimension();
+      $scope.getName = function (dioid) {
+      if(dioid > 0){
+        var dn = $scope.listDimension.filter(function (item) {
+            return item.dioid == dioid;
+         });
+         return dn[0].diname;
+      }
+    };
     $scope.selectSubdimension = function (suoid,suname,dioid) {
         $scope.mode = 'edit';
         $scope.suoid = suoid;
@@ -71,21 +85,7 @@ var $translate = $filter('translate');
             $scope.alerts.push({ label: " ", msg: menssage });
         };
 
-    $scope.getDimension = function () {
-        dimension.get({})
-       .$promise.then(function (resp) {
-           $scope.listDimension = resp;
-       });
-    };
-      $scope.getName = function (dioid) {
-      if(dioid > 0){
-        var dn = $scope.listDimension.filter(function (item) {
-            return item.dioid == dioid;
-         });
-         return dn[0].diname;
-      }
-    };
-$scope.getDimension();
+
         
         $scope.closeAlert = function (index) {
             $scope.alerts.splice(index, 1);

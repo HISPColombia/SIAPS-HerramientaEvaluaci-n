@@ -18,6 +18,14 @@ router.get('/sys/question', function (req, res) {
      publicResource.ReturnResult(res, result);
  })
 });
+router.get('/sys/questionsubdimension', function (req, res) {
+    var sequelize = connection.open();
+   var query = "SELECT subdimension.suname as name, count(question.quoid) as item FROM public.question, public.subdimension WHERE question.suoid = subdimension.suoid Group by  subdimension.suname";
+   sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
+ .then(function (result) {
+     publicResource.ReturnResult(res, result);
+ })
+});
 
 router.get('/sys/question/:quoid', function (req, res) {
     models.question.findAll({ 

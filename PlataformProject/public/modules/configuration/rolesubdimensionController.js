@@ -12,6 +12,34 @@ var $translate = $filter('translate');
         $scope.rooid = 0;
     }
     $scope.initform();
+    $scope.getrole = function () {
+        role.get({})
+       .$promise.then(function (resp) {
+           $scope.listrole = resp;
+       });
+    };
+    $scope.getrole();
+
+    $scope.getroleName = function (rooid) {
+        var role = $scope.listrole.filter(function (item) {
+            return item.rooid == rooid;
+         });
+         return role[0].rodescription;
+    };
+    $scope.getsubdimension = function () {
+        subdimension.get({})
+       .$promise.then(function (resp) {
+           $scope.listsubdimension = resp;
+       });
+    };
+    $scope.getsubdimension();
+
+    $scope.getsubdimensionName = function (suoid) {
+        var subdimension = $scope.listsubdimension.filter(function (item) {
+            return item.suoid == suoid;
+         });
+         return subdimension[0].suname;
+    };
 
     $scope.selectrolesubdimension = function (rsoid,suoid,rooid) {
         $scope.mode = 'edit';
@@ -73,36 +101,9 @@ var $translate = $filter('translate');
             $scope.alerts.push({ label: " ", msg: menssage });
         };
 
-    $scope.getsubdimension = function () {
-        subdimension.get({})
-       .$promise.then(function (resp) {
-           $scope.listsubdimension = resp;
-       });
-    };
-    $scope.getsubdimension();
-
-    $scope.getsubdimensionName = function (suoid) {
-        var subdimension = $scope.listsubdimension.filter(function (item) {
-            return item.suoid == suoid;
-         });
-         return subdimension[0].suname;
-    };
+    
 
 
-    $scope.getrole = function () {
-        role.get({})
-       .$promise.then(function (resp) {
-           $scope.listrole = resp;
-       });
-    };
-    $scope.getrole();
-
-    $scope.getroleName = function (rooid) {
-        var role = $scope.listrole.filter(function (item) {
-            return item.rooid == rooid;
-         });
-         return role[0].rodescription;
-    };
         
         $scope.closeAlert = function (index) {
             $scope.alerts.splice(index, 1);
