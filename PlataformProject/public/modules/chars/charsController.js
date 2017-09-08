@@ -1,13 +1,70 @@
-appServersoft.controller('charsController', ['$scope', '$filter', 'commonvariable', 'authentication','$localStorage','variable','user','responsevalue','responsevaluechars','system','questionsubdimension','project', function ($scope, $filter, commonvariable, authentication, $localStorage,variable,user,responsevalue,responsevaluechars,system,questionsubdimension,project) {
+appServersoft.controller('charsController', ['$scope', '$filter', 'commonvariable', 'authentication','$localStorage','variable','user','responsevalue','responsevaluechars','responsevaluesd','responsevaluedm','responsevaluefe','responsevaluesfe','system','questionsubdimension','project','dimension','subdimension','feature','subfeature','featuresubdimension','systemproject','facilityproject','facility', function ($scope, $filter, commonvariable, authentication, $localStorage,variable,user,responsevalue,responsevaluechars,responsevaluesd,responsevaluedm,responsevaluefe,responsevaluesfe,system,questionsubdimension,project,dimension,subdimension,feature,subfeature,featuresubdimension,systemproject,facilityproject,facility) {
         ///verify session
          //authentication.checkStatus();
-         $scope.getproject = function () {
-            project.get({})
-           .$promise.then(function (resp) {
-               $scope.listproject = resp;
-           });
-        };
+ ////
+        
+ $scope.alerts = [];
+ var $translate = $filter('translate');
+    $scope.initform = function () {
+         $scope.mode = 'create';
+         $scope.rvoid = 0;
+         $scope.vaoid = 0;
+         $scope.rvvalue="";
+         $scope.rvdate= "";
+         $scope.usoid = 0;
+         $scope.TotalUsers = 234;
+         $scope.proid = null;
+         $scope.sd = null;
+         $scope.project = null;
+     }
+     $scope.initform();
+     $scope.getDimension = function () {
+        dimension.get({})
+       .$promise.then(function (resp) {
+           $scope.listDimension = resp;
+       });
+    };
+    $scope.getDimension();
+
+    $scope.getSubdimension = function () {
+        subdimension.get({})
+       .$promise.then(function (resp) {
+           $scope.listSubdimension = resp;
+       });
+    };
+   $scope.getSubdimension();
+
+   $scope.getfeature = function () {
+    feature.get({})
+   .$promise.then(function (resp) {
+       $scope.listfeature = resp;
+   });
+};
+$scope.getfeature();
+
+$scope.getSubfeature = function () {
+    subfeature.get({})
+   .$promise.then(function (resp) {
+       $scope.listSubfeature = resp;
+   });
+};
+$scope.getSubfeature();
+
+$scope.loadGraphic = function(filter){
+    $scope.proid = filter.proid;
+    $scope.project = filter.prname;
+    $scope.getresponsevalue(filter.proid);
+    $scope.getsystemproject();
+    $scope.getfacilityproject();
+   };
+
+ $scope.getproject = function () {
+        project.get({})
+        .$promise.then(function (resp) {
+        $scope.listproject = resp;});};
+
        $scope.getproject();
+
          $scope.getsystem = function () {
             system.get({})
            .$promise.then(function (resp) {
@@ -15,6 +72,31 @@ appServersoft.controller('charsController', ['$scope', '$filter', 'commonvariabl
            });
         };
       $scope.getsystem();
+
+      $scope.getsystemproject = function () {
+        sysproid = $scope.proid; 
+         systemproject.get({sysproid})
+        .$promise.then(function (resp) {
+            $scope.listsystem = resp;
+        });
+     };
+
+     $scope.getfacilityproject = function () {
+        facproid = $scope.proid; 
+        facilityproject.get({facproid})
+        .$promise.then(function (resp) {
+            $scope.listfacility = resp;
+        });
+     };
+
+     $scope.getfacility = function () {
+        facility.get({})
+        .$promise.then(function (resp) {
+            $scope.listfacility = resp;
+        });
+     };
+     $scope.getfacility();
+
 
        $scope.getQsubdimension = function () {
         questionsubdimension.get({})
@@ -68,21 +150,7 @@ appServersoft.controller('charsController', ['$scope', '$filter', 'commonvariabl
  }
  CreateGraphicCitasByTipo([]);
  
-        ////
-        
-        $scope.alerts = [];
-        var $translate = $filter('translate');
-           $scope.initform = function () {
-                $scope.mode = 'create';
-                $scope.rvoid = 0;
-                $scope.vaoid = 0;
-                $scope.rvvalue="";
-                $scope.rvdate= "";
-                $scope.usoid = 0;
-                $scope.TotalUsers = 234;
-            }
-            $scope.initform();
-        
+               
             $scope.selectresponsevalue = function (rvoid,vaoid,rvvalue,rvdate,usoid) {
                 $scope.mode = 'edit';
                 $scope.rvoid = rvoid;
@@ -98,14 +166,62 @@ appServersoft.controller('charsController', ['$scope', '$filter', 'commonvariabl
                  $scope.usoid = user[0];
             }
            
-             $scope.getresponsevalue = function () {
-                 responsevaluechars.get({})
+             $scope.getresponsevalue = function (proid) {
+                 responsevaluechars.get({proid})
                 .$promise.then(function (resp) {
                    $scope.listresponsevalue = resp;
                 });
              };
-        
-            $scope.getresponsevalue();
+            $scope.getresponsevalue($scope.proid);
+
+            $scope.getresponsevalueSD = function () {
+                proid = $scope.proid;
+                sd = $scope.sdoid.suoid;
+                responsevaluesd.get({sd,proid})
+               .$promise.then(function (resp) {
+                   if(resp == null)
+                     alert("No hay Datos");
+                   else
+                        $scope.listresponsevalue = resp;
+               });
+            };
+            
+        //    $scope.getresponsevalueSD($scope.sd);
+
+           $scope.getresponsevalueDM = function () {
+            proid = $scope.proid;
+            dm= $scope.dioid.dioid;
+            responsevaluedm.get({dm, proid})
+           .$promise.then(function (resp) {
+            if(resp == null)
+                alert("No hay Datos");
+              else
+                   $scope.listresponsevalue = resp;
+           });
+        };
+        $scope.getresponsevalueFE = function () {
+            proid = $scope.proid;
+            fe= $scope.feoid.feoid;
+            responsevaluefe.get({fe, proid})
+           .$promise.then(function (resp) {
+            if(resp == null)
+                alert("No hay Datos");
+              else
+                   $scope.listresponsevalue = resp;
+           });
+        };
+        $scope.getresponsevalueSFE = function () {
+            proid = $scope.proid;
+            sfe= $scope.sfoid.sfoid;
+            responsevaluesfe.get({sfe, proid})
+           .$promise.then(function (resp) {
+            if(resp == null)
+                alert("No hay Datos");
+              else
+                   $scope.listresponsevalue = resp;
+           });
+        };
+      // $scope.getresponsevalueSD(null);
         
            $scope.deleteresponsevalue = function (rvoid) {
                 responsevalue.delete({rvoid:rvoid})
@@ -180,20 +296,48 @@ appServersoft.controller('charsController', ['$scope', '$filter', 'commonvariabl
             $scope.getResp = function(item){
                 switch (item.tqdescription) {
                     case "Likert":
-                        return ((item.rvresp * 100)/5)+"%";
+                        return ((item.rvresp * 100)/5).toFixed(2)+"%";
                     break;
                     case "Seleccion Multiple":
                         var top = item.optionquestion.split(',').length;
-                        var tops = item.rvresp.split('*');
-                        var ts=0;
+                        var tops = item.rvresp.split(',');
+                        var ts = 0;
                         for (var i = 0; i < tops.length; i++) {
-                            if(tops[i].split(',').length > 0 && tops[i].split(',')[1] == 1 )
+                            console.log(tops[i]);
+                            if(tops[i] == 1 )
                               ts++;
                           }//return "Opciones: " + top + " Seleccionadas: "+ ts +" "+ (ts/top)*100+"%";
-                         return ((ts/top)*100).toFixed()+"%";
+                        console.log( top+"=>"+tops.length +" Total:"+((ts/top)*100).toFixed(1)+"%"+" rvoid:"+item.rvoid);
+                        return ((ts/top)*100).toFixed(1)+"%";
                     break;
                     case "Si / No":             
-                        return (item.rvresp * 100)+"%";
+                        return (item.rvresp * 100).toFixed(1)+"%";
+                     break;
+                     case "Numerico":             
+                     return (item.rvresp);
+                  break;
+                    default:
+                      return "";
+                    break;
+                  }
+            }
+            $scope.getItemsResp = function(item){
+                switch (item.tqdescription) {
+                    case "Likert":
+                        return (item.rvresp);
+                    break;
+                    case "Seleccion Multiple":
+                        var top = item.optionquestion.split(',');
+                        var tops = item.rvresp.split(',');
+                        var resp="";
+                        for (var i = 0; i < top.length; i++) {
+                            if(tops[i]== 1)
+                               resp = resp + top[i]+"/";
+                          }//return "Opciones: " + top + " Seleccionadas: "+ ts +" "+ (ts/top)*100+"%";
+                         return resp;
+                    break;
+                    case "Si / No":             
+                        return (item.rvresp == 0 ? 'No' : 'Si');
                      break;
                      case "Numerico":             
                      return (item.rvresp);

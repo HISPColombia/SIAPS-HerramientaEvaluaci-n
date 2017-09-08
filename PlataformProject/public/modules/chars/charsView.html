@@ -13,6 +13,7 @@
                                             <td><p><i class="fa fa-square GREEN"></i></p></td>
                                             <td>{{item.prname}}</td>
                                             <td>{{item.prdateend | date:'dd/MM/yyyy'}}</td>
+                                            <td><button ng-click="loadGraphic(item)"><span class="glyphicon glyphicon-eye-open"></span></button></td>
                                     </tbody>
                                 </table>
                       </div>
@@ -36,7 +37,24 @@
                       </div>
                     </div>
                 </div>
-              <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="col-md-3 col-sm-12 col-xs-12">
+                    <div class="x_panel tile fixed_height_320">
+                      <div class="x_title">
+                        <h2>{{'FACILITY'|translate}}</h2>
+                        <div class="clearfix"></div>
+                      </div>
+                      <div class="x_content">
+                        <table class="table table-hover table-striped">
+                          <tbody>
+                              <tr ng-repeat="item in listfacility | filter:query">
+                                  <td><p><i class="fa fa-square GREEN"></i></p></td>
+                                  <td>{{item.faname}}</td>
+                          </tbody>
+                      </table>
+                      </div>
+                    </div>
+                </div>
+              <!-- <div class="col-md-3 col-sm-12 col-xs-12">
                 <div class="x_panel tile fixed_height_320">
                   <div class="x_title">
                     <h2>{{'QUICK'|translate}} {{'SETTINGS'|translate}}</h2>
@@ -61,7 +79,7 @@
                       </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
         </div>
    <div class="row">
         <div class="col-md-6 col-sm-12 col-xs-12">
@@ -91,36 +109,58 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Respuesta Projecto</h2>
-                    <div class="col-xs-6 col-sm-6 col-md-6 form-group">
-                    <select ng-model="proid" name="proid" id="proid" class="form-control" ng-options="p.prname for p in listproject">
-                            <option value="">{{'SELECTION' | translate}}{{'PROJECT' | translate}}</option>
-                        </select>
-                    </div>
+                    <h2>{{project}}</h2>
                     <div class="clearfix"></div>
-                  </div>
                   <div class="x_content">
                         <div class="table-responsive">
                                 <table class="table table-hover table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
+                                        <thead>
+                                                <tr>
+                                                    <th>{{'FILTER_LST'| translate}} </th>
+                                                    <th>   
+                                                           <select ng-model="dioid" name="dioid" id="dioid" class="form-control" ng-change="getresponsevalueDM()" ng-change="getresponsevalueDM(item.dioid)" ng-options="p.diname for p in listDimension">
+                                                                <option value="">{{'FILTER_LST'| translate}} {{'DIMENSION'| translate}}</option>
+                                                            </select>
+                                                    </th>
+                                                    <th>
+                                                                    <select ng-model="sdoid" name="sdoid" id="sdoid" class="form-control" ng-change="getresponsevalueSD()" ng-options="p.suname for p in listSubdimension">
+                                                                        <option value="">{{'FILTER_LST'| translate}} {{'SUB_DIMENSION'| translate}}</option>
+                                                                    </select>
+                                                    </th> 
+                                                    <th>                                         
+                                                            <select ng-model="feoid" name="feoid" id="feoid" class="form-control" ng-change="getresponsevalueFE()" ng-options="p.fename +' '+ p.suname for p in listfeature">
+                                                                    <option value="">{{'SELECTION'| translate}}{{'FEATURE'| translate}}</option>
+                                                                </select>
+                                                          </th>
+                                                    <th>                          
+                                                            <select ng-model="sfoid" name="sfoid" id="sfoid" class="form-control" ng-change="getresponsevalueSFE()" ng-options="p.sfname for p in listSubfeature">
+                                                                <option value="">{{'FILTER_LST'| translate}} {{'SUB_FEATURE'| translate}}</option>
+                                                            </select>
+                                                       </th> 
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                     </table>
+                                    <table class="table table-hover table-striped">
+                                            <thead>
+                                                    <tr>
                                             <th>Pregunta</th>
-                                            <th>Project</th>
+                                            <th>Project</th> 
+                                            <th>Quoid</th> 
                                             <!-- <th>TypeCuestion</th> -->
-                                            <!-- <th>optionquestion</th>
-                                            <th>Respuesta</th> -->
+                                            <th>optionquestion</th>
+                                            <th>Respuesta</th> 
                                             <th>%</th>
                                         </tr>
-                                    </thead>
+                                            </thead>
                                     <tbody>
                                         <tr ng-repeat="item in listresponsevalue | filter:query">
-                                            <td><button ng-click="selectresponsevalue(item.rvoid,item.vaoid,item.rvvalue,item.rvdate,item.usoid)"><span class="glyphicon glyphicon-edit"></span></button></td>
                                             <td>{{item.ququestion}}</td>
-                                            <td>{{item.proid}}</td>
+                                             <td>{{item.proid}}</td>
+                                             <td>{{item.quoid}}</td>
                                             <!-- <td>{{item.tqdescription}}</td> -->
-                                            <!-- <td>{{item.optionquestion}}</td>
-                                            <td>{{item.rvresp}}</td> -->
+                                            <td>{{item.optionquestion}}</td>
+                                            <td>{{getItemsResp(item)}}</td>
                                             <td>{{getResp(item)}}</td>
                                     </tbody>
                                 </table>

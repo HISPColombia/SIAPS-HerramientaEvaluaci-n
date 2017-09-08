@@ -5,14 +5,133 @@ var router = express.Router();
 var connection = require("../../ConnectionDB.js");
 
 
-router.get('/sys/responsevalue/chars', function (req, res) {
+router.get('/sys/responsevalue/chars/:proid', function (req, res) {
      var sequelize = connection.open();
-     var query = "SELECT question.ququestion, responsevalue.proid, question.optionquestion, responsevalue.rvdate, typequestion.tqdescription,responsevalue.rvresp FROM public.responsevalue, public.question, public.typequestion WHERE responsevalue.tqoid = typequestion.tqoid AND question.quoid = responsevalue.quoid AND responsevalue.proid = 1 ORDER BY responsevalue.quoid DESC";
+     var query = "SELECT question.ququestion, responsevalue.rvoid, responsevalue.proid, question.optionquestion, responsevalue.rvdate, typequestion.tqdescription,responsevalue.rvresp FROM public.responsevalue, public.question, public.typequestion WHERE responsevalue.tqoid = typequestion.tqoid AND question.quoid = responsevalue.quoid and responsevalue.proid = "+req.params.proid +" ORDER BY responsevalue.quoid DESC";
      sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
     .then(function (result) {
        publicResource.ReturnResult(res, result);
    })
 });
+
+router.get('/sys/responsevalue/subdimension/:sd/:proid', function (req, res) {
+    var sequelize = connection.open();
+    var query = "SELECT "+  
+    "question.ququestion,"+
+    "responsevalue.proid,"+
+    "question.optionquestion,"+
+    "responsevalue.rvdate,"+
+    "typequestion.tqdescription,"+
+    "responsevalue.rvresp,"+
+    "public.subdimension.suoid,"+
+    "public.subdimension.suname,"+
+    "public.dimension.dioid,"+
+    "public.dimension.diname FROM "+
+    "responsevalue "+
+    "INNER JOIN project ON (responsevalue.proid = project.proid)"+
+    "INNER JOIN question ON (responsevalue.quoid = question.quoid)"+
+    "INNER JOIN typequestion ON (question.tqoid = typequestion.tqoid)"+
+    "INNER JOIN public.subdimension ON (question.suoid = public.subdimension.suoid)"+
+    "INNER JOIN public.dimension ON (public.subdimension.dioid = public.dimension.dioid) WHERE "+
+    "responsevalue.tqoid = typequestion.tqoid AND "+
+    "question.quoid = responsevalue.quoid AND "+
+    "question.suoid = "+req.params.sd+" AND responsevalue.proid = "+req.params.proid;
+    sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
+   .then(function (result) {
+      publicResource.ReturnResult(res, result);
+  })
+});
+router.get('/sys/responsevalue/dimension/:dm/:proid', function (req, res) {
+    var sequelize = connection.open();
+    var query = "SELECT "+  
+    "question.ququestion,"+
+    "responsevalue.proid,"+
+    "question.optionquestion,"+
+    "responsevalue.rvdate,"+
+    "typequestion.tqdescription,"+
+    "responsevalue.rvresp,"+
+    "public.subdimension.suoid,"+
+    "public.subdimension.suname,"+
+    "public.dimension.dioid,"+
+    "public.dimension.diname FROM "+
+    "responsevalue "+
+    "INNER JOIN project ON (responsevalue.proid = project.proid)"+
+    "INNER JOIN question ON (responsevalue.quoid = question.quoid)"+
+    "INNER JOIN typequestion ON (question.tqoid = typequestion.tqoid)"+
+    "INNER JOIN public.subdimension ON (question.suoid = public.subdimension.suoid)"+
+    "INNER JOIN public.dimension ON (public.subdimension.dioid = public.dimension.dioid) WHERE "+
+    "responsevalue.tqoid = typequestion.tqoid AND "+
+    "question.quoid = responsevalue.quoid AND "+
+    "dimension.dioid = "+req.params.dm+" AND responsevalue.proid = "+req.params.proid;
+    sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
+   .then(function (result) {
+      publicResource.ReturnResult(res, result);
+  })
+});
+router.get('/sys/responsevalue/feature/:fe/:proid', function (req, res) {
+    var sequelize = connection.open();
+    var query = "SELECT "+
+    "question.ququestion, "+
+    "responsevalue.proid, "+
+    "question.optionquestion, "+
+    "responsevalue.rvdate, "+
+    "typequestion.tqdescription, "+
+    "responsevalue.rvresp, "+
+    "metric.meoid, "+
+    "metric.mename, "+
+    "attribute.atname, "+
+    "attribute.atoid, "+
+    "subfeature.sfoid, "+
+    "subfeature.sfname, "+
+    "feature.feoid, "+
+    "feature.fename "+
+    "FROM responsevalue "+
+    "INNER JOIN project ON (responsevalue.proid = project.proid) "+
+    "INNER JOIN question ON (responsevalue.quoid = question.quoid) "+
+    "INNER JOIN typequestion ON (question.tqoid = typequestion.tqoid) "+
+    "INNER JOIN metric ON (question.meoid = metric.meoid) "+
+    "INNER JOIN attribute ON (metric.atoid = attribute.atoid) "+
+    "INNER JOIN subfeature ON (attribute.sfoid = subfeature.sfoid) "+
+    "INNER JOIN feature ON (subfeature.feoid = feature.feoid) WHERE "+
+    "responsevalue.tqoid = typequestion.tqoid AND question.quoid = responsevalue.quoid and feature.feoid = "+req.params.fe+" AND responsevalue.proid = "+req.params.proid;
+    sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
+   .then(function (result) {
+      publicResource.ReturnResult(res, result);
+  })
+});
+
+router.get('/sys/responsevalue/subfeature/:sfe/:proid', function (req, res) {
+    var sequelize = connection.open();
+    var query = "SELECT "+
+    "question.ququestion, "+
+    "responsevalue.proid, "+
+    "question.optionquestion, "+
+    "responsevalue.rvdate, "+
+    "typequestion.tqdescription, "+
+    "responsevalue.rvresp, "+
+    "metric.meoid, "+
+    "metric.mename, "+
+    "attribute.atname, "+
+    "attribute.atoid, "+
+    "subfeature.sfoid, "+
+    "subfeature.sfname, "+
+    "feature.feoid, "+
+    "feature.fename "+
+    "FROM responsevalue "+
+    "INNER JOIN project ON (responsevalue.proid = project.proid) "+
+    "INNER JOIN question ON (responsevalue.quoid = question.quoid) "+
+    "INNER JOIN typequestion ON (question.tqoid = typequestion.tqoid) "+
+    "INNER JOIN metric ON (question.meoid = metric.meoid) "+
+    "INNER JOIN attribute ON (metric.atoid = attribute.atoid) "+
+    "INNER JOIN subfeature ON (attribute.sfoid = subfeature.sfoid) "+
+    "INNER JOIN feature ON (subfeature.feoid = feature.feoid) WHERE "+
+    "responsevalue.tqoid = typequestion.tqoid AND question.quoid = responsevalue.quoid and subfeature.sfoid = "+req.params.sfe+" AND responsevalue.proid = "+req.params.proid;
+    sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
+   .then(function (result) {
+      publicResource.ReturnResult(res, result);
+  })
+});
+
 router.get('/sys/responsevalue', function (req, res) {
     models.responsevalue.findAll({ limit: 1000 }).then(function (result) {
         publicResource.ReturnResult(res, result);

@@ -24,6 +24,7 @@
   "BUTTON_SAVE": "Guardar",
   "BUTTON_UPDATE":"Actualizar",	
   "FILTER": "Ingresar Busqueda",
+  "FILTER_LST": "Filtro",
   "DESCRIPTION": "Descripción ",
   "REQUIRED" : "Requerid@: ",
   "NAME_OF":"Nombre de ",
