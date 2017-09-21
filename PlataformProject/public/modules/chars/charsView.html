@@ -82,29 +82,79 @@
               </div> -->
         </div>
    <div class="row">
-        <div class="col-md-6 col-sm-12 col-xs-12">
+        <div class="col-md-3 col-sm-12 col-xs-12">
                 <div class="x_panel">
                 <div class="x_title">
-                    <h2>Question por Subdimensión</h2>
+                    <h2>{{'QUALIFICATION' | translate}} {{'DIMENSION'| translate}}</h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                        <div id="chartQsub"></div>
+                        <div id="chartDimension"></div>
                 </div>
                 </div>
         </div>
-        <div class="col-md-6 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                <div class="x_title">
-                  <h2>Question por Subdimensión</h2>
-                   <div class="clearfix"></div>
-             </div>
-              <div class="x_content">
-                <div id="chartQsubdonut"></div>
-              </div>
-            </div>
+        <div class="col-md-3 col-sm-12 col-xs-12">
+          <div class="x_panel">
+          <div class="x_title">
+              <h2>{{'QUALIFICATION' | translate}} {{'SUB_DIMENSION'| translate}}</h2>
+              <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+                  <div id="chartSubDimension"></div>
+          </div>
+          </div>
         </div>
+        <div class="col-md-3 col-sm-12 col-xs-12">
+          <div class="x_panel">
+          <div class="x_title">
+              <h2>{{'QUALIFICATION' | translate}} {{'FEATURE'| translate}}</h2>
+              <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+                  <div id="chartFeature"></div>
+          </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-12 col-xs-12">
+          <div class="x_panel">
+          <div class="x_title">
+              <h2>{{'QUALIFICATION' | translate}} {{'SUB_FEATURE'| translate}}</h2>
+              <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+                  <div id="chartSubFeature"></div>
+          </div>
+          </div>
+        </div>
+        
    </div>
+   <div class="row">
+    <div class="col-md-3 col-sm-12 col-xs-12">
+            <div class="x_panel">
+            <div class="x_title">
+                <h2>{{'SYSTEM' | translate}} {{'DIMENSION'| translate}}</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                    <div id="CahrDimensionDonut"></div>
+            </div>
+            </div>
+    </div>
+    <div class="col-md-3 col-sm-12 col-xs-12">
+    </div>
+    <div class="col-md-3 col-sm-12 col-xs-12">
+      <div class="x_panel">
+      <div class="x_title">
+          <h2>{{'SYSTEM' | translate}} {{'FEATURE'| translate}}</h2>
+          <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+              <div id="CahrFeatureDonut"></div>
+      </div>
+      </div>
+</div>
+  </div>
+  
    <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
@@ -143,11 +193,8 @@
                                      </table>
                                     <table class="table table-hover table-striped">
                                             <thead>
-                                                    <tr>
+                                        <tr>
                                             <th>Pregunta</th>
-                                            <th>Project</th> 
-                                            <th>Quoid</th> 
-                                            <!-- <th>TypeCuestion</th> -->
                                             <th>optionquestion</th>
                                             <th>Respuesta</th> 
                                             <th>%</th>
@@ -156,12 +203,9 @@
                                     <tbody>
                                         <tr ng-repeat="item in listresponsevalue | filter:query">
                                             <td>{{item.ququestion}}</td>
-                                             <td>{{item.proid}}</td>
-                                             <td>{{item.quoid}}</td>
-                                            <!-- <td>{{item.tqdescription}}</td> -->
                                             <td>{{item.optionquestion}}</td>
                                             <td>{{getItemsResp(item)}}</td>
-                                            <td>{{getResp(item)}}</td>
+                                            <td>{{getResp(item.qualify)}}%</td>
                                     </tbody>
                                 </table>
                   </div>

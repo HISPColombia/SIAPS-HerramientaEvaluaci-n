@@ -7,7 +7,7 @@ var connection = require("../../ConnectionDB.js");
 
 router.get('/sys/responsevalue/chars/:proid', function (req, res) {
      var sequelize = connection.open();
-     var query = "SELECT question.ququestion, responsevalue.rvoid, responsevalue.proid, question.optionquestion, responsevalue.rvdate, typequestion.tqdescription,responsevalue.rvresp FROM public.responsevalue, public.question, public.typequestion WHERE responsevalue.tqoid = typequestion.tqoid AND question.quoid = responsevalue.quoid and responsevalue.proid = "+req.params.proid +" ORDER BY responsevalue.quoid DESC";
+     var query = "SELECT question.ququestion, responsevalue.rvoid, responsevalue.proid, question.optionquestion, responsevalue.rvdate, typequestion.tqdescription,responsevalue.rvresp, public.Qualify(typequestion.tqdescription, question.optionquestion, responsevalue.rvresp) AS qualify FROM public.responsevalue, public.question, public.typequestion WHERE responsevalue.tqoid = typequestion.tqoid AND question.quoid = responsevalue.quoid and responsevalue.proid = "+req.params.proid +" ORDER BY responsevalue.quoid DESC";
      sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
     .then(function (result) {
        publicResource.ReturnResult(res, result);
@@ -26,7 +26,8 @@ router.get('/sys/responsevalue/subdimension/:sd/:proid', function (req, res) {
     "public.subdimension.suoid,"+
     "public.subdimension.suname,"+
     "public.dimension.dioid,"+
-    "public.dimension.diname FROM "+
+    "public.dimension.diname, "+
+    "public.Qualify(typequestion.tqdescription, question.optionquestion, responsevalue.rvresp) AS qualify FROM "+
     "responsevalue "+
     "INNER JOIN project ON (responsevalue.proid = project.proid)"+
     "INNER JOIN question ON (responsevalue.quoid = question.quoid)"+
@@ -53,7 +54,8 @@ router.get('/sys/responsevalue/dimension/:dm/:proid', function (req, res) {
     "public.subdimension.suoid,"+
     "public.subdimension.suname,"+
     "public.dimension.dioid,"+
-    "public.dimension.diname FROM "+
+    "public.dimension.diname, "+
+    "public.Qualify(typequestion.tqdescription, question.optionquestion, responsevalue.rvresp) AS qualify FROM "+
     "responsevalue "+
     "INNER JOIN project ON (responsevalue.proid = project.proid)"+
     "INNER JOIN question ON (responsevalue.quoid = question.quoid)"+
@@ -84,8 +86,8 @@ router.get('/sys/responsevalue/feature/:fe/:proid', function (req, res) {
     "subfeature.sfoid, "+
     "subfeature.sfname, "+
     "feature.feoid, "+
-    "feature.fename "+
-    "FROM responsevalue "+
+    "feature.fename, "+
+    "public.Qualify(typequestion.tqdescription, question.optionquestion, responsevalue.rvresp) AS qualify FROM responsevalue "+
     "INNER JOIN project ON (responsevalue.proid = project.proid) "+
     "INNER JOIN question ON (responsevalue.quoid = question.quoid) "+
     "INNER JOIN typequestion ON (question.tqoid = typequestion.tqoid) "+
@@ -117,7 +119,7 @@ router.get('/sys/responsevalue/subfeature/:sfe/:proid', function (req, res) {
     "subfeature.sfname, "+
     "feature.feoid, "+
     "feature.fename "+
-    "FROM responsevalue "+
+    "public.Qualify(typequestion.tqdescription, question.optionquestion, responsevalue.rvresp) AS qualify FROM responsevalue "+
     "INNER JOIN project ON (responsevalue.proid = project.proid) "+
     "INNER JOIN question ON (responsevalue.quoid = question.quoid) "+
     "INNER JOIN typequestion ON (question.tqoid = typequestion.tqoid) "+
@@ -131,12 +133,98 @@ router.get('/sys/responsevalue/subfeature/:sfe/:proid', function (req, res) {
       publicResource.ReturnResult(res, result);
   })
 });
-
-router.get('/sys/responsevalue', function (req, res) {
-    models.responsevalue.findAll({ limit: 1000 }).then(function (result) {
-        publicResource.ReturnResult(res, result);
-    });
+router.get('/sys/qualifidimension/:proid', function (req, res) {
+    var sequelize = connection.open();
+   var query = " SELECT public.dimension.diname as name, avg(qualify(public.typequestion.tqdescription, public.question.optionquestion, public.responsevalue.rvresp)) AS item FROM responsevalue "+
+   "INNER JOIN project ON (responsevalue.proid = project.proid) INNER JOIN question ON (responsevalue.quoid = question.quoid) INNER JOIN typequestion ON (question.tqoid = typequestion.tqoid) INNER JOIN public.subdimension ON (question.suoid = public.subdimension.suoid) INNER JOIN public.dimension ON (public.subdimension.dioid = public.dimension.dioid) "+
+   "WHERE responsevalue.tqoid = typequestion.tqoid AND question.quoid = responsevalue.quoid AND responsevalue.proid = "+req.params.proid+" GROUP BY public.dimension.dioid";
+   sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
+ .then(function (result) {
+     publicResource.ReturnResult(res, result);
+ })
 });
+router.get('/sys/qualifisubdimension/:proid', function (req, res) {
+    var sequelize = connection.open();
+   var query = " SELECT public.subdimension.suname as name, avg(qualify(public.typequestion.tqdescription, public.question.optionquestion, public.responsevalue.rvresp)) AS item FROM responsevalue "+
+   "INNER JOIN project ON (responsevalue.proid = project.proid) INNER JOIN question ON (responsevalue.quoid = question.quoid) INNER JOIN typequestion ON (question.tqoid = typequestion.tqoid) INNER JOIN public.subdimension ON (question.suoid = public.subdimension.suoid) INNER JOIN public.dimension ON (public.subdimension.dioid = public.dimension.dioid) "+
+   "WHERE responsevalue.tqoid = typequestion.tqoid AND question.quoid = responsevalue.quoid AND responsevalue.proid = "+req.params.proid+" GROUP BY public.subdimension.suoid";
+   sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
+ .then(function (result) {
+     publicResource.ReturnResult(res, result);
+ })
+});
+router.get('/sys/qualififeature/:proid', function (req, res) {
+    var sequelize = connection.open();
+   var query = 	"SELECT "+
+   "feature.fename as name, "+
+   "avg(public.Qualify(typequestion.tqdescription, question.optionquestion, responsevalue.rvresp)) AS item FROM responsevalue "+
+   "INNER JOIN project ON (responsevalue.proid = project.proid) "+
+   "INNER JOIN question ON (responsevalue.quoid = question.quoid) "+
+   "INNER JOIN typequestion ON (question.tqoid = typequestion.tqoid) "+
+   "INNER JOIN metric ON (question.meoid = metric.meoid) "+
+   "INNER JOIN attribute ON (metric.atoid = attribute.atoid) "+
+   "INNER JOIN subfeature ON (attribute.sfoid = subfeature.sfoid) "+
+   "INNER JOIN feature ON (subfeature.feoid = feature.feoid) WHERE "+
+   "responsevalue.tqoid = typequestion.tqoid AND question.quoid = responsevalue.quoid AND responsevalue.proid = "+req.params.proid+" GROUP BY public.feature.feoid";
+   sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
+ .then(function (result) {
+     publicResource.ReturnResult(res, result);
+ })
+});
+router.get('/sys/qualifisubfeature/:proid', function (req, res) {
+    var sequelize = connection.open();
+   var query = 	"SELECT "+
+   "subfeature.sfname as name, "+
+   "avg(public.Qualify(typequestion.tqdescription, question.optionquestion, responsevalue.rvresp)) AS item FROM responsevalue "+
+   "INNER JOIN project ON (responsevalue.proid = project.proid) "+
+   "INNER JOIN question ON (responsevalue.quoid = question.quoid) "+
+   "INNER JOIN typequestion ON (question.tqoid = typequestion.tqoid) "+
+   "INNER JOIN metric ON (question.meoid = metric.meoid) "+
+   "INNER JOIN attribute ON (metric.atoid = attribute.atoid) "+
+   "INNER JOIN subfeature ON (attribute.sfoid = subfeature.sfoid) "+
+   "INNER JOIN feature ON (subfeature.feoid = feature.feoid) WHERE "+
+   "responsevalue.tqoid = typequestion.tqoid AND question.quoid = responsevalue.quoid AND responsevalue.proid = "+req.params.proid+" GROUP BY public.subfeature.sfoid";
+   sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
+ .then(function (result) {
+     publicResource.ReturnResult(res, result);
+ })
+});
+router.get('/sys/responsevalue/dimensiondonut/:dm/:proid', function (req, res) {
+    var sequelize = connection.open();
+    var query ="SELECT public.system.sysname as name, count(public.system.sysname) AS item FROM responsevalue "+
+    "INNER JOIN project ON (responsevalue.proid = project.proid) "+
+    "INNER JOIN question ON (responsevalue.quoid = question.quoid) "+
+    "INNER JOIN public.subdimension ON (question.suoid = public.subdimension.suoid) "+
+    "INNER JOIN public.dimension ON (public.subdimension.dioid = public.dimension.dioid) "+
+    "INNER JOIN public.systemproject ON (public.systemproject.proid = project.proid) "+
+    "INNER JOIN public.system ON (public.systemproject.sysoid = public.system.sysoid) WHERE question.quoid = responsevalue.quoid AND "+
+    "dimension.dioid = "+req.params.dm+" AND responsevalue.proid = "+req.params.proid+
+    " GROUP BY public.system.sysname";
+    sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
+   .then(function (result) {
+      publicResource.ReturnResult(res, result);
+  })
+});
+router.get('/sys/responsevalue/featuredonut/:fe/:proid', function (req, res) {
+    var sequelize = connection.open();
+    var query ="SELECT system1.sysname as name, COUNT(system1.sysname) AS item FROM  responsevalue "+
+    "INNER JOIN project ON (responsevalue.proid = project.proid) "+
+    "INNER JOIN question ON (responsevalue.quoid = question.quoid) "+
+    "INNER JOIN metric ON (question.meoid = metric.meoid) "+
+    "INNER JOIN attribute ON (metric.atoid = attribute.atoid) "+
+    "INNER JOIN subfeature ON (attribute.sfoid = subfeature.sfoid) "+
+    "INNER JOIN feature ON (subfeature.feoid = feature.feoid), "+
+    "public.system system1 INNER JOIN public.systemproject ON (system1.sysoid = public.systemproject.sysoid) "+
+    "INNER JOIN public.system ON (public.systemproject.sysoid = public.system.sysoid) WHERE  "+
+    "question.quoid = responsevalue.quoid AND responsevalue.proid = "+req.params.proid +"AND feature.feoid="+req.params.fe +
+    " GROUP BY system1.sysname";
+    sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
+   .then(function (result) {
+      publicResource.ReturnResult(res, result);
+  })
+});
+
+
 router.get('/sys/responsevalue/:rvoid', function (req, res) {
     models.responsevalue.findAll({ 
         where: {

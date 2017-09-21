@@ -334,6 +334,26 @@ ServersoftApi.factory("responsevaluedm", ['$resource', 'commonvariable', functio
 		  remove: { method: 'DELETE' }
 	  });
 }]);
+ServersoftApi.factory("dimensiondonut", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+	return $resource(commonvariable.url + "responsevalue/dimensiondonut/:dm/:proid",
+	{dm: '@dm', proid :'@proid'},
+	  {
+		  get: { method: "GET", isArray: true },
+		  post: { method: "POST" },
+		  put: { method: "PUT", isArray: true },
+		  remove: { method: 'DELETE' }
+	  });
+}]);
+ServersoftApi.factory("featuredonut", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+	return $resource(commonvariable.url + "responsevalue/featuredonut/:fe/:proid",
+	{dm: '@fe', proid :'@proid'},
+	  {
+		  get: { method: "GET", isArray: true },
+		  post: { method: "POST" },
+		  put: { method: "PUT", isArray: true },
+		  remove: { method: 'DELETE' }
+	  });
+}]);
 
 ServersoftApi.factory("responsevaluefe", ['$resource', 'commonvariable', function ($resource, commonvariable) {
 	return $resource(commonvariable.url + "responsevalue/feature/:fe/:proid",
@@ -356,9 +376,9 @@ ServersoftApi.factory("responsevaluesfe", ['$resource', 'commonvariable', functi
 	  });
 }]);
  
- ServersoftApi.factory("questionsubdimension", ['$resource', 'commonvariable', function ($resource, commonvariable) {
-	return $resource(commonvariable.url + "questionsubdimension",
-	{},
+ ServersoftApi.factory("qualifidimension", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+	return $resource(commonvariable.url + "qualifidimension/:proid",
+	{proid :'@proid'},
 	  {
 		  get: { method: "GET", isArray: true },
 		  post: { method: "POST" },
@@ -366,7 +386,36 @@ ServersoftApi.factory("responsevaluesfe", ['$resource', 'commonvariable', functi
 		  remove: { method: 'DELETE' }
 	  });
 }]);
-
+ServersoftApi.factory("qualifisubdimension", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+	return $resource(commonvariable.url + "qualifisubdimension/:proid",
+	{proid :'@proid'},
+	  {
+		  get: { method: "GET", isArray: true },
+		  post: { method: "POST" },
+		  put: { method: "PUT", isArray: true },
+		  remove: { method: 'DELETE' }
+	  });
+}]);
+ServersoftApi.factory("qualififeature", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+	return $resource(commonvariable.url + "qualififeature/:proid",
+	{proid :'@proid'},
+	  {
+		  get: { method: "GET", isArray: true },
+		  post: { method: "POST" },
+		  put: { method: "PUT", isArray: true },
+		  remove: { method: 'DELETE' }
+	  });
+}]);
+ServersoftApi.factory("qualifisubfeature", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+	return $resource(commonvariable.url + "qualifisubfeature/:proid",
+	{proid :'@proid'},
+	  {
+		  get: { method: "GET", isArray: true },
+		  post: { method: "POST" },
+		  put: { method: "PUT", isArray: true },
+		  remove: { method: 'DELETE' }
+	  });
+}]);
 ServersoftApi.factory("rolesubdimension", ['$resource', 'commonvariable', function ($resource, commonvariable) {
     return $resource(commonvariable.url + "rolesubdimension/:rsoid",
 	{ rsoid: '@rsoid' },
