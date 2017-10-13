@@ -1,6 +1,6 @@
 {
   "------INDEX---":"----------------",
-  "TITLE":"SIAPS-HerramientaEvaluacion",
+  "TITLE":"Metodología para la Evaluación de Sistemas de Información en el Contexto de la Atencion Primaria en Salud",
   "QUALIFICATION":"Qualification",
   "SUBTITLE": "",
   "MENU_ADMIN": "Configuración general del sistema",
@@ -12,7 +12,7 @@
   "MSG_SUCCESS":"Datos Registrados",
   "MSG_ERROR":"Se presentaron problemas por favor contacta al adminsitrador del software",
   "------LOGIN": "-------------------",
-  "LOGIN_TITTLE": "Por Favor regístrese",
+  "LOGIN_TITTLE": "Bienvenido a MESI-APS ",
   "USER": "Usuario",
   "PASS":"Contraseña",
   "LOGIN_BUTTON": "Ingresar",

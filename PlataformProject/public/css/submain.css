@@ -114,13 +114,13 @@ li.active span.round-tabs.ten{
 }
 
 span.round-tabs.eleven{
-    color: #5cb85c;border: 2px solid #5cb85c;
+    color: #1B2739;border: 2px solid #1B2739;
 }
 
 li.active span.round-tabs.eleven{
     background: #fff !important;
     border: 2px solid #ddd;
-    color: #5cb85c;
+    color: #1B2739;
 }
 
 span.round-tabs.twelve{
@@ -159,7 +159,7 @@ li.active span.round-tabs.twelve{
     margin: 0 auto;
     bottom: 0px;
     border: 10px solid transparent;
-    border-bottom-color: #5cb85c;
+    border-bottom-color: #1B2739;
     
 }
 .nav-tabs > li a{
@@ -194,8 +194,8 @@ padding-top: 10px;
 }
 
 .btn.green{
-    background-color:#5cb85c;
-    /*border: 2px solid #5cb85c;*/
+    background-color:#1B2739;
+    /*border: 2px solid #1B2739;*/
     color: #ffffff;
 }
 
