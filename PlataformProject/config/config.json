@@ -10,6 +10,7 @@
       "freezeTableName": true
     }
   },
+  
   "sqlServer": {
     "username": "postgres",
     "password": "9004",
