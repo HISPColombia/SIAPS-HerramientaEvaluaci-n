@@ -18,6 +18,18 @@ router.get('/sys/question', function (req, res) {
      publicResource.ReturnResult(res, result);
  })
 });
+
+
+router.get('/sys/question/typesystem/:proid', function (req, res) {
+    var sequelize = connection.open();
+   var query = "select typesystem.tsysdescrip as name, round(avg(qualify(typequestion.tqdescription,question.optionquestion, responsevalue.rvresp))) AS item from responsevalue "+
+"inner join question on question.quoid =responsevalue.quoid inner join typesystem on typesystem.tsysoid=question.tsysoid inner join typequestion ON question.tqoid = typequestion.tqoid "+
+"where proid=1 and  typesystem.tsysoid <> "+req.params.proid+" group by  typesystem.tsysdescrip";
+   sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
+ .then(function (result) {
+     publicResource.ReturnResult(res, result);
+ })
+});
 router.get('/sys/question/:quoid', function (req, res) {
     models.question.findAll({ 
         where: { quoid: req.params.quoid}}).then(function (result) {

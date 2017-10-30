@@ -1,4 +1,4 @@
-appServersoft.controller('charsController', ['$scope', '$filter', 'commonvariable', 'authentication','$localStorage','variable','user','responsevalue','responsevaluechars','responsevaluesd','responsevaluedm','responsevaluefe','responsevaluesfe','system','qualifidimension','qualifisubdimension','project','dimension','subdimension','feature','subfeature','featuresubdimension','systemproject','facilityproject','facility','qualififeature','qualifisubfeature','dimensiondonut','featuredonut', function ($scope, $filter, commonvariable, authentication, $localStorage,variable,user,responsevalue,responsevaluechars,responsevaluesd,responsevaluedm,responsevaluefe,responsevaluesfe,system,qualifidimension,qualifisubdimension,project,dimension,subdimension,feature,subfeature,featuresubdimension,systemproject,facilityproject,facility,qualififeature,qualifisubfeature,dimensiondonut,featuredonut) {
+appServersoft.controller('charsController', ['$scope', '$filter', 'commonvariable', 'authentication','$localStorage','variable','user','responsevalue','responsevaluechars','responsevaluesd','responsevaluedm','responsevaluefe','responsevaluesfe','system','qualifidimension','qualifisubdimension','project','dimension','subdimension','feature','subfeature','featuresubdimension','systemproject','facilityproject','facility','qualififeature','qualifisubfeature','dimensiondonut','featuredonut','typesystem', function ($scope, $filter, commonvariable, authentication, $localStorage,variable,user,responsevalue,responsevaluechars,responsevaluesd,responsevaluedm,responsevaluefe,responsevaluesfe,system,qualifidimension,qualifisubdimension,project,dimension,subdimension,feature,subfeature,featuresubdimension,systemproject,facilityproject,facility,qualififeature,qualifisubfeature,dimensiondonut,featuredonut,typesystem) {
         ///verify session
          //authentication.checkStatus();
  ////
@@ -57,9 +57,15 @@ $scope.loadGraphic = function(filter){
     $scope.getsystemproject();
     $scope.getfacilityproject();
     $scope.getCharDimension(filter.proid);
-    $scope.getCharSubDimension(filter.proid);
+    $scope.getCharQtypesystem(filter.proid);
+    $scope.getCharSubDimension1(filter.proid, '1');
+    $scope.getCharSubDimension2(filter.proid, '2');
+    $scope.getCharSubDimension3(filter.proid, '3');
     $scope.getCharFeature(filter.proid);
-    $scope.getCharSubFeature(filter.proid);
+    $scope.getCharSubFeature1(filter.proid,'1');
+    $scope.getCharSubFeature2(filter.proid,'2');
+    $scope.getCharSubFeature3(filter.proid,'3');
+    $scope.getCharSubFeature4(filter.proid,'4');
    };
 
  $scope.getproject = function () {
@@ -142,12 +148,20 @@ function CreateGraphicDimension(data) {
  
  //FinGrafica Dimension      
  // Grafica de Barras Calificacion por SubSubDimensions del Proyecto
-var chartSubDimension = null;
-function LoadGraphicSubDim(data) {
-    chartSubDimension.load(data);
+var chartSubDimension1 = null;
+var chartSubDimension2 = null;
+var chartSubDimension3 = null;
+function LoadGraphicSubDim1(data) {
+    chartSubDimension1.load(data);
 }
-$scope.getCharSubDimension = function (proid) {
-        qualifisubdimension.get({proid})
+function LoadGraphicSubDim2(data) {
+    chartSubDimension2.load(data);
+}
+function LoadGraphicSubDim3(data) {
+    chartSubDimension3.load(data);
+}
+$scope.getCharSubDimension1 = function (proid, dioid) {
+        qualifisubdimension.get({proid, dioid})
        .$promise.then(function (resp) {
         if(resp != null)
              {
@@ -158,15 +172,47 @@ $scope.getCharSubDimension = function (proid) {
                  var obj = {
                      columns: arrayGraphic
                  };
-                 LoadGraphicSubDim(obj);
+                 LoadGraphicSubDim1(obj);
+           }
+       });
+ };
+ $scope.getCharSubDimension2 = function (proid, dioid) {
+        qualifisubdimension.get({proid, dioid})
+       .$promise.then(function (resp) {
+        if(resp != null)
+             {
+                 var arrayGraphic = [];
+                 for (var i = 0; i < resp.length; i++) {
+                     arrayGraphic [i] = [resp[i].name, resp[i].item];
+                 }
+                 var obj = {
+                     columns: arrayGraphic
+                 };
+                 LoadGraphicSubDim2(obj);
+           }
+       });
+ };
+ $scope.getCharSubDimension3 = function (proid, dioid) {
+        qualifisubdimension.get({proid, dioid})
+       .$promise.then(function (resp) {
+        if(resp != null)
+             {
+                 var arrayGraphic = [];
+                 for (var i = 0; i < resp.length; i++) {
+                     arrayGraphic [i] = [resp[i].name, resp[i].item];
+                 }
+                 var obj = {
+                     columns: arrayGraphic
+                 };
+                 LoadGraphicSubDim3(obj);
            }
        });
  };
    //$scope.getCharSubDimension();
     
-function CreateGraphicSubDimension(data) {
-        chartSubDimension = c3.generate({
-         bindto: '#chartSubDimension',
+function CreateGraphicSubDimension1(data) {
+        chartSubDimension1 = c3.generate({
+         bindto: '#chartSubDimension1',
          data: {
              columns: data,
              type: 'bar', //type: 'donut',
@@ -178,7 +224,39 @@ function CreateGraphicSubDimension(data) {
      });
 
  }
- CreateGraphicSubDimension([]);
+ CreateGraphicSubDimension1([]);
+
+ function CreateGraphicSubDimension2(data) {
+        chartSubDimension2 = c3.generate({
+         bindto: '#chartSubDimension2',
+         data: {
+             columns: data,
+             type: 'bar', //type: 'donut',
+             color: function (color, d) {
+                 // d will be 'id' when called for legends
+                 return d.id && d.id === 'data' ? d3.rgb(color).darker(d.value / 150) : color;
+             }
+         },
+     });
+
+ }
+ CreateGraphicSubDimension2([]);
+
+ function CreateGraphicSubDimension3(data) {
+        chartSubDimension3 = c3.generate({
+         bindto: '#chartSubDimension3',
+         data: {
+             columns: data,
+             type: 'bar', //type: 'donut',
+             color: function (color, d) {
+                 // d will be 'id' when called for legends
+                 return d.id && d.id === 'data' ? d3.rgb(color).darker(d.value / 150) : color;
+             }
+         },
+     });
+
+ }
+ CreateGraphicSubDimension3([]);
  
  //FinGrafica SubDimension  
 // Grafica de Barras Calificacion por Features del Proyecto
@@ -222,12 +300,24 @@ function CreateGraphicFeature(data) {
  
  //FinGrafica Feature   
 // Grafica de Barras Calificacion por SubFeatures del Proyecto
-var chartSubFeature = null;
-function LoadGraphicSubFeature(data) {
-    chartSubFeature.load(data);
+var chartSubFeature1 = null;
+function LoadGraphicSubFeature1(data) {
+    chartSubFeature1.load(data);
 }
-$scope.getCharSubFeature = function (proid) {
-        qualifisubfeature.get({proid})
+var chartSubFeature2 = null;
+function LoadGraphicSubFeature2(data) {
+    chartSubFeature2.load(data);
+}
+var chartSubFeature3 = null;
+function LoadGraphicSubFeature3(data) {
+    chartSubFeature3.load(data);
+}
+var chartSubFeature4 = null;
+function LoadGraphicSubFeature4(data) {
+    chartSubFeature4.load(data);
+}
+$scope.getCharSubFeature1 = function (proid,feoid) {
+        qualifisubfeature.get({proid, feoid})
        .$promise.then(function (resp) {
         if(resp != null)
              {
@@ -238,15 +328,63 @@ $scope.getCharSubFeature = function (proid) {
                  var obj = {
                      columns: arrayGraphic
                  };
-                 LoadGraphicSubFeature(obj);
+                 LoadGraphicSubFeature1(obj);
+           }
+       });
+ };
+ $scope.getCharSubFeature2 = function (proid, feoid) {
+        qualifisubfeature.get({proid, feoid})
+       .$promise.then(function (resp) {
+        if(resp != null)
+             {
+                 var arrayGraphic = [];
+                 for (var i = 0; i < resp.length; i++) {
+                     arrayGraphic [i] = [resp[i].name, resp[i].item];
+                 }
+                 var obj = {
+                     columns: arrayGraphic
+                 };
+                 LoadGraphicSubFeature2(obj);
+           }
+       });
+ };
+ $scope.getCharSubFeature3 = function (proid, feoid) {
+        qualifisubfeature.get({proid, feoid})
+       .$promise.then(function (resp) {
+        if(resp != null)
+             {
+                 var arrayGraphic = [];
+                 for (var i = 0; i < resp.length; i++) {
+                     arrayGraphic [i] = [resp[i].name, resp[i].item];
+                 }
+                 var obj = {
+                     columns: arrayGraphic
+                 };
+                 LoadGraphicSubFeature3(obj);
+           }
+       });
+ };
+ $scope.getCharSubFeature4 = function (proid, feoid) {
+        qualifisubfeature.get({proid, feoid})
+       .$promise.then(function (resp) {
+        if(resp != null)
+             {
+                 var arrayGraphic = [];
+                 for (var i = 0; i < resp.length; i++) {
+                     arrayGraphic [i] = [resp[i].name, resp[i].item];
+                 }
+                 var obj = {
+                     columns: arrayGraphic
+                 };
+                 LoadGraphicSubFeature4(obj);
            }
        });
  };
    //$scope.getCharSubFeature();
     
-function CreateGraphicSubFeature(data) {
-        chartSubFeature = c3.generate({
-         bindto: '#chartSubFeature',
+function CreateGraphicSubFeature1(data) {
+        chartSubFeature1 = c3.generate({
+         bindto: '#chartSubFeature1',
          data: {
              columns: data,
              type: 'bar', //type: 'donut',
@@ -258,8 +396,54 @@ function CreateGraphicSubFeature(data) {
      });
 
  }
- CreateGraphicSubFeature([]);
+ CreateGraphicSubFeature1([]);
+ function CreateGraphicSubFeature2(data) {
+        chartSubFeature2 = c3.generate({
+         bindto: '#chartSubFeature2',
+         data: {
+             columns: data,
+             type: 'bar', //type: 'donut',
+             color: function (color, d) {
+                 // d will be 'id' when called for legends
+                 return d.id && d.id === 'data' ? d3.rgb(color).darker(d.value / 150) : color;
+             }
+         },
+     });
+
+ }
+ CreateGraphicSubFeature2([]);
+
+ function CreateGraphicSubFeature3(data) {
+        chartSubFeature3 = c3.generate({
+         bindto: '#chartSubFeature3',
+         data: {
+             columns: data,
+             type: 'bar', //type: 'donut',
+             color: function (color, d) {
+                 // d will be 'id' when called for legends
+                 return d.id && d.id === 'data' ? d3.rgb(color).darker(d.value / 150) : color;
+             }
+         },
+     });
+
+ }
+ CreateGraphicSubFeature3([]);
  
+ function CreateGraphicSubFeature4(data) {
+        chartSubFeature4 = c3.generate({
+         bindto: '#chartSubFeature4',
+         data: {
+             columns: data,
+             type: 'bar', //type: 'donut',
+             color: function (color, d) {
+                 // d will be 'id' when called for legends
+                 return d.id && d.id === 'data' ? d3.rgb(color).darker(d.value / 150) : color;
+             }
+         },
+     });
+
+ }
+ CreateGraphicSubFeature4([]);
  //FinGrafica SubFeature   
 // Grafica de Barras Calificacion por DimensionDonuts del Proyecto
 var chartDimensionDonut = null;
@@ -338,6 +522,44 @@ function CreateGraphicFeatureDonut(data) {
  }
  CreateGraphicFeatureDonut([]);
  
+var chartQtypesystem = null;
+function LoadGraphicQtsys(data) {
+    chartQtypesystem.load(data);
+}
+$scope.getCharQtypesystem = function (proid) {
+        typesystem.get({proid})
+       .$promise.then(function (resp) {
+        if(resp != null)
+             {
+                 var arrayGraphic = [];
+                 for (var i = 0; i < resp.length; i++) {
+                     arrayGraphic [i] = [resp[i].name, resp[i].item];
+                 }
+                 var obj = {
+                     columns: arrayGraphic
+                 };
+                 LoadGraphicQtsys(obj);
+           }
+       });
+ };
+   //$scope.getCharDimension();
+    
+function CreateGraphicQtypesystem(data) {
+        chartQtypesystem= c3.generate({
+         bindto: '#chartQtypesystem',
+         data: {
+             columns: data,
+             type: 'bar', //type: 'donut',
+             color: function (color, d) {
+                 // d will be 'id' when called for legends
+                 return d.id && d.id === 'data' ? d3.rgb(color).darker(d.value / 150) : color;
+             }
+         },
+     });
+
+ }
+ CreateGraphicQtypesystem([]);
+
  //FinGrafica FeaturenDonut   
 
 

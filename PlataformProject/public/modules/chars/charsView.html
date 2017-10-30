@@ -25,13 +25,13 @@
                         <h2>{{'SYSTEM'|translate}}</h2>
                         <div class="clearfix"></div>
                       </div>
-                      <div class="x_content">
+                      <div class="x_content" style="overflow: scroll; height: 300px">
                         <table class="table table-hover table-striped">
                           <tbody>
                               <tr ng-repeat="item in listsystem | filter:query">
                                   <td><p><i class="fa fa-square GREEN"></i></p></td>
                                   <td>{{item.sysname}}</td>
-                                  <td>{{item.initials}}</td>
+                                  <td>{{item.tsysdescrip}}</td>
                           </tbody>
                       </table>
                       </div>
@@ -54,38 +54,12 @@
                       </div>
                     </div>
                 </div>
-              <!-- <div class="col-md-3 col-sm-12 col-xs-12">
-                <div class="x_panel tile fixed_height_320">
-                  <div class="x_title">
-                    <h2>{{'QUICK'|translate}} {{'SETTINGS'|translate}}</h2>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <div class="dashboard-widget-content">
-                      <ul class="quick-list">
-                        <li><i class="fa fa-calendar-o"></i><a href="#/dashboard/mainconfiguration/attribute">{{'SETTINGS'|translate}}</a>
-                        </li>
-                        <li><i class="fa fa-bars"></i><a href="#/dashboard/mainproject/project">{{'PROJECT'|translate}}</a>
-                        </li>
-                        <li><i class="fa fa-bar-chart"></i><a href="#/dashboard/mainconfiguration/system">{{'SYSTEM'|translate}}</a> </li>
-                        <li><i class="fa fa-line-chart"></i><a href="#/dashboard/mainconfiguration/question">{{'QUESTION'|translate}}</a>
-                        </li>
-                        <li><i class="fa fa-bar-chart"></i><a href="#/dashboard/mainsecurity/role">{{'ROLE'|translate}}</a> </li>
-                        <li><i class="fa fa-line-chart"></i><a href="#/dashboard/mainsecurity/person">{{'SECURITY'|translate}}</a>
-                        </li>
-                        <li><i class="fa fa-area-chart"></i><a href="#/adminaccess">Logout</a>
-                        </li>
-                      </ul>
-                      </div>
-                  </div>
-                </div>
-              </div> -->
         </div>
    <div class="row">
         <div class="col-md-3 col-sm-12 col-xs-12">
                 <div class="x_panel">
                 <div class="x_title">
-                    <h2>{{'QUALIFICATION' | translate}} {{'DIMENSION'| translate}}</h2>
+                    <h2>Porcentaje de {{'QUALIFICATION' | translate}} por {{'DIMENSION'| translate}}</h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -96,18 +70,7 @@
         <div class="col-md-3 col-sm-12 col-xs-12">
           <div class="x_panel">
           <div class="x_title">
-              <h2>{{'QUALIFICATION' | translate}} {{'SUB_DIMENSION'| translate}}</h2>
-              <div class="clearfix"></div>
-          </div>
-          <div class="x_content">
-                  <div id="chartSubDimension"></div>
-          </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-12 col-xs-12">
-          <div class="x_panel">
-          <div class="x_title">
-              <h2>{{'QUALIFICATION' | translate}} {{'FEATURE'| translate}}</h2>
+              <h2>Porcentaje de {{'QUALIFICATION' | translate}} por <br>Meta{{'FEATURE'| translate}}</h2>
               <div class="clearfix"></div>
           </div>
           <div class="x_content">
@@ -115,20 +78,107 @@
           </div>
           </div>
         </div>
-        <div class="col-md-3 col-sm-12 col-xs-12">
+        <div class="col-md-6 col-sm-12 col-xs-12">
+            <div class="x_panel">
+            <div class="x_title">
+                <h2>Porcentaje de {{'QUALIFICATION' | translate}} por tipo de sistema</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                    <div id="chartQtypesystem"></div>
+            </div>
+            </div>
+        </div>
+     </div>
+     <div><h1>Porcentaje de {{'QUALIFICATION' | translate}} por {{'SUB_DIMENSION' | translate}}</h1></div>
+   <div class="row">
+        <div class="col-md-4 col-sm-12 col-xs-12">
           <div class="x_panel">
           <div class="x_title">
-              <h2>{{'QUALIFICATION' | translate}} {{'SUB_FEATURE'| translate}}</h2>
+              <h2>Modelo de referencia para APS</h2>
               <div class="clearfix"></div>
           </div>
           <div class="x_content">
-                  <div id="chartSubFeature"></div>
+                  <div id="chartSubDimension1"></div>
+          </div>
+          </div>
+        </div>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+          <div class="x_panel">
+          <div class="x_title">
+              <h2>Organizacional de los servicios de salud</h2>
+              <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+                  <div id="chartSubDimension2"></div>
+          </div>
+          </div>
+        </div>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+          <div class="x_panel">
+          <div class="x_title">
+              <h2>Tecnologias de la información en salud</h2>
+              <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+                  <div id="chartSubDimension3"></div>
+          </div>
+          </div>
+        </div>
+
+
+        
+   </div>
+        <div><h1>Porcentaje de {{'QUALIFICATION' | translate}} por MacroCaracterísticas</h1></div>
+     <div class="row">
+        <div class="col-md-3 col-sm-12 col-xs-12">
+          <div class="x_panel">
+          <div class="x_title">
+              <h2>Adaptabilidad</h2>
+              <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+                  <div id="chartSubFeature1"></div>
+          </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-12 col-xs-12">
+          <div class="x_panel">
+          <div class="x_title">
+              <h2>Adecuación funcional</h2>
+              <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+                  <div id="chartSubFeature2"></div>
+          </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-12 col-xs-12">
+          <div class="x_panel">
+          <div class="x_title">
+              <h2>Confianza del sistema</h2>
+              <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+                  <div id="chartSubFeature3"></div>
+          </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-12 col-xs-12">
+          <div class="x_panel">
+          <div class="x_title">
+              <h2>Cooperacion entre SIS</h2>
+              <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+                  <div id="chartSubFeature4"></div>
           </div>
           </div>
         </div>
         
    </div>
-   <div class="row">
+
+   <!--<div class="row">
     <div class="col-md-6 col-sm-12 col-xs-12">
             <div class="x_panel">
             <div class="x_title">
@@ -151,7 +201,7 @@
       </div>
       </div>
 </div>
-  </div>
+  </div>-->
   
    <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">

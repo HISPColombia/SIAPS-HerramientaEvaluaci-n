@@ -143,11 +143,11 @@ router.get('/sys/qualifidimension/:proid', function (req, res) {
      publicResource.ReturnResult(res, result);
  })
 });
-router.get('/sys/qualifisubdimension/:proid', function (req, res) {
+router.get('/sys/qualifisubdimension/:proid/:dioid', function (req, res) {
     var sequelize = connection.open();
-   var query = " SELECT public.subdimension.suname as name, avg(qualify(public.typequestion.tqdescription, public.question.optionquestion, public.responsevalue.rvresp)) AS item FROM responsevalue "+
+   var query = " SELECT public.subdimension.suname as name, round(avg(qualify(public.typequestion.tqdescription, public.question.optionquestion, public.responsevalue.rvresp))) AS item FROM responsevalue "+
    "INNER JOIN project ON (responsevalue.proid = project.proid) INNER JOIN question ON (responsevalue.quoid = question.quoid) INNER JOIN typequestion ON (question.tqoid = typequestion.tqoid) INNER JOIN public.subdimension ON (question.suoid = public.subdimension.suoid) INNER JOIN public.dimension ON (public.subdimension.dioid = public.dimension.dioid) "+
-   "WHERE responsevalue.tqoid = typequestion.tqoid AND question.quoid = responsevalue.quoid AND responsevalue.proid = "+req.params.proid+" GROUP BY public.subdimension.suoid";
+   "WHERE responsevalue.tqoid = typequestion.tqoid AND question.quoid = responsevalue.quoid AND responsevalue.proid = "+req.params.proid+"AND subdimension.dioid = "+req.params.dioid+" GROUP BY public.subdimension.suoid";
    sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
  .then(function (result) {
      publicResource.ReturnResult(res, result);
@@ -171,7 +171,7 @@ router.get('/sys/qualififeature/:proid', function (req, res) {
      publicResource.ReturnResult(res, result);
  })
 });
-router.get('/sys/qualifisubfeature/:proid', function (req, res) {
+router.get('/sys/qualifisubfeature/:proid/:feoid', function (req, res) {
     var sequelize = connection.open();
    var query = 	"SELECT "+
    "subfeature.sfname as name, "+
@@ -183,7 +183,7 @@ router.get('/sys/qualifisubfeature/:proid', function (req, res) {
    "INNER JOIN attribute ON (metric.atoid = attribute.atoid) "+
    "INNER JOIN subfeature ON (attribute.sfoid = subfeature.sfoid) "+
    "INNER JOIN feature ON (subfeature.feoid = feature.feoid) WHERE "+
-   "responsevalue.tqoid = typequestion.tqoid AND question.quoid = responsevalue.quoid AND responsevalue.proid = "+req.params.proid+" GROUP BY public.subfeature.sfoid";
+   "responsevalue.tqoid = typequestion.tqoid AND question.quoid = responsevalue.quoid AND responsevalue.proid = "+req.params.proid+" AND subfeature.feoid = "+req.params.feoid+" GROUP BY public.subfeature.sfoid";
    sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
  .then(function (result) {
      publicResource.ReturnResult(res, result);

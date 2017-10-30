@@ -7,7 +7,7 @@ var connection = require("../../ConnectionDB.js");
 
 router.get('/sys/systemproject/:proid', function (req, res) {
      var sequelize = connection.open();
-    var query = "SELECT project.proid, project.prname,systemproject.sysoid, system.sysname, system.initials FROM public.system, public.systemproject, public.project WHERE system.sysoid = systemproject.sysoid AND project.proid = systemproject.proid AND project.proid = "+req.params.proid;
+    var query = "SELECT project.proid, project.prname,systemproject.sysoid, system.sysname, system.initials,typesystem.tsysdescrip FROM public.system, public.systemproject, public.project, public.tsysxsys,public.typesystem WHERE system.sysoid = tsysxsys.sysoid and typesystem.tsysoid = tsysxsys.tsysoid and system.sysoid = systemproject.sysoid AND project.proid = systemproject.proid AND project.proid = "+req.params.proid+" order by system.sysoid";
     sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
   .then(function (result) {
       publicResource.ReturnResult(res, result);
