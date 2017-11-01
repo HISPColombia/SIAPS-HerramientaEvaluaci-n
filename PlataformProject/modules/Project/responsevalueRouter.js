@@ -7,7 +7,7 @@ var connection = require("../../ConnectionDB.js");
 
 router.get('/sys/responsevalue/chars/:proid', function (req, res) {
      var sequelize = connection.open();
-     var query = "SELECT question.ququestion, responsevalue.rvoid, responsevalue.proid, question.optionquestion, responsevalue.rvdate, typequestion.tqdescription,responsevalue.rvresp, public.Qualify(typequestion.tqdescription, question.optionquestion, responsevalue.rvresp) AS qualify FROM public.responsevalue, public.question, public.typequestion WHERE responsevalue.tqoid = typequestion.tqoid AND question.quoid = responsevalue.quoid and responsevalue.proid = "+req.params.proid +" ORDER BY responsevalue.quoid DESC";
+     var query = "SELECT question.ququestion, responsevalue.rvoid, responsevalue.proid, question.optionquestion, responsevalue.rvdate, typequestion.tqdescription,responsevalue.rvresp, public.Qualify(typequestion.tqdescription, question.optionquestion, responsevalue.rvresp) AS qualify, system.sysname FROM public.responsevalue inner join public.typequestion on responsevalue.tqoid = typequestion.tqoid inner join public.question on question.quoid = responsevalue.quoid  left join public.system on system.sysoid=responsevalue.sysoid WHERE  responsevalue.proid = "+req.params.proid +" ORDER BY responsevalue.quoid DESC";
      sequelize.query(query, { type: sequelize.QueryTypes.SELECT })
     .then(function (result) {
        publicResource.ReturnResult(res, result);

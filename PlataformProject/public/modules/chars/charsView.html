@@ -244,8 +244,9 @@
                                         <tr>
                                             <th>Pregunta</th>
                                             <th>optionquestion</th>
-                                            <th>Respuesta</th> 
-                                            <th>%</th>
+                                            <th>Respuesta</th>
+                                            <th>Sistema</th> 
+                                            <th>Calificación</th>
                                         </tr>
                                             </thead>
                                     <tbody>
@@ -253,7 +254,9 @@
                                             <td>{{item.ququestion}}</td>
                                             <td>{{item.optionquestion}}</td>
                                             <td>{{getItemsResp(item)}}</td>
+                                            <td>{{getResp(item.sysname}}</td>
                                             <td>{{getResp(item.qualify)}}%</td>
+                                            
                                     </tbody>
                                 </table>
                   </div>
