@@ -408,6 +408,11 @@ function CreateGraphicSubFeature1(data) {
                  return d.id && d.id === 'data' ? d3.rgb(color).darker(d.value / 150) : color;
              }
          },
+         options: {
+            scales: {
+                yAxes: [{ticks: {mirror: true}}]
+            }
+        }
      });
 
  }
@@ -424,6 +429,11 @@ function CreateGraphicSubFeature1(data) {
                  return d.id && d.id === 'data' ? d3.rgb(color).darker(d.value / 150) : color;
              }
          },
+         options: {
+            scales: {
+                yAxes: [{ticks: {mirror: true}}]
+            }
+        }
      });
 
  }
@@ -440,6 +450,11 @@ function CreateGraphicSubFeature1(data) {
                  return d.id && d.id === 'data' ? d3.rgb(color).darker(d.value / 150) : color;
              }
          },
+         options: {
+            scales: {
+                yAxes: [{ticks: {mirror: true}}]
+            }
+        }
      });
 
  }
@@ -479,6 +494,11 @@ function CreateGraphicDimensionDonut(data) {
                  return d.id && d.id === 'data' ? d3.rgb(color).darker(d.value / 150) : color;
              }
          },
+         options: {
+            scales: {
+                yAxes: [{ticks: {mirror: true}}]
+            }
+        }
      });
 
  }
@@ -517,6 +537,11 @@ function CreateGraphicFeatureDonut(data) {
                  return d.id && d.id === 'data' ? d3.rgb(color).darker(d.value / 150) : color;
              }
          },
+         options: {
+            scales: {
+                yAxes: [{ticks: {mirror: true}}]
+            }
+        }
      });
 
  }
@@ -555,6 +580,11 @@ function CreateGraphicQtypesystem(data) {
                  return d.id && d.id === 'data' ? d3.rgb(color).darker(d.value / 150) : color;
              }
          },
+         options: {
+            scales: {
+                yAxes: [{ticks: {mirror: true}}]
+            }
+        }
      });
 
  }
