@@ -393,6 +393,14 @@ function CreateGraphicSubFeature1(data) {
                  return d.id && d.id === 'data' ? d3.rgb(color).darker(d.value / 150) : color;
              }
          },
+         options: {
+            legend: {
+                display: true,
+                labels: {
+                    fontColor: 'rgb(255, 99, 132)'
+                }
+            }
+    }
      });
 
  }
@@ -408,6 +416,14 @@ function CreateGraphicSubFeature1(data) {
                  return d.id && d.id === 'data' ? d3.rgb(color).darker(d.value / 150) : color;
              }
          },
+         options: {
+            legend: {
+                display: true,
+                labels: {
+                    fontColor: 'rgb(255, 99, 132)'
+                }
+            }
+        }
      });
 
  }
@@ -424,6 +440,14 @@ function CreateGraphicSubFeature1(data) {
                  return d.id && d.id === 'data' ? d3.rgb(color).darker(d.value / 150) : color;
              }
          },
+         options: {
+            legend: {
+                display: true,
+                labels: {
+                    fontColor: 'rgb(255, 99, 132)'
+                }
+            }
+        }
      });
 
  }
@@ -440,6 +464,14 @@ function CreateGraphicSubFeature1(data) {
                  return d.id && d.id === 'data' ? d3.rgb(color).darker(d.value / 150) : color;
              }
          },
+         options: {
+            legend: {
+                display: true,
+                labels: {
+                    fontColor: 'rgb(255, 99, 132)'
+                }
+            }
+    }
      });
 
  }
